@@ -78,8 +78,8 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_graph_stock"/>
         <field name="arch" type="xml">
-            <field name="operation_type" position="attributes">
-                <attribute name="invisible">1</attribute>
+            <field name="operation_type" position="after">
+                <field name="sale_order_id"/>
             </field>
         </field>
     </record>
@@ -101,13 +101,16 @@
         <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_search_stock"/>
         <field name="arch" type="xml">
             <field name="location_dest_id" position="after">
-                <field name="sale_order_id" filter_domain="[('sale_order_id.name', 'ilike', self)]"/>
+                <field name="sale_order_id"/>
+                <field name="sale_line_id"/>
             </field>
             <filter name="with_delivery" position="after">
                 <filter string="With Sale Order" name="with_so" domain="[('sale_order_id', '!=', False)]"/>
+                <filter string="Without Sale Order" name="without_so" domain="[('sale_order_id', '=', False), ('operation_type', '=', 'outgoing')]"/>
             </filter>
             <filter name="group_location" position="after">
-                <filter string="Sale Order" name="group_so" domain="" context="{'group_by':'sale_order_id'}"/>
+                <filter string="Sale Order" name="group_so" domain="[]" context="{'group_by':'sale_order_id'}"/>
+                <filter string="Customer" name="group_customer" domain="[]" context="{'group_by':'partner_id'}"/>
             </filter>
         </field>
     </record>

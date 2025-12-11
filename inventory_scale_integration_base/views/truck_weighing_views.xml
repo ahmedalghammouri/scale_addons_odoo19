@@ -98,13 +98,13 @@
                                     <strong class="o_kanban_record_title"><t t-out="record.name.value"/></strong>
                                     <div class="text-muted small"><i class="fa fa-truck" title="Truck"/> <t t-out="record.truck_plate.value"/></div>
                                 </div>
-                                <span class="badge float-end" t-att-class="{'badge-success': record.state.raw_value == 'done', 'badge-info': record.state.raw_value == 'gross', 'badge-warning': record.state.raw_value == 'tare', 'badge-secondary': record.state.raw_value == 'draft'}">
+                                <span class="badge float-end" t-att-class="{'bg-success text-white': record.state.raw_value == 'done', 'bg-info text-white': record.state.raw_value == 'gross', 'bg-warning text-dark': record.state.raw_value == 'tare', 'bg-secondary text-white': record.state.raw_value == 'draft', 'bg-dark text-white': record.state.raw_value == 'cancel'}">
                                     <t t-out="record.state.value"/>
                                 </span>
                             </div>
                             <div class="o_kanban_record_body">
-                                <div class="mb-1" t-if="record.operation_type.raw_value">
-                                    <span t-att-class="'badge ' + (record.operation_type.raw_value == 'incoming' ? 'badge-primary' : 'badge-info')">
+                                <div class="mb-2" t-if="record.operation_type.raw_value">
+                                    <span class="badge" t-att-class="{'bg-primary text-white': record.operation_type.raw_value == 'incoming', 'bg-warning text-dark': record.operation_type.raw_value == 'outgoing'}">
                                         <i t-att-class="'fa ' + (record.operation_type.raw_value == 'incoming' ? 'fa-arrow-down' : 'fa-arrow-up')" title="Operation"/> <t t-out="record.operation_type.value"/>
                                     </span>
                                 </div>
@@ -153,9 +153,11 @@
         <field name="name">truck.weighing.view.graph</field>
         <field name="model">truck.weighing</field>
         <field name="arch" type="xml">
-            <graph string="Weighing Analysis" sample="1">
+            <graph string="Weighing Analysis" type="bar" sample="1" stacked="0">
                 <field name="weighing_date" interval="day"/>
                 <field name="net_weight" type="measure"/>
+                <field name="gross_weight" type="measure"/>
+                <field name="tare_weight" type="measure"/>
             </graph>
         </field>
     </record>
@@ -164,10 +166,13 @@
         <field name="name">truck.weighing.view.pivot</field>
         <field name="model">truck.weighing</field>
         <field name="arch" type="xml">
-            <pivot string="Weighing Pivot" sample="1">
+            <pivot string="Weighing Pivot" sample="1" display_quantity="1">
                 <field name="weighing_date" interval="month" type="row"/>
                 <field name="product_id" type="row"/>
+                <field name="partner_id" type="col"/>
                 <field name="net_weight" type="measure"/>
+                <field name="gross_weight" type="measure"/>
+                <field name="tare_weight" type="measure"/>
             </pivot>
         </field>
     </record>
@@ -178,7 +183,7 @@
         <field name="arch" type="xml">
             <search string="Truck Weighing Records">
                 <field name="name" filter_domain="['|', ('name', 'ilike', self), ('truck_plate', 'ilike', self)]" string="Reference/Plate"/>
-                <field name="truck_plate" filter_domain="[('truck_plate', 'ilike', self)]"/>
+                <field name="truck_plate"/>
                 <field name="driver_name"/>
                 <field name="partner_id"/>
                 <field name="product_id"/>
@@ -189,14 +194,21 @@
                 <filter string="Tare Captured" name="tare" domain="[('state', '=', 'tare')]"/>
                 <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
                 <separator/>
+                <filter string="High Weight (&gt;10T)" name="high_weight" domain="[('net_weight', '&gt;', 10000)]"/>
+                <filter string="Medium Weight (5-10T)" name="medium_weight" domain="[('net_weight', '&gt;=', 5000), ('net_weight', '&lt;=', 10000)]"/>
+                <filter string="Low Weight (&lt;5T)" name="low_weight" domain="[('net_weight', '&lt;', 5000)]"/>
+                <separator/>
                 <field name="state"/>
                 <group>
-                    <filter string="Status" name="group_state" domain="" context="{'group_by':'state'}"/>
-                    <filter string="Partner" name="group_partner" domain="" context="{'group_by':'partner_id'}"/>
-                    <filter string="Product" name="group_product" domain="" context="{'group_by':'product_id'}"/>
-                    <filter string="Scale" name="group_scale" domain="" context="{'group_by':'scale_id'}"/>
-                    <filter string="Truck" name="group_truck" domain="" context="{'group_by':'truck_id'}"/>
-                    <filter string="Date" name="group_date" domain="" context="{'group_by':'weighing_date:day'}"/>
+                    <filter string="Status" name="group_state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Partner" name="group_partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Product" name="group_product" domain="[]" context="{'group_by':'product_id'}"/>
+                    <filter string="Scale" name="group_scale" domain="[]" context="{'group_by':'scale_id'}"/>
+                    <filter string="Truck" name="group_truck" domain="[]" context="{'group_by':'truck_id'}"/>
+                    <filter string="Driver" name="group_driver" domain="[]" context="{'group_by':'driver_name'}"/>
+                    <filter string="Date" name="group_date" domain="[]" context="{'group_by':'weighing_date:day'}"/>
+                    <filter string="Week" name="group_week" domain="[]" context="{'group_by':'weighing_date:week'}"/>
+                    <filter string="Month" name="group_month" domain="[]" context="{'group_by':'weighing_date:month'}"/>
                 </group>
             </search>
         </field>

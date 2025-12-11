@@ -179,11 +179,11 @@
                 <filter string="With Receipt" name="with_receipt" domain="[('picking_id', '!=', False)]"/>
                 <filter string="With Delivery" name="with_delivery" domain="[('delivery_id', '!=', False)]"/>
             </filter>
-            <filter name="group_date" position="after">
-                <filter string="Operation Type" name="group_operation" domain="" context="{'group_by':'operation_type'}"/>
-                <filter string="Receipt" name="group_picking" domain="" context="{'group_by':'picking_id'}"/>
-                <filter string="Delivery" name="group_delivery" domain="" context="{'group_by':'delivery_id'}"/>
-                <filter string="Destination Location" name="group_location" domain="" context="{'group_by':'location_dest_id'}"/>
+            <filter name="group_month" position="after">
+                <filter string="Operation Type" name="group_operation" domain="[]" context="{'group_by':'operation_type'}"/>
+                <filter string="Receipt" name="group_picking" domain="[]" context="{'group_by':'picking_id'}"/>
+                <filter string="Delivery" name="group_delivery" domain="[]" context="{'group_by':'delivery_id'}"/>
+                <filter string="Destination Location" name="group_location" domain="[]" context="{'group_by':'location_dest_id'}"/>
             </filter>
         </field>
     </record>
