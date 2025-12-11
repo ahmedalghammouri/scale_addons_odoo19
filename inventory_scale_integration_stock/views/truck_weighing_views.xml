@@ -57,18 +57,16 @@
                     <group>
                         <label for="remaining_qty" string="Remaining Quantity"/>
                         <div class="o_row">
-                            <field name="remaining_qty" class="oe_inline" readonly="1" decoration-danger="remaining_qty &gt; 0" decoration-success="remaining_qty &lt;= 0"/> 
-                            <span class="oe_inline">KG</span>
+                            <field name="remaining_qty" class="oe_inline" readonly="1" decoration-danger="remaining_qty &gt; 0" decoration-success="remaining_qty &lt;= 0" style="font-size: 14px; font-weight: 500;"/> 
+                            <span class="oe_inline" style="font-size: 13px; color: #6c757d;">KG</span>
                         </div>
                         <label for="variance_qty" string="Variance"/>
                         <div class="o_row">
-                            <field name="variance_qty" class="oe_inline" readonly="1" decoration-success="variance_qty &gt;= 0" decoration-warning="variance_qty &lt; 0"/> 
-                            <span class="oe_inline">KG</span>
+                            <field name="variance_qty" class="oe_inline" readonly="1" decoration-success="variance_qty &gt;= 0" decoration-warning="variance_qty &lt; 0" style="font-size: 14px; font-weight: 500;"/> 
+                            <span class="oe_inline" style="font-size: 13px; color: #6c757d;">KG</span>
                         </div>
-                    </group>
-                    <group>
-                        <field name="variance_percent" readonly="1" widget="percentage" decoration-success="variance_percent &gt;= -0.05 and variance_percent &lt;= 0.05" decoration-warning="variance_percent &lt; -0.05 or variance_percent &gt; 0.05"/>
-                        <field name="fulfillment_percent" readonly="1" widget="percentage" decoration-success="fulfillment_percent &gt;= 0.95" decoration-warning="fulfillment_percent &lt; 0.95 and fulfillment_percent &gt;= 0.90" decoration-danger="fulfillment_percent &lt; 0.90"/>
+                        <field name="variance_percent" readonly="1" widget="percentage" decoration-success="variance_percent &gt;= -0.05 and variance_percent &lt;= 0.05" decoration-warning="variance_percent &lt; -0.05 or variance_percent &gt; 0.05" style="font-size: 14px; font-weight: 500;"/>
+                        <field name="fulfillment_percent" readonly="1" widget="percentage" decoration-success="fulfillment_percent &gt;= 0.95" decoration-warning="fulfillment_percent &lt; 0.95 and fulfillment_percent &gt;= 0.90" decoration-danger="fulfillment_percent &lt; 0.90" style="font-size: 14px; font-weight: 500;"/>
                     </group>
                 </group>
             </field>
