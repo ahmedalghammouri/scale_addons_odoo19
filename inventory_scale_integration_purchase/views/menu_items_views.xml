@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_pos_need_weighing" name="POs to Weigh" parent="inventory_scale_integration_stock.menu_truck_weighing_operations" action="action_pos_need_weighing" sequence="2"/>
-
     <record id="action_pos_need_weighing" model="ir.actions.act_window">
         <field name="name">Purchase Orders Need Weighing</field>
         <field name="res_model">purchase.order</field>
@@ -9,4 +7,6 @@
         <field name="domain">[('state', '=', 'purchase'), ('order_line.product_id.is_weighable', '=', True)]</field>
         <field name="context">{}</field>
     </record>
+
+    <menuitem id="menu_pos_need_weighing" name="POs to Weigh" parent="inventory_scale_integration_stock.menu_truck_weighing_operations" action="action_pos_need_weighing" sequence="2"/>
 </odoo>

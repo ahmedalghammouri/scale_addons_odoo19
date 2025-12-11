@@ -5,12 +5,12 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_form_stock"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@string='Stock Operations']" position="before">
+            <field name="product_id" position="after">
                 <group string="Purchase Order" invisible="operation_type != 'incoming'">
                     <field name="purchase_order_id" domain="[('partner_id', '=', partner_id), ('state', 'in', ['purchase', 'done']), ('order_line.product_id.is_weighable', '=', True)]"/>
                     <field name="purchase_line_id" domain="[('order_id', '=', purchase_order_id), ('product_id.is_weighable', '=', True)]"/>
                 </group>
-            </xpath>
+            </field>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button name="action_view_purchase_order" type="object" class="oe_stat_button" icon="fa-shopping-cart"
                         invisible="not purchase_order_id">

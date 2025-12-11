@@ -12,6 +12,11 @@
         'views/sale_order_views.xml',
         'views/menu_items_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,

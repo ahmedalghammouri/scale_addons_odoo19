@@ -12,6 +12,12 @@
         'views/purchase_order_views.xml',
         'views/menu_items_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'inventory_scale_integration_purchase/static/src/js/weighing_dashboard_purchase.js',
+            'inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,
