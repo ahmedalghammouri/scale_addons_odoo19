@@ -3,7 +3,7 @@
     <t t-name="inventory_scale_integration.WeighingDashboardTemplate" owl="1">
         <div class="o_weighing_dashboard">
             <div class="container-fluid" t-if="!state.loading">
-                <div class="row mb-4">
+                <div class="row mb-1">
                     <div class="col-12 d-flex justify-content-between align-items-center">
                         <div>
                             <!-- <h2 class="text-primary"><i class="fa fa-tachometer-alt mr-3"/></h2> -->
@@ -11,7 +11,7 @@
                             <!-- <p class="text-muted m-2">Real-time monitoring of your weighbridge operations</p> -->
                         </div>
                         <div class="d-flex align-items-center">
-                            <span class="text-muted m-3">Real-time monitoring dashboard</span>
+                            <!-- <span class="text-muted m-3">Real-time monitoring dashboard</span> -->
                             <button class="btn btn-primary btn-sm" t-on-click="refreshData">
                                 <i class="fa fa-sync-alt mr-1"/>Refresh
                             </button>
