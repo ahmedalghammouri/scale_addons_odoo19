@@ -14,6 +14,7 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'inventory_scale_integration_sale/static/src/js/weighing_dashboard_sale.js',
             'inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml',
         ],
     },
