@@ -9,6 +9,7 @@
     'depends': ['inventory_scale_integration_base', 'stock'],
     'data': [
         'security/ir.model.access.csv',
+        'report/truck_weighing_reports.xml',
         'views/truck_weighing_views.xml',
         'views/stock_picking_views.xml',
         'views/weighing_overview_views.xml',

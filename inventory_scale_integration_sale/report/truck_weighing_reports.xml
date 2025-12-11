@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Certificate Report to include Sale fields -->
+    <template id="report_weighing_certificate" inherit_id="inventory_scale_integration_base.report_weighing_certificate">
+        <xpath expr="//tr[@t-if='o.scale_id']" position="after">
+            <tr t-if="o.sale_order_id">
+                <td><strong>Sale Order:</strong></td>
+                <td colspan="3"><span t-field="o.sale_order_id"/></td>
+            </tr>
+        </xpath>
+    </template>
+
+    <!-- Extend Driver Ticket to include Sale info -->
+    <template id="report_driver_ticket" inherit_id="inventory_scale_integration_base.report_driver_ticket">
+        <xpath expr="//div[@style='margin: 20px 0; font-size: 14px;']" position="inside">
+            <div t-if="o.sale_order_id"><strong>SO:</strong> <span t-field="o.sale_order_id"/></div>
+        </xpath>
+    </template>
+</odoo>

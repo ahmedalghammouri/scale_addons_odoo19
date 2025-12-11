@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Certificate Report to include Stock fields -->
+    <template id="report_weighing_certificate" inherit_id="inventory_scale_integration_base.report_weighing_certificate">
+        <xpath expr="//tr[@t-if='o.scale_id']" position="after">
+            <tr t-if="o.picking_id">
+                <td><strong>Receipt:</strong></td>
+                <td colspan="3"><span t-field="o.picking_id"/></td>
+            </tr>
+            <tr t-if="o.delivery_id">
+                <td><strong>Delivery:</strong></td>
+                <td colspan="3"><span t-field="o.delivery_id"/></td>
+            </tr>
+            <tr t-if="o.source_document">
+                <td><strong>Source Document:</strong></td>
+                <td colspan="3"><span t-field="o.source_document"/></td>
+            </tr>
+        </xpath>
+    </template>
+
+    <!-- Extend Driver Ticket to include Stock info -->
+    <template id="report_driver_ticket" inherit_id="inventory_scale_integration_base.report_driver_ticket">
+        <xpath expr="//div[@style='margin: 20px 0; font-size: 14px;']" position="inside">
+            <div t-if="o.picking_id or o.delivery_id"><strong>Transfer:</strong> <span t-field="o.picking_id or o.delivery_id"/></div>
+        </xpath>
+    </template>
+</odoo>
