@@ -11,12 +11,13 @@ class TruckWeighing(models.Model):
     def _onchange_purchase_order_id(self):
         if self.purchase_order_id:
             self.partner_id = self.purchase_order_id.partner_id
-            for line in self.purchase_order_id.order_line.filtered(lambda l: l.product_id.is_weighable):
-                remaining_qty = line.product_qty - line.qty_received
-                if remaining_qty > 0:
-                    self.purchase_line_id = line
-                    self.product_id = line.product_id
-                    break
+            self.operation_type = 'incoming'
+            
+            weighable_lines = self.purchase_order_id.order_line.filtered(lambda l: l.product_id.is_weighable)
+            if weighable_lines:
+                first_line = weighable_lines[0]
+                self.purchase_line_id = first_line
+                self.product_id = first_line.product_id
             
             existing_picking = self.env['stock.picking'].search([
                 ('origin', '=', self.purchase_order_id.name),
@@ -26,12 +27,21 @@ class TruckWeighing(models.Model):
             
             if existing_picking:
                 self.picking_id = existing_picking
+        else:
+            self.purchase_line_id = False
     
     @api.onchange('purchase_line_id')
     def _onchange_purchase_line_id(self):
         if self.purchase_line_id:
             self.product_id = self.purchase_line_id.product_id
             self.purchase_order_id = self.purchase_line_id.order_id
+    
+    @api.onchange('picking_id')
+    def _onchange_picking_id_purchase(self):
+        if self.picking_id and self.picking_id.origin:
+            po = self.env['purchase.order'].search([('name', '=', self.picking_id.origin)], limit=1)
+            if po:
+                self.purchase_order_id = po
     
     def action_view_purchase_order(self):
         self.ensure_one()
