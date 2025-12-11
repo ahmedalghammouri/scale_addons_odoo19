@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend User Form View -->
+    <record id="view_users_form_scale" model="ir.ui.view">
+        <field name="name">res.users.form.scale</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='preferences']" position="after">
+                <page string="Weighing Scales" groups="inventory_scale_integration.group_scale_manager">
+                    <group>
+                        <field name="default_scale_id" domain="[('is_enabled', '=', True)]"/>
+                        <field name="assigned_scale_ids" widget="many2many_tags"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

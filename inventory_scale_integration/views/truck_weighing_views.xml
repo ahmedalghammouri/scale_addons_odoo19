@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_truck_weighing" model="ir.sequence">
+        <field name="name">Truck Weighing Reference</field>
+        <field name="code">truck.weighing.sequence</field>
+        <field name="prefix">WGT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="truck_weighing_view_form" model="ir.ui.view">
+        <field name="name">truck.weighing.view.form</field>
+        <field name="model">truck.weighing</field>
+        <field name="arch" type="xml">
+            <form string="Truck Weighing">
+                <header>
+                    <button name="action_fetch_live_weight" string="Fetch Live Weight" type="object" class="btn-primary"/>
+                    <button name="action_set_gross_from_live" string="Set Gross Weight" type="object"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_set_tare_from_live" string="Set Tare Weight" type="object"
+                            invisible="state != 'gross'" class="oe_highlight"/>
+                    <button name="action_update_inventory" string="Update Inventory" type="object"
+                            invisible="state != 'tare'" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,gross,tare,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_purchase_order" type="object" class="oe_stat_button" icon="fa-shopping-cart"
+                                invisible="not purchase_order_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Purchase Order</span>
+                            </div>
+                        </button>
+                        <button name="action_view_picking" type="object" class="oe_stat_button" icon="fa-truck"
+                                invisible="not picking_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Receipt</span>
+                            </div>
+                        </button>
+                        <button name="action_view_sale_order" type="object" class="oe_stat_button" icon="fa-shopping-bag"
+                                invisible="not sale_order_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Sale Order</span>
+                            </div>
+                        </button>
+                        <button name="action_view_delivery" type="object" class="oe_stat_button" icon="fa-truck"
+                                invisible="not delivery_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Delivery</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Truck Information">
+                            <field name="truck_id"/>
+                            <field name="truck_plate" invisible="1"/>
+                            <field name="driver_name"/>
+                            <field name="weighing_date"/>
+                        </group>
+                        <group string="Scale Configuration">
+                            <field name="user_scale_ids" invisible="1"/>
+                            <field name="scale_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Partner &amp; Operation">
+                            <field name="partner_id"/>
+                            <field name="operation_type"/>
+                        </group>
+                    </group>
+                    <group invisible="not operation_type">
+                        <group string="Purchase &amp; Receipts" invisible="operation_type != 'incoming'">
+                            <field name="purchase_order_id" domain="[('partner_id', '=', partner_id), ('state', 'in', ['purchase', 'done']), ('order_line.product_id.is_weighable', '=', True)]"/>
+                            <field name="purchase_line_id" domain="[('order_id', '=', purchase_order_id), ('product_id.is_weighable', '=', True)]"/>
+                            <field name="picking_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'incoming'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
+                        </group>
+                        <group string="Sales &amp; Deliveries" invisible="operation_type != 'outgoing'">
+                            <field name="sale_order_id" domain="[('partner_id', '=', partner_id), ('state', 'in', ['sale', 'done']), ('order_line.product_id.is_weighable', '=', True)]"/>
+                            <field name="sale_line_id" domain="[('order_id', '=', sale_order_id), ('product_id.is_weighable', '=', True)]"/>
+                            <field name="delivery_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'outgoing'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Product Details">
+                            <field name="product_id" domain="[('type', '=', 'product'), ('is_weighable', '=', True)]"/>
+                            <field name="location_dest_id"/>
+                        </group>
+                        <group string="Timestamps">
+                            <field name="gross_date" readonly="1"/>
+                            <field name="tare_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <separator string="Weight Measurements (KG)"/>
+                    <group>
+                        <group>
+                            <label for="live_weight" string="Live Weight (KG)"/>
+                            <div>
+                                <field name="live_weight" class="oe_inline" style="font-size: 24px; font-weight: bold; color: #0066cc;"/>
+                            </div>
+                            <field name="gross_weight" readonly="1"/>
+                            <field name="tare_weight" readonly="1"/>
+                        </group>
+                        <group>
+                            <label for="net_weight" string="Net Weight (KG)"/>
+                            <div>
+                                <field name="net_weight" readonly="1" class="oe_inline" style="font-size: 24px; font-weight: bold; color: #00aa00;"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" placeholder="Additional notes..."/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_list" model="ir.ui.view">
+        <field name="name">truck.weighing.view.list</field>
+        <field name="model">truck.weighing</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'cancel'" decoration-success="state == 'done'" sample="1">
+                <field name="name"/>
+                <field name="weighing_date" widget="datetime"/>
+                <field name="truck_plate" string="Plate #"/>
+                <field name="driver_name" optional="hide"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="purchase_order_id" optional="hide"/>
+                <field name="gross_weight" optional="show"/>
+                <field name="tare_weight" optional="show"/>
+                <field name="net_weight" sum="Total Net Weight" decoration-bf="1"/>
+                <field name="picking_id" optional="hide"/>
+                <field name="scale_id" optional="hide"/>
+                <field name="state" decoration-success="state == 'done'" decoration-info="state == 'gross'" decoration-warning="state == 'tare'" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_kanban" model="ir.ui.view">
+        <field name="name">truck.weighing.view.kanban</field>
+        <field name="model">truck.weighing</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="name"/>
+                <field name="truck_plate"/>
+                <field name="driver_name"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="purchase_order_id"/>
+                <field name="picking_id"/>
+                <field name="net_weight"/>
+                <field name="state"/>
+                <field name="weighing_date"/>
+                <field name="operation_type"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click" t-attf-style="border-left: 4px solid {{record.state.raw_value == 'done' ? '#28a745' : record.state.raw_value == 'tare' ? '#ffc107' : record.state.raw_value == 'gross' ? '#17a2b8' : '#6c757d'}}; border-radius: 4px;">
+                            <div class="o_kanban_record_top mb-2">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                    <div class="text-muted"><i class="fa fa-truck" title="Truck"/> <field name="truck_plate"/></div>
+                                </div>
+                                <span class="float-end badge" t-attf-style="background-color: {{record.state.raw_value == 'done' ? '#28a745' : record.state.raw_value == 'tare' ? '#ffc107' : record.state.raw_value == 'gross' ? '#17a2b8' : '#6c757d'}}; color: white; font-weight: bold;">
+                                    <field name="state"/>
+                                </span>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <div class="mb-1"><i class="fa fa-user" title="Driver"/> <field name="driver_name"/></div>
+                                <div class="mb-1"><i class="fa fa-building" title="Vendor"/> <field name="partner_id"/></div>
+                                <div class="mb-1"><i class="fa fa-cube" title="Product"/> <field name="product_id"/></div>
+                                <div class="mb-1" t-if="record.purchase_order_id.raw_value"><i class="fa fa-shopping-cart" title="Purchase Order"/> <field name="purchase_order_id"/></div>
+                                <div class="mb-2" t-if="record.picking_id.raw_value"><i class="fa fa-truck" title="Receipt"/> <field name="picking_id"/></div>
+                                <div class="p-2 text-center" t-attf-style="background-color: {{record.state.raw_value == 'done' ? '#d4edda' : record.state.raw_value == 'tare' ? '#fff3cd' : record.state.raw_value == 'gross' ? '#d1ecf1' : '#e2e3e5'}}; border-radius: 4px;">
+                                    <strong t-attf-style="font-size: 20px; color: {{record.state.raw_value == 'done' ? '#155724' : record.state.raw_value == 'tare' ? '#856404' : record.state.raw_value == 'gross' ? '#0c5460' : '#383d41'}};"><field name="net_weight"/> KG</strong>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_bottom mt-2 pt-2" t-attf-style="border-top: 2px solid {{record.state.raw_value == 'done' ? '#28a745' : record.state.raw_value == 'tare' ? '#ffc107' : record.state.raw_value == 'gross' ? '#17a2b8' : '#6c757d'}};">
+                                <div class="text-muted small"><i class="fa fa-clock-o" title="Date"/> <field name="weighing_date" widget="relative"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_activity" model="ir.ui.view">
+        <field name="name">truck.weighing.view.activity</field>
+        <field name="model">truck.weighing</field>
+        <field name="arch" type="xml">
+            <activity string="Weighing Operations">
+                <templates>
+                    <div t-name="activity-box">
+                        <field name="state"/>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_graph" model="ir.ui.view">
+        <field name="name">truck.weighing.view.graph</field>
+        <field name="model">truck.weighing</field>
+        <field name="arch" type="xml">
+            <graph string="Weighing Analysis" type="bar" sample="1">
+                <field name="weighing_date" interval="day"/>
+                <field name="net_weight" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_pivot" model="ir.ui.view">
+        <field name="name">truck.weighing.view.pivot</field>
+        <field name="model">truck.weighing</field>
+        <field name="arch" type="xml">
+            <pivot string="Weighing Analysis" sample="1">
+                <field name="state" type="row"/>
+                <field name="partner_id" type="row"/>
+                <field name="net_weight" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_search" model="ir.ui.view">
+        <field name="name">truck.weighing.view.search</field>
+        <field name="model">truck.weighing</field>
+        <field name="arch" type="xml">
+            <search string="Truck Weighing Records">
+                <field name="name" filter_domain="['|', ('name', 'ilike', self), ('truck_plate', 'ilike', self)]" string="Reference/Plate"/>
+                <field name="truck_plate" filter_domain="[('truck_plate', 'ilike', self)]"/>
+                <field name="driver_name"/>
+                <field name="partner_id"/>
+                <field name="purchase_order_id" filter_domain="[('purchase_order_id.name', 'ilike', self)]"/>
+                <field name="product_id"/>
+                <field name="scale_id"/>
+                <filter string="In Progress" name="in_progress" domain="[('state', 'in', ['draft', 'gross', 'tare'])]"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Gross Captured" name="gross" domain="[('state', '=', 'gross')]"/>
+                <filter string="Tare Captured" name="tare" domain="[('state', '=', 'tare')]"/>
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <field name="state"/>
+                <group>
+                    <filter string="Status" name="group_state" domain="" context="{'group_by':'state'}"/>
+                    <filter string="Vendor" name="group_vendor" domain="" context="{'group_by':'partner_id'}"/>
+                    <filter string="Product" name="group_product" domain="" context="{'group_by':'product_id'}"/>
+                    <filter string="Scale" name="group_scale" domain="" context="{'group_by':'scale_id'}"/>
+                    <filter string="Truck" name="group_truck" domain="" context="{'group_by':'truck_id'}"/>
+                    <filter string="Date" name="group_date" domain="" context="{'group_by':'weighing_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_truck_weighing_overview" model="ir.actions.act_window">
+        <field name="name">Weighing Overview</field>
+        <field name="res_model">truck.weighing</field>
+        <field name="view_mode">graph,pivot,kanban,list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No weighing data to analyze
+            </p>
+            <p>
+                Start weighing operations to see analytics and reports.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_truck_weighing" model="ir.actions.act_window">
+        <field name="name">Weighing Operations</field>
+        <field name="res_model">truck.weighing</field>
+        <field name="view_mode">kanban,list,form,graph,pivot</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first weighing record
+            </p>
+            <p>
+                Track truck weights for incoming shipments with real-time scale integration.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_receipts_need_weighing" model="ir.actions.act_window">
+        <field name="name">Receipts Need Weighing</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('picking_type_code', '=', 'incoming'), ('state', 'in', ['assigned', 'confirmed']), ('move_ids.product_id.is_weighable', '=', True)]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_pos_need_weighing" model="ir.actions.act_window">
+        <field name="name">Purchase Orders Need Weighing</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '=', 'purchase'), ('order_line.product_id.is_weighable', '=', True)]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_truck_weighing_in_progress" model="ir.actions.act_window">
+        <field name="name">In Progress Weighing</field>
+        <field name="res_model">truck.weighing</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('state', 'in', ['draft', 'gross', 'tare'])]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No pending weighing records
+            </p>
+            <p>
+                All weighing operations are completed. Create a new record to start weighing.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_truck_weighing_all" model="ir.actions.act_window">
+        <field name="name">All Weighing Records</field>
+        <field name="res_model">truck.weighing</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No weighing records found
+            </p>
+            <p>
+                Start tracking truck weights for your incoming shipments.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,1466 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* inventory_scale_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-10 11:44+0000\n"
+"PO-Revision-Date: 2025-12-10 11:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "192.168.1.100"
+msgstr "192.168.1.100"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "<i class=\"fa fa-building\" title=\"Vendor\"/>"
+msgstr "<i class=\"fa fa-building\" title=\"المورد\"/>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "<i class=\"fa fa-clock-o\" title=\"Date\"/>"
+msgstr "<i class=\"fa fa-clock-o\" title=\"التاريخ\"/>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "<i class=\"fa fa-cube\" title=\"Product\"/>"
+msgstr "<i class=\"fa fa-cube\" title=\"المنتج\"/>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "<i class=\"fa fa-shopping-cart\" title=\"Purchase Order\"/>"
+msgstr "<i class=\"fa fa-shopping-cart\" title=\"أمر الشراء\"/>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "<i class=\"fa fa-truck\" title=\"Receipt\"/>"
+msgstr "<i class=\"fa fa-truck\" title=\"الاستلام\"/>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "<i class=\"fa fa-truck\" title=\"Truck\"/>"
+msgstr "<i class=\"fa fa-truck\" title=\"الشاحنة\"/>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "<i class=\"fa fa-user\" title=\"Driver\"/>"
+msgstr "<i class=\"fa fa-user\" title=\"السائق\"/>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.purchase_order_form_inherit_weighing
+msgid "<span class=\"o_stat_text\" style=\"font-size: 11px;\">Total Received</span>"
+msgstr "<span class=\"o_stat_text\" style=\"font-size: 11px;\">إجمالي المستلم</span>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "<span class=\"o_stat_text\">Purchase Order</span>"
+msgstr "<span class=\"o_stat_text\">أمر الشراء</span>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "<span class=\"o_stat_text\">Receipt</span>"
+msgstr "<span class=\"o_stat_text\">الاستلام</span>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.purchase_order_form_inherit_weighing
+msgid "<span class=\"o_stat_text\">Weighing</span>"
+msgstr "<span class=\"o_stat_text\">الوزن</span>"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "<span style=\"font-size: 16px; margin-left: 5px;\">KG</span>"
+msgstr "<span style=\"font-size: 16px; margin-left: 5px;\">كجم</span>"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_needaction
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_needaction
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_needaction
+msgid "Action Needed"
+msgstr "يتطلب إجراء"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__active
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__active
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__active
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_search
+msgid "Active"
+msgstr "نشط"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_exception_decoration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_exception_decoration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "تزيين استثناء النشاط"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_state
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_state
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_type_icon
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_type_icon
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Add any additional information about this scale..."
+msgstr "أضف أي معلومات إضافية حول هذا الميزان..."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+msgid "Additional information about this truck..."
+msgstr "معلومات إضافية حول هذه الشاحنة..."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Additional notes..."
+msgstr "ملاحظات إضافية..."
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_weighing_all
+msgid "All Records"
+msgstr "جميع السجلات"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_truck_weighing_all
+msgid "All Weighing Records"
+msgstr "جميع سجلات الوزن"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing_in_progress
+msgid ""
+"All weighing operations are completed. Create a new record to start "
+"weighing."
+msgstr "تم الانتهاء من جميع عمليات الوزن. قم بإنشاء سجل جديد لبدء الوزن."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_res_users__assigned_scale_ids
+msgid "Assigned Scales"
+msgstr "الموازين المخصصة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__user_ids
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Assigned Users"
+msgstr "المستخدمون المخصصون"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_attachment_count
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_attachment_count
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Avg. Processing Time"
+msgstr "متوسط وقت المعالجة"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Avg. Weight"
+msgstr "متوسط الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__truck_weighing__state__cancel
+msgid "Cancelled"
+msgstr "ملغى"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Cannot update inventory. Net weight must be positive."
+msgstr "لا يمكن تحديث المخزون. يجب أن يكون الوزن الصافي موجباً."
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__color
+msgid "Color"
+msgstr "اللون"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__company_id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__company_id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: inventory_scale_integration
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_Configuration_root
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_weighable_products
+msgid "Configure weighable products!"
+msgstr "قم بتكوين المنتجات القابلة للوزن!"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_weighing_scale
+msgid "Configure your first weighing scale"
+msgstr "قم بتكوين ميزان الوزن الأول الخاص بك"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__weighing_scale__connection_status__connected
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_search
+msgid "Connected"
+msgstr "متصل"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "Connected successfully. Weight: %s KG"
+msgstr "تم الاتصال بنجاح. الوزن: %s كجم"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Connection Settings"
+msgstr "إعدادات الاتصال"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__connection_status
+msgid "Connection Status"
+msgstr "حالة الاتصال"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "Connection failed: %s"
+msgstr "فشل الاتصال: %s"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "Connection successful. Weight: %s KG"
+msgstr "تم الاتصال بنجاح. الوزن: %s كجم"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing
+msgid "Create your first weighing record"
+msgstr "أنشئ سجل الوزن الأول الخاص بك"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__create_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__create_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__create_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_overview__create_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__create_uid
+msgid "Created by"
+msgstr "تم إنشاؤه بواسطة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__create_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__create_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__create_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_overview__create_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__driver_name
+msgid "Default Driver"
+msgstr "السائق الافتراضي"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_res_users__default_scale_id
+msgid "Default Weighing Scale"
+msgstr "ميزان الوزن الافتراضي"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__location_dest_id
+msgid "Destination Location"
+msgstr "موقع الوجهة"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Disable Scale"
+msgstr "تعطيل الميزان"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_search
+msgid "Disabled"
+msgstr "معطل"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__weighing_scale__connection_status__disconnected
+msgid "Disconnected"
+msgstr "غير متصل"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_product_template__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_res_users__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_overview__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__truck_weighing__state__done
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Done"
+msgstr "اكتمال"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__truck_weighing__state__draft
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__driver_name
+msgid "Driver Name"
+msgstr "اسم السائق"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__driver_phone
+msgid "Driver Phone"
+msgstr "رقم هاتف السائق"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__tare_weight
+msgid "Empty Truck Weight (KG)"
+msgstr "الوزن الفارغ للشاحنة (كجم)"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Enable Scale"
+msgstr "تمكين الميزان"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_product_product__is_weighable
+#: model:ir.model.fields,help:inventory_scale_integration.field_product_template__is_weighable
+msgid ""
+"Enable this product for weighbridge operations. Only weighable products will"
+" appear in POs and receipts for weighing."
+msgstr "تمكين هذا المنتج لعمليات ميزان الجسر. ستظهر المنتجات القابلة للوزن فقط في أوامر الشراء والاستلام للوزن."
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__is_enabled
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_search
+msgid "Enabled"
+msgstr "ممكن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__weighing_scale__connection_status__error
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_search
+msgid "Error"
+msgstr "خطأ"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "Error reading from scale '%s': %s"
+msgstr "خطأ في القراءة من الميزان '%s': %s"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Error: %s"
+msgstr "خطأ: %s"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Exact delivery"
+msgstr "توصيل دقيق"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Fetch Live Weight"
+msgstr "جلب قراءة الميزان الحالية"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_follower_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_follower_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_partner_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_partner_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__activity_type_icon
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__activity_type_icon
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font awesome مثال fa-tasks"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Frequently used operations"
+msgstr "العمليات المستخدمة بشكل متكرر"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Gross"
+msgstr "الوزن القائم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__truck_weighing__state__gross
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Gross Captured"
+msgstr "تم التقاط الوزن القائم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__gross_weight
+msgid "Gross Weight (KG)"
+msgstr "الوزن القائم (كجم)"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__gross_date
+msgid "Gross Weight Date"
+msgstr "تاريخ الوزن القائم"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Gross weight set: %s KG"
+msgstr "تم تحديد الوزن القائم: %s كجم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__has_message
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__has_message
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order__has_weighable_products
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_stock_picking__has_weighable_products
+msgid "Has Weighable Products"
+msgstr "يحتوي على منتجات قابلة للوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_product_template__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_res_users__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_stock_picking__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_overview__id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__ip_address
+msgid "IP Address"
+msgstr "عنوان IP"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "IP Address and Port are required."
+msgstr "عنوان IP والمنفذ مطلوبان."
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_exception_icon
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_exception_icon
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__activity_exception_icon
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__activity_exception_icon
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثناء."
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__message_needaction
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__message_needaction
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم التحقق، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__message_has_error
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__message_has_sms_error
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__message_has_error
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__message_has_sms_error
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__message_has_error
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم التحقق، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_weighing_in_progress
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_truck_weighing_in_progress
+msgid "In Progress Weighing"
+msgstr "وزن قيد التنفيذ"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "Invalid response from scale"
+msgstr "استجابة غير صالحة من الميزان"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_is_follower
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_is_follower
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_is_follower
+msgid "Is Follower"
+msgstr "هو متابع"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.purchase_order_form_inherit_weighing
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_kanban
+msgid "KG"
+msgstr "كجم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__last_check_date
+msgid "Last Check"
+msgstr "آخر فحص"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__error_message
+msgid "Last Error"
+msgstr "آخر خطأ"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__last_read_date
+msgid "Last Read Date"
+msgstr "تاريخ آخر قراءة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__last_read_weight
+msgid "Last Read Weight (KG)"
+msgstr "آخر وزن تمت قراءته (كجم)"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Last Reading"
+msgstr "آخر قراءة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__write_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__write_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__write_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_overview__write_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__write_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__write_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__write_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_overview__write_date
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__last_weighing_date
+msgid "Last Weighing"
+msgstr "آخر وزن"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_list
+msgid "Last Weight (KG)"
+msgstr "آخر وزن (كجم)"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__live_weight
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Live Weight (KG)"
+msgstr "الوزن الحي (كجم)"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Live weight fetched from %s: %s KG"
+msgstr "تم جلب الوزن الحي من %s: %s كجم"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Loading dashboard data..."
+msgstr "جاري تحميل بيانات لوحة القيادة..."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_weighable_products
+msgid ""
+"Mark products as weighable to include them in weighbridge operations.\n"
+"                Only weighable products will appear in POs and receipts for weighing."
+msgstr "قم بوضع علامة على المنتجات كقابلة للوزن لتضمينها في عمليات ميزان الجسر.\n                ستظهر المنتجات القابلة للوزن فقط في أوامر الشراء والاستلام للوزن."
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__max_weight_per_trailer
+msgid "Max Weight per Trailer (KG)"
+msgstr "الحد الأقصى للوزن لكل مقطورة (كجم)"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_has_error
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_has_error
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__my_activity_date_deadline
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__my_activity_date_deadline
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__net_weight
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Net Weight (KG)"
+msgstr "الوزن الصافي (كجم)"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "New"
+msgstr "جديد"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "New Weighing"
+msgstr "وزن جديد"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_date_deadline
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_date_deadline
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_summary
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_summary
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_type_id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_type_id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing_in_progress
+msgid "No pending weighing records"
+msgstr "لا توجد سجلات وزن معلقة"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing_overview
+msgid "No weighing data to analyze"
+msgstr "لا توجد بيانات وزن لتحليلها"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing_all
+msgid "No weighing records found"
+msgstr "لم يتم العثور على سجلات وزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__notes
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__notes
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__notes
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_needaction_counter
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_needaction_counter
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__trailer_count
+msgid "Number of Trailers"
+msgstr "عدد المقطورات"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_has_error_counter
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_has_error_counter
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__message_needaction_counter
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__message_needaction_counter
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__message_has_error_counter
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__message_has_error_counter
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__picking_id
+msgid "One weighing record per receipt"
+msgstr "سجل وزن واحد لكل استلام"
+
+#. module: inventory_scale_integration
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_weighing_operations
+msgid "Operations"
+msgstr "العمليات"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Over-delivery: +%s KG"
+msgstr "زيادة في التسليم: +%s كجم"
+
+#. module: inventory_scale_integration
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_weighing_overview
+msgid "Overview"
+msgstr "نظرة عامة"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_pos_need_weighing
+msgid "POs to Weigh"
+msgstr "أوامر الشراء للوزن"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Pending Qty"
+msgstr "الكمية المعلقة"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_list
+msgid "Plate #"
+msgstr "رقم اللوحة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__plate_number
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__truck_plate
+msgid "Plate Number"
+msgstr "رقم اللوحة"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_fleet.py:0
+msgid "Plate number %s already exists!"
+msgstr "رقم اللوحة %s موجود بالفعل!"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Please fetch live weight first."
+msgstr "يرجى جلب الوزن الحي أولاً."
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Please select a receipt first."
+msgstr "الرجاء تحديد استلام أولاً."
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Please select a weighing scale first."
+msgstr "الرجاء تحديد ميزان وزن أولاً."
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__port
+msgid "Port"
+msgstr "المنفذ"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_product_template
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__product_id
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Product"
+msgstr "المنتج"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Product %s not found in receipt."
+msgstr "المنتج %s غير موجود في الاستلام."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Product Details"
+msgstr "تفاصيل المنتج"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Product is required."
+msgstr "المنتج مطلوب."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Purchase & Inventory"
+msgstr "المشتريات والمخزون"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_purchase_order
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__purchase_order_id
+msgid "Purchase Order"
+msgstr "أمر شراء"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_purchase_order_line
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__purchase_line_id
+msgid "Purchase Order Line"
+msgstr "بند أمر الشراء"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Purchase Orders"
+msgstr "أوامر الشراء"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_pos_need_weighing
+msgid "Purchase Orders Need Weighing"
+msgstr "أوامر الشراء التي تحتاج إلى وزن"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Quick Actions"
+msgstr "إجراءات سريعة"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Real-time monitoring of your weighbridge operations"
+msgstr "مراقبة عمليات ميزان الجسر في الوقت الحقيقي"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__picking_id
+msgid "Receipt"
+msgstr "الاستلام"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Receipt updated: %s KG of %s"
+msgstr "تم تحديث الاستلام: %s كجم من %s"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_receipts_need_weighing
+msgid "Receipts Need Weighing"
+msgstr "الاستلامات التي تحتاج إلى وزن"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_receipts_need_weighing
+msgid "Receipts to Weigh"
+msgstr "استلامات للوزن"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Received: %s KG of %s (Demand: %s KG) - %s (from weighing %s)"
+msgstr "المستلم: %s كجم من %s (الطلب: %s كجم) - %s (من الوزن %s)"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Reference/Plate"
+msgstr "المرجع/اللوحة"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Refresh Data"
+msgstr "تحديث البيانات"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_weighing_reports
+msgid "Reports"
+msgstr "التقارير"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__activity_user_id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__activity_user_id
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__message_has_sms_error
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__message_has_sms_error
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسالة النصية"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Scale"
+msgstr "الميزان"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "Scale '%s' is disabled."
+msgstr "الميزان '%s' معطل."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Scale Configuration"
+msgstr "تكوين الميزان"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__name
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Scale Name"
+msgstr "اسم الميزان"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Scale Settings"
+msgstr "إعدادات الميزان"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Set Gross Weight"
+msgstr "تحديد الوزن القائم"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Set Tare Weight"
+msgstr "تحديد الوزن الفارغ"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_weighing_scale
+msgid ""
+"Set up IP addresses, ports, and monitor connection status in real-time."
+msgstr "قم بإعداد عناوين IP والمنافذ، ومراقبة حالة الاتصال في الوقت الفعلي."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing_all
+msgid "Start tracking truck weights for your incoming shipments."
+msgstr "ابدأ بتتبع أوزان الشاحنات للشحنات الواردة."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing_overview
+msgid "Start weighing operations to see analytics and reports."
+msgstr "ابدأ عمليات الوزن لرؤية التحليلات والتقارير."
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+msgid "Statistics"
+msgstr "الإحصائيات"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__state
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Status"
+msgstr "الحالة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__activity_state
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__activity_state
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد فات بالفعل\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "Success"
+msgstr "نجاح"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Suppliers"
+msgstr "الموردون"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Tare"
+msgstr "الوزن الفارغ"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields.selection,name:inventory_scale_integration.selection__truck_weighing__state__tare
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Tare Captured"
+msgstr "تم التقاط الوزن الفارغ"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__tare_weight
+msgid "Tare Weight (KG)"
+msgstr "الوزن الفارغ (كجم)"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__tare_date
+msgid "Tare Weight Date"
+msgstr "تاريخ الوزن الفارغ"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Tare weight must be less than gross weight."
+msgstr "يجب أن يكون الوزن الفارغ أقل من الوزن القائم."
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Tare weight set: %s KG"
+msgstr "تم تحديد الوزن الفارغ: %s كجم"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Test Connection"
+msgstr "اختبار الاتصال"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "This Week"
+msgstr "هذا الأسبوع"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__timeout
+msgid "Timeout (seconds)"
+msgstr "مهلة (ثواني)"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Timestamps"
+msgstr "الطوابع الزمنية"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Today"
+msgstr "اليوم"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Today's Weight"
+msgstr "وزن اليوم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__total_max_weight
+msgid "Total Max Weight (KG)"
+msgstr "إجمالي الحد الأقصى للوزن (كجم)"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_list
+msgid "Total Net Weight"
+msgstr "إجمالي الوزن الصافي"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Total Qty"
+msgstr "إجمالي الكمية"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Total Receipts"
+msgstr "إجمالي الاستلامات"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order_line__total_received_weight
+msgid "Total Received (KG)"
+msgstr "إجمالي المستلم (كجم)"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order__total_net_weight
+msgid "Total Received Weight (KG)"
+msgstr "إجمالي وزن المستلم (كجم)"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Total Value"
+msgstr "إجمالي القيمة"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration.action_truck_weighing
+msgid ""
+"Track truck weights for incoming shipments with real-time scale integration."
+msgstr "تتبع أوزان الشاحنات للشحنات الواردة مع التكامل المباشر للميزان."
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_stock_picking
+msgid "Transfer"
+msgstr "تحويل"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__truck_id
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Truck"
+msgstr "شاحنة"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_truck_fleet
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_fleet
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+msgid "Truck Fleet"
+msgstr "أسطول الشاحنات"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_truck_fleet
+msgid "Truck Fleet Management"
+msgstr "إدارة أسطول الشاحنات"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Truck Information"
+msgstr "معلومات الشاحنة"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_truck_type
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_type_view_form
+msgid "Truck Type"
+msgstr "نوع الشاحنة"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_truck_type
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__truck_type_ids
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_type
+msgid "Truck Types"
+msgstr "أنواع الشاحنات"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Truck Weighing"
+msgstr "وزن الشاحنة"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_truck_weighing
+msgid "Truck Weighing Record (Gross/Tare)"
+msgstr "سجل وزن الشاحنة (القائم/الفارغ)"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Truck Weighing Records"
+msgstr "سجلات وزن الشاحنة"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_type__name
+msgid "Type Name"
+msgstr "اسم النوع"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__activity_exception_decoration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__activity_exception_decoration
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع نشاط الاستثناء في السجل."
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/truck_weighing.py:0
+msgid "Under-delivery: -%s KG"
+msgstr "نقص في التسليم: -%s كجم"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Update Inventory"
+msgstr "تحديث المخزون"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_res_users
+msgid "User"
+msgstr "المستخدم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__user_scale_ids
+msgid "User Scale"
+msgstr "ميزان المستخدم"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__partner_id
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_search
+msgid "Vendor"
+msgstr "المورد"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Vendors"
+msgstr "الموردون"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "View All"
+msgstr "عرض الكل"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+msgid "View Weighing Records"
+msgstr "عرض سجلات الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__website_message_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__website_message_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__website_message_ids
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_weighing__website_message_ids
+#: model:ir.model.fields,help:inventory_scale_integration.field_weighing_scale__website_message_ids
+msgid "Website communication history"
+msgstr "سجل الاتصالات عبر الموقع"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_product_product__is_weighable
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_product_template__is_weighable
+msgid "Weighable Product"
+msgstr "منتج قابل للوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_weighable_products
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_weighable_products
+msgid "Weighable Products"
+msgstr "المنتجات القابلة للوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_weighing_root
+msgid "Weighbridge"
+msgstr "إدارة الموازين"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.stock_picking_form_inherit_weighing
+msgid "Weighing"
+msgstr "الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_weighing_overview
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_graph
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_pivot
+msgid "Weighing Analysis"
+msgstr "تحليل الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__weighing_date
+msgid "Weighing Date"
+msgstr "تاريخ الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_truck_weighing
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_activity
+msgid "Weighing Operations"
+msgstr "سجلات وزن الشاحنة"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "Weighing Operations Overview"
+msgstr "نظرة عامة على عمليات الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_weighing_overview
+msgid "Weighing Operations Overview Dashboard"
+msgstr "لوحة تحكم نظرة عامة على عمليات الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_truck_weighing_overview
+#: model:ir.actions.client,name:inventory_scale_integration.action_weighing_overview_dashboard
+msgid "Weighing Overview"
+msgstr "نظرة عامة على الوزن"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order__weighing_count
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_purchase_order_line__weighing_ids
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_stock_picking__weighing_count
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_fleet__weighing_count
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_weighing_scale__weighing_count
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Weighing Records"
+msgstr "سجلات الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,field_description:inventory_scale_integration.field_truck_weighing__scale_id
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Weighing Scale"
+msgstr "ميزان الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model,name:inventory_scale_integration.model_weighing_scale
+msgid "Weighing Scale Configuration"
+msgstr "تكوين ميزان الوزن"
+
+#. module: inventory_scale_integration
+#: model:res.groups,name:inventory_scale_integration.group_scale_manager
+msgid "Weighing Scale Manager"
+msgstr "مدير ميزان الوزن"
+
+#. module: inventory_scale_integration
+#: model:res.groups,name:inventory_scale_integration.group_scale_user
+msgid "Weighing Scale User"
+msgstr "مستخدم ميزان الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.actions.act_window,name:inventory_scale_integration.action_weighing_scale
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_truck_weighing_scale_setting
+#: model:ir.ui.menu,name:inventory_scale_integration.menu_weighing_scale_settings
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_users_form_scale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_list
+msgid "Weighing Scales"
+msgstr "موازين الوزن"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+msgid "Weighings"
+msgstr "الأوزان"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "Weight"
+msgstr "الوزن"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_weighing_view_form
+msgid "Weight Measurements (KG)"
+msgstr "قياسات الوزن (كجم)"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+msgid "Weight Specifications"
+msgstr "مواصفات الوزن"
+
+#. module: inventory_scale_integration
+#: model:ir.model.fields,help:inventory_scale_integration.field_truck_fleet__tare_weight
+msgid "Weight of empty truck"
+msgstr "وزن الشاحنة الفارغة"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.truck_fleet_view_form
+msgid "e.g. ABC-1234"
+msgstr "مثال: أ ب ج - ١٢٣٤"
+
+#. module: inventory_scale_integration
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration.view_weighing_scale_form
+msgid "e.g. Main Warehouse Scale"
+msgstr "مثال: ميزان المستودع الرئيسي"
+
+#. module: inventory_scale_integration
+#. odoo-javascript
+#: code:addons/inventory_scale_integration/static/src/xml/weighing_dashboard.xml:0
+msgid "hours"
+msgstr "ساعات"
+
+#. module: inventory_scale_integration
+#. odoo-python
+#: code:addons/inventory_scale_integration/models/weighing_scale.py:0
+msgid "scale_id"
+msgstr "معرف_الميزان"

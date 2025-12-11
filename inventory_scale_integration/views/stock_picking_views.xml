@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_picking_form_inherit_weighing" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.weighing</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_weighing_records" type="object" class="oe_stat_button" icon="fa-balance-scale" invisible="not has_weighable_products">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="weighing_count"/></span>
+                        <span class="o_stat_text">Weighing</span>
+                    </div>
+                    <div class="o_field_widget o_stat_info" style="margin-top: 5px;">
+                        <span class="o_stat_value" style="font-size: 14px; color: #00aa00;"><field name="total_net_weight_display"/></span>
+                        <span class="o_stat_text" style="font-size: 11px;">Total Weight</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

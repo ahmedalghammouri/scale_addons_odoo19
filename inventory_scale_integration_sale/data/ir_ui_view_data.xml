@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Disable sales weighing button when purchase module is installed -->
+        <record id="disable_sale_weighing_button" model="ir.ui.view">
+            <field name="name">Disable Sale Weighing Button</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock_picking_form_inherit_weighing_sale"/>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>
