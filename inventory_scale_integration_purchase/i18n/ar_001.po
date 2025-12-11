@@ -1,0 +1,171 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * inventory_scale_integration_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-11 20:07+0000\n"
+"PO-Revision-Date: 2025-12-11 20:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: inventory_scale_integration_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_kanban_purchase
+msgid ""
+"<i class=\"fa fa-shopping-cart text-primary\" title=\"Purchase Order\"/> "
+"<strong>PO:</strong>"
+msgstr "<i class=\"fa fa-shopping-cart text-primary\" title=\"أمر الشراء\"/> <strong>أمر الشراء:</strong>"
+
+#. module: inventory_scale_integration_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.purchase_order_form_inherit_weighing
+msgid "<span class=\"o_stat_text\" style=\"font-size: 11px;\">Total Received</span>"
+msgstr "<span class=\"o_stat_text\" style=\"font-size: 11px;\">إجمالي المستلم</span>"
+
+#. module: inventory_scale_integration_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_form_purchase
+msgid "<span class=\"o_stat_text\">Purchase Order</span>"
+msgstr "<span class=\"o_stat_text\">أمر شراء</span>"
+
+#. module: inventory_scale_integration_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.purchase_order_form_inherit_weighing
+msgid "<span class=\"o_stat_text\">Weighing</span>"
+msgstr "<span class=\"o_stat_text\">وزن</span>"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_truck_weighing__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_weighing_overview__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__has_weighable_products
+msgid "Has Weighable Products"
+msgstr "يحتوي على منتجات قابلة للوزن"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_truck_weighing__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_weighing_overview__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "New"
+msgstr "جديد"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+#: model:ir.ui.menu,name:inventory_scale_integration_purchase.menu_pos_need_weighing
+msgid "POs to Weigh"
+msgstr "أوامر الشراء للوزن"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "Pending Qty"
+msgstr "الكمية المعلقة"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model,name:inventory_scale_integration_purchase.model_purchase_order
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_truck_weighing__purchase_order_id
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_form_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_search_purchase
+msgid "Purchase Order"
+msgstr "أمر شراء"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model,name:inventory_scale_integration_purchase.model_purchase_order_line
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_truck_weighing__purchase_line_id
+msgid "Purchase Order Line"
+msgstr "بند أمر الشراء"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "Purchase Orders"
+msgstr "أوامر الشراء"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.actions.act_window,name:inventory_scale_integration_purchase.action_pos_need_weighing
+msgid "Purchase Orders Need Weighing"
+msgstr "أوامر الشراء تحتاج إلى وزن"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "Suppliers"
+msgstr "الموردون"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__total_net_weight
+msgid "Total Net Weight"
+msgstr "إجمالي الوزن الصافي"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order_line__total_received_weight
+msgid "Total Received (KG)"
+msgstr "إجمالي المستلم (كجم)"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "Total Value"
+msgstr "إجمالي القيمة"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model,name:inventory_scale_integration_purchase.model_truck_weighing
+msgid "Truck Weighing Record"
+msgstr "سجل وزن الشاحنة"
+
+#. module: inventory_scale_integration_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_search_purchase
+msgid "Vendor"
+msgstr "المورد"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "View All"
+msgstr "عرض الكل"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__weighing_count
+msgid "Weighing Count"
+msgstr "عدد عمليات الوزن"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model,name:inventory_scale_integration_purchase.model_weighing_overview
+msgid "Weighing Operations Overview Dashboard"
+msgstr "لوحة قيادة نظرة عامة على عمليات الوزن"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order_line__weighing_ids
+msgid "Weighing Records"
+msgstr "سجلات الوزن"
+
+#. module: inventory_scale_integration_purchase
+#: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__total_net_weight_display
+msgid "Weight Display"
+msgstr "عرض الوزن"
+
+#. module: inventory_scale_integration_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_search_purchase
+msgid "With Purchase Order"
+msgstr "مع أمر الشراء"
+
+#. module: inventory_scale_integration_purchase
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_search_purchase
+msgid "Without Purchase Order"
+msgstr "بدون أمر شراء"

@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * inventory_scale_integration_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-11 20:10+0000\n"
+"PO-Revision-Date: 2025-12-11 20:10+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_kanban_sale
+msgid ""
+"<i class=\"fa fa-shopping-bag text-warning\" title=\"Sale Order\"/> "
+"<strong>SO:</strong>"
+msgstr "<i class=\"fa fa-shopping-bag text-warning\" title=\"أمر البيع\"/> <strong>أمر البيع:</strong>"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.view_order_form_weighing
+msgid "<span class=\"o_stat_text\" style=\"font-size: 11px;\">Total Delivered</span>"
+msgstr "<span class=\"o_stat_text\" style=\"font-size: 11px;\">إجمالي المسلم</span>"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_form_sale
+msgid "<span class=\"o_stat_text\">Sale Order</span>"
+msgstr "<span class=\"o_stat_text\">أمر البيع</span>"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.view_order_form_weighing
+msgid "<span class=\"o_stat_text\">Weighing</span>"
+msgstr "<span class=\"o_stat_text\">وزن</span>"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_search_sale
+msgid "Customer"
+msgstr "العميل"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "Customers"
+msgstr "العملاء"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.actions.act_window,name:inventory_scale_integration_sale.action_deliveries_need_weighing
+#: model:ir.ui.menu,name:inventory_scale_integration_sale.menu_deliveries_need_weighing
+msgid "Deliveries to Weigh"
+msgstr "تسليمات للوزن"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_deliveries_need_weighing
+msgid ""
+"Delivery orders with weighable products will appear here when they are "
+"ready."
+msgstr "ستظهر هنا أوامر التسليم التي تحتوي على منتجات قابلة للوزن عندما تكون جاهزة."
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_truck_weighing__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_weighing_overview__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__has_weighable_products
+msgid "Has Weighable Products"
+msgstr "يحتوي على منتجات قابلة للوزن"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order_line__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_truck_weighing__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_weighing_overview__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "New"
+msgstr "جديد"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_deliveries_need_weighing
+msgid "No deliveries with weighable products found!"
+msgstr "لم يتم العثور على تسليمات بمنتجات قابلة للوزن!"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_sales_need_weighing
+msgid "No sales orders with weighable products found!"
+msgstr "لم يتم العثور على أوامر بيع بمنتجات قابلة للوزن!"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "Pending Qty"
+msgstr "الكمية المعلقة"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_truck_weighing__sale_order_id
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_form_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_search_sale
+msgid "Sale Order"
+msgstr "أمر البيع"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_truck_weighing__sale_line_id
+msgid "Sale Order Line"
+msgstr "بند أمر البيع"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model,name:inventory_scale_integration_sale.model_sale_order
+msgid "Sales Order"
+msgstr "أمر المبيعات"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model,name:inventory_scale_integration_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "بند أمر المبيعات"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "Sales Orders"
+msgstr "أوامر المبيعات"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.actions.act_window,name:inventory_scale_integration_sale.action_sales_need_weighing
+msgid "Sales Orders to Weigh"
+msgstr "أوامر المبيعات للوزن"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_sales_need_weighing
+msgid ""
+"Sales orders with weighable products will appear here when they are "
+"confirmed."
+msgstr "ستظهر هنا أوامر المبيعات التي تحتوي على منتجات قابلة للوزن عندما يتم تأكيدها."
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+#: model:ir.ui.menu,name:inventory_scale_integration_sale.menu_sales_need_weighing
+msgid "Sales to Weigh"
+msgstr "مبيعات للوزن"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order_line__total_delivered_weight
+msgid "Total Delivered (KG)"
+msgstr "إجمالي المسلم (كجم)"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__total_net_weight
+msgid "Total Net Weight"
+msgstr "إجمالي الوزن الصافي"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "Total Value"
+msgstr "إجمالي القيمة"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model,name:inventory_scale_integration_sale.model_truck_weighing
+msgid "Truck Weighing Record"
+msgstr "سجل وزن الشاحنة"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "View All"
+msgstr "عرض الكل"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__weighing_count
+msgid "Weighing Count"
+msgstr "عدد عمليات الوزن"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model,name:inventory_scale_integration_sale.model_weighing_overview
+msgid "Weighing Operations Overview Dashboard"
+msgstr "لوحة قيادة نظرة عامة على عمليات الوزن"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order_line__weighing_ids
+msgid "Weighing Records"
+msgstr "سجلات الوزن"
+
+#. module: inventory_scale_integration_sale
+#: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__total_net_weight_display
+msgid "Weight Display"
+msgstr "عرض الوزن"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_search_sale
+msgid "With Sale Order"
+msgstr "مع أمر البيع"
+
+#. module: inventory_scale_integration_sale
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_search_sale
+msgid "Without Sale Order"
+msgstr "بدون أمر بيع"
