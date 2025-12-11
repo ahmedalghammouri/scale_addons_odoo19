@@ -20,10 +20,7 @@
                 <attribute name="readonly">picking_id or delivery_id or purchase_order_id</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
-            <field name="picking_id" position="attributes">
-                <attribute name="readonly">purchase_order_id</attribute>
-                <attribute name="force_save">1</attribute>
-            </field>
+
             <group name="partner_operation" position="after">
                 <group string="Purchase Order" invisible="operation_type != 'incoming'">
                     <group>

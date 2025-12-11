@@ -20,10 +20,7 @@
                 <attribute name="readonly">picking_id or delivery_id or sale_order_id</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
-            <field name="delivery_id" position="attributes">
-                <attribute name="readonly">sale_order_id</attribute>
-                <attribute name="force_save">1</attribute>
-            </field>
+
             <group name="partner_operation" position="after">
                 <group string="Sale Order" invisible="operation_type != 'outgoing'">
                     <group>
