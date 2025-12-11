@@ -246,7 +246,7 @@
                                                     <i class="fa fa-check-circle"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-success" t-esc="state.data.stock_performance?.high_fulfillment || 0"/>
+                                                    <h5 class="m-2 text-success" t-esc="state.data.stock_performance?.high_fulfillment || 0"/>
                                                     <small class="text-muted">High Fulfillment</small>
                                                 </div>
                                             </div>
@@ -259,7 +259,7 @@
                                                     <i class="fa fa-arrow-up"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-info" t-esc="state.data.stock_performance?.over_delivered || 0"/>
+                                                    <h5 class="m-2 text-info" t-esc="state.data.stock_performance?.over_delivered || 0"/>
                                                     <small class="text-muted">Over-Delivered</small>
                                                 </div>
                                             </div>
@@ -272,7 +272,7 @@
                                                     <i class="fa fa-equals"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-primary" t-esc="state.data.stock_performance?.exact_match || 0"/>
+                                                    <h5 class="m-2 text-primary" t-esc="state.data.stock_performance?.exact_match || 0"/>
                                                     <small class="text-muted">Exact Match</small>
                                                 </div>
                                             </div>
@@ -285,7 +285,7 @@
                                                     <i class="fa fa-arrow-down"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-warning" t-esc="state.data.stock_performance?.under_delivered || 0"/>
+                                                    <h5 class="m-2 text-warning" t-esc="state.data.stock_performance?.under_delivered || 0"/>
                                                     <small class="text-muted">Under-Delivered</small>
                                                 </div>
                                             </div>
@@ -298,7 +298,7 @@
                                                     <i class="fa fa-percentage"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-success" t-esc="(state.data.stock_performance?.avg_fulfillment || 0) + '%'"/>
+                                                    <h5 class="m-2 text-success" t-esc="(state.data.stock_performance?.avg_fulfillment || 0) + '%'"/>
                                                     <small class="text-muted">Avg Fulfillment</small>
                                                 </div>
                                             </div>
@@ -311,7 +311,7 @@
                                                     <i class="fa fa-balance-scale"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-secondary" t-esc="this.formatWeight(state.data.stock_performance?.total_variance || 0)"/>
+                                                    <h5 class="m-2" t-esc="this.formatWeight(state.data.stock_performance?.total_variance || 0)"/>
                                                     <small class="text-muted">Total Variance</small>
                                                 </div>
                                             </div>
