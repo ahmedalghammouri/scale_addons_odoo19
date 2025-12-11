@@ -26,13 +26,13 @@
         
         &.bg-primary { background: linear-gradient(45deg, #667eea 0%, #764ba2 100%) !important; }
         &.bg-info { background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%) !important; }
-        &.bg-warning { background: linear-gradient(45deg, #ffecd2 0%, #fcb69f 100%) !important; color: #333 !important; }
+        &.bg-warning { background: linear-gradient(45deg, #e99f39 0%, #fcb69f 100%) !important; color: #333 !important; }
         &.bg-success { background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%) !important; }
         
         h5 {
             margin: 0;
             font-size: 1.1rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            // text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
         
         .badge {

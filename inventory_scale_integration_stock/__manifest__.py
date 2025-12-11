@@ -18,7 +18,7 @@
         'web.assets_backend': [
             'inventory_scale_integration_stock/static/src/js/weighing_dashboard.js',
             'inventory_scale_integration_stock/static/src/xml/weighing_dashboard.xml',
-            'inventory_scale_integration_stock/static/src/css/weighing_dashboard.css',
+            # 'inventory_scale_integration_stock/static/src/css/weighing_dashboard.css',
             'inventory_scale_integration_stock/static/src/scss/weighing_dashboard.scss',
         ],
     },
