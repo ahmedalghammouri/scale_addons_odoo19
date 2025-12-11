@@ -36,9 +36,9 @@
                     </group>
                     <group>
                         <label for="demand_qty" string="Demand Quantity"/>
-                        <div class="o_row">
-                            <field name="demand_qty" class="oe_inline" readonly="1"/> 
-                            <field name="product_uom" class="oe_inline" readonly="1" nolabel="1"/>
+                        <div>
+                            <field name="demand_qty" readonly="1" style="display: inline-block;"/> 
+                            <field name="product_uom" readonly="1" nolabel="1" style="display: inline-block; margin-left: 5px;"/>
                         </div>
                     </group>
                 </group>
@@ -56,14 +56,14 @@
                 <group string="Quantity Analysis" invisible="not picking_id and not delivery_id or state == 'draft'">
                     <group>
                         <label for="remaining_qty" string="Remaining Quantity"/>
-                        <div class="o_row">
-                            <field name="remaining_qty" class="oe_inline" readonly="1" decoration-danger="remaining_qty &gt; 0" decoration-success="remaining_qty &lt;= 0" style="font-size: 14px; font-weight: 500;"/> 
-                            <span class="oe_inline" style="font-size: 13px; color: #6c757d;">KG</span>
+                        <div>
+                            <field name="remaining_qty" readonly="1" decoration-danger="remaining_qty &gt; 0" decoration-success="remaining_qty &lt;= 0" style="font-size: 14px; font-weight: 500; display: inline-block;"/> 
+                            <span style="font-size: 13px; color: #6c757d; margin-left: 5px;">KG</span>
                         </div>
                         <label for="variance_qty" string="Variance"/>
-                        <div class="o_row">
-                            <field name="variance_qty" class="oe_inline" readonly="1" decoration-success="variance_qty &gt;= 0" decoration-warning="variance_qty &lt; 0" style="font-size: 14px; font-weight: 500;"/> 
-                            <span class="oe_inline" style="font-size: 13px; color: #6c757d;">KG</span>
+                        <div>
+                            <field name="variance_qty" readonly="1" decoration-success="variance_qty &gt;= 0" decoration-warning="variance_qty &lt; 0" style="font-size: 14px; font-weight: 500; display: inline-block;"/> 
+                            <span style="font-size: 13px; color: #6c757d; margin-left: 5px;">KG</span>
                         </div>
                         <field name="variance_percent" readonly="1" widget="percentage" decoration-success="variance_percent &gt;= -0.05 and variance_percent &lt;= 0.05" decoration-warning="variance_percent &lt; -0.05 or variance_percent &gt; 0.05" style="font-size: 14px; font-weight: 500;"/>
                         <field name="fulfillment_percent" readonly="1" widget="percentage" decoration-success="fulfillment_percent &gt;= 0.95" decoration-warning="fulfillment_percent &lt; 0.95 and fulfillment_percent &gt;= 0.90" decoration-danger="fulfillment_percent &lt; 0.90" style="font-size: 14px; font-weight: 500;"/>
@@ -74,7 +74,7 @@
                 <button name="action_update_inventory" string="Update Inventory" type="object"
                         invisible="state != 'tare'" class="oe_highlight"/>
             </button>
-            <xpath expr="//div[@class='oe_title']" position="before">
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button name="action_view_picking" type="object" class="oe_stat_button" icon="fa-truck"
                             invisible="not picking_id">
@@ -105,7 +105,7 @@
                 <field name="demand_qty"/>
                 <field name="variance_qty"/>
             </xpath>
-            <xpath expr="//div[@class='mb-2'][last()]" position="after">
+            <xpath expr="//div[hasclass('mb-2')][last()]" position="after">
                 <div t-if="record.picking_id.raw_value or record.delivery_id.raw_value" class="mb-2 p-2 border rounded">
                     <div class="mb-1"><i class="fa fa-file-text-o text-primary" title="Source"/> <strong><t t-out="record.source_document.value"/></strong></div>
                     <div class="row" t-if="record.demand_qty.raw_value &gt; 0">
