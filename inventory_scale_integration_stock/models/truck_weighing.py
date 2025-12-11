@@ -120,8 +120,15 @@ class TruckWeighing(models.Model):
             weighable_moves = self.picking_id.move_ids.filtered(lambda m: m.product_id.is_weighable)
             if weighable_moves:
                 self.product_id = weighable_moves[0].product_id
-                if self.picking_id.picking_type_code == 'outgoing':
-                    self.delivery_id = self.picking_id
+            elif self.picking_id.move_ids:
+                # Fallback to first move if no weighable products
+                self.product_id = self.picking_id.move_ids[0].product_id
+                return {'warning': {
+                    'title': _('No Weighable Products'),
+                    'message': _('This picking has no weighable products. Using first product from moves.')
+                }}
+            if self.picking_id.picking_type_code == 'outgoing':
+                self.delivery_id = self.picking_id
     
     @api.onchange('delivery_id')
     def _onchange_delivery_id(self):
@@ -132,6 +139,13 @@ class TruckWeighing(models.Model):
             weighable_moves = self.delivery_id.move_ids.filtered(lambda m: m.product_id.is_weighable)
             if weighable_moves:
                 self.product_id = weighable_moves[0].product_id
+            elif self.delivery_id.move_ids:
+                # Fallback to first move if no weighable products
+                self.product_id = self.delivery_id.move_ids[0].product_id
+                return {'warning': {
+                    'title': _('No Weighable Products'),
+                    'message': _('This delivery has no weighable products. Using first product from moves.')
+                }}
     
     def action_view_picking(self):
         self.ensure_one()
@@ -172,3 +186,40 @@ class TruckWeighing(models.Model):
                 rec.product_uom = ''
                 rec.source_document = ''
                 rec.scheduled_date = False
+    
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if (vals.get('picking_id') or vals.get('delivery_id')) and not vals.get('product_id'):
+                picking_id = vals.get('picking_id') or vals.get('delivery_id')
+                picking = self.env['stock.picking'].browse(picking_id)
+                weighable_moves = picking.move_ids.filtered(lambda m: m.product_id.is_weighable)
+                # Use weighable moves if available, otherwise use first move
+                move_to_use = weighable_moves[0] if weighable_moves else (picking.move_ids[0] if picking.move_ids else False)
+                if move_to_use:
+                    vals['product_id'] = move_to_use.product_id.id
+                    if not vals.get('partner_id'):
+                        vals['partner_id'] = picking.partner_id.id
+                    if not vals.get('operation_type'):
+                        vals['operation_type'] = picking.picking_type_code
+                    if not vals.get('location_dest_id'):
+                        vals['location_dest_id'] = picking.location_dest_id.id
+        return super().create(vals_list)
+    
+    def write(self, vals):
+        for rec in self:
+            if (vals.get('picking_id') or vals.get('delivery_id')) and 'product_id' not in vals and not rec.product_id:
+                picking_id = vals.get('picking_id') or vals.get('delivery_id')
+                picking = self.env['stock.picking'].browse(picking_id)
+                weighable_moves = picking.move_ids.filtered(lambda m: m.product_id.is_weighable)
+                # Use weighable moves if available, otherwise use first move
+                move_to_use = weighable_moves[0] if weighable_moves else (picking.move_ids[0] if picking.move_ids else False)
+                if move_to_use:
+                    vals['product_id'] = move_to_use.product_id.id
+                    if not rec.partner_id and 'partner_id' not in vals:
+                        vals['partner_id'] = picking.partner_id.id
+                    if not rec.operation_type and 'operation_type' not in vals:
+                        vals['operation_type'] = picking.picking_type_code
+                    if not rec.location_dest_id and 'location_dest_id' not in vals:
+                        vals['location_dest_id'] = picking.location_dest_id.id
+        return super().write(vals)

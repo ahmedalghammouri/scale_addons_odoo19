@@ -8,13 +8,29 @@
             <field name="picking_id" position="attributes">
                 <attribute name="invisible">operation_type == 'outgoing'</attribute>
             </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="readonly">picking_id or delivery_id or sale_order_id</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="product_id" position="attributes">
+                <attribute name="readonly">picking_id or delivery_id or sale_order_id</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="operation_type" position="attributes">
+                <attribute name="readonly">picking_id or delivery_id or sale_order_id</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="delivery_id" position="attributes">
+                <attribute name="readonly">sale_order_id</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
             <group name="partner_operation" position="after">
                 <group string="Sale Order" invisible="operation_type != 'outgoing'">
                     <group>
-                        <field name="sale_order_id" domain="[('partner_id', '=', partner_id), ('state', 'in', ['sale', 'done']), ('order_line.product_id.is_weighable', '=', True)]" options="{'no_create': True}"/>
+                        <field name="sale_order_id" domain="[('partner_id', '=', partner_id), ('state', 'in', ['sale', 'done']), ('order_line.product_id.is_weighable', '=', True)]" options="{'no_create': True}" readonly="delivery_id" force_save="1"/>
                     </group>
                     <group>
-                        <field name="sale_line_id" domain="[('order_id', '=', sale_order_id), ('product_id.is_weighable', '=', True)]" options="{'no_create': True}" invisible="not sale_order_id"/>
+                        <field name="sale_line_id" domain="[('order_id', '=', sale_order_id), ('product_id.is_weighable', '=', True)]" options="{'no_create': True}" invisible="not sale_order_id" readonly="delivery_id or sale_order_id" force_save="1"/>
                     </group>
                 </group>
             </group>

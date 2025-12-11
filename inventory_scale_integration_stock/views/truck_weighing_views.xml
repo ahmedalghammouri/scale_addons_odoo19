@@ -7,6 +7,15 @@
         <field name="arch" type="xml">
             <field name="operation_type" position="attributes">
                 <attribute name="readonly">picking_id or delivery_id</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="readonly">picking_id or delivery_id</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="product_id" position="attributes">
+                <attribute name="readonly">picking_id or delivery_id</attribute>
+                <attribute name="force_save">1</attribute>
             </field>
             <group name="partner_operation" position="after">
                 <group string="Stock Operations">
@@ -15,7 +24,7 @@
                         <field name="delivery_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'outgoing'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
                     </group>
                     <group>
-                        <field name="location_dest_id"/>
+                        <field name="location_dest_id" readonly="picking_id or delivery_id" force_save="1"/>
                     </group>
                 </group>
             </group>
