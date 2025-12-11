@@ -50,7 +50,7 @@
             <xpath expr="//field[@name='variance_qty']" position="after">
                 <field name="sale_order_id"/>
             </xpath>
-            <xpath expr="//div[@class='mb-2'][last()]" position="after">
+            <xpath expr="//div[hasclass('mb-2')][last()]" position="after">
                 <div t-if="record.sale_order_id.raw_value" class="mb-2 p-2 border border-warning rounded">
                     <i class="fa fa-shopping-bag text-warning" title="Sale Order"/> <strong>SO:</strong> <t t-out="record.sale_order_id.value"/>
                 </div>
