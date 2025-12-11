@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_weighing_overview" name="Overview" parent="inventory_scale_integration_base.menu_truck_weighing_root" action="action_weighing_overview_dashboard" sequence="0"/>
-    
-    <menuitem id="menu_truck_weighing_operations" name="Operations" parent="inventory_scale_integration_base.menu_truck_weighing_root" sequence="1"/>
-    <menuitem id="menu_receipts_need_weighing" name="Receipts to Weigh" parent="menu_truck_weighing_operations" action="action_receipts_need_weighing" sequence="1"/>
-    <menuitem id="menu_truck_weighing_in_progress" name="In Progress" parent="menu_truck_weighing_operations" action="action_truck_weighing_in_progress" sequence="5"/>
-    <menuitem id="menu_truck_weighing_all" name="All Records" parent="menu_truck_weighing_operations" action="action_truck_weighing_all" sequence="6"/>
-
-    <menuitem id="menu_truck_weighing_reports" name="Reports" parent="inventory_scale_integration_base.menu_truck_weighing_root" sequence="8"/>
-    <menuitem id="menu_truck_weighing_overview" name="Weighing Analysis" parent="menu_truck_weighing_reports" action="action_truck_weighing_overview" sequence="1"/>
-
+    <!-- Actions -->
     <record id="action_receipts_need_weighing" model="ir.actions.act_window">
         <field name="name">Receipts Need Weighing</field>
         <field name="res_model">stock.picking</field>
@@ -39,4 +30,15 @@
         <field name="view_mode">graph,pivot,list,form</field>
         <field name="context">{}</field>
     </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_weighing_overview" name="Overview" parent="inventory_scale_integration_base.menu_truck_weighing_root" action="action_weighing_overview_dashboard" sequence="0"/>
+    
+    <menuitem id="menu_truck_weighing_operations" name="Operations" parent="inventory_scale_integration_base.menu_truck_weighing_root" sequence="1"/>
+    <menuitem id="menu_receipts_need_weighing" name="Receipts to Weigh" parent="menu_truck_weighing_operations" action="action_receipts_need_weighing" sequence="1"/>
+    <menuitem id="menu_truck_weighing_in_progress" name="In Progress" parent="menu_truck_weighing_operations" action="action_truck_weighing_in_progress" sequence="5"/>
+    <menuitem id="menu_truck_weighing_all" name="All Records" parent="menu_truck_weighing_operations" action="action_truck_weighing_all" sequence="6"/>
+
+    <menuitem id="menu_truck_weighing_reports" name="Reports" parent="inventory_scale_integration_base.menu_truck_weighing_root" sequence="8"/>
+    <menuitem id="menu_truck_weighing_overview" name="Weighing Analysis" parent="menu_truck_weighing_reports" action="action_truck_weighing_overview" sequence="1"/>
 </odoo>

@@ -40,7 +40,7 @@
                         </group>
                     </group>
                     <group>
-                        <group string="Partner &amp; Operation">
+                        <group name="partner_operation" string="Partner &amp; Operation">
                             <field name="partner_id"/>
                             <field name="operation_type"/>
                             <field name="product_id" domain="[('is_weighable', '=', True)]"/>

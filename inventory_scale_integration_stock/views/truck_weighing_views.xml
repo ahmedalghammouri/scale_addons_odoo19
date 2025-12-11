@@ -5,13 +5,11 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@string='Partner &amp; Operation']" position="after">
-                <group string="Stock Operations">
-                    <field name="picking_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'incoming'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
-                    <field name="delivery_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'outgoing'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
-                    <field name="location_dest_id"/>
-                </group>
-            </xpath>
+            <field name="product_id" position="after">
+                <field name="picking_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'incoming'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
+                <field name="delivery_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'outgoing'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
+                <field name="location_dest_id"/>
+            </field>
             <button name="action_mark_done" position="replace">
                 <button name="action_update_inventory" string="Update Inventory" type="object"
                         invisible="state != 'tare'" class="oe_highlight"/>
