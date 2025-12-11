@@ -14,6 +14,12 @@ class TruckWeighing(models.Model):
     product_uom = fields.Char(string='Unit', compute='_compute_picking_info', store=False)
     source_document = fields.Char(string='Source Document', compute='_compute_picking_info', store=False)
     scheduled_date = fields.Datetime(string='Scheduled Date', compute='_compute_picking_info', store=False)
+    
+    # Computed fields for variance analysis
+    remaining_qty = fields.Float(string='Remaining Qty', compute='_compute_variance_info', store=False)
+    variance_qty = fields.Float(string='Variance', compute='_compute_variance_info', store=False)
+    variance_percent = fields.Float(string='Variance %', compute='_compute_variance_info', store=False)
+    fulfillment_percent = fields.Float(string='Fulfillment %', compute='_compute_variance_info', store=False)
 
     def action_update_inventory(self):
         self.ensure_one()
@@ -186,6 +192,20 @@ class TruckWeighing(models.Model):
                 rec.product_uom = ''
                 rec.source_document = ''
                 rec.scheduled_date = False
+    
+    @api.depends('demand_qty', 'net_weight')
+    def _compute_variance_info(self):
+        for rec in self:
+            if rec.demand_qty > 0 and rec.net_weight > 0:
+                rec.remaining_qty = rec.demand_qty - rec.net_weight
+                rec.variance_qty = rec.net_weight - rec.demand_qty
+                rec.variance_percent = rec.variance_qty / rec.demand_qty
+                rec.fulfillment_percent = rec.net_weight / rec.demand_qty
+            else:
+                rec.remaining_qty = 0.0
+                rec.variance_qty = 0.0
+                rec.variance_percent = 0.0
+                rec.fulfillment_percent = 0.0
     
     @api.model_create_multi
     def create(self, vals_list):

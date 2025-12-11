@@ -43,6 +43,35 @@
                     </group>
                 </group>
             </group>
+            <field name="notes" position="before">
+                <div class="alert alert-info" role="alert" invisible="not picking_id and not delivery_id or state == 'draft'" style="margin-bottom: 10px;">
+                    <strong>Visual Indicators:</strong>
+                    <ul style="margin-bottom: 0; padding-left: 20px;">
+                        <li><strong>Remaining Qty:</strong> <span style="color: #d9534f;">Red</span> if positive (under-delivery), <span style="color: #5cb85c;">Green</span> if zero/negative (fulfilled/over-delivered)</li>
+                        <li><strong>Variance:</strong> <span style="color: #5cb85c;">Green</span> if positive/zero (met or exceeded), <span style="color: #f0ad4e;">Orange</span> if negative (short)</li>
+                        <li><strong>Variance %:</strong> <span style="color: #5cb85c;">Green</span> if within ±5%, <span style="color: #f0ad4e;">Orange</span> if outside that range</li>
+                        <li><strong>Fulfillment %:</strong> <span style="color: #5cb85c;">Green</span> if ≥95%, <span style="color: #f0ad4e;">Orange</span> if 90-95%, <span style="color: #d9534f;">Red</span> if &lt;90%</li>
+                    </ul>
+                </div>
+                <group string="Quantity Analysis" invisible="not picking_id and not delivery_id or state == 'draft'">
+                    <group>
+                        <label for="remaining_qty" string="Remaining Quantity"/>
+                        <div class="o_row">
+                            <field name="remaining_qty" class="oe_inline" readonly="1" decoration-danger="remaining_qty &gt; 0" decoration-success="remaining_qty &lt;= 0"/> 
+                            <span class="oe_inline">KG</span>
+                        </div>
+                        <label for="variance_qty" string="Variance"/>
+                        <div class="o_row">
+                            <field name="variance_qty" class="oe_inline" readonly="1" decoration-success="variance_qty &gt;= 0" decoration-warning="variance_qty &lt; 0"/> 
+                            <span class="oe_inline">KG</span>
+                        </div>
+                    </group>
+                    <group>
+                        <field name="variance_percent" readonly="1" widget="percentage" decoration-success="variance_percent &gt;= -0.05 and variance_percent &lt;= 0.05" decoration-warning="variance_percent &lt; -0.05 or variance_percent &gt; 0.05"/>
+                        <field name="fulfillment_percent" readonly="1" widget="percentage" decoration-success="fulfillment_percent &gt;= 0.95" decoration-warning="fulfillment_percent &lt; 0.95 and fulfillment_percent &gt;= 0.90" decoration-danger="fulfillment_percent &lt; 0.90"/>
+                    </group>
+                </group>
+            </field>
             <button name="action_mark_done" position="replace">
                 <button name="action_update_inventory" string="Update Inventory" type="object"
                         invisible="state != 'tare'" class="oe_highlight"/>
