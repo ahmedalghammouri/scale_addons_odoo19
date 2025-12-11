@@ -263,6 +263,142 @@ export class WeighingOverviewDashboard extends Component {
                     ['weighing_date', '>=', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]],
                     ['state', '=', 'done']
                 ],
+            },
+            // Stock Performance Analytics Actions
+            'high_fulfillment': {
+                name: 'High Fulfillment Records (≥95%)',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+            },
+            'over_delivered': {
+                name: 'Over-Delivered Records',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+            },
+            'exact_match': {
+                name: 'Exact Match Records',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+            },
+            'under_delivered': {
+                name: 'Under-Delivered Records',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+            },
+            'avg_fulfillment': {
+                name: 'Fulfillment Analysis',
+                res_model: 'truck.weighing',
+                view_mode: 'graph,pivot',
+                views: [[false, 'graph'], [false, 'pivot']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+            },
+            'total_variance': {
+                name: 'Variance Analysis',
+                res_model: 'truck.weighing',
+                view_mode: 'list,graph',
+                views: [[false, 'list'], [false, 'graph']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+            },
+            'total_received': {
+                name: 'Total Received Weight',
+                res_model: 'truck.weighing',
+                view_mode: 'list,graph',
+                views: [[false, 'list'], [false, 'graph']],
+                domain: [
+                    ['state', '=', 'done'],
+                    ['picking_id', '!=', false]
+                ],
+                context: { 'group_by': 'product_id' }
+            },
+            'total_delivered': {
+                name: 'Total Delivered Weight',
+                res_model: 'truck.weighing',
+                view_mode: 'list,graph',
+                views: [[false, 'list'], [false, 'graph']],
+                domain: [
+                    ['state', '=', 'done'],
+                    ['delivery_id', '!=', false]
+                ],
+                context: { 'group_by': 'product_id' }
+            },
+            'top_products': {
+                name: 'Products Weighed',
+                res_model: 'truck.weighing',
+                view_mode: 'list,graph,pivot',
+                views: [[false, 'list'], [false, 'graph'], [false, 'pivot']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+                context: { 'group_by': 'product_id' }
+            },
+            'accuracy_rate': {
+                name: 'Accuracy Rate Analysis',
+                res_model: 'truck.weighing',
+                view_mode: 'graph,pivot',
+                views: [[false, 'graph'], [false, 'pivot']],
+                domain: [
+                    ['state', '=', 'done'],
+                    '|', ['picking_id', '!=', false], ['delivery_id', '!=', false]
+                ],
+            },
+            'deliveries_urgent': {
+                name: 'Urgent Deliveries to Weigh',
+                res_model: 'stock.picking',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', 'in', ['assigned', 'confirmed']],
+                    ['picking_type_code', '=', 'outgoing'],
+                    ['move_ids.product_id.is_weighable', '=', true],
+                    ['scheduled_date', '<=', new Date().toISOString().split('T')[0]]
+                ],
+            },
+            'deliveries_by_customer': {
+                name: 'Deliveries to Weigh by Customer',
+                res_model: 'stock.picking',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', 'in', ['assigned', 'confirmed']],
+                    ['picking_type_code', '=', 'outgoing'],
+                    ['move_ids.product_id.is_weighable', '=', true]
+                ],
+                context: { 'group_by': 'partner_id' }
+            },
+            'new_weighing_delivery': {
+                name: 'New Weighing from Delivery',
+                res_model: 'truck.weighing',
+                view_mode: 'form',
+                views: [[false, 'form']],
+                target: 'current',
+                context: { 'default_from_delivery': true }
             }
         };
 

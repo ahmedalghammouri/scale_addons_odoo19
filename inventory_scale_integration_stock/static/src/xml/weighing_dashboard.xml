@@ -214,162 +214,168 @@
                     </div>
                 </div>
 
-                <!-- Truck Management Card - Full Row -->
+                <!-- Stock Performance Analytics - Full Row -->
                 <div class="row mt-4">
-                    <div class="col-12 truck-management-card">
+                    <div class="col-12">
                         <div class="card shadow-lg border-0">
-                            <div class="card-header bg-gradient-primary text-white">
+                            <div class="card-header bg-gradient-success text-white">
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
-                                        <h5 class="mb-1"><i class="fa fa-truck m-2"/>Fleet Management Center</h5>
-                                        <small class="opacity-75">Comprehensive truck fleet monitoring and analytics</small>
+                                        <h5 class="mb-1"><i class="fa fa-chart-line m-2"/>Stock Performance Analytics</h5>
+                                        <small class="opacity-75">Comprehensive inventory weighing performance and variance analysis</small>
                                     </div>
                                     <div class="col-md-4 text-right">
                                         <div class="d-flex justify-content-end align-items-center">
-                                            <span class="badge badge-light m-2" t-esc="state.data.truck_management?.total_trucks || 0"/>
-                                            <small>Total Fleet</small>
+                                            <span class="badge badge-light m-2" t-esc="state.data.stock_performance?.total_completed || 0"/>
+                                            <small>Completed</small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body p-4">
-                                <!-- Fleet Overview Row -->
+                                <!-- Performance Metrics Row -->
                                 <div class="row mb-4">
                                     <div class="col-12">
-                                        <h6 class="text-muted mb-3"><i class="fa fa-tachometer mr-1"/>Fleet Overview</h6>
+                                        <h6 class="text-muted mb-3"><i class="fa fa-tachometer mr-1"/>Performance Metrics</h6>
                                     </div>
                                     <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('all_trucks')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-primary text-white mr-3">
-                                                    <i class="fa fa-truck"/>
-                                                </div>
-                                                <div>
-                                                    <h4 class="m-2 text-primary" t-esc="state.data.truck_management?.total_trucks || 0"/>
-                                                    <small class="text-muted ">Total Trucks</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('active_trucks')">
+                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('high_fulfillment')">
                                             <div class="d-flex align-items-center">
                                                 <div class="metric-icon bg-success text-white mr-3">
                                                     <i class="fa fa-check-circle"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-success" t-esc="state.data.truck_management?.active_trucks || 0"/>
-                                                    <small class="text-muted">Active Fleet</small>
+                                                    <h4 class="m-2 text-success" t-esc="state.data.stock_performance?.high_fulfillment || 0"/>
+                                                    <small class="text-muted">High Fulfillment</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('trucks_today')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-warning text-white mr-3">
-                                                    <i class="fa fa-calendar-day"/>
-                                                </div>
-                                                <div>
-                                                    <h4 class="m-2 text-warning" t-esc="state.data.truck_management?.trucks_today || 0"/>
-                                                    <small class="text-muted">Active Today</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('truck_utilization')">
+                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('over_delivered')">
                                             <div class="d-flex align-items-center">
                                                 <div class="metric-icon bg-info text-white mr-3">
+                                                    <i class="fa fa-arrow-up"/>
+                                                </div>
+                                                <div>
+                                                    <h4 class="m-2 text-info" t-esc="state.data.stock_performance?.over_delivered || 0"/>
+                                                    <small class="text-muted">Over-Delivered</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('exact_match')">
+                                            <div class="d-flex align-items-center">
+                                                <div class="metric-icon bg-primary text-white mr-3">
+                                                    <i class="fa fa-equals"/>
+                                                </div>
+                                                <div>
+                                                    <h4 class="m-2 text-primary" t-esc="state.data.stock_performance?.exact_match || 0"/>
+                                                    <small class="text-muted">Exact Match</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('under_delivered')">
+                                            <div class="d-flex align-items-center">
+                                                <div class="metric-icon bg-warning text-white mr-3">
+                                                    <i class="fa fa-arrow-down"/>
+                                                </div>
+                                                <div>
+                                                    <h4 class="m-2 text-warning" t-esc="state.data.stock_performance?.under_delivered || 0"/>
+                                                    <small class="text-muted">Under-Delivered</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('avg_fulfillment')">
+                                            <div class="d-flex align-items-center">
+                                                <div class="metric-icon bg-success text-white mr-3">
                                                     <i class="fa fa-percentage"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-info" t-esc="(state.data.truck_management?.utilization_rate || 0) + '%'"/>
-                                                    <small class="text-muted">Utilization</small>
+                                                    <h4 class="m-2 text-success" t-esc="(state.data.stock_performance?.avg_fulfillment || 0) + '%'"/>
+                                                    <small class="text-muted">Avg Fulfillment</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('weekly_truck_activity')">
+                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('total_variance')">
                                             <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-purple text-white mr-3">
-                                                    <i class="fa fa-chart-line"/>
+                                                <div class="metric-icon bg-secondary text-white mr-3">
+                                                    <i class="fa fa-balance-scale"/>
                                                 </div>
                                                 <div>
-                                                    <h4 class="m-2 text-purple" t-esc="state.data.truck_management?.weekly_activity || 0"/>
-                                                    <small class="text-muted">Week Activity</small>
+                                                    <h4 class="m-2 text-secondary" t-esc="this.formatWeight(state.data.stock_performance?.total_variance || 0)"/>
+                                                    <small class="text-muted">Total Variance</small>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light">
-                                            <button class="btn btn-primary btn-sm w-100" t-on-click="() => this.onCardAction('new_truck')">
-                                                <i class="fa fa-plus mr-1"/> Add Truck
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <!-- Operations Summary Row -->
+                                <!-- Stock Operations Summary Row -->
                                 <div class="row">
                                     <div class="col-12">
-                                        <h6 class="text-muted mb-3"><i class="fa fa-chart-bar mr-1"/>Operations Summary</h6>
+                                        <h6 class="text-muted mb-3"><i class="fa fa-warehouse mr-1"/>Stock Operations Summary</h6>
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-primary" style="cursor: pointer;" t-on-click="() => this.onCardAction('truck_weighings')">
+                                        <div class="summary-card border-left-primary" style="cursor: pointer;" t-on-click="() => this.onCardAction('total_received')">
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h5 class="text-primary m-2" t-esc="state.data.truck_management?.total_weighings || 0"/>
-                                                    <small class="text-muted">Total Weighings</small>
+                                                    <h5 class="text-primary m-2" t-esc="this.formatWeight(state.data.stock_performance?.total_received || 0)"/>
+                                                    <small class="text-muted">Total Received</small>
                                                 </div>
-                                                <i class="fa fa-balance-scale text-primary fa-2x opacity-25"/>
+                                                <i class="fa fa-inbox text-primary fa-2x opacity-25"/>
                                             </div>
                                             <div class="mt-2">
-                                                <small class="text-success">Avg: <span t-esc="state.data.truck_management?.avg_weighings_per_truck || 0"/> per truck</small>
+                                                <small class="text-success"><span t-esc="state.data.stock_performance?.receipts_count || 0"/> receipts completed</small>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-info" style="cursor: pointer;" t-on-click="() => this.onCardAction('truck_pos')">
+                                        <div class="summary-card border-left-warning" style="cursor: pointer;" t-on-click="() => this.onCardAction('total_delivered')">
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h5 class="text-info m-2" t-esc="state.data.truck_management?.truck_pos || 0"/>
-                                                    <small class="text-muted">Related POs</small>
+                                                    <h5 class="text-warning m-2" t-esc="this.formatWeight(state.data.stock_performance?.total_delivered || 0)"/>
+                                                    <small class="text-muted">Total Delivered</small>
                                                 </div>
-                                                <i class="fa fa-shopping-cart text-info fa-2x opacity-25"/>
+                                                <i class="fa fa-truck text-warning fa-2x opacity-25"/>
                                             </div>
                                             <div class="mt-2">
-                                                <small class="text-muted">Purchase orders for weighable products</small>
+                                                <small class="text-muted"><span t-esc="state.data.stock_performance?.deliveries_count || 0"/> deliveries completed</small>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-warning" style="cursor: pointer;" t-on-click="() => this.onCardAction('truck_receipts')">
+                                        <div class="summary-card border-left-info" style="cursor: pointer;" t-on-click="() => this.onCardAction('top_products')">
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h5 class="text-warning m-2" t-esc="state.data.truck_management?.truck_receipts || 0"/>
-                                                    <small class="text-muted">Related Receipts</small>
+                                                    <h5 class="text-info m-2" t-esc="state.data.stock_performance?.products_count || 0"/>
+                                                    <small class="text-muted">Products Weighed</small>
                                                 </div>
-                                                <i class="fa fa-inbox text-warning fa-2x opacity-25"/>
+                                                <i class="fa fa-cube text-info fa-2x opacity-25"/>
                                             </div>
                                             <div class="mt-2">
-                                                <small class="text-muted">Incoming receipts for weighing</small>
+                                                <small class="text-muted">Weighable products processed</small>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-success" style="cursor: pointer;" t-on-click="() => this.onCardAction('truck_efficiency')">
+                                        <div class="summary-card border-left-success" style="cursor: pointer;" t-on-click="() => this.onCardAction('accuracy_rate')">
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h5 class="text-success m-2" t-esc="state.data.truck_management?.efficiency_score || 0"/>
-                                                    <small class="text-muted">Efficiency Score</small>
+                                                    <h5 class="text-success m-2" t-esc="(state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
+                                                    <small class="text-muted">Accuracy Rate</small>
                                                 </div>
-                                                <i class="fa fa-trophy text-success fa-2x opacity-25"/>
+                                                <i class="fa fa-bullseye text-success fa-2x opacity-25"/>
                                             </div>
                                             <div class="mt-2">
-                                                <small class="text-muted">Weekly weighings per active truck</small>
+                                                <small class="text-muted">Within ±5% variance</small>
                                             </div>
                                         </div>
                                     </div>

@@ -94,7 +94,8 @@ class WeighingOverview(models.TransientModel):
                 'total_qty': sum(deliveries_to_weigh.mapped('move_ids.product_uom_qty')),
                 'urgent_count': len(deliveries_to_weigh.filtered(lambda d: d.scheduled_date and d.scheduled_date.date() <= today)),
                 'partners': len(deliveries_to_weigh.mapped('partner_id')),
-            }
+            },
+            'stock_performance': self._get_stock_performance_data(all_records, completed_week)
         }
     
     def _calculate_avg_processing_time(self, records):
@@ -142,3 +143,89 @@ class WeighingOverview(models.TransientModel):
             not self.env['truck.weighing'].search([('delivery_id', '=', d.id)], limit=1)
         )
         return deliveries_to_weigh.ids
+    
+    def _get_stock_performance_data(self, all_records, completed_week):
+        """Calculate stock performance analytics"""
+        # Get completed weighings with picking/delivery
+        completed_with_stock = all_records.filtered(lambda r: r.state == 'done' and (r.picking_id or r.delivery_id))
+        
+        if not completed_with_stock:
+            return {
+                'total_completed': 0,
+                'high_fulfillment': 0,
+                'over_delivered': 0,
+                'exact_match': 0,
+                'under_delivered': 0,
+                'avg_fulfillment': 0,
+                'total_variance': 0,
+                'total_received': 0,
+                'receipts_count': 0,
+                'total_delivered': 0,
+                'deliveries_count': 0,
+                'products_count': 0,
+                'accuracy_rate': 0,
+            }
+        
+        # Calculate variance metrics (using net_weight vs demand_qty logic)
+        high_fulfillment = 0
+        over_delivered = 0
+        exact_match = 0
+        under_delivered = 0
+        total_fulfillment = 0
+        total_variance = 0
+        accuracy_count = 0
+        
+        for rec in completed_with_stock:
+            picking = rec.picking_id or rec.delivery_id
+            if not picking:
+                continue
+            
+            move = picking.move_ids.filtered(lambda m: m.product_id == rec.product_id)
+            if not move:
+                continue
+            
+            demand_qty = move[0].product_uom_qty
+            if demand_qty <= 0:
+                continue
+            
+            variance = rec.net_weight - demand_qty
+            variance_percent = variance / demand_qty
+            fulfillment = rec.net_weight / demand_qty
+            
+            total_variance += abs(variance)
+            total_fulfillment += fulfillment
+            
+            # Categorize
+            if fulfillment >= 0.95:
+                high_fulfillment += 1
+            
+            if variance > 0:
+                over_delivered += 1
+            elif variance == 0:
+                exact_match += 1
+            else:
+                under_delivered += 1
+            
+            # Accuracy (within ±5%)
+            if abs(variance_percent) <= 0.05:
+                accuracy_count += 1
+        
+        # Calculate totals
+        receipts = completed_with_stock.filtered(lambda r: r.picking_id)
+        deliveries = completed_with_stock.filtered(lambda r: r.delivery_id)
+        
+        return {
+            'total_completed': len(completed_with_stock),
+            'high_fulfillment': high_fulfillment,
+            'over_delivered': over_delivered,
+            'exact_match': exact_match,
+            'under_delivered': under_delivered,
+            'avg_fulfillment': round((total_fulfillment / max(len(completed_with_stock), 1)) * 100, 1),
+            'total_variance': round(total_variance, 2),
+            'total_received': round(sum(receipts.mapped('net_weight')), 2),
+            'receipts_count': len(receipts),
+            'total_delivered': round(sum(deliveries.mapped('net_weight')), 2),
+            'deliveries_count': len(deliveries),
+            'products_count': len(completed_with_stock.mapped('product_id')),
+            'accuracy_rate': round((accuracy_count / max(len(completed_with_stock), 1)) * 100, 1),
+        }
