@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 20:06+0000\n"
-"PO-Revision-Date: 2025-12-11 20:06+0000\n"
+"POT-Creation-Date: 2025-12-11 23:07+0000\n"
+"PO-Revision-Date: 2025-12-11 23:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr "<i class=\"fa fa-file-text-o text-primary\" title=\"المصدر\"/>"
 
 #. module: inventory_scale_integration_stock
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.stock_picking_form_inherit_weighing
-msgid "<span class=\"o_stat_text\" style=\"font-size: 11px;\"Total Weight</span>"
+msgid "<span class=\"o_stat_text\" style=\"font-size: 11px;\">Total Weight</span>"
 msgstr "<span class=\"o_stat_text\" style=\"font-size: 11px;\">إجمالي الوزن</span>"
 
 #. module: inventory_scale_integration_stock
@@ -49,7 +49,14 @@ msgstr "<span class=\"text-muted\">الطلب:</span>"
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.truck_weighing_view_form_stock
 msgid ""
 "<span style=\"font-size: 13px; color: #6c757d; margin-left: 5px;\">KG</span>"
-msgstr "<span style=\"font-size: 13px; color: #6c757d; margin-left: 5px;\">كجم</span>"
+msgstr ""
+"<span style=\"font-size: 13px; color: #6c757d; margin-left: "
+"5px;\">كجم</span>"
+
+#. module: inventory_scale_integration_stock
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.report_weighing_certificate
+msgid "<strong>Delivery:</strong>"
+msgstr "<strong>التسليم:</strong>"
 
 #. module: inventory_scale_integration_stock
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.truck_weighing_view_form_stock
@@ -60,12 +67,30 @@ msgid ""
 msgstr "<strong>نسبة الإنجاز:</strong> <span style=\"color: #5cb85c;\">أخضر</span> إذا كانت ≥95%، <span style=\"color: #f0ad4e;\">برتقالي</span> إذا كانت 90-95%، <span style=\"color: #d9534f;\">أحمر</span> إذا كانت <90%"
 
 #. module: inventory_scale_integration_stock
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.report_weighing_certificate
+msgid "<strong>Receipt:</strong>"
+msgstr "<strong>الإيصال:</strong>"
+
+#. module: inventory_scale_integration_stock
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.truck_weighing_view_form_stock
 msgid ""
 "<strong>Remaining Qty:</strong> <span style=\"color: #d9534f;\">Red</span> "
 "if positive (under-delivery), <span style=\"color: #5cb85c;\">Green</span> "
 "if zero/negative (fulfilled/over-delivered)"
-msgstr "<strong>الكمية المتبقية:</strong> <span style=\"color: #d9534f;\">أحمر</span> إذا كانت موجبة (نقص في التسليم)، <span style=\"color: #5cb85c;\">أخضر</span> إذا كانت صفر/سالبة (تم الإنجاز/تسليم زائد)"
+msgstr ""
+"<strong>الكمية المتبقية:</strong> <span style=\"color: "
+"#d9534f;\">أحمر</span> إذا كانت موجبة (نقص في التسليم)، <span style=\"color:"
+" #5cb85c;\">أخضر</span> إذا كانت صفر/سالبة (تم الإنجاز/تسليم زائد)"
+
+#. module: inventory_scale_integration_stock
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.report_weighing_certificate
+msgid "<strong>Source Document:</strong>"
+msgstr "<strong>مستند المصدر:</strong>"
+
+#. module: inventory_scale_integration_stock
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.report_driver_ticket
+msgid "<strong>Transfer:</strong>"
+msgstr "<strong>التحويل:</strong>"
 
 #. module: inventory_scale_integration_stock
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.truck_weighing_view_form_stock
@@ -73,7 +98,10 @@ msgid ""
 "<strong>Variance %:</strong> <span style=\"color: #5cb85c;\">Green</span> if"
 " within ±5%, <span style=\"color: #f0ad4e;\">Orange</span> if outside that "
 "range"
-msgstr "<strong>نسبة التباين:</strong> <span style=\"color: #5cb85c;\">أخضر</span> إذا كانت ضمن ±5%، <span style=\"color: #f0ad4e;\">برتقالي</span> إذا كانت خارج هذا النطاق"
+msgstr ""
+"<strong>نسبة التباين:</strong> <span style=\"color: #5cb85c;\">أخضر</span> "
+"إذا كانت ضمن ±5%، <span style=\"color: #f0ad4e;\">برتقالي</span> إذا كانت "
+"خارج هذا النطاق"
 
 #. module: inventory_scale_integration_stock
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.truck_weighing_view_form_stock
@@ -81,7 +109,10 @@ msgid ""
 "<strong>Variance:</strong> <span style=\"color: #5cb85c;\">Green</span> if "
 "positive/zero (met or exceeded), <span style=\"color: "
 "#f0ad4e;\">Orange</span> if negative (short)"
-msgstr "<strong>التباين:</strong> <span style=\"color: #5cb85c;\">أخضر</span> إذا كانت موجبة/صفر (محققة أو متجاوزة)، <span style=\"color: #f0ad4e;\">برتقالي</span> إذا كانت سالبة (نقص)"
+msgstr ""
+"<strong>التباين:</strong> <span style=\"color: #5cb85c;\">أخضر</span> إذا "
+"كانت موجبة/صفر (محققة أو متجاوزة)، <span style=\"color: "
+"#f0ad4e;\">برتقالي</span> إذا كانت سالبة (نقص)"
 
 #. module: inventory_scale_integration_stock
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_stock.truck_weighing_view_form_stock
@@ -526,14 +557,16 @@ msgstr "هذا الأسبوع"
 #: code:addons/inventory_scale_integration_stock/models/truck_weighing.py:0
 msgid ""
 "This delivery has no weighable products. Using first product from moves."
-msgstr "لا يحتوي هذا التسليم على منتجات قابلة للوزن. باستخدام أول منتج من الحركات."
+msgstr ""
+"لا يحتوي هذا التسليم على منتجات قابلة للوزن. باستخدام أول منتج من الحركات."
 
 #. module: inventory_scale_integration_stock
 #. odoo-python
 #: code:addons/inventory_scale_integration_stock/models/truck_weighing.py:0
 msgid ""
 "This picking has no weighable products. Using first product from moves."
-msgstr "لا يحتوي هذا الإيصال على منتجات قابلة للوزن. باستخدام أول منتج من الحركات."
+msgstr ""
+"لا يحتوي هذا الإيصال على منتجات قابلة للوزن. باستخدام أول منتج من الحركات."
 
 #. module: inventory_scale_integration_stock
 #. odoo-javascript
