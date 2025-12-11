@@ -44,4 +44,71 @@
             </xpath>
         </field>
     </record>
+
+    <record id="truck_weighing_view_kanban_purchase" model="ir.ui.view">
+        <field name="name">truck.weighing.view.kanban.purchase</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_kanban_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='variance_qty']" position="after">
+                <field name="purchase_order_id"/>
+            </xpath>
+            <xpath expr="//div[@class='mb-2'][last()]" position="after">
+                <div t-if="record.purchase_order_id.raw_value" class="mb-2 p-2 border border-primary rounded">
+                    <i class="fa fa-shopping-cart text-primary" title="Purchase Order"/> <strong>PO:</strong> <t t-out="record.purchase_order_id.value"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_list_purchase" model="ir.ui.view">
+        <field name="name">truck.weighing.view.list.purchase</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_list_stock"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                <field name="purchase_order_id" optional="show" decoration-primary="purchase_order_id" decoration-bf="1"/>
+                <field name="purchase_line_id" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_graph_purchase" model="ir.ui.view">
+        <field name="name">truck.weighing.view.graph.purchase</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_graph_stock"/>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_pivot_purchase" model="ir.ui.view">
+        <field name="name">truck.weighing.view.pivot.purchase</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_pivot_stock"/>
+        <field name="arch" type="xml">
+            <field name="operation_type" position="after">
+                <field name="purchase_order_id" type="col"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_search_purchase" model="ir.ui.view">
+        <field name="name">truck.weighing.view.search.purchase</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_search_stock"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                <field name="purchase_order_id" filter_domain="[('purchase_order_id.name', 'ilike', self)]"/>
+            </field>
+            <filter name="with_delivery" position="after">
+                <filter string="With Purchase Order" name="with_po" domain="[('purchase_order_id', '!=', False)]"/>
+            </filter>
+            <filter name="group_location" position="after">
+                <filter string="Purchase Order" name="group_po" domain="" context="{'group_by':'purchase_order_id'}"/>
+            </filter>
+        </field>
+    </record>
 </odoo>
