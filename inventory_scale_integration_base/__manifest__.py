@@ -10,6 +10,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'report/truck_weighing_reports.xml',
         'views/truck_weighing_views.xml',
         'views/weighing_scale_views.xml',
         'views/truck_fleet_views.xml',

@@ -9,6 +9,7 @@ class TruckWeighing(models.Model):
     _order = 'weighing_date desc, id desc'
 
     name = fields.Char(string='Reference', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
+    barcode = fields.Char(string='Barcode', compute='_compute_barcode', store=True)
     active = fields.Boolean(default=True)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     
@@ -44,6 +45,11 @@ class TruckWeighing(models.Model):
     ], string='Status', default='draft', tracking=True)
     
     notes = fields.Text(string='Notes')
+    
+    @api.depends('name')
+    def _compute_barcode(self):
+        for record in self:
+            record.barcode = record.name
     
     @api.depends('gross_weight', 'tare_weight')
     def _compute_net_weight(self):
@@ -116,6 +122,14 @@ class TruckWeighing(models.Model):
             self.state = 'done'
         else:
             raise UserError(_("Cannot mark as done. Complete tare weighing first."))
+    
+    def action_print_driver_ticket(self):
+        self.ensure_one()
+        return self.env.ref('inventory_scale_integration_base.action_report_driver_ticket').report_action(self)
+    
+    def action_print_certificate(self):
+        self.ensure_one()
+        return self.env.ref('inventory_scale_integration_base.action_report_weighing_certificate').report_action(self)
     
     @api.onchange('truck_id')
     def _onchange_truck_id(self):

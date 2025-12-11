@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Weighing Label Report -->
+    <record id="action_report_weighing_label" model="ir.actions.report">
+        <field name="name">Weighing Label</field>
+        <field name="model">truck.weighing</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">inventory_scale_integration_base.report_weighing_label</field>
+        <field name="report_file">inventory_scale_integration_base.report_weighing_label</field>
+        <field name="binding_model_id" ref="model_truck_weighing"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Weighing Certificate Report -->
+    <record id="action_report_weighing_certificate" model="ir.actions.report">
+        <field name="name">Weighing Certificate</field>
+        <field name="model">truck.weighing</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">inventory_scale_integration_base.report_weighing_certificate</field>
+        <field name="report_file">inventory_scale_integration_base.report_weighing_certificate</field>
+        <field name="binding_model_id" ref="model_truck_weighing"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Weighing Ticket Report -->
+    <record id="action_report_weighing_ticket" model="ir.actions.report">
+        <field name="name">Weighing Ticket</field>
+        <field name="model">truck.weighing</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">inventory_scale_integration_base.report_weighing_ticket</field>
+        <field name="report_file">inventory_scale_integration_base.report_weighing_ticket</field>
+        <field name="binding_model_id" ref="model_truck_weighing"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Driver Ticket Report (for scanning) -->
+    <record id="action_report_driver_ticket" model="ir.actions.report">
+        <field name="name">Driver Ticket</field>
+        <field name="model">truck.weighing</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">inventory_scale_integration_base.report_driver_ticket</field>
+        <field name="report_file">inventory_scale_integration_base.report_driver_ticket</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+
+    <!-- Report Templates -->
+    <template id="report_weighing_label">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center" style="border: 2px solid black; padding: 20px; margin: 50px;">
+                            <h2><strong>WEIGHING LABEL</strong></h2>
+                            <div style="margin-top: 30px;">
+                                <h3><span t-field="o.name"/></h3>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <div><strong>Truck:</strong> <span t-field="o.truck_plate"/></div>
+                                <div><strong>Product:</strong> <span t-field="o.product_id"/></div>
+                                <div style="margin-top: 20px; font-size: 24px;">
+                                    <strong>Net Weight: <span t-field="o.net_weight"/> KG</strong>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <small>Date: <span t-field="o.weighing_date"/></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_weighing_certificate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center">WEIGHING CERTIFICATE</h2>
+                        <div style="margin-top: 30px;">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td><strong>Reference:</strong></td>
+                                    <td><span t-field="o.name"/></td>
+                                    <td><strong>Date:</strong></td>
+                                    <td><span t-field="o.weighing_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Truck Plate:</strong></td>
+                                    <td><span t-field="o.truck_plate"/></td>
+                                    <td><strong>Driver:</strong></td>
+                                    <td><span t-field="o.driver_name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Partner:</strong></td>
+                                    <td><span t-field="o.partner_id"/></td>
+                                    <td><strong>Product:</strong></td>
+                                    <td><span t-field="o.product_id"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gross Weight:</strong></td>
+                                    <td><span t-field="o.gross_weight"/> KG</td>
+                                    <td><strong>Gross Date:</strong></td>
+                                    <td><span t-field="o.gross_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tare Weight:</strong></td>
+                                    <td><span t-field="o.tare_weight"/> KG</td>
+                                    <td><strong>Tare Date:</strong></td>
+                                    <td><span t-field="o.tare_date"/></td>
+                                </tr>
+                                <tr style="background-color: #f0f0f0;">
+                                    <td colspan="2"><strong>Net Weight:</strong></td>
+                                    <td colspan="2"><strong><span t-field="o.net_weight"/> KG</strong></td>
+                                </tr>
+                                <tr t-if="o.scale_id">
+                                    <td><strong>Scale:</strong></td>
+                                    <td colspan="3"><span t-field="o.scale_id"/></td>
+                                </tr>
+                            </table>
+                            <div t-if="o.notes" style="margin-top: 20px;">
+                                <strong>Notes:</strong>
+                                <p><span t-field="o.notes"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_weighing_ticket">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="padding: 20px;">
+                    <div style="border: 1px solid black; padding: 15px;">
+                        <h3 class="text-center"><strong>WEIGHING TICKET</strong></h3>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-6">
+                                <div><strong>Ticket #:</strong> <span t-field="o.name"/></div>
+                                <div><strong>Date:</strong> <span t-field="o.weighing_date" t-options='{"widget": "datetime"}'/></div>
+                                <div><strong>Truck:</strong> <span t-field="o.truck_plate"/></div>
+                                <div><strong>Driver:</strong> <span t-field="o.driver_name"/></div>
+                            </div>
+                            <div class="col-6">
+                                <div><strong>Partner:</strong> <span t-field="o.partner_id"/></div>
+                                <div><strong>Product:</strong> <span t-field="o.product_id"/></div>
+                                <div><strong>Operation:</strong> <span t-field="o.operation_type"/></div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <table class="table table-sm">
+                            <tr>
+                                <td>Gross Weight:</td>
+                                <td class="text-right"><strong><span t-field="o.gross_weight"/> KG</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Tare Weight:</td>
+                                <td class="text-right"><strong><span t-field="o.tare_weight"/> KG</strong></td>
+                            </tr>
+                            <tr style="border-top: 2px solid black;">
+                                <td><strong>Net Weight:</strong></td>
+                                <td class="text-right"><strong style="font-size: 18px;"><span t-field="o.net_weight"/> KG</strong></td>
+                            </tr>
+                        </table>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <small>This is a computer-generated document</small>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Driver Ticket Template (with barcode for scanning) -->
+    <template id="report_driver_ticket">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="padding: 10px;">
+                    <div style="border: 2px solid black; padding: 20px; text-align: center;">
+                        <h2 style="margin: 0;"><strong>DRIVER TICKET</strong></h2>
+                        <hr style="border-top: 2px solid black;"/>
+                        
+                        <div style="margin: 20px 0;">
+                            <div style="font-size: 18px; margin: 10px 0;">
+                                <strong>Weighing #:</strong> <span t-field="o.name" style="font-size: 22px;"/>
+                            </div>
+                            <div style="font-size: 18px; margin: 10px 0;">
+                                <strong>Truck Number:</strong> <span t-field="o.truck_plate" style="font-size: 22px;"/>
+                            </div>
+                        </div>
+
+                        <!-- Barcode -->
+                        <div style="margin: 30px 0;">
+                            <img t-att-src="'/report/barcode/Code128/%s?width=600&amp;height=100' % o.name" style="max-width: 100%; height: auto;" alt="Barcode"/>
+                        </div>
+
+                        <div style="margin: 20px 0; font-size: 14px;">
+                            <div><strong>Date:</strong> <span t-field="o.gross_date" t-options='{"widget": "datetime"}'/></div>
+                            <div><strong>Gross Weight:</strong> <span t-field="o.gross_weight"/> KG</div>
+                        </div>
+
+                        <hr style="border-top: 1px solid black;"/>
+                        <p style="margin: 10px 0; font-size: 12px;">Present this ticket for tare weighing</p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -17,16 +17,22 @@
                     <button name="action_fetch_live_weight" string="Fetch Live Weight" type="object" class="btn-primary"/>
                     <button name="action_set_gross_from_live" string="Set Gross Weight" type="object"
                             invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_print_driver_ticket" string="Print Driver Ticket" type="object"
+                            invisible="state != 'gross'" class="btn-warning"/>
                     <button name="action_set_tare_from_live" string="Set Tare Weight" type="object"
                             invisible="state != 'gross'" class="oe_highlight"/>
                     <button name="action_mark_done" string="Mark Done" type="object"
                             invisible="state != 'tare'" class="oe_highlight"/>
+                    <button name="action_print_certificate" string="Print Certificate" type="object" class="btn-secondary"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,gross,tare,done"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <h1><field name="name" readonly="1"/></h1>
                     </div>
+                    <group>
+                        <field name="barcode" invisible="1"/>
+                    </group>
                     <group>
                         <group string="Truck Information">
                             <field name="truck_id"/>
@@ -182,7 +188,8 @@
         <field name="model">truck.weighing</field>
         <field name="arch" type="xml">
             <search string="Truck Weighing Records">
-                <field name="name" filter_domain="['|', ('name', 'ilike', self), ('truck_plate', 'ilike', self)]" string="Reference/Plate"/>
+                <field name="name" filter_domain="['|', '|', ('name', 'ilike', self), ('truck_plate', 'ilike', self), ('barcode', 'ilike', self)]" string="Reference/Plate/Barcode"/>
+                <field name="barcode"/>
                 <field name="truck_plate"/>
                 <field name="driver_name"/>
                 <field name="partner_id"/>
