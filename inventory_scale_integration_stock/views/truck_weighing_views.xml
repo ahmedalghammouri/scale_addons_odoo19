@@ -5,6 +5,9 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_form"/>
         <field name="arch" type="xml">
+            <field name="operation_type" position="attributes">
+                <attribute name="readonly">picking_id or delivery_id</attribute>
+            </field>
             <group name="partner_operation" position="after">
                 <group string="Stock Operations">
                     <group>
@@ -13,6 +16,21 @@
                     </group>
                     <group>
                         <field name="location_dest_id"/>
+                    </group>
+                </group>
+            </group>
+            <group name="partner_operation" position="after">
+                <group string="Transfer Information" invisible="not picking_id and not delivery_id">
+                    <group>
+                        <field name="source_document" readonly="1"/>
+                        <field name="scheduled_date" readonly="1"/>
+                    </group>
+                    <group>
+                        <label for="demand_qty" string="Demand Quantity"/>
+                        <div class="o_row">
+                            <field name="demand_qty" class="oe_inline" readonly="1"/> 
+                            <field name="product_uom" class="oe_inline" readonly="1" nolabel="1"/>
+                        </div>
                     </group>
                 </group>
             </group>

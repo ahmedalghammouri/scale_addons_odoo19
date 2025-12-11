@@ -5,6 +5,9 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_form_stock"/>
         <field name="arch" type="xml">
+            <field name="delivery_id" position="attributes">
+                <attribute name="invisible">operation_type == 'incoming'</attribute>
+            </field>
             <group name="partner_operation" position="after">
                 <group string="Purchase Order" invisible="operation_type != 'incoming'">
                     <group>

@@ -8,6 +8,12 @@ class TruckWeighing(models.Model):
     picking_id = fields.Many2one('stock.picking', string='Receipt', ondelete='restrict', tracking=True)
     delivery_id = fields.Many2one('stock.picking', string='Delivery', ondelete='restrict', tracking=True, domain="[('picking_type_code', '=', 'outgoing')]")
     location_dest_id = fields.Many2one('stock.location', string='Destination Location')
+    
+    # Computed fields for picking/delivery info
+    demand_qty = fields.Float(string='Demand Qty', compute='_compute_picking_info', store=False)
+    product_uom = fields.Char(string='Unit', compute='_compute_picking_info', store=False)
+    source_document = fields.Char(string='Source Document', compute='_compute_picking_info', store=False)
+    scheduled_date = fields.Datetime(string='Scheduled Date', compute='_compute_picking_info', store=False)
 
     def action_update_inventory(self):
         self.ensure_one()
@@ -108,6 +114,7 @@ class TruckWeighing(models.Model):
     @api.onchange('picking_id')
     def _onchange_picking_id(self):
         if self.picking_id:
+            self.operation_type = self.picking_id.picking_type_code
             self.partner_id = self.picking_id.partner_id
             self.location_dest_id = self.picking_id.location_dest_id
             weighable_moves = self.picking_id.move_ids.filtered(lambda m: m.product_id.is_weighable)
@@ -119,6 +126,7 @@ class TruckWeighing(models.Model):
     @api.onchange('delivery_id')
     def _onchange_delivery_id(self):
         if self.delivery_id:
+            self.operation_type = 'outgoing'
             self.partner_id = self.delivery_id.partner_id
             self.location_dest_id = self.delivery_id.location_dest_id
             weighable_moves = self.delivery_id.move_ids.filtered(lambda m: m.product_id.is_weighable)
@@ -144,3 +152,23 @@ class TruckWeighing(models.Model):
             'view_mode': 'form',
             'res_id': self.delivery_id.id,
         }
+    
+    @api.depends('picking_id', 'delivery_id', 'product_id')
+    def _compute_picking_info(self):
+        for rec in self:
+            picking = rec.picking_id or rec.delivery_id
+            if picking and rec.product_id:
+                move = picking.move_ids.filtered(lambda m: m.product_id == rec.product_id)
+                if move:
+                    rec.demand_qty = move[0].product_uom_qty
+                    rec.product_uom = move[0].product_uom.name
+                else:
+                    rec.demand_qty = 0.0
+                    rec.product_uom = rec.product_id.uom_id.name if rec.product_id else ''
+                rec.source_document = picking.origin or picking.name
+                rec.scheduled_date = picking.scheduled_date
+            else:
+                rec.demand_qty = 0.0
+                rec.product_uom = ''
+                rec.source_document = ''
+                rec.scheduled_date = False
