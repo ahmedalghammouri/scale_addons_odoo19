@@ -45,17 +45,7 @@ export class WeighingOverviewDashboard extends Component {
                 },
                 context: { 'create': true }
             },
-            'pos_to_weigh': {
-                name: 'Purchase Orders to Weigh',
-                res_model: 'purchase.order',
-                view_mode: 'list,form',
-                views: [[false, 'list'], [false, 'form']],
-                domain: async () => {
-                    const ids = await this.orm.call('weighing.overview', 'get_pos_to_weigh_ids', []);
-                    return [['id', 'in', ids]];
-                },
-                context: { 'create': true }
-            },
+
             'in_progress': {
                 name: 'Weighing In Progress',
                 res_model: 'truck.weighing',
@@ -85,14 +75,7 @@ export class WeighingOverviewDashboard extends Component {
                 target: 'current',
                 context: { 'default_from_receipt': true }
             },
-            'new_weighing_po': {
-                name: 'New Weighing from PO',
-                res_model: 'truck.weighing',
-                view_mode: 'form',
-                views: [[false, 'form']],
-                target: 'current',
-                context: { 'default_from_po': true }
-            },
+
             'truck_fleet': {
                 name: 'Truck Fleet',
                 res_model: 'truck.fleet',
@@ -139,39 +122,7 @@ export class WeighingOverviewDashboard extends Component {
                 ],
                 context: { 'group_by': 'partner_id' }
             },
-            // POs filtered actions
-            'pos_by_amount': {
-                name: 'Purchase Orders by Amount',
-                res_model: 'purchase.order',
-                view_mode: 'list,form',
-                views: [[false, 'list'], [false, 'form']],
-                domain: [
-                    ['state', 'in', ['purchase', 'done']],
-                    ['order_line.product_id.is_weighable', '=', true]
-                ],
-                context: { 'group_by': 'amount_total' }
-            },
-            'pos_pending_qty': {
-                name: 'POs with Pending Quantity',
-                res_model: 'purchase.order',
-                view_mode: 'list,form',
-                views: [[false, 'list'], [false, 'form']],
-                domain: [
-                    ['state', 'in', ['purchase', 'done']],
-                    ['order_line.product_id.is_weighable', '=', true]
-                ],
-            },
-            'pos_by_supplier': {
-                name: 'Purchase Orders by Supplier',
-                res_model: 'purchase.order',
-                view_mode: 'list,form',
-                views: [[false, 'list'], [false, 'form']],
-                domain: [
-                    ['state', 'in', ['purchase', 'done']],
-                    ['order_line.product_id.is_weighable', '=', true]
-                ],
-                context: { 'group_by': 'partner_id' }
-            },
+
             // Weighing state filtered actions
             'weighing_draft': {
                 name: 'Draft Weighing Records',
@@ -223,17 +174,7 @@ export class WeighingOverviewDashboard extends Component {
                 views: [[false, 'list'], [false, 'form']],
                 domain: [],
             },
-            'sales_to_weigh': {
-                name: 'Sales Orders to Weigh',
-                res_model: 'sale.order',
-                view_mode: 'list,form',
-                views: [[false, 'list'], [false, 'form']],
-                domain: async () => {
-                    const ids = await this.orm.call('weighing.overview', 'get_sales_to_weigh_ids', []);
-                    return [['id', 'in', ids]];
-                },
-                context: { 'create': true }
-            },
+
             'deliveries_to_weigh': {
                 name: 'Deliveries to Weigh',
                 res_model: 'stock.picking',
@@ -245,22 +186,7 @@ export class WeighingOverviewDashboard extends Component {
                 },
                 context: { 'create': true }
             },
-            'new_weighing_sale': {
-                name: 'New Weighing from Sale',
-                res_model: 'truck.weighing',
-                view_mode: 'form',
-                views: [[false, 'form']],
-                target: 'current',
-                context: { 'default_from_sale': true }
-            },
-            'new_weighing_delivery': {
-                name: 'New Weighing from Delivery',
-                res_model: 'truck.weighing',
-                view_mode: 'form',
-                views: [[false, 'form']],
-                target: 'current',
-                context: { 'default_from_delivery': true }
-            },
+
             'active_trucks': {
                 name: 'Active Trucks',
                 res_model: 'truck.fleet',
@@ -309,16 +235,7 @@ export class WeighingOverviewDashboard extends Component {
                 domain: [['state', '=', 'done']],
                 context: { 'group_by': 'truck_id' }
             },
-            'truck_pos': {
-                name: 'Truck-Related Purchase Orders',
-                res_model: 'purchase.order',
-                view_mode: 'list,form',
-                views: [[false, 'list'], [false, 'form']],
-                domain: [
-                    ['state', 'in', ['purchase', 'done']],
-                    ['order_line.product_id.is_weighable', '=', true]
-                ],
-            },
+
             'truck_receipts': {
                 name: 'Truck-Related Receipts',
                 res_model: 'stock.picking',
