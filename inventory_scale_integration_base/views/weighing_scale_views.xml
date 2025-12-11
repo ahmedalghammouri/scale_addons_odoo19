@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Weighing Scale List View -->
     <record id="view_weighing_scale_list" model="ir.ui.view">
         <field name="name">weighing.scale.list</field>
         <field name="model">weighing.scale</field>
@@ -18,7 +17,6 @@
         </field>
     </record>
 
-    <!-- Weighing Scale Form View -->
     <record id="view_weighing_scale_form" model="ir.ui.view">
         <field name="name">weighing.scale.form</field>
         <field name="model">weighing.scale</field>
@@ -86,7 +84,6 @@
         </field>
     </record>
     
-    <!-- Weighing Scale Search View -->
     <record id="view_weighing_scale_search" model="ir.ui.view">
         <field name="name">weighing.scale.search</field>
         <field name="model">weighing.scale</field>
@@ -103,7 +100,6 @@
         </field>
     </record>
 
-    <!-- Weighing Scale Action -->
     <record id="action_weighing_scale" model="ir.actions.act_window">
         <field name="name">Weighing Scales</field>
         <field name="res_model">weighing.scale</field>
@@ -118,6 +114,4 @@
             </p>
         </field>
     </record>
-
-    
 </odoo>

@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Stock-related actions for sales extension -->
-    <record id="action_deliveries_need_weighing" model="ir.actions.act_window">
-        <field name="name">Deliveries Need Weighing</field>
-        <field name="res_model">stock.picking</field>
+    <menuitem id="menu_sales_need_weighing" name="Sales to Weigh" parent="inventory_scale_integration_stock.menu_truck_weighing_operations" action="action_sales_need_weighing" sequence="3"/>
+    <menuitem id="menu_deliveries_need_weighing" name="Deliveries to Weigh" parent="inventory_scale_integration_stock.menu_truck_weighing_operations" action="action_deliveries_need_weighing" sequence="4"/>
+
+    <record id="action_sales_need_weighing" model="ir.actions.act_window">
+        <field name="name">Sales Orders to Weigh</field>
+        <field name="res_model">sale.order</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('picking_type_code', '=', 'outgoing'), ('state', 'in', ['assigned', 'confirmed']), ('move_ids.product_id.is_weighable', '=', True)]</field>
-        <field name="context">{}</field>
+        <field name="domain">[('order_line.product_id.is_weighable', '=', True), ('state', 'in', ['sale', 'done'])]</field>
+        <field name="context">{'create': False}</field>
     </record>
 
-    <!-- Menu Items -->
-    <menuitem id="menu_deliveries_need_weighing" name="Deliveries to Weigh" parent="inventory_scale_integration_base.menu_truck_weighing_operations" action="action_deliveries_need_weighing" sequence="2"/>
+    <record id="action_deliveries_need_weighing" model="ir.actions.act_window">
+        <field name="name">Deliveries to Weigh</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('picking_type_code', '=', 'outgoing'), ('move_ids.product_id.is_weighable', '=', True)]</field>
+        <field name="context">{'create': False}</field>
+    </record>
 </odoo>

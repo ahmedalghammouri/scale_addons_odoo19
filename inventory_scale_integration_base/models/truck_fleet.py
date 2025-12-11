@@ -13,22 +13,16 @@ class TruckFleet(models.Model):
     driver_name = fields.Char(string='Default Driver')
     driver_phone = fields.Char(string='Driver Phone')
     
-    # Trailer Information
     trailer_count = fields.Integer(string='Number of Trailers', default=1, tracking=True)
     max_weight_per_trailer = fields.Float(string='Max Weight per Trailer (KG)', tracking=True)
     total_max_weight = fields.Float(string='Total Max Weight (KG)', compute='_compute_total_max_weight', store=True, tracking=True)
     tare_weight = fields.Float(string='Empty Truck Weight (KG)', help="Weight of empty truck", tracking=True)
     
-    # Company & Status
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
-    
-    # Statistics
+    notes = fields.Text(string='Notes')
     weighing_count = fields.Integer(string='Weighing Records', compute='_compute_weighing_count')
     last_weighing_date = fields.Datetime(string='Last Weighing', compute='_compute_weighing_count')
-    
-    # Additional Info
-    notes = fields.Text(string='Notes')
     
     @api.depends('trailer_count', 'max_weight_per_trailer')
     def _compute_total_max_weight(self):

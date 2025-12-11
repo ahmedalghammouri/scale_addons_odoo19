@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from . import weighing_scale
-from . import truck_weighing
+from . import res_users
 from . import truck_fleet
-from . import weighing_overview
-from . import product_product
+from . import product_template
+from . import truck_weighing

@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Stock-related actions for purchase extension -->
-    <record id="action_receipts_need_weighing" model="ir.actions.act_window">
-        <field name="name">Receipts Need Weighing</field>
-        <field name="res_model">stock.picking</field>
+    <menuitem id="menu_pos_need_weighing" name="POs to Weigh" parent="inventory_scale_integration_stock.menu_truck_weighing_operations" action="action_pos_need_weighing" sequence="2"/>
+
+    <record id="action_pos_need_weighing" model="ir.actions.act_window">
+        <field name="name">Purchase Orders Need Weighing</field>
+        <field name="res_model">purchase.order</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('picking_type_code', '=', 'incoming'), ('state', 'in', ['assigned', 'confirmed']), ('move_ids.product_id.is_weighable', '=', True)]</field>
+        <field name="domain">[('state', '=', 'purchase'), ('order_line.product_id.is_weighable', '=', True)]</field>
         <field name="context">{}</field>
     </record>
-
-    <!-- Menu Items -->
-    <menuitem id="menu_receipts_need_weighing" name="Receipts to Weigh" parent="inventory_scale_integration_base.menu_truck_weighing_operations" action="action_receipts_need_weighing" sequence="1"/>
-    
-    <menuitem id="menu_weighing_scale_settings"
-              name="Weighing Scales"
-              parent="stock.menu_stock_config_settings"
-              action="inventory_scale_integration_base.action_weighing_scale"
-              sequence="50"/>
 </odoo>

@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-import logging
 import requests
-from datetime import datetime
-
-_logger = logging.getLogger(__name__)
 
 class WeighingScale(models.Model):
     _name = 'weighing.scale'
@@ -16,12 +12,10 @@ class WeighingScale(models.Model):
     active = fields.Boolean(default=True, tracking=True)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     
-    # Connection Settings
     ip_address = fields.Char(string='IP Address', required=True, tracking=True)
     port = fields.Integer(string='Port', required=True, default=5000, tracking=True)
     timeout = fields.Integer(string='Timeout (seconds)', default=2)
     
-    # Status & Monitoring
     is_enabled = fields.Boolean(string='Enabled', default=True, tracking=True)
     connection_status = fields.Selection([
         ('connected', 'Connected'),
@@ -33,13 +27,8 @@ class WeighingScale(models.Model):
     last_read_date = fields.Datetime(string='Last Read Date', readonly=True)
     error_message = fields.Text(string='Last Error', readonly=True)
     
-    # User Assignment
     user_ids = fields.Many2many('res.users', 'scale_user_rel', 'scale_id', 'user_id', string='Assigned Users')
-    
-    # Notes
     notes = fields.Text(string='Notes')
-    
-    # Related Records
     weighing_count = fields.Integer(string='Weighing Records', compute='_compute_weighing_count')
     
     def _compute_weighing_count(self):
@@ -53,7 +42,6 @@ class WeighingScale(models.Model):
                 raise UserError(_("IP Address and Port are required."))
 
     def action_test_connection(self):
-        """ Test connection to the scale """
         self.ensure_one()
         try:
             url = f"http://{self.ip_address}:{self.port}/get_weight"
@@ -90,7 +78,6 @@ class WeighingScale(models.Model):
             raise UserError(_("Connection failed: %s") % str(e))
 
     def get_weight(self):
-        """ Get current weight from scale """
         self.ensure_one()
         if not self.is_enabled:
             raise UserError(_("Scale '%s' is disabled.") % self.name)
@@ -120,15 +107,12 @@ class WeighingScale(models.Model):
             raise UserError(_("Error reading from scale '%s': %s") % (self.name, str(e)))
 
     def action_enable(self):
-        """ Enable scale """
         self.write({'is_enabled': True})
 
     def action_disable(self):
-        """ Disable scale """
         self.write({'is_enabled': False})
     
     def action_view_weighing_records(self):
-        """ View all truck weighing records for this scale """
         self.ensure_one()
         return {
             'name': _('Weighing Records'),

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Extend User Form View -->
     <record id="view_users_form_scale" model="ir.ui.view">
         <field name="name">res.users.form.scale</field>
         <field name="model">res.users</field>

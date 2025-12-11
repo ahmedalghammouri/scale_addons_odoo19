@@ -28,6 +28,14 @@
         <field name="view_mode">list,form</field>
         <field name="domain">[('order_line.product_id.is_weighable', '=', True), ('state', 'in', ['sale', 'done'])]</field>
         <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No sales orders with weighable products found!
+            </p>
+            <p>
+                Sales orders with weighable products will appear here when they are confirmed.
+            </p>
+        </field>
     </record>
 
     <record id="action_deliveries_need_weighing" model="ir.actions.act_window">
@@ -36,5 +44,13 @@
         <field name="view_mode">list,form</field>
         <field name="domain">[('picking_type_code', '=', 'outgoing'), ('move_ids.product_id.is_weighable', '=', True)]</field>
         <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No deliveries with weighable products found!
+            </p>
+            <p>
+                Delivery orders with weighable products will appear here when they are ready.
+            </p>
+        </field>
     </record>
 </odoo>
