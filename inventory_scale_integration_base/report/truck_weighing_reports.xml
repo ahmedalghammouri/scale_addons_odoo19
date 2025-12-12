@@ -50,18 +50,18 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <div class="text-center" style="border: 2px solid black; padding: 20px; margin: 50px;">
-                            <h2><strong>WEIGHING LABEL</strong></h2>
+                            <h2><strong t-esc="'WEIGHING LABEL'"/></h2>
                             <div style="margin-top: 30px;">
-                                <h3><span t-field="o.name"/></h3>
+                                <h3><span t-esc="o.name"/></h3>
                             </div>
                             <div style="margin-top: 20px;">
-                                <div><strong>Truck:</strong> <span t-field="o.truck_plate"/></div>
-                                <div><strong>Product:</strong> <span t-field="o.product_id"/></div>
+                                <div><strong t-esc="'Truck:'"/> <span t-esc="o.truck_plate"/></div>
+                                <div><strong t-esc="'Product:'"/> <span t-esc="o.product_id.name"/></div>
                                 <div style="margin-top: 20px; font-size: 24px;">
-                                    <strong>Net Weight: <span t-field="o.net_weight"/> KG</strong>
+                                    <strong t-esc="'Net Weight: %s KG' % o.net_weight"/>
                                 </div>
                                 <div style="margin-top: 10px;">
-                                    <small>Date: <span t-field="o.weighing_date"/></small>
+                                    <small t-esc="'Date: %s' % o.weighing_date"/>
                                 </div>
                             </div>
                         </div>
@@ -132,43 +132,45 @@
     <template id="report_weighing_ticket">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <div class="page" style="padding: 20px;">
-                    <div style="border: 1px solid black; padding: 15px;">
-                        <h3 class="text-center"><strong>WEIGHING TICKET</strong></h3>
-                        <hr/>
-                        <div class="row">
-                            <div class="col-6">
-                                <div><strong>Ticket #:</strong> <span t-field="o.name"/></div>
-                                <div><strong>Date:</strong> <span t-field="o.weighing_date" t-options='{"widget": "datetime"}'/></div>
-                                <div><strong>Truck:</strong> <span t-field="o.truck_plate"/></div>
-                                <div><strong>Driver:</strong> <span t-field="o.driver_name"/></div>
+                <t t-call="web.external_layout">
+                    <div class="page" style="padding: 20px;">
+                        <div style="border: 1px solid black; padding: 15px;">
+                            <h3 class="text-center"><strong>WEIGHING TICKET</strong></h3>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div><strong>Ticket #:</strong> <span t-field="o.name"/></div>
+                                    <div><strong>Date:</strong> <span t-field="o.weighing_date" t-options='{"widget": "datetime"}'/></div>
+                                    <div><strong>Truck:</strong> <span t-field="o.truck_plate"/></div>
+                                    <div><strong>Driver:</strong> <span t-field="o.driver_name"/></div>
+                                </div>
+                                <div class="col-6">
+                                    <div><strong>Partner:</strong> <span t-field="o.partner_id"/></div>
+                                    <div><strong>Product:</strong> <span t-field="o.product_id"/></div>
+                                    <div><strong>Operation:</strong> <span t-field="o.operation_type"/></div>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <div><strong>Partner:</strong> <span t-field="o.partner_id"/></div>
-                                <div><strong>Product:</strong> <span t-field="o.product_id"/></div>
-                                <div><strong>Operation:</strong> <span t-field="o.operation_type"/></div>
+                            <hr/>
+                            <table class="table table-sm">
+                                <tr>
+                                    <td>Gross Weight:</td>
+                                    <td class="text-right"><strong><span t-field="o.gross_weight"/> KG</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Tare Weight:</td>
+                                    <td class="text-right"><strong><span t-field="o.tare_weight"/> KG</strong></td>
+                                </tr>
+                                <tr style="border-top: 2px solid black;">
+                                    <td><strong>Net Weight:</strong></td>
+                                    <td class="text-right"><strong style="font-size: 18px;"><span t-field="o.net_weight"/> KG</strong></td>
+                                </tr>
+                            </table>
+                            <div class="text-center" style="margin-top: 30px;">
+                                <small>This is a computer-generated document</small>
                             </div>
-                        </div>
-                        <hr/>
-                        <table class="table table-sm">
-                            <tr>
-                                <td>Gross Weight:</td>
-                                <td class="text-right"><strong><span t-field="o.gross_weight"/> KG</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Tare Weight:</td>
-                                <td class="text-right"><strong><span t-field="o.tare_weight"/> KG</strong></td>
-                            </tr>
-                            <tr style="border-top: 2px solid black;">
-                                <td><strong>Net Weight:</strong></td>
-                                <td class="text-right"><strong style="font-size: 18px;"><span t-field="o.net_weight"/> KG</strong></td>
-                            </tr>
-                        </table>
-                        <div class="text-center" style="margin-top: 30px;">
-                            <small>This is a computer-generated document</small>
                         </div>
                     </div>
-                </div>
+                </t>
             </t>
         </t>
     </template>
@@ -177,34 +179,36 @@
     <template id="report_driver_ticket">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <div class="page" style="padding: 10px;">
-                    <div style="border: 2px solid black; padding: 20px; text-align: center;">
-                        <h2 style="margin: 0;"><strong>DRIVER TICKET</strong></h2>
-                        <hr style="border-top: 2px solid black;"/>
-                        
-                        <div style="margin: 20px 0;">
-                            <div style="font-size: 18px; margin: 10px 0;">
-                                <strong>Weighing #:</strong> <span t-field="o.name" style="font-size: 22px;"/>
+                <t t-call="web.external_layout">
+                    <div class="page" style="padding: 10px;">
+                        <div style="border: 2px solid black; padding: 20px; text-align: center;">
+                            <h2 style="margin: 0;"><strong t-esc="'DRIVER TICKET'"/></h2>
+                            <hr style="border-top: 2px solid black;"/>
+                            
+                            <div style="margin: 20px 0;">
+                                <div style="font-size: 18px; margin: 10px 0;">
+                                    <strong t-esc="'Weighing #:'"/> <span t-esc="o.name" style="font-size: 22px;"/>
+                                </div>
+                                <div style="font-size: 18px; margin: 10px 0;">
+                                    <strong t-esc="'Truck Number:'"/> <span t-esc="o.truck_plate" style="font-size: 22px;"/>
+                                </div>
                             </div>
-                            <div style="font-size: 18px; margin: 10px 0;">
-                                <strong>Truck Number:</strong> <span t-field="o.truck_plate" style="font-size: 22px;"/>
+
+                            <!-- Barcode (force LTR for proper rendering) -->
+                            <div style="margin: 30px 0; direction: ltr;">
+                                <img t-att-src="'/report/barcode/Code128/%s?width=600&amp;height=100&amp;humanreadable=1' % o.name" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" alt="Barcode"/>
                             </div>
-                        </div>
 
-                        <!-- Barcode -->
-                        <div style="margin: 30px 0;">
-                            <img t-att-src="'/report/barcode/Code128/%s?width=600&amp;height=100' % o.name" style="max-width: 100%; height: auto;" alt="Barcode"/>
-                        </div>
+                            <div style="margin: 20px 0; font-size: 14px;">
+                                <div><strong t-esc="'Date:'"/> <span t-esc="o.gross_date"/></div>
+                                <div><strong t-esc="'Gross Weight:'"/> <span t-esc="'%s KG' % o.gross_weight"/></div>
+                            </div>
 
-                        <div style="margin: 20px 0; font-size: 14px;">
-                            <div><strong>Date:</strong> <span t-field="o.gross_date" t-options='{"widget": "datetime"}'/></div>
-                            <div><strong>Gross Weight:</strong> <span t-field="o.gross_weight"/> KG</div>
+                            <hr style="border-top: 1px solid black;"/>
+                            <p style="margin: 10px 0; font-size: 12px;" t-esc="'Present this ticket for tare weighing'"/>
                         </div>
-
-                        <hr style="border-top: 1px solid black;"/>
-                        <p style="margin: 10px 0; font-size: 12px;">Present this ticket for tare weighing</p>
                     </div>
-                </div>
+                </t>
             </t>
         </t>
     </template>
