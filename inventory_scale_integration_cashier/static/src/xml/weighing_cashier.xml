@@ -6,6 +6,9 @@
             <div class="cashier_header">
                 <h1>⚖️ Weighing Cashier</h1>
                 <div class="header_actions">
+                    <button class="btn btn-outline-secondary" t-on-click="() => this.refreshData()">
+                        🔄 Refresh
+                    </button>
                     <button class="btn btn-outline-secondary" t-on-click="() => this.openWeighingList('all')">
                         📋 All
                     </button>

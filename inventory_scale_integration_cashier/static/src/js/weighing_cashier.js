@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
 import { registry } from "@web/core/registry";
-import { Component, useState, onWillStart } from "@odoo/owl";
+import { Component, useState, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 
 class WeighingCashierInterface extends Component {
@@ -20,10 +20,23 @@ class WeighingCashierInterface extends Component {
             searchText: "",
         });
 
+        this.refreshInterval = null;
+
         onWillStart(async () => {
             await this.loadPendingPickings();
             await this.loadWeighings();
-            await this.applyUserTheme();
+        });
+
+        onMounted(() => {
+            this.refreshInterval = setInterval(() => {
+                this.refreshData();
+            }, 60000); // 60000ms = 1 minute
+        });
+
+        onWillUnmount(() => {
+            if (this.refreshInterval) {
+                clearInterval(this.refreshInterval);
+            }
         });
     }
 
@@ -213,24 +226,12 @@ class WeighingCashierInterface extends Component {
         await this.loadWeighings();
     }
     
-    async applyUserTheme() {
-        try {
-            const user = await this.orm.read(
-                "res.users",
-                [this.env.uid],
-                ["color_scheme"]
-            );
-            
-            if (user && user[0] && user[0].color_scheme === "dark") {
-                document.body.classList.add('o_dark');
-            } else {
-                document.body.classList.remove('o_dark');
-            }
-        } catch (error) {
-            // Default to light mode if error
-            document.body.classList.remove('o_dark');
-        }
+    async refreshData() {
+        await this.loadPendingPickings();
+        await this.loadWeighings();
     }
+    
+
     
     openWeighingList(filter) {
         let domain = [];

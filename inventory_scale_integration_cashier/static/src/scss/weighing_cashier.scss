@@ -1,29 +1,32 @@
 .weighing_cashier_interface {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 10px;
+    min-height: 100vh;
+    padding: 15px;
+    padding-bottom: 60px;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    max-height: 100vh;
     background: #f5f7fa;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    color: #333;
 
     .cashier_header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: white;
-        padding: 12px 16px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        flex-shrink: 0;
+        padding: 15px 20px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
 
         h1 {
             margin: 0;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
@@ -32,15 +35,20 @@
         
         .header_actions {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             flex-wrap: wrap;
             
             .btn {
-                border-radius: 18px;
+                border-radius: 20px;
                 font-weight: 600;
-                padding: 6px 14px;
-                font-size: 12px;
-                white-space: nowrap;
+                padding: 8px 16px;
+                font-size: 13px;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                }
                 
                 &.btn-primary {
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -60,53 +68,77 @@
 
     .input_section {
         background: white;
-        padding: 12px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        flex-shrink: 0;
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
 
         .input_row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 15px;
         }
         
         .input_group {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             align-items: center;
 
             label {
-                font-size: 13px;
+                font-size: 14px;
                 font-weight: 600;
-                min-width: 100px;
+                min-width: 110px;
                 color: #333;
             }
 
             input {
                 flex: 1;
-                font-size: 14px;
-                padding: 8px 10px;
-                border-radius: 8px;
+                font-size: 15px;
+                padding: 10px 12px;
+                border-radius: 10px;
                 border: 2px solid #e9ecef;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                }
             }
 
             button {
-                min-width: 70px;
-                border-radius: 18px;
+                min-width: 80px;
+                border-radius: 20px;
                 font-weight: 600;
-                padding: 8px 14px;
+                padding: 10px 18px;
                 border: none;
-                font-size: 13px;
+                font-size: 14px;
                 color: white;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                    transform: translateY(-2px);
+                }
                 
                 &.btn-success {
                     background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+                    
+                    &:hover {
+                        box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+                    }
                 }
                 
                 &.btn-info {
                     background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
+                    
+                    &:hover {
+                        box-shadow: 0 8px 20px rgba(23, 162, 184, 0.4);
+                    }
                 }
             }
         }
@@ -115,44 +147,45 @@
     .cashier_content {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        flex: 1;
-        min-height: 0;
-        overflow: hidden;
+        gap: 15px;
 
         .section_card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            }
 
             .section_header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 12px;
-                border-bottom: 2px solid #667eea;
-                flex-shrink: 0;
+                padding: 15px;
+                border-bottom: 3px solid;
+                border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
                 
                 h3 {
                     margin: 0;
-                    font-size: 16px;
+                    font-size: 18px;
                     font-weight: 700;
                     color: #333;
                 }
                 
                 .filter_buttons {
                     display: flex;
-                    gap: 4px;
+                    gap: 6px;
                     
                     .btn {
-                        border-radius: 12px;
-                        font-size: 10px;
+                        border-radius: 15px;
+                        font-size: 11px;
                         font-weight: 600;
-                        padding: 4px 10px;
+                        padding: 5px 12px;
+                        transition: all 0.3s ease;
                         
                         &.btn-primary {
                             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -164,20 +197,25 @@
                             border: 2px solid #667eea;
                             color: #667eea;
                             background: white;
+                            
+                            &:hover {
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                color: white;
+                                border-color: transparent;
+                            }
                         }
                     }
                 }
             }
 
             .scrollable_list {
-                flex: 1;
+                max-height: 500px;
                 overflow-y: auto;
                 overflow-x: hidden;
-                padding: 10px;
-                min-height: 0;
+                padding: 12px;
 
                 &::-webkit-scrollbar {
-                    width: 5px;
+                    width: 6px;
                 }
 
                 &::-webkit-scrollbar-track {
@@ -188,24 +226,29 @@
                 &::-webkit-scrollbar-thumb {
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     border-radius: 10px;
+
+                    &:hover {
+                        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                    }
                 }
             }
 
             .empty_state {
                 text-align: center;
-                padding: 30px 15px;
+                padding: 40px 20px;
                 color: #999;
-                font-size: 12px;
+                font-size: 13px;
+                font-weight: 500;
             }
         }
 
         .card_item {
             border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 8px;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             background: white;
             
             &.in_progress {
@@ -215,19 +258,19 @@
             &:hover {
                 background: #f8f9fa;
                 border-color: #667eea;
-                transform: translateX(2px);
-                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+                transform: translateX(3px);
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
             }
 
             .card_header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 6px;
-                gap: 6px;
+                margin-bottom: 8px;
+                gap: 8px;
 
                 .card_name {
-                    font-size: 13px;
+                    font-size: 14px;
                     font-weight: 700;
                     color: #333;
                     flex: 1;
@@ -237,21 +280,21 @@
                 }
 
                 .badge {
-                    font-size: 9px;
+                    font-size: 10px;
                     font-weight: 600;
-                    padding: 3px 8px;
-                    border-radius: 10px;
+                    padding: 4px 10px;
+                    border-radius: 12px;
                     flex-shrink: 0;
                 }
             }
 
             .card_details {
-                font-size: 11px;
+                font-size: 12px;
                 color: #666;
-                line-height: 1.4;
+                line-height: 1.6;
 
                 div {
-                    margin: 2px 0;
+                    margin: 3px 0;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
@@ -269,17 +312,8 @@
 // Tablet
 @media (max-width: 1024px) {
     .weighing_cashier_interface {
-        .cashier_header h1 {
-            font-size: 18px;
-        }
-        
         .cashier_content {
             grid-template-columns: 1fr;
-            gap: 8px;
-            
-            .section_card {
-                max-height: 300px;
-            }
         }
     }
 }
@@ -287,45 +321,43 @@
 // Mobile
 @media (max-width: 768px) {
     .weighing_cashier_interface {
-        padding: 8px;
+        padding: 10px;
         
         .cashier_header {
-            padding: 10px;
-            margin-bottom: 8px;
+            padding: 12px;
             
             h1 {
-                font-size: 16px;
+                font-size: 18px;
             }
             
             .header_actions .btn {
-                padding: 5px 10px;
+                padding: 6px 12px;
                 font-size: 11px;
             }
         }
         
         .input_section {
-            padding: 10px;
-            margin-bottom: 8px;
+            padding: 12px;
             
             .input_row {
                 grid-template-columns: 1fr;
-                gap: 8px;
+                gap: 10px;
             }
             
             .input_group {
                 label {
-                    min-width: 70px;
+                    min-width: 80px;
                     font-size: 12px;
                 }
                 
                 input {
-                    font-size: 13px;
-                    padding: 7px 8px;
+                    font-size: 14px;
+                    padding: 8px 10px;
                 }
                 
                 button {
-                    min-width: 60px;
-                    padding: 7px 10px;
+                    min-width: 65px;
+                    padding: 8px 12px;
                     font-size: 12px;
                 }
             }
@@ -333,24 +365,27 @@
         
         .cashier_content {
             .section_card {
-                max-height: 250px;
-                
                 .section_header h3 {
-                    font-size: 14px;
+                    font-size: 16px;
+                }
+                
+                .scrollable_list {
+                    max-height: 350px;
                 }
             }
         }
     }
 }
 
-// Dark Mode
+// Dark mode
 body.o_dark .weighing_cashier_interface,
 .o_dark .weighing_cashier_interface,
 [data-bs-theme="dark"] .weighing_cashier_interface {
-    background: #1a1d23;
-
+    background: #1e232d !important;
+    color: #e0e0e0 !important;
+    
     .cashier_header {
-        background: rgba(55, 65, 82, 0.95);
+        background: rgba(55, 65, 82, 0.9) !important;
         
         h1 {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -362,73 +397,77 @@ body.o_dark .weighing_cashier_interface,
             &.btn-outline-secondary,
             &.btn-outline-info,
             &.btn-outline-success {
-                background: rgba(30, 35, 45, 0.9);
-                border-color: currentColor;
+                background: rgba(30, 35, 45, 0.9) !important;
+                border-color: currentColor !important;
+                color: #e0e0e0 !important;
             }
         }
     }
 
     .input_section {
-        background: rgba(55, 65, 82, 0.95);
+        background: rgba(55, 65, 82, 0.9) !important;
 
         .input_group {
             label {
-                color: #e0e0e0;
+                color: #e0e0e0 !important;
             }
 
             input {
-                background: rgba(30, 35, 45, 0.9);
-                border-color: rgba(255,255,255,0.1);
-                color: #e0e0e0;
+                background: rgba(30, 35, 45, 0.9) !important;
+                border-color: rgba(255,255,255,0.1) !important;
+                color: #e0e0e0 !important;
+                
+                &::placeholder {
+                    color: #a0a0a0 !important;
+                }
             }
         }
     }
 
     .cashier_content {
         .section_card {
-            background: rgba(55, 65, 82, 0.95);
+            background: rgba(55, 65, 82, 0.9) !important;
 
             .section_header {
-                border-bottom-color: #667eea;
-                
                 h3 {
-                    color: #e0e0e0;
+                    color: #e0e0e0 !important;
                 }
                 
                 .filter_buttons .btn.btn-outline-primary {
-                    background: rgba(30, 35, 45, 0.9);
+                    background: rgba(30, 35, 45, 0.9) !important;
+                    color: #667eea !important;
                 }
             }
 
             .scrollable_list {
                 &::-webkit-scrollbar-track {
-                    background: rgba(30, 35, 45, 0.5);
+                    background: rgba(30, 35, 45, 0.5) !important;
                 }
             }
 
             .empty_state {
-                color: #a0a0a0;
+                color: #a0a0a0 !important;
             }
         }
 
         .card_item {
-            background: rgba(30, 35, 45, 0.9);
-            border-color: rgba(255,255,255,0.1);
+            background: rgba(30, 35, 45, 0.9) !important;
+            border-color: rgba(255,255,255,0.1) !important;
 
             &:hover {
-                background: rgba(40, 45, 55, 0.95);
-                border-color: #667eea;
+                background: rgba(40, 45, 55, 0.95) !important;
+                border-color: #667eea !important;
             }
 
             .card_header .card_name {
-                color: #e0e0e0;
+                color: #e0e0e0 !important;
             }
 
             .card_details {
-                color: #a0a0a0;
+                color: #a0a0a0 !important;
 
                 div strong {
-                    color: #e0e0e0;
+                    color: #e0e0e0 !important;
                 }
             }
         }
