@@ -143,12 +143,12 @@
                                         <small class="text-muted">Draft</small>
                                     </div>
                                     <div class="col-4">
-                                        <h4 class="text-primary" style="cursor: pointer;" t-esc="state.data.in_progress?.gross_count || 0" t-on-click="() => this.onCardAction('weighing_gross')"/>
-                                        <small class="text-muted">Gross</small>
+                                        <h4 class="text-primary" style="cursor: pointer;" t-esc="state.data.in_progress?.first_count || 0" t-on-click="() => this.onCardAction('weighing_gross')"/>
+                                        <small class="text-muted">First weight captured</small>
                                     </div>
                                     <div class="col-4">
-                                        <h4 class="text-warning" style="cursor: pointer;" t-esc="state.data.in_progress?.tare_count || 0" t-on-click="() => this.onCardAction('weighing_tare')"/>
-                                        <small class="text-muted">Tare</small>
+                                        <h4 class="text-warning" style="cursor: pointer;" t-esc="state.data.in_progress?.second_count || 0" t-on-click="() => this.onCardAction('weighing_tare')"/>
+                                        <small class="text-muted">Second weight captured</small>
                                     </div>
                                 </div>
                                 <hr/>

@@ -51,7 +51,7 @@ export class WeighingOverviewDashboard extends Component {
                 res_model: 'truck.weighing',
                 view_mode: 'kanban,list,form',
                 views: [[false, 'kanban'], [false, 'list'], [false, 'form']],
-                domain: [['state', 'in', ['draft', 'gross', 'tare']]],
+                domain: [['state', 'in', ['draft', 'first', 'second']]],
             },
             'all_records': {
                 name: 'All Weighing Records',
@@ -132,18 +132,18 @@ export class WeighingOverviewDashboard extends Component {
                 domain: [['state', '=', 'draft']],
             },
             'weighing_gross': {
-                name: 'Gross Weight Captured',
+                name: 'First Weighing Captured',
                 res_model: 'truck.weighing',
                 view_mode: 'list,form',
                 views: [[false, 'list'], [false, 'form']],
-                domain: [['state', '=', 'gross']],
+                domain: [['state', '=', 'first']],
             },
             'weighing_tare': {
-                name: 'Tare Weight Captured',
+                name: 'Second Weighing Captured',
                 res_model: 'truck.weighing',
                 view_mode: 'list,form',
                 views: [[false, 'list'], [false, 'form']],
-                domain: [['state', '=', 'tare']],
+                domain: [['state', '=', 'second']],
             },
             // Time-based filtered actions
             'completed_today': {
