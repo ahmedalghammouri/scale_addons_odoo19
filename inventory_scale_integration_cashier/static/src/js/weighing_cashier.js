@@ -18,6 +18,14 @@ class WeighingCashierInterface extends Component {
             scaleWeight: 0,
             pickingFilter: "all",
             searchText: "",
+            analytics: {
+                completed_today: 0,
+                in_progress: 0,
+                avg_wait_time: "0m",
+                waiting_count: 0,
+                urgent_count: 0,
+                efficiency_rate: 0,
+            },
         });
 
         this.refreshInterval = null;
@@ -25,6 +33,7 @@ class WeighingCashierInterface extends Component {
         onWillStart(async () => {
             await this.loadPendingPickings();
             await this.loadWeighings();
+            await this.loadAnalytics();
         });
 
         onMounted(() => {
@@ -226,9 +235,71 @@ class WeighingCashierInterface extends Component {
         await this.loadWeighings();
     }
     
+    async loadAnalytics() {
+        try {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayStr = today.toISOString().split('T')[0] + ' 00:00:00';
+            
+            // Get completed today
+            const completedToday = await this.orm.searchCount(
+                "truck.weighing",
+                [["state", "=", "done"], ["create_date", ">=", todayStr]]
+            );
+            
+            // Get in progress
+            const inProgress = await this.orm.searchCount(
+                "truck.weighing",
+                [["state", "in", ["draft", "first", "second"]]]
+            );
+            
+            // Get draft records with create_date for wait time calculation
+            const draftRecords = await this.orm.searchRead(
+                "truck.weighing",
+                [["state", "=", "draft"]],
+                ["create_date"],
+                { limit: 100 }
+            );
+            
+            // Calculate average wait time
+            let totalWaitMinutes = 0;
+            const now = new Date();
+            draftRecords.forEach(record => {
+                const createDate = new Date(record.create_date);
+                const waitMinutes = Math.floor((now - createDate) / 60000);
+                totalWaitMinutes += waitMinutes;
+            });
+            const avgWaitMinutes = draftRecords.length > 0 ? Math.floor(totalWaitMinutes / draftRecords.length) : 0;
+            const avgWaitTime = avgWaitMinutes < 60 ? `${avgWaitMinutes}m` : `${Math.floor(avgWaitMinutes / 60)}h ${avgWaitMinutes % 60}m`;
+            
+            // Count urgent (scheduled today or overdue)
+            const nowStr = new Date().toISOString().split('.')[0].replace('T', ' ');
+            const urgentCount = await this.orm.searchCount(
+                "stock.picking",
+                [["state", "in", ["assigned", "confirmed"]], ["scheduled_date", "<=", nowStr]]
+            );
+            
+            // Calculate efficiency rate (completed vs total)
+            const totalToday = completedToday + inProgress;
+            const efficiencyRate = totalToday > 0 ? Math.round((completedToday / totalToday) * 100) : 0;
+            
+            this.state.analytics = {
+                completed_today: completedToday,
+                in_progress: inProgress,
+                avg_wait_time: avgWaitTime,
+                waiting_count: draftRecords.length,
+                urgent_count: urgentCount,
+                efficiency_rate: efficiencyRate,
+            };
+        } catch (error) {
+            console.error("Error loading analytics:", error);
+        }
+    }
+
     async refreshData() {
         await this.loadPendingPickings();
         await this.loadWeighings();
+        await this.loadAnalytics();
     }
     
 

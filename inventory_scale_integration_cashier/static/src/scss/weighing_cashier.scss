@@ -131,6 +131,111 @@
         }
     }
 
+    .analytics_section {
+        margin-bottom: 20px;
+
+        .analytics_row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+
+            .analytics_card {
+                border-radius: 12px;
+                padding: 1rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+
+                &:nth-child(1) {
+                    background: linear-gradient(135deg, rgba(40, 167, 69, 0.08) 0%, rgba(30, 126, 52, 0.04) 100%);
+                    border: 1px solid rgba(40, 167, 69, 0.12);
+                }
+
+                &:nth-child(2) {
+                    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.04) 100%);
+                    border: 1px solid rgba(102, 126, 234, 0.12);
+                }
+
+                &:nth-child(3) {
+                    background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 152, 0, 0.04) 100%);
+                    border: 1px solid rgba(255, 193, 7, 0.12);
+                }
+
+                &:nth-child(4) {
+                    background: linear-gradient(135deg, rgba(23, 162, 184, 0.08) 0%, rgba(17, 122, 139, 0.04) 100%);
+                    border: 1px solid rgba(23, 162, 184, 0.12);
+                }
+
+                &:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+                }
+
+                &:nth-child(1):hover {
+                    background: linear-gradient(135deg, rgba(40, 167, 69, 0.12) 0%, rgba(30, 126, 52, 0.06) 100%);
+                }
+
+                &:nth-child(2):hover {
+                    background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.06) 100%);
+                }
+
+                &:nth-child(3):hover {
+                    background: linear-gradient(135deg, rgba(255, 193, 7, 0.12) 0%, rgba(255, 152, 0, 0.06) 100%);
+                }
+
+                &:nth-child(4):hover {
+                    background: linear-gradient(135deg, rgba(23, 162, 184, 0.12) 0%, rgba(17, 122, 139, 0.06) 100%);
+                }
+
+                .analytics_header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 0.75rem;
+
+                    small {
+                        font-weight: 600;
+                        font-size: 0.75rem;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        opacity: 0.7;
+                    }
+
+                    i {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .analytics_value {
+                    display: flex;
+                    align-items: baseline;
+                    gap: 0.5rem;
+                    margin-bottom: 0.5rem;
+
+                    h2 {
+                        margin: 0;
+                        font-size: 2rem;
+                        font-weight: 700;
+                    }
+
+                    span {
+                        font-size: 0.85rem;
+                        opacity: 0.6;
+                    }
+                }
+
+                .analytics_footer {
+                    font-size: 0.75rem;
+                    opacity: 0.7;
+
+                    i {
+                        margin-right: 0.25rem;
+                    }
+                }
+            }
+        }
+    }
+
     .input_section {
         background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, rgba(30, 126, 52, 0.03) 100%);
         border-radius: 20px;
@@ -503,6 +608,10 @@
 // Tablet
 @media (max-width: 1024px) {
     .weighing_cashier_interface {
+        .analytics_section .analytics_row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
         .cashier_content {
             grid-template-columns: 1fr;
         }
@@ -513,6 +622,19 @@
 @media (max-width: 768px) {
     .weighing_cashier_interface {
         padding: 10px;
+
+        .analytics_section .analytics_row {
+            grid-template-columns: 1fr;
+            gap: 10px;
+
+            .analytics_card {
+                padding: 0.75rem;
+
+                .analytics_value h2 {
+                    font-size: 1.5rem;
+                }
+            }
+        }
         
         .cashier_header {
             padding: 12px;

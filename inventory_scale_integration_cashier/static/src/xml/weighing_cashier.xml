@@ -24,6 +24,71 @@
                 </div>
             </div>
 
+            <!-- Analytics Charts -->
+            <div class="analytics_section">
+                <div class="analytics_row">
+                    <!-- Today's Progress -->
+                    <div class="analytics_card" style="border-left: 4px solid #28a745;">
+                        <div class="analytics_header">
+                            <small>Today's Progress</small>
+                            <i class="fa fa-chart-line text-success"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 t-esc="state.analytics?.completed_today || 0"/>
+                            <span>completed</span>
+                        </div>
+                        <div class="analytics_footer">
+                            <small><i class="fa fa-clock"/> <t t-esc="state.analytics?.in_progress || 0"/> in progress</small>
+                        </div>
+                    </div>
+
+                    <!-- Avg Wait Time -->
+                    <div class="analytics_card" style="border-left: 4px solid #667eea;">
+                        <div class="analytics_header">
+                            <small>Avg Wait Time</small>
+                            <i class="fa fa-hourglass-half text-primary"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" t-esc="state.analytics?.avg_wait_time || '0m'"/>
+                        </div>
+                        <div class="analytics_footer">
+                            <small><i class="fa fa-users"/> <t t-esc="state.analytics?.waiting_count || 0"/> waiting</small>
+                        </div>
+                    </div>
+
+                    <!-- Pending Orders -->
+                    <div class="analytics_card" style="border-left: 4px solid #ffc107;">
+                        <div class="analytics_header">
+                            <small>Pending Orders</small>
+                            <i class="fa fa-inbox text-warning"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 t-esc="state.pickings?.length || 0"/>
+                            <span>orders</span>
+                        </div>
+                        <div class="analytics_footer">
+                            <small><i class="fa fa-exclamation-triangle"/> <t t-esc="state.analytics?.urgent_count || 0"/> urgent</small>
+                        </div>
+                    </div>
+
+                    <!-- Efficiency Rate -->
+                    <div class="analytics_card" style="border-left: 4px solid #17a2b8;">
+                        <div class="analytics_header">
+                            <small>Efficiency Rate</small>
+                            <i class="fa fa-tachometer-alt text-info"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" t-esc="(state.analytics?.efficiency_rate || 0) + '%'"/>
+                        </div>
+                        <div class="analytics_footer">
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-info" t-att-style="'width: ' + (state.analytics?.efficiency_rate || 0) + '%'"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Scan and Search in same row -->
             <div class="input_section">
                 <div class="input_row">
