@@ -3,32 +3,126 @@
     <t t-name="inventory_scale_integration.WeighingDashboardTemplate" owl="1">
         <div class="o_weighing_dashboard">
             <div class="container-fluid" t-if="!state.loading">
-                <div class="row mb-1">
-                    <div class="col-12 d-flex justify-content-between align-items-center">
-                        <div>
-                            <!-- <h2 class="text-primary"><i class="fa fa-tachometer-alt mr-3"/></h2> -->
-                            <!-- <h2 class="text-primary"><i class="fa fa-tachometer-alt mr-3"/>Weighing Operations Overview</h2> -->
-                            <!-- <p class="text-muted m-2">Real-time monitoring of your weighbridge operations</p> -->
+                <!-- Professional Header with Quick Actions -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                            <div class="card-body py-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h3 class="text-white mb-1"><i class="fa fa-tachometer-alt mr-2"/>Weighing Operations Dashboard</h3>
+                                        <!-- <p class="text-white-50 mb-0" style="font-size: 0.9rem;">Real-time monitoring and control center</p> -->
+                                    </div>
+                                    <div class="d-flex flex-wrap align-items-center" style="gap: 0.5rem;">
+                                        <button class="btn btn-light btn-sm shadow-sm" style="padding: 0.375rem 0.75rem;" t-on-click="() => this.onCardAction('new_weighing')">
+                                            <i class="fa fa-plus-circle text-success" style="margin-right: 0.5rem;"/>New Weighing
+                                        </button>
+                                        <button class="btn btn-light btn-sm shadow-sm" style="padding: 0.375rem 0.75rem;" t-on-click="() => this.onCardAction('truck_fleet')">
+                                            <i class="fa fa-truck text-info" style="margin-right: 0.5rem;"/>Truck Fleet
+                                        </button>
+                                        <button class="btn btn-light btn-sm shadow-sm" style="padding: 0.375rem 0.75rem;" t-on-click="() => this.onCardAction('scale_settings')">
+                                            <i class="fa fa-cog text-warning" style="margin-right: 0.5rem;"/>Settings
+                                        </button>
+                                        <button class="btn btn-light btn-sm shadow-sm" style="padding: 0.375rem 0.75rem;" t-on-click="() => this.onCardAction('reports')">
+                                            <i class="fa fa-chart-line text-primary" style="margin-right: 0.5rem;"/>Reports
+                                        </button>
+                                        <button class="btn btn-light btn-sm shadow-sm" style="padding: 0.375rem 0.75rem;" t-on-click="refreshData">
+                                            <i class="fa fa-sync-alt text-success" style="margin-right: 0.5rem;"/>Refresh
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-success btn-sm mr-2 shadow-sm" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); border: none; font-weight: 600;" t-on-click="() => this.onCardAction('new_weighing')">
-                                <i class="fa fa-plus-circle mr-1"/>New Weighing
-                            </button>
-                            <button class="btn btn-primary btn-sm shadow-sm" t-on-click="refreshData">
-                                <i class="fa fa-sync-alt mr-1"/>Refresh
-                            </button>
+                    </div>
+                </div>
+
+                <!-- Key Analytics Charts -->
+                <div class="row mb-4">
+                    <!-- Workflow Status Chart -->
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card shadow-sm" style="border-left: 4px solid #667eea;">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted font-weight-bold">Workflow Status</small>
+                                    <i class="fa fa-tasks text-primary"/>
+                                </div>
+                                <div class="progress mb-2" style="height: 12px;">
+                                    <div class="progress-bar bg-info" t-att-style="'width: ' + (state.data.all_records?.draft_percent || 0) + '%'"/>
+                                    <div class="progress-bar bg-primary" t-att-style="'width: ' + (state.data.all_records?.first_percent || 0) + '%'"/>
+                                    <div class="progress-bar bg-warning" t-att-style="'width: ' + (state.data.all_records?.second_percent || 0) + '%'"/>
+                                    <div class="progress-bar bg-success" t-att-style="'width: ' + (state.data.all_records?.done_percent || 0) + '%'"/>
+                                </div>
+                                <div class="d-flex justify-content-between" style="font-size: 0.65rem;">
+                                    <span class="text-info">Draft</span>
+                                    <span class="text-primary">1st</span>
+                                    <span class="text-warning">2nd</span>
+                                    <span class="text-success">Done</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Completion Rate Chart -->
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card shadow-sm" style="border-left: 4px solid #28a745;">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted font-weight-bold">Completion Rate</small>
+                                    <i class="fa fa-check-circle text-success"/>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="mb-0 mr-2" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;" t-esc="(state.data.all_records?.done_percent || 0) + '%'"/>
+                                    <small class="text-muted">completed</small>
+                                </div>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar bg-success" t-att-style="'width: ' + (state.data.all_records?.done_percent || 0) + '%'"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accuracy Metric Chart -->
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card shadow-sm" style="border-left: 4px solid #17a2b8;">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted font-weight-bold">Weight Accuracy</small>
+                                    <i class="fa fa-bullseye text-info"/>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="mb-0 mr-2" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;" t-esc="(state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
+                                    <small class="text-muted">±5%</small>
+                                </div>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar bg-info" t-att-style="'width: ' + (state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Truck Utilization Chart -->
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card shadow-sm" style="border-left: 4px solid #ffc107;">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted font-weight-bold">Truck Assignment</small>
+                                    <i class="fa fa-truck text-warning"/>
+                                </div>
+                                <div class="progress mb-2" style="height: 12px;">
+                                    <div class="progress-bar bg-success" t-att-style="'width: ' + ((state.data.draft_details?.with_truck || 0) / Math.max((state.data.draft_details?.with_truck || 0) + (state.data.draft_details?.without_truck || 0), 1) * 100) + '%'"/>
+                                    <div class="progress-bar bg-danger" t-att-style="'width: ' + ((state.data.draft_details?.without_truck || 0) / Math.max((state.data.draft_details?.with_truck || 0) + (state.data.draft_details?.without_truck || 0), 1) * 100) + '%'"/>
+                                </div>
+                                <div class="d-flex justify-content-between" style="font-size: 0.65rem;">
+                                    <span class="text-success"><i class="fa fa-check"/> Assigned</span>
+                                    <span class="text-danger"><i class="fa fa-times"/> Unassigned</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Operations Section -->
                 <div class="row mb-4">
-                    <div class="col-12">
-                        <div class="section-header mb-3">
-                            <!-- <h4 class="text-primary"><i class="fa fa-exchange-alt m-2"/>Operations Overview</h4>
-                            <p class="text-muted mb-0">Purchase and sales weighing operations</p> -->
-                        </div>
-                    </div>
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card border-primary h-100 shadow-sm">
                             <div class="card-header bg-primary d-flex justify-content-between align-items-center">
@@ -120,34 +214,23 @@
                             <div class="card-body">
                                 <div class="row text-center mb-2">
                                     <div class="col-6">
-                                        <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.incoming_count || 0" t-on-click="() => this.onCardAction('weighing_draft_incoming')"/>
+                                        <h4 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.incoming_count || 0" t-on-click="() => this.onCardAction('weighing_draft_incoming')"/>
                                         <small class="text-muted">Incoming</small>
                                     </div>
                                     <div class="col-6">
-                                        <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.outgoing_count || 0" t-on-click="() => this.onCardAction('weighing_draft_outgoing')"/>
+                                        <h4 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.outgoing_count || 0" t-on-click="() => this.onCardAction('weighing_draft_outgoing')"/>
                                         <small class="text-muted">Outgoing</small>
-                                    </div>
-                                </div>
-                                <hr class="my-2"/>
-                                <div class="row text-center mb-2">
-                                    <div class="col-6">
-                                        <h6 class="text-success mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.with_truck || 0" t-on-click="() => this.onCardAction('weighing_draft')"/>
-                                        <small class="text-muted"><i class="fa fa-truck"/> With Truck</small>
-                                    </div>
-                                    <div class="col-6">
-                                        <h6 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.without_truck || 0" t-on-click="() => this.onCardAction('weighing_draft')"/>
-                                        <small class="text-muted"><i class="fa fa-exclamation-triangle"/> No Truck</small>
                                     </div>
                                 </div>
                                 <hr class="my-2"/>
                                 <div class="row text-center">
                                     <div class="col-6">
-                                        <h6 class="text-info mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.draft_details?.expected_weight || 0)" t-on-click="() => this.onCardAction('weighing_draft')"/>
-                                        <small class="text-muted"><i class="fa fa-balance-scale"/> Expected</small>
+                                        <h5 class="text-success mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.with_truck || 0" t-on-click="() => this.onCardAction('weighing_draft')"/>
+                                        <small class="text-muted"><i class="fa fa-truck"/> With Truck</small>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="mb-0" style="cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;" t-esc="(state.data.draft_details?.avg_waiting_time || 0) + 'h'" t-on-click="() => this.onCardAction('weighing_draft')"/>
-                                        <small class="text-muted"><i class="fa fa-clock"/> Avg Wait</small>
+                                        <h5 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.without_truck || 0" t-on-click="() => this.onCardAction('weighing_draft')"/>
+                                        <small class="text-muted"><i class="fa fa-exclamation-triangle"/> No Truck</small>
                                     </div>
                                 </div>
                             </div>
@@ -171,28 +254,23 @@
                             </div>
                             <div class="card-body">
                                 <div class="text-center mb-2">
-                                    <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
+                                    <h4 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
                                     <small class="text-muted">Incoming (Gross)</small>
                                 </div>
-                                <div class="text-center mb-2">
-                                    <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
+                                <div class="text-center mb-3">
+                                    <h4 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
                                     <small class="text-muted">Outgoing (Tare)</small>
                                 </div>
-                                <hr class="my-2"/>
-                                <div class="row text-center mb-2">
+                                <hr/>
+                                <div class="row text-center">
                                     <div class="col-6">
-                                        <h6 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
+                                        <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
                                         <small class="text-muted">Incoming</small>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
+                                        <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
                                         <small class="text-muted">Outgoing</small>
                                     </div>
-                                </div>
-                                <hr class="my-2"/>
-                                <div class="text-center">
-                                    <h6 class="mb-0" style="cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;" t-esc="((state.data.in_progress_incoming?.avg_time || 0) + (state.data.in_progress_outgoing?.avg_time || 0)) / 2 + 'h'" t-on-click="() => this.onCardAction('weighing_first')"/>
-                                    <small class="text-muted"><i class="fa fa-clock"/> Avg Wait</small>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -215,28 +293,23 @@
                             </div>
                             <div class="card-body">
                                 <div class="text-center mb-2">
-                                    <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
+                                    <h4 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
                                     <small class="text-muted">Incoming (Tare)</small>
                                 </div>
-                                <div class="text-center mb-2">
-                                    <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
+                                <div class="text-center mb-3">
+                                    <h4 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
                                     <small class="text-muted">Outgoing (Gross)</small>
                                 </div>
-                                <hr class="my-2"/>
-                                <div class="row text-center mb-2">
+                                <hr/>
+                                <div class="row text-center">
                                     <div class="col-6">
-                                        <h6 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
+                                        <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
                                         <small class="text-muted">Incoming</small>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
+                                        <h5 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
                                         <small class="text-muted">Outgoing</small>
                                     </div>
-                                </div>
-                                <hr class="my-2"/>
-                                <div class="text-center">
-                                    <h6 class="mb-0" style="cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;" t-esc="((state.data.in_progress_incoming?.avg_time || 0) + (state.data.in_progress_outgoing?.avg_time || 0)) / 2 + 'h'" t-on-click="() => this.onCardAction('weighing_second')"/>
-                                    <small class="text-muted"><i class="fa fa-clock"/> Avg Wait</small>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -303,252 +376,158 @@
                     </div>
                 </div>
 
-                <!-- Stock Performance Analytics - Full Row -->
-                <div class="row mt-4">
+                <!-- Stock Performance Analytics -->
+                <div class="row mt-4 mb-4">
                     <div class="col-12">
-                        <div class="card shadow-lg border-0">
-                            <div class="card-header bg-gradient-success">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8">
-                                        <h5 class="mb-1"><i class="fa fa-tachometer m-2"/>Stock Performance Analytics</h5>
-                                        <small class="opacity-75 text-muted" >Comprehensive inventory weighing performance and variance analysis</small>
+                        <div class="section-header mb-3">
+                            <h4><i class="fa fa-chart-line m-2"/>Stock Performance Analytics</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Fulfillment Analysis Card -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card border-success h-100 shadow-sm">
+                            <div class="card-header bg-success d-flex justify-content-between align-items-center">
+                                <h5 class="m-2"><i class="fa fa-chart-pie m-2"/>Fulfillment Analysis</h5>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.stock_performance?.total_completed || 0"/>
+                            </div>
+                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                                <i class="fa fa-chart-pie" style="font-size: 3rem;"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-2">
+                                    <h3 class="mb-0" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;" t-esc="(state.data.stock_performance?.avg_fulfillment || 0) + '%'"/>
+                                    <small class="text-muted">Avg Fulfillment Rate</small>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="mb-2">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Fulfillment Distribution</small>
                                     </div>
-                                    <div class="col-md-4 text-right">
-                                        <div class="d-flex justify-content-end align-items-center">
-                                            <span class="badge badge-light m-2 text-success" style="font-size: 2rem;" t-esc="state.data.stock_performance?.total_completed || 0"/>
-                                            <small>Completed</small>
-                                        </div>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-success" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.high_fulfillment || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'High: ' + (state.data.stock_performance?.high_fulfillment || 0)"/>
+                                        <div class="progress-bar bg-primary" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.exact_match || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'Exact: ' + (state.data.stock_performance?.exact_match || 0)"/>
+                                        <div class="progress-bar bg-info" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.over_delivered || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'Over: ' + (state.data.stock_performance?.over_delivered || 0)"/>
+                                        <div class="progress-bar bg-warning" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.under_delivered || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'Under: ' + (state.data.stock_performance?.under_delivered || 0)"/>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-1" style="font-size: 0.7rem;">
+                                        <span class="text-success"><i class="fa fa-square"/> High</span>
+                                        <span class="text-primary"><i class="fa fa-square"/> Exact</span>
+                                        <span class="text-info"><i class="fa fa-square"/> Over</span>
+                                        <span class="text-warning"><i class="fa fa-square"/> Under</span>
+                                    </div>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <h6 class="text-success mb-0" style="cursor: pointer;" t-esc="state.data.stock_performance?.high_fulfillment || 0" t-on-click="() => this.onCardAction('high_fulfillment')"/>
+                                        <small class="text-muted">High (95%+)</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.stock_performance?.under_delivered || 0" t-on-click="() => this.onCardAction('under_delivered')"/>
+                                        <small class="text-muted">Under</small>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body p-4">
-                                <!-- Performance Metrics Row -->
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                        <h6 class="text-muted mb-3"><i class="mr-1"/>Performance Metrics</h6>
+                            <div class="card-footer">
+                                <button class="btn btn-success btn-sm btn-block" t-on-click="() => this.onCardAction('avg_fulfillment')">
+                                    <i class="fa fa-chart-bar"/> View Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weight Operations Summary Card -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                                <h5 class="m-2"><i class="fa fa-balance-scale m-2"/>Weight Operations</h5>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.stock_performance?.receipts_count || 0) + (state.data.stock_performance?.deliveries_count || 0)"/>
+                            </div>
+                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                                <i class="fa fa-balance-scale" style="font-size: 3rem;"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-2">
+                                    <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.stock_performance?.total_received || 0)" t-on-click="() => this.onCardAction('total_received')"/>
+                                    <small class="text-muted">Total Received</small>
+                                </div>
+                                <div class="text-center mb-2">
+                                    <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.stock_performance?.total_delivered || 0)" t-on-click="() => this.onCardAction('total_delivered')"/>
+                                    <small class="text-muted">Total Delivered</small>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="row text-center mb-2">
+                                    <div class="col-6">
+                                        <h6 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.stock_performance?.receipts_count || 0" t-on-click="() => this.onCardAction('total_received')"/>
+                                        <small class="text-muted">Receipts</small>
                                     </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('high_fulfillment')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-success mr-3">
-                                                    <i class="fa fa-check-circle"/>
-                                                </div>
-                                                <div>
-                                                    <h5 class="m-2 text-success" t-esc="state.data.stock_performance?.high_fulfillment || 0"/>
-                                                    <small class="text-muted">High Fulfillment</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('over_delivered')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-info mr-3">
-                                                    <i class="fa fa-arrow-up"/>
-                                                </div>
-                                                <div>
-                                                    <h5 class="m-2 text-info" t-esc="state.data.stock_performance?.over_delivered || 0"/>
-                                                    <small class="text-muted">Over-Delivered</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('exact_match')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-primary mr-3">
-                                                    <i class="fa fa-equals"/>
-                                                </div>
-                                                <div>
-                                                    <h5 class="m-2 text-primary" t-esc="state.data.stock_performance?.exact_match || 0"/>
-                                                    <small class="text-muted">Exact Match</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('under_delivered')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-warning mr-3">
-                                                    <i class="fa fa-arrow-down"/>
-                                                </div>
-                                                <div>
-                                                    <h5 class="m-2 text-warning" t-esc="state.data.stock_performance?.under_delivered || 0"/>
-                                                    <small class="text-muted">Under-Delivered</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('avg_fulfillment')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-success mr-3">
-                                                    <i class="fa fa-percentage"/>
-                                                </div>
-                                                <div>
-                                                    <h5 class="m-2 text-success" t-esc="(state.data.stock_performance?.avg_fulfillment || 0) + '%'"/>
-                                                    <small class="text-muted">Avg Fulfillment</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
-                                        <div class="metric-box bg-light" style="cursor: pointer;" t-on-click="() => this.onCardAction('total_variance')">
-                                            <div class="d-flex align-items-center">
-                                                <div class="metric-icon bg-secondary mr-3">
-                                                    <i class="fa fa-balance-scale"/>
-                                                </div>
-                                                <div>
-                                                    <h5 class="m-2" t-esc="this.formatWeight(state.data.stock_performance?.total_variance || 0)"/>
-                                                    <small class="text-muted">Total Variance</small>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-6">
+                                        <h6 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.stock_performance?.deliveries_count || 0" t-on-click="() => this.onCardAction('total_delivered')"/>
+                                        <small class="text-muted">Deliveries</small>
                                     </div>
                                 </div>
-                                
-                                <!-- Stock Operations Summary Row -->
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h6 class="text-muted mb-3"><i class="fa fa-warehouse mr-1"/>Stock Operations Summary</h6>
+                                <hr class="my-2"/>
+                                <div class="text-center">
+                                    <h6 class="text-info mb-0" style="cursor: pointer;" t-esc="state.data.stock_performance?.products_count || 0" t-on-click="() => this.onCardAction('top_products')"/>
+                                    <small class="text-muted"><i class="fa fa-cube"/> Products Weighed</small>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm btn-block" t-on-click="() => this.onCardAction('reports')">
+                                    <i class="fa fa-chart-line"/> View Reports
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accuracy & Variance Card -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card border-info h-100 shadow-sm">
+                            <div class="card-header bg-info d-flex justify-content-between align-items-center">
+                                <h5 class="m-2"><i class="fa fa-bullseye m-2"/>Accuracy and Variance</h5>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
+                            </div>
+                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                                <i class="fa fa-bullseye" style="font-size: 3rem;"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-2">
+                                    <h3 class="mb-0" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;" t-esc="(state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
+                                    <small class="text-muted">Accuracy Rate (±5%)</small>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="mb-2">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Accuracy Progress</small>
+                                        <small class="text-info font-weight-bold" t-esc="(state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-primary" style="cursor: pointer;" t-on-click="() => this.onCardAction('total_received')">
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h5 class="text-primary m-2" t-esc="this.formatWeight(state.data.stock_performance?.total_received || 0)"/>
-                                                    <small class="text-muted">Total Received</small>
-                                                </div>
-                                                <i class="fa fa-inbox text-primary fa-2x opacity-25"/>
-                                            </div>
-                                            <div class="mt-2">
-                                                <small class="text-success"><span t-esc="state.data.stock_performance?.receipts_count || 0"/> receipts completed</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-warning" style="cursor: pointer;" t-on-click="() => this.onCardAction('total_delivered')">
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h5 class="text-warning m-2" t-esc="this.formatWeight(state.data.stock_performance?.total_delivered || 0)"/>
-                                                    <small class="text-muted">Total Delivered</small>
-                                                </div>
-                                                <i class="fa fa-truck text-warning fa-2x opacity-25"/>
-                                            </div>
-                                            <div class="mt-2">
-                                                <small class="text-muted"><span t-esc="state.data.stock_performance?.deliveries_count || 0"/> deliveries completed</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-info" style="cursor: pointer;" t-on-click="() => this.onCardAction('top_products')">
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h5 class="text-info m-2" t-esc="state.data.stock_performance?.products_count || 0"/>
-                                                    <small class="text-muted">Products Weighed</small>
-                                                </div>
-                                                <i class="fa fa-cube text-info fa-2x opacity-25"/>
-                                            </div>
-                                            <div class="mt-2">
-                                                <small class="text-muted">Weighable products processed</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="summary-card border-left-success" style="cursor: pointer;" t-on-click="() => this.onCardAction('accuracy_rate')">
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h5 class="text-success m-2" t-esc="(state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
-                                                    <small class="text-muted">Accuracy Rate</small>
-                                                </div>
-                                                <i class="fa fa-bullseye text-success fa-2x opacity-25"/>
-                                            </div>
-                                            <div class="mt-2">
-                                                <small class="text-muted">Within ±5% variance</small>
-                                            </div>
-                                        </div>
+                                    <div class="progress" style="height: 15px;">
+                                        <div class="progress-bar bg-info" role="progressbar" t-att-style="'width: ' + (state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
                                     </div>
                                 </div>
+                                <hr class="my-2"/>
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <h6 class="text-secondary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.stock_performance?.total_variance || 0)" t-on-click="() => this.onCardAction('total_variance')"/>
+                                        <small class="text-muted">Total Variance</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.stock_performance?.exact_match || 0" t-on-click="() => this.onCardAction('exact_match')"/>
+                                        <small class="text-muted">Exact Match</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-info btn-sm btn-block" t-on-click="() => this.onCardAction('accuracy_rate')">
+                                    <i class="fa fa-chart-bar"/> View Details
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                
 
-                <!-- Quick Actions Card -->
-                <div class="row mt-4 mb-5">
-                    <div class="col-12">
-                        <div class="card shadow-sm border-0 quick-actions-card">
-                            <div class="card-header bg-gradient-secondary text-white">
-                                <div class="row align-items-center">
-                                    <div class="col-12">
-                                        <h5 class="mb-1"><i class="fa fa-bolt m-2"/>Quick Actions Center</h5>
-                                        <small class="opacity-75">Essential operations at your fingertips</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body p-4">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="action-card primary" t-on-click="() => this.onCardAction('new_weighing')">
-                                            <div class="action-icon">
-                                                <i class="fa fa-plus"/>
-                                            </div>
-                                            <div class="action-content">
-                                                <h6 class="action-title">New Weighing</h6>
-                                                <p class="action-description">Start a new weighing process</p>
-                                                <div class="action-arrow">
-                                                    <i class="fa fa-arrow-right"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="action-card info" t-on-click="() => this.onCardAction('truck_fleet')">
-                                            <div class="action-icon">
-                                                <i class="fa fa-truck"/>
-                                            </div>
-                                            <div class="action-content">
-                                                <h6 class="action-title">Truck Fleet</h6>
-                                                <p class="action-description">Manage your truck fleet</p>
-                                                <div class="action-arrow">
-                                                    <i class="fa fa-arrow-right"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="action-card warning" t-on-click="() => this.onCardAction('scale_settings')">
-                                            <div class="action-icon">
-                                                <i class="fa fa-cog"/>
-                                            </div>
-                                            <div class="action-content">
-                                                <h6 class="action-title">Scale Settings</h6>
-                                                <p class="action-description">Configure weighing scales</p>
-                                                <div class="action-arrow">
-                                                    <i class="fa fa-arrow-right"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <div class="action-card success" t-on-click="() => this.onCardAction('reports')">
-                                            <div class="action-icon">
-                                                <i class="fa fa-chart-line"/>
-                                            </div>
-                                            <div class="action-content">
-                                                <h6 class="action-title">Reports</h6>
-                                                <p class="action-description">View analytics and reports</p>
-                                                <div class="action-arrow">
-                                                    <i class="fa fa-arrow-right"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Loading State -->
