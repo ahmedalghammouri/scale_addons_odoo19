@@ -19,9 +19,15 @@ class WeighingOverview(models.TransientModel):
         receipts_to_weigh = self.env['stock.picking'].browse(receipts_to_weigh_ids)
         deliveries_to_weigh = self.env['stock.picking'].browse(deliveries_to_weigh_ids)
         
-        # In Progress Weighings
-        in_progress = self.env['truck.weighing'].search([
-            ('state', 'in', ['draft', 'first', 'second'])
+        # In Progress Weighings - Split by operation type
+        in_progress_incoming = self.env['truck.weighing'].search([
+            ('state', 'in', ['draft', 'first', 'second']),
+            ('operation_type', '=', 'incoming')
+        ])
+        
+        in_progress_outgoing = self.env['truck.weighing'].search([
+            ('state', 'in', ['draft', 'first', 'second']),
+            ('operation_type', '=', 'outgoing')
         ])
         
         # All Records
@@ -60,12 +66,25 @@ class WeighingOverview(models.TransientModel):
                 'partners': len(receipts_to_weigh.mapped('partner_id')),
             },
 
-            'in_progress': {
-                'count': len(in_progress),
-                'draft_count': len(in_progress.filtered(lambda r: r.state == 'draft')),
-                'first_count': len(in_progress.filtered(lambda r: r.state == 'first')),
-                'second_count': len(in_progress.filtered(lambda r: r.state == 'second')),
-                'avg_time': self._calculate_avg_processing_time(in_progress),
+            'in_progress_incoming': {
+                'count': len(in_progress_incoming),
+                'draft_count': len(in_progress_incoming.filtered(lambda r: r.state == 'draft')),
+                'first_count': len(in_progress_incoming.filtered(lambda r: r.state == 'first')),
+                'second_count': len(in_progress_incoming.filtered(lambda r: r.state == 'second')),
+                'avg_time': self._calculate_avg_processing_time(in_progress_incoming),
+                'draft_weight': 0,
+                'first_weight': sum(in_progress_incoming.filtered(lambda r: r.state == 'first').mapped('gross_weight')),
+                'second_weight': sum(in_progress_incoming.filtered(lambda r: r.state == 'second').mapped('tare_weight')),
+            },
+            'in_progress_outgoing': {
+                'count': len(in_progress_outgoing),
+                'draft_count': len(in_progress_outgoing.filtered(lambda r: r.state == 'draft')),
+                'first_count': len(in_progress_outgoing.filtered(lambda r: r.state == 'first')),
+                'second_count': len(in_progress_outgoing.filtered(lambda r: r.state == 'second')),
+                'avg_time': self._calculate_avg_processing_time(in_progress_outgoing),
+                'draft_weight': 0,
+                'first_weight': sum(in_progress_outgoing.filtered(lambda r: r.state == 'first').mapped('tare_weight')),
+                'second_weight': sum(in_progress_outgoing.filtered(lambda r: r.state == 'second').mapped('gross_weight')),
             },
             'all_records': {
                 'total_count': len(all_records),

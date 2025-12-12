@@ -399,6 +399,77 @@ export class WeighingOverviewDashboard extends Component {
                 views: [[false, 'form']],
                 target: 'current',
                 context: { 'default_from_delivery': true }
+            },
+            // New state-based actions
+            'weighing_draft_incoming': {
+                name: 'Draft Weighing - Incoming',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'draft'], ['operation_type', '=', 'incoming']],
+            },
+            'weighing_draft_outgoing': {
+                name: 'Draft Weighing - Outgoing',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'draft'], ['operation_type', '=', 'outgoing']],
+            },
+            'weighing_first': {
+                name: 'Loaded & Ready - All',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'first']],
+            },
+            'weighing_first_incoming': {
+                name: 'Loaded & Ready - Incoming',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'first'], ['operation_type', '=', 'incoming']],
+            },
+            'weighing_first_outgoing': {
+                name: 'Loaded & Ready - Outgoing',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'first'], ['operation_type', '=', 'outgoing']],
+            },
+            'weighing_second': {
+                name: 'Unloaded & Pending - All',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'second']],
+            },
+            'weighing_second_incoming': {
+                name: 'Unloaded & Pending - Incoming',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'second'], ['operation_type', '=', 'incoming']],
+            },
+            'weighing_second_outgoing': {
+                name: 'Unloaded & Pending - Outgoing',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'second'], ['operation_type', '=', 'outgoing']],
+            },
+            'in_progress_incoming': {
+                name: 'In Progress - Incoming',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', 'in', ['draft', 'first', 'second']], ['operation_type', '=', 'incoming']],
+            },
+            'in_progress_outgoing': {
+                name: 'In Progress - Outgoing',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', 'in', ['draft', 'first', 'second']], ['operation_type', '=', 'outgoing']],
             }
         };
 

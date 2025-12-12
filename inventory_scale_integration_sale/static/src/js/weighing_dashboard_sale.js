@@ -6,24 +6,37 @@ import { patch } from "@web/core/utils/patch";
 patch(WeighingOverviewDashboard.prototype, {
     async onCardAction(actionName) {
         const saleActions = {
-            'sales_to_weigh': {
-                name: 'Sales Orders to Weigh',
+            'sale_orders': {
+                name: 'Sale Orders with Weighable Products',
                 res_model: 'sale.order',
                 view_mode: 'list,form',
                 views: [[false, 'list'], [false, 'form']],
-                domain: async () => {
-                    const ids = await this.orm.call('weighing.overview', 'get_sales_to_weigh_ids', []);
-                    return [['id', 'in', ids]];
-                },
-                context: { 'create': true }
+                domain: [
+                    ['state', 'in', ['draft', 'sent', 'sale']],
+                    ['order_line.product_id.is_weighable', '=', true]
+                ],
             },
-            'new_weighing_sale': {
-                name: 'New Weighing from Sale',
-                res_model: 'truck.weighing',
-                view_mode: 'form',
-                views: [[false, 'form']],
-                target: 'current',
-                context: { 'default_from_sale': true }
+            'sale_urgent': {
+                name: 'Urgent Sale Orders',
+                res_model: 'sale.order',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', 'in', ['draft', 'sent', 'sale']],
+                    ['order_line.product_id.is_weighable', '=', true],
+                    ['commitment_date', '<=', new Date().toISOString().split('T')[0]]
+                ],
+            },
+            'sale_by_customer': {
+                name: 'Sale Orders by Customer',
+                res_model: 'sale.order',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [
+                    ['state', 'in', ['draft', 'sent', 'sale']],
+                    ['order_line.product_id.is_weighable', '=', true]
+                ],
+                context: { 'group_by': 'partner_id' }
             },
         };
 

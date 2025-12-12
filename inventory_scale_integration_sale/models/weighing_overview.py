@@ -6,17 +6,26 @@ class WeighingOverview(models.TransientModel):
 
     @api.model
     def get_overview_data(self):
+        from datetime import date
         data = super().get_overview_data()
+        today = date.today()
         
-        # Add SO data
-        sales_to_weigh_ids = self.get_sales_to_weigh_ids()
-        sales_to_weigh = self.env['sale.order'].browse(sales_to_weigh_ids)
+        # Get all SOs with weighable products
+        all_sos = self.env['sale.order'].search([
+            ('state', 'in', ['draft', 'sent', 'sale']),
+            ('order_line.product_id.is_weighable', '=', True)
+        ])
         
-        data['sales_to_weigh'] = {
-            'count': len(sales_to_weigh),
-            'total_amount': sum(sales_to_weigh.mapped('amount_total')),
-            'pending_qty': sum(line.product_uom_qty - line.qty_delivered for so in sales_to_weigh for line in so.order_line),
-            'partners': len(sales_to_weigh.mapped('partner_id')),
+        # Calculate total expected weight
+        total_qty = sum(all_sos.mapped('order_line.product_uom_qty'))
+        urgent_sos = all_sos.filtered(lambda s: s.commitment_date and s.commitment_date.date() <= today)
+        
+        data['sale_orders'] = {
+            'count': len(all_sos),
+            'total_qty': total_qty,
+            'urgent_count': len(urgent_sos),
+            'customers': len(all_sos.mapped('partner_id')),
+            'total_amount': sum(all_sos.mapped('amount_total')),
         }
         
         return data
