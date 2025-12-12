@@ -6,19 +6,22 @@
     max-height: 100vh;
 
     .cashier_header {
-        background: white;
-        border-radius: 15px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.03) 100%);
+        border-radius: 20px;
         padding: 1.5rem;
         margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(102, 126, 234, 0.08);
 
         &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.05) 100%);
         }
 
         h1 {
@@ -94,16 +97,19 @@
     }
 
     .input_section {
-        background: white;
-        border-radius: 15px;
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, rgba(30, 126, 52, 0.03) 100%);
+        border-radius: 20px;
         padding: 1.5rem;
         margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(40, 167, 69, 0.08);
 
         &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.08) 0%, rgba(30, 126, 52, 0.05) 100%);
         }
 
         .input_row {
@@ -120,36 +126,62 @@
                     font-weight: 600;
                     font-size: 14px;
                     min-width: 120px;
-                    color: #495057;
+                    // color: #495057;
                 }
 
                 input {
                     flex: 1;
                     font-size: 15px;
-                    padding: 10px 12px;
-                    border-radius: 10px;
-                    border: 2px solid #e9ecef;
-                    transition: all 0.3s ease;
+                    padding: 12px 16px;
+                    border-radius: 12px;
+                    border: 2px solid rgba(0,0,0,0.08);
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    // background: rgba(255,255,255,0.5);
 
                     &:focus {
                         outline: none;
                         border-color: #667eea;
-                        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12), 0 4px 12px rgba(102, 126, 234, 0.15);
+                        transform: translateY(-2px);
                     }
                 }
 
                 button {
                     min-width: 80px;
-                    border-radius: 20px;
+                    border-radius: 12px;
                     font-weight: 600;
-                    padding: 10px 18px;
+                    padding: 12px 20px;
                     border: none;
                     font-size: 14px;
                     color: white;
-                    transition: all 0.3s ease;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        width: 0;
+                        height: 0;
+                        border-radius: 50%;
+                        // background: rgba(255,255,255,0.3);
+                        transform: translate(-50%, -50%);
+                        transition: width 0.6s, height 0.6s;
+                    }
 
                     &:hover {
-                        transform: translateY(-2px);
+                        transform: translateY(-3px) scale(1.05);
+
+                        &::before {
+                            width: 300px;
+                            height: 300px;
+                        }
+                    }
+
+                    &:active {
+                        transform: translateY(-1px) scale(1.02);
                     }
 
                     &.btn-success {
@@ -178,26 +210,45 @@
         gap: 20px;
 
         .section_card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.04) 0%, transparent 100%);
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
             overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(102, 126, 234, 0.08);
+            backdrop-filter: blur(10px);
 
             &:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+                transform: translateY(-6px) scale(1.01);
+                box-shadow: 0 16px 40px rgba(0,0,0,0.12), 0 6px 12px rgba(0,0,0,0.08);
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, transparent 100%);
             }
 
             .section_header {
-                background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 color: white;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 padding: 1.5rem;
                 border: none;
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                    transition: left 0.5s;
+                }
+
+                &:hover::before {
+                    left: 100%;
+                }
 
                 h3 {
                     margin: 0;
@@ -289,29 +340,37 @@
                 padding: 40px 20px;
                 font-size: 0.9rem;
                 font-weight: 500;
-                color: #6c757d;
+                opacity: 0.6;
             }
         }
 
         .card_item {
-            background: white;
-            border: 1px solid rgba(0,0,0,0.08);
-            border-radius: 12px;
-            padding: 1rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.04) 50%, transparent 100%);
+            border-radius: 16px;
+            padding: 1.2rem;
             margin-bottom: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            backdrop-filter: blur(10px);
 
             &.in_progress {
-                border-left: 5px solid #17a2b8;
-                border-top: 1px solid rgba(23, 162, 184, 0.2);
+                border-left: 4px solid #17a2b8;
+                background: linear-gradient(135deg, rgba(23, 162, 184, 0.12) 0%, rgba(17, 122, 139, 0.06) 50%, transparent 100%);
+                border-color: rgba(23, 162, 184, 0.2);
             }
 
             &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                border-color: #667eea;
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2), 0 4px 8px rgba(0,0,0,0.08);
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.08) 50%, transparent 100%);
+                border-color: rgba(102, 126, 234, 0.3);
+            }
+
+            &:active {
+                transform: translateY(-2px) scale(1.01);
             }
 
             .card_header {
@@ -328,7 +387,6 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
-                    color: #212529;
                 }
 
                 .badge {
@@ -343,7 +401,7 @@
             .card_details {
                 font-size: 0.85rem;
                 line-height: 1.6;
-                color: #6c757d;
+                opacity: 0.8;
 
                 div {
                     margin: 0.25rem 0;
@@ -353,7 +411,6 @@
 
                     strong {
                         font-weight: 600;
-                        color: #495057;
                     }
                 }
             }
@@ -435,17 +492,16 @@ body.o_dark .weighing_cashier_interface,
 [data-bs-theme="dark"] .weighing_cashier_interface {
     
     .card_item {
-        background: rgba(55, 65, 82, 0.9) !important;
         border-color: rgba(255,255,255,0.1) !important;
         
         &:hover {
-            background: rgba(65, 75, 92, 0.95) !important;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important;
         }
         
         .card_name {
             color: #e0e0e0 !important;
         }
-        
+
         .card_details {
             color: #a0a0a0 !important;
             
@@ -456,7 +512,6 @@ body.o_dark .weighing_cashier_interface,
     }
     
     .section_card {
-        background: rgba(55, 65, 82, 0.9) !important;
         border-color: rgba(255,255,255,0.1) !important;
         
         h3 {
@@ -470,14 +525,12 @@ body.o_dark .weighing_cashier_interface,
     
     .cashier_header,
     .input_section {
-        background: rgba(55, 65, 82, 0.9) !important;
         
         label {
             color: #e0e0e0 !important;
         }
         
         input {
-            background: rgba(30, 35, 45, 0.9) !important;
             border-color: rgba(255,255,255,0.1) !important;
             color: #e0e0e0 !important;
             
@@ -487,3 +540,7 @@ body.o_dark .weighing_cashier_interface,
         }
     }
 }
+
+
+
+

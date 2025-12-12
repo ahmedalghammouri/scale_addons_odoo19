@@ -94,8 +94,7 @@
     <!-- Cashier Client Action (Main Interface) -->
     <record id="action_weighing_cashier_interface" model="ir.actions.client">
         <field name="name">Weighing Cashier</field>
-        <field name="path">weighing-cashier</field>
         <field name="tag">weighing_cashier_interface</field>
-        <field name="target">fullscreen</field>
+        <field name="target">current</field>
     </record>
 </odoo>
