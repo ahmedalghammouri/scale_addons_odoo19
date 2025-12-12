@@ -12,8 +12,8 @@
 
     <!-- Extend Driver Ticket to include Sale info -->
     <template id="report_driver_ticket" inherit_id="inventory_scale_integration_base.report_driver_ticket">
-        <xpath expr="//div[@style='margin: 20px 0; font-size: 14px;']" position="inside">
-            <div t-if="o.sale_order_id"><strong>SO:</strong> <span t-field="o.sale_order_id"/></div>
+        <xpath expr="//div[@style='margin: 8px 0; font-size: 9px;']" position="inside">
+            <div t-if="o.sale_order_id" style="margin: 3px 0;"><strong>SO:</strong> <span t-esc="o.sale_order_id.name"/></div>
         </xpath>
     </template>
 </odoo>

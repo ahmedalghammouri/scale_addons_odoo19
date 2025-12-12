@@ -20,8 +20,8 @@
 
     <!-- Extend Driver Ticket to include Stock info -->
     <template id="report_driver_ticket" inherit_id="inventory_scale_integration_base.report_driver_ticket">
-        <xpath expr="//div[@style='margin: 20px 0; font-size: 14px;']" position="inside">
-            <div t-if="o.picking_id or o.delivery_id"><strong>Transfer:</strong> <span t-field="o.picking_id or o.delivery_id"/></div>
+        <xpath expr="//div[@style='margin: 8px 0; font-size: 9px;']" position="inside">
+            <div t-if="o.picking_id or o.delivery_id" style="margin: 3px 0;"><strong>Transfer:</strong> <span t-esc="(o.picking_id or o.delivery_id).name"/></div>
         </xpath>
     </template>
 </odoo>
