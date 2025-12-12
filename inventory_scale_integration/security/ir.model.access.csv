@@ -1,6 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_truck_weighing_all,truck_weighing_all,model_truck_weighing,,1,1,1,1
-access_truck_fleet_all,truck_fleet_all,model_truck_fleet,,1,1,1,1
-access_truck_type_all,truck_type_all,model_truck_type,,1,1,1,1
-access_weighing_scale_all,weighing_scale_all,model_weighing_scale,,1,1,1,1
-access_weighing_overview_all,weighing_overview_all,model_weighing_overview,,1,1,1,1
