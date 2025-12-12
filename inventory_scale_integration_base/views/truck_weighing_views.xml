@@ -15,12 +15,16 @@
             <form string="Truck Weighing">
                 <header>
                     <button name="action_fetch_live_weight" string="Fetch Live Weight" type="object" class="btn-primary"/>
-                    <button name="action_set_gross_from_live" string="Set Gross Weight" type="object"
-                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <!-- Incoming: First = Full truck (Gross), Outgoing: First = Empty truck (Tare) -->
+                    <button name="action_set_first_weight" string="Weigh First" type="object"
+                            invisible="state != 'draft'" class="oe_highlight"
+                            help="Incoming: Weigh full truck | Outgoing: Weigh empty truck"/>
                     <button name="action_print_driver_ticket" string="Print Driver Ticket" type="object"
                             invisible="state != 'gross'" class="btn-warning"/>
-                    <button name="action_set_tare_from_live" string="Set Tare Weight" type="object"
-                            invisible="state != 'gross'" class="oe_highlight"/>
+                    <!-- Incoming: Second = Empty truck (Tare), Outgoing: Second = Full truck (Gross) -->
+                    <button name="action_set_second_weight" string="Weigh Second" type="object"
+                            invisible="state != 'gross'" class="oe_highlight"
+                            help="Incoming: Weigh empty truck | Outgoing: Weigh full truck"/>
                     <button name="action_mark_done" string="Mark Done" type="object"
                             invisible="state != 'tare'" class="oe_highlight"/>
                     <button name="action_print_certificate" string="Print Certificate" type="object" class="btn-secondary"/>

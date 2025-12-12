@@ -94,27 +94,52 @@ class TruckWeighing(models.Model):
         except Exception as e:
             raise UserError(_("Error: %s") % str(e))
 
-    def action_set_gross_from_live(self):
+    def action_set_first_weight(self):
         self.ensure_one()
-        if self.live_weight > 0:
+        if self.live_weight <= 0:
+            raise UserError(_("Please fetch live weight first."))
+        
+        # Incoming: First weight is GROSS (truck full)
+        # Outgoing: First weight is TARE (truck empty)
+        if self.operation_type == 'incoming':
             self.gross_weight = self.live_weight
             self.gross_date = fields.Datetime.now()
-            self.state = 'gross'
-            self.message_post(body=_("Gross weight set: %s KG") % self.gross_weight)
-        else:
-            raise UserError(_("Please fetch live weight first."))
-
-    def action_set_tare_from_live(self):
-        self.ensure_one()
-        if self.live_weight > 0:
-            if self.live_weight >= self.gross_weight:
-                raise UserError(_("Tare weight must be less than gross weight."))
+            self.message_post(body=_("First weight (Gross - Full truck): %s KG") % self.gross_weight)
+        else:  # outgoing
             self.tare_weight = self.live_weight
             self.tare_date = fields.Datetime.now()
-            self.state = 'tare'
-            self.message_post(body=_("Tare weight set: %s KG") % self.tare_weight)
-        else:
+            self.message_post(body=_("First weight (Tare - Empty truck): %s KG") % self.tare_weight)
+        
+        self.state = 'gross'
+
+    def action_set_second_weight(self):
+        self.ensure_one()
+        if self.live_weight <= 0:
             raise UserError(_("Please fetch live weight first."))
+        
+        # Incoming: Second weight is TARE (truck empty after unloading)
+        # Outgoing: Second weight is GROSS (truck full after loading)
+        if self.operation_type == 'incoming':
+            if self.live_weight >= self.gross_weight:
+                raise UserError(_("Second weight (empty truck) must be less than first weight (full truck)."))
+            self.tare_weight = self.live_weight
+            self.tare_date = fields.Datetime.now()
+            self.message_post(body=_("Second weight (Tare - Empty truck): %s KG") % self.tare_weight)
+        else:  # outgoing
+            if self.live_weight <= self.tare_weight:
+                raise UserError(_("Second weight (full truck) must be greater than first weight (empty truck)."))
+            self.gross_weight = self.live_weight
+            self.gross_date = fields.Datetime.now()
+            self.message_post(body=_("Second weight (Gross - Full truck): %s KG") % self.gross_weight)
+        
+        self.state = 'tare'
+
+    # Keep old methods for backward compatibility
+    def action_set_gross_from_live(self):
+        return self.action_set_first_weight()
+
+    def action_set_tare_from_live(self):
+        return self.action_set_second_weight()
     
     def action_mark_done(self):
         self.ensure_one()
