@@ -112,25 +112,42 @@
                         <div class="card border-info h-100 shadow-sm">
                             <div class="card-header bg-info d-flex justify-content-between align-items-center">
                                 <h5 class="m-2"><i class="fa fa-hourglass-start m-2"/>Awaiting Initial Weigh</h5>
-                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.in_progress_incoming?.draft_count || 0) + (state.data.in_progress_outgoing?.draft_count || 0)"/>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.draft_details?.incoming_count || 0) + (state.data.draft_details?.outgoing_count || 0)"/>
                             </div>
                             <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
                                 <i class="fa fa-hourglass-start" style="font-size: 3rem;"/>
                             </div>
                             <div class="card-body">
-                                <div class="text-center mb-3">
-                                    <h3 class="text-info mb-0" style="cursor: pointer;" t-esc="(state.data.in_progress_incoming?.draft_count || 0) + (state.data.in_progress_outgoing?.draft_count || 0)" t-on-click="() => this.onCardAction('weighing_draft')"/>
-                                    <small class="text-muted">Total Records</small>
-                                </div>
-                                <hr/>
-                                <div class="row text-center">
+                                <div class="row text-center mb-2">
                                     <div class="col-6">
-                                        <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.draft_count || 0" t-on-click="() => this.onCardAction('weighing_draft_incoming')"/>
+                                        <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.incoming_count || 0" t-on-click="() => this.onCardAction('weighing_draft_incoming')"/>
                                         <small class="text-muted">Incoming</small>
                                     </div>
                                     <div class="col-6">
-                                        <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.draft_count || 0" t-on-click="() => this.onCardAction('weighing_draft_outgoing')"/>
+                                        <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.outgoing_count || 0" t-on-click="() => this.onCardAction('weighing_draft_outgoing')"/>
                                         <small class="text-muted">Outgoing</small>
+                                    </div>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="row text-center mb-2">
+                                    <div class="col-6">
+                                        <h6 class="text-success mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.with_truck || 0" t-on-click="() => this.onCardAction('weighing_draft')"/>
+                                        <small class="text-muted"><i class="fa fa-truck"/> With Truck</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.draft_details?.without_truck || 0" t-on-click="() => this.onCardAction('weighing_draft')"/>
+                                        <small class="text-muted"><i class="fa fa-exclamation-triangle"/> No Truck</small>
+                                    </div>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <h6 class="text-info mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.draft_details?.expected_weight || 0)" t-on-click="() => this.onCardAction('weighing_draft')"/>
+                                        <small class="text-muted"><i class="fa fa-balance-scale"/> Expected</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-0" style="cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;" t-esc="(state.data.draft_details?.avg_waiting_time || 0) + 'h'" t-on-click="() => this.onCardAction('weighing_draft')"/>
+                                        <small class="text-muted"><i class="fa fa-clock"/> Avg Wait</small>
                                     </div>
                                 </div>
                             </div>
@@ -154,23 +171,28 @@
                             </div>
                             <div class="card-body">
                                 <div class="text-center mb-2">
-                                    <h4 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
+                                    <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
                                     <small class="text-muted">Incoming (Gross)</small>
                                 </div>
-                                <div class="text-center mb-3">
-                                    <h4 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
+                                <div class="text-center mb-2">
+                                    <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.first_weight || 0)" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
                                     <small class="text-muted">Outgoing (Tare)</small>
                                 </div>
-                                <hr/>
-                                <div class="row text-center">
+                                <hr class="my-2"/>
+                                <div class="row text-center mb-2">
                                     <div class="col-6">
-                                        <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
+                                        <h6 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_incoming')"/>
                                         <small class="text-muted">Incoming</small>
                                     </div>
                                     <div class="col-6">
-                                        <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
+                                        <h6 class="text-warning mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.first_count || 0" t-on-click="() => this.onCardAction('weighing_first_outgoing')"/>
                                         <small class="text-muted">Outgoing</small>
                                     </div>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="text-center">
+                                    <h6 class="mb-0" style="cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;" t-esc="((state.data.in_progress_incoming?.avg_time || 0) + (state.data.in_progress_outgoing?.avg_time || 0)) / 2 + 'h'" t-on-click="() => this.onCardAction('weighing_first')"/>
+                                    <small class="text-muted"><i class="fa fa-clock"/> Avg Wait</small>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -193,23 +215,28 @@
                             </div>
                             <div class="card-body">
                                 <div class="text-center mb-2">
-                                    <h4 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
+                                    <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_incoming?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
                                     <small class="text-muted">Incoming (Tare)</small>
                                 </div>
-                                <div class="text-center mb-3">
-                                    <h4 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
+                                <div class="text-center mb-2">
+                                    <h5 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.in_progress_outgoing?.second_weight || 0)" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
                                     <small class="text-muted">Outgoing (Gross)</small>
                                 </div>
-                                <hr/>
-                                <div class="row text-center">
+                                <hr class="my-2"/>
+                                <div class="row text-center mb-2">
                                     <div class="col-6">
-                                        <h5 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
+                                        <h6 class="text-primary mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_incoming?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_incoming')"/>
                                         <small class="text-muted">Incoming</small>
                                     </div>
                                     <div class="col-6">
-                                        <h5 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
+                                        <h6 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.in_progress_outgoing?.second_count || 0" t-on-click="() => this.onCardAction('weighing_second_outgoing')"/>
                                         <small class="text-muted">Outgoing</small>
                                     </div>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="text-center">
+                                    <h6 class="mb-0" style="cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;" t-esc="((state.data.in_progress_incoming?.avg_time || 0) + (state.data.in_progress_outgoing?.avg_time || 0)) / 2 + 'h'" t-on-click="() => this.onCardAction('weighing_second')"/>
+                                    <small class="text-muted"><i class="fa fa-clock"/> Avg Wait</small>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -231,18 +258,38 @@
                                 <i class="fa fa-check-circle" style="font-size: 3rem;"/>
                             </div>
                             <div class="card-body">
-                                <div class="text-center mb-3">
-                                    <h3 class="text-success mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.all_records?.total_weight_today || 0)" t-on-click="() => this.onCardAction('completed_today')"/>
+                                <div class="text-center mb-2">
+                                    <h4 class="text-success mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.all_records?.total_weight_today || 0)" t-on-click="() => this.onCardAction('completed_today')"/>
                                     <small class="text-muted">Today's Net Weight</small>
                                 </div>
-                                <hr/>
+                                <hr class="my-2"/>
+                                <!-- Progress Chart -->
+                                <div class="mb-2">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <small class="text-muted">Status Distribution</small>
+                                        <small class="text-success font-weight-bold" t-esc="(state.data.all_records?.done_percent || 0) + '%'"/>
+                                    </div>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-info" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.draft_percent || 0) + '%'" t-att-title="'Draft: ' + (state.data.all_records?.draft_percent || 0) + '%'"/>
+                                        <div class="progress-bar bg-primary" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.first_percent || 0) + '%'" t-att-title="'First: ' + (state.data.all_records?.first_percent || 0) + '%'"/>
+                                        <div class="progress-bar bg-warning" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.second_percent || 0) + '%'" t-att-title="'Second: ' + (state.data.all_records?.second_percent || 0) + '%'"/>
+                                        <div class="progress-bar bg-success" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.done_percent || 0) + '%'" t-att-title="'Done: ' + (state.data.all_records?.done_percent || 0) + '%'"/>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-1" style="font-size: 0.7rem;">
+                                        <span class="text-info"><i class="fa fa-square"/> Draft</span>
+                                        <span class="text-primary"><i class="fa fa-square"/> 1st</span>
+                                        <span class="text-warning"><i class="fa fa-square"/> 2nd</span>
+                                        <span class="text-success"><i class="fa fa-square"/> Done</span>
+                                    </div>
+                                </div>
+                                <hr class="my-2"/>
                                 <div class="row text-center">
                                     <div class="col-6">
-                                        <h5 class="text-info mb-0" style="cursor: pointer;" t-esc="state.data.all_records?.completed_today || 0" t-on-click="() => this.onCardAction('completed_today')"/>
+                                        <h6 class="text-info mb-0" style="cursor: pointer;" t-esc="state.data.all_records?.completed_today || 0" t-on-click="() => this.onCardAction('completed_today')"/>
                                         <small class="text-muted">Today</small>
                                     </div>
                                     <div class="col-6">
-                                        <h5 class="text-success mb-0" style="cursor: pointer;" t-esc="state.data.all_records?.completed_week || 0" t-on-click="() => this.onCardAction('completed_week')"/>
+                                        <h6 class="text-success mb-0" style="cursor: pointer;" t-esc="state.data.all_records?.completed_week || 0" t-on-click="() => this.onCardAction('completed_week')"/>
                                         <small class="text-muted">This Week</small>
                                     </div>
                                 </div>

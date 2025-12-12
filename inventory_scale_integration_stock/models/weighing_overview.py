@@ -72,7 +72,6 @@ class WeighingOverview(models.TransientModel):
                 'first_count': len(in_progress_incoming.filtered(lambda r: r.state == 'first')),
                 'second_count': len(in_progress_incoming.filtered(lambda r: r.state == 'second')),
                 'avg_time': self._calculate_avg_processing_time(in_progress_incoming),
-                'draft_weight': 0,
                 'first_weight': sum(in_progress_incoming.filtered(lambda r: r.state == 'first').mapped('gross_weight')),
                 'second_weight': sum(in_progress_incoming.filtered(lambda r: r.state == 'second').mapped('tare_weight')),
             },
@@ -82,9 +81,16 @@ class WeighingOverview(models.TransientModel):
                 'first_count': len(in_progress_outgoing.filtered(lambda r: r.state == 'first')),
                 'second_count': len(in_progress_outgoing.filtered(lambda r: r.state == 'second')),
                 'avg_time': self._calculate_avg_processing_time(in_progress_outgoing),
-                'draft_weight': 0,
                 'first_weight': sum(in_progress_outgoing.filtered(lambda r: r.state == 'first').mapped('tare_weight')),
                 'second_weight': sum(in_progress_outgoing.filtered(lambda r: r.state == 'second').mapped('gross_weight')),
+            },
+            'draft_details': {
+                'incoming_count': len(in_progress_incoming.filtered(lambda r: r.state == 'draft')),
+                'outgoing_count': len(in_progress_outgoing.filtered(lambda r: r.state == 'draft')),
+                'with_truck': len((in_progress_incoming + in_progress_outgoing).filtered(lambda r: r.state == 'draft' and r.truck_id)),
+                'without_truck': len((in_progress_incoming + in_progress_outgoing).filtered(lambda r: r.state == 'draft' and not r.truck_id)),
+                'expected_weight': self._get_draft_expected_weight(in_progress_incoming, in_progress_outgoing),
+                'avg_waiting_time': self._calculate_avg_processing_time((in_progress_incoming + in_progress_outgoing).filtered(lambda r: r.state == 'draft')),
             },
             'all_records': {
                 'total_count': len(all_records),
@@ -93,6 +99,10 @@ class WeighingOverview(models.TransientModel):
                 'total_weight_today': sum(completed_today.mapped('net_weight')),
                 'total_weight_week': sum(completed_week.mapped('net_weight')),
                 'avg_weight': sum(all_records.filtered(lambda r: r.state == 'done').mapped('net_weight')) / max(len(all_records.filtered(lambda r: r.state == 'done')), 1),
+                'draft_percent': round((len(all_records.filtered(lambda r: r.state == 'draft')) / max(len(all_records), 1)) * 100, 1),
+                'first_percent': round((len(all_records.filtered(lambda r: r.state == 'first')) / max(len(all_records), 1)) * 100, 1),
+                'second_percent': round((len(all_records.filtered(lambda r: r.state == 'second')) / max(len(all_records), 1)) * 100, 1),
+                'done_percent': round((len(all_records.filtered(lambda r: r.state == 'done')) / max(len(all_records), 1)) * 100, 1),
             },
             'truck_management': {
                 'total_trucks': len(all_trucks),
@@ -133,6 +143,19 @@ class WeighingOverview(models.TransientModel):
                 count += 1
         
         return round(total_hours / max(count, 1), 1)
+    
+    def _get_draft_expected_weight(self, incoming, outgoing):
+        """Calculate expected weight for draft records from linked pickings"""
+        draft_records = (incoming + outgoing).filtered(lambda r: r.state == 'draft')
+        total_weight = 0
+        
+        for record in draft_records:
+            picking = record.picking_id or record.delivery_id
+            if picking and picking.move_ids:
+                for move in picking.move_ids.filtered(lambda m: m.product_id.is_weighable):
+                    total_weight += move.product_uom_qty
+        
+        return round(total_weight, 2)
     
     @api.model
     def get_receipts_to_weigh_ids(self):
