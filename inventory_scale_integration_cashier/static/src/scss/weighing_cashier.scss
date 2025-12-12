@@ -1,0 +1,407 @@
+.weighing_cashier_interface {
+    min-height: 100vh;
+    padding: 20px;
+    padding-bottom: 60px;
+    background: #f5f7fa;
+    transition: all 0.3s ease;
+
+    .cashier_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            border-radius: 25px;
+            font-weight: 600;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            }
+        }
+    }
+
+    .barcode_section {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .barcode_input_group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+            label {
+                font-size: 18px;
+                font-weight: 600;
+                min-width: 250px;
+                color: #333;
+            }
+
+            input {
+                flex: 1;
+                font-size: 20px;
+                padding: 15px;
+                border-radius: 12px;
+                border: 2px solid #e9ecef;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    border-color: #667eea;
+                    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                }
+            }
+
+            button {
+                min-width: 120px;
+                border-radius: 25px;
+                font-weight: 600;
+                padding: 15px 30px;
+                background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+                border: none;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+                    background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+                }
+            }
+        }
+    }
+
+    .cashier_content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        .pending_orders_section,
+        .recent_weighings_section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            }
+
+            .section_header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 3px solid;
+                border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
+                
+                h3 {
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: #333;
+                }
+                
+                .filter_buttons {
+                    display: flex;
+                    gap: 8px;
+                    
+                    .btn {
+                        border-radius: 20px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        padding: 6px 16px;
+                        transition: all 0.3s ease;
+                        
+                        &.btn-primary {
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            border: none;
+                        }
+                        
+                        &.btn-outline-primary {
+                            border: 2px solid #667eea;
+                            color: #667eea;
+                            background: transparent;
+                            
+                            &:hover {
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                color: white;
+                                border-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .empty_state {
+                text-align: center;
+                padding: 60px 20px;
+                color: #999;
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+
+        .orders_list,
+        .weighings_list {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 5px;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 10px;
+
+                &:hover {
+                    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                }
+            }
+        }
+
+        .order_card,
+        .weighing_card {
+            border: 2px solid #e9ecef;
+            
+            &.done {
+                border-left: 4px solid #28a745;
+                
+                &:hover {
+                    border-color: #28a745;
+                    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.2);
+                }
+            }
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 12px 0 0 12px;
+                transform: scaleY(0);
+                transition: transform 0.3s ease;
+            }
+
+            &:hover {
+                background: #f8f9fa;
+                border-color: #667eea;
+                transform: translateX(5px);
+                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+
+                &::before {
+                    transform: scaleY(1);
+                }
+            }
+
+            .order_header,
+            .weighing_header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+
+                .order_name,
+                .weighing_name {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #333;
+                }
+
+                .badge {
+                    font-size: 12px;
+                    font-weight: 600;
+                    padding: 6px 12px;
+                    border-radius: 20px;
+                }
+            }
+
+            .order_details,
+            .weighing_details {
+                font-size: 14px;
+                color: #666;
+                line-height: 1.8;
+
+                div {
+                    margin: 5px 0;
+
+                    strong {
+                        font-weight: 600;
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Dark Mode
+body.o_dark .weighing_cashier_interface,
+.o_dark .weighing_cashier_interface,
+[data-bs-theme="dark"] .weighing_cashier_interface {
+    background: #1a1d23;
+
+    .cashier_header {
+        background: rgba(55, 65, 82, 0.9);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+
+        &:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    }
+
+    .barcode_section {
+        background: rgba(55, 65, 82, 0.9);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+
+        &:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .barcode_input_group {
+            label {
+                color: #e0e0e0;
+            }
+
+            input {
+                background: rgba(30, 35, 45, 0.9);
+                border-color: rgba(255,255,255,0.1);
+                color: #e0e0e0;
+
+                &:focus {
+                    border-color: #667eea;
+                    background: rgba(30, 35, 45, 1);
+                }
+            }
+        }
+    }
+
+    .cashier_content {
+        .pending_orders_section,
+        .recent_weighings_section {
+            background: rgba(55, 65, 82, 0.9);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+
+            &:hover {
+                box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            }
+
+            .section_header {
+                h3 {
+                    color: #e0e0e0;
+                }
+                
+                .filter_buttons .btn {
+                    &.btn-outline-primary {
+                        border-color: #667eea;
+                        color: #667eea;
+                        
+                        &:hover {
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            .empty_state {
+                color: #a0a0a0;
+            }
+        }
+
+        .orders_list,
+        .weighings_list {
+            &::-webkit-scrollbar-track {
+                background: rgba(30, 35, 45, 0.5);
+            }
+        }
+
+        .order_card,
+        .weighing_card {
+            background: rgba(30, 35, 45, 0.9);
+            border-color: rgba(255,255,255,0.1);
+
+            &:hover {
+                background: rgba(40, 45, 55, 0.95);
+                border-color: #667eea;
+                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            }
+
+            .order_header,
+            .weighing_header {
+                .order_name,
+                .weighing_name {
+                    color: #e0e0e0;
+                }
+            }
+
+            .order_details,
+            .weighing_details {
+                color: #a0a0a0;
+
+                div strong {
+                    color: #e0e0e0;
+                }
+            }
+        }
+    }
+}
