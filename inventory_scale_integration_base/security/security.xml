@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="module_category_weighing_scale" model="ir.module.category">
+        <field name="name">Weighing Scale</field>
+        <field name="description">Manage weighing scale operations and access rights</field>
+        <field name="sequence">10</field>
+    </record>
+
     <record id="group_scale_user" model="res.groups">
-        <field name="name">Weighing Scale User</field>
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_weighing_scale"/>
+        <field name="comment">Can create and manage weighing records</field>
     </record>
 
     <record id="group_scale_manager" model="res.groups">
-        <field name="name">Weighing Scale Manager</field>
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_weighing_scale"/>
+        <field name="comment">Full access to weighing scale configuration and records</field>
         <field name="implied_ids" eval="[(4, ref('group_scale_user'))]"/>
     </record>
 </odoo>

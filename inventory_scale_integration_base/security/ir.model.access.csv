@@ -1,5 +1,9 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_truck_fleet_all,truck_fleet_all,model_truck_fleet,,1,1,1,1
-access_truck_type_all,truck_type_all,model_truck_type,,1,1,1,1
-access_weighing_scale_all,weighing_scale_all,model_weighing_scale,,1,1,1,1
-access_truck_weighing_all,truck_weighing_all,model_truck_weighing,,1,1,1,1
+access_truck_fleet_user,truck_fleet_user,model_truck_fleet,group_scale_user,1,1,1,0
+access_truck_fleet_manager,truck_fleet_manager,model_truck_fleet,group_scale_manager,1,1,1,1
+access_truck_type_user,truck_type_user,model_truck_type,group_scale_user,1,0,0,0
+access_truck_type_manager,truck_type_manager,model_truck_type,group_scale_manager,1,1,1,1
+access_weighing_scale_user,weighing_scale_user,model_weighing_scale,group_scale_user,1,0,0,0
+access_weighing_scale_manager,weighing_scale_manager,model_weighing_scale,group_scale_manager,1,1,1,1
+access_truck_weighing_user,truck_weighing_user,model_truck_weighing,group_scale_user,1,1,1,0
+access_truck_weighing_manager,truck_weighing_manager,model_truck_weighing,group_scale_manager,1,1,1,1
