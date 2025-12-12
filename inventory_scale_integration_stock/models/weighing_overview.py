@@ -21,7 +21,7 @@ class WeighingOverview(models.TransientModel):
         
         # In Progress Weighings
         in_progress = self.env['truck.weighing'].search([
-            ('state', 'in', ['draft', 'gross', 'tare'])
+            ('state', 'in', ['draft', 'first', 'second'])
         ])
         
         # All Records
@@ -63,8 +63,8 @@ class WeighingOverview(models.TransientModel):
             'in_progress': {
                 'count': len(in_progress),
                 'draft_count': len(in_progress.filtered(lambda r: r.state == 'draft')),
-                'gross_count': len(in_progress.filtered(lambda r: r.state == 'gross')),
-                'tare_count': len(in_progress.filtered(lambda r: r.state == 'tare')),
+                'first_count': len(in_progress.filtered(lambda r: r.state == 'first')),
+                'second_count': len(in_progress.filtered(lambda r: r.state == 'second')),
                 'avg_time': self._calculate_avg_processing_time(in_progress),
             },
             'all_records': {

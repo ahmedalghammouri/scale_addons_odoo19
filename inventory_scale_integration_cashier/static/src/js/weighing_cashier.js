@@ -13,17 +13,17 @@ class WeighingCashierInterface extends Component {
         this.state = useState({
             barcode: "",
             pickings: [],
+            pickingsWithWeighing: [],
             recentWeighings: [],
-            doneWeighings: [],
             scaleWeight: 0,
             pickingFilter: "all",
-            weighingFilter: "in_progress",
             searchText: "",
         });
 
         onWillStart(async () => {
             await this.loadPendingPickings();
             await this.loadWeighings();
+            await this.applyUserTheme();
         });
     }
 
@@ -40,46 +40,44 @@ class WeighingCashierInterface extends Component {
             domain.push(["name", "ilike", this.state.searchText]);
         }
         
-        this.state.pickings = await this.orm.searchRead(
+        const allPickings = await this.orm.searchRead(
             "stock.picking",
             domain,
             ["name", "partner_id", "scheduled_date", "picking_type_code", "origin"],
-            { limit: 20, order: "scheduled_date desc" }
+            { limit: 50, order: "scheduled_date desc" }
         );
+        
+        // Get all weighing records for these pickings
+        const weighings = await this.orm.searchRead(
+            "truck.weighing",
+            [["state", "!=", "done"]],
+            ["picking_id", "delivery_id"],
+            { limit: 100 }
+        );
+        
+        const pickingIdsWithWeighing = new Set();
+        weighings.forEach(w => {
+            if (w.picking_id) pickingIdsWithWeighing.add(w.picking_id[0]);
+            if (w.delivery_id) pickingIdsWithWeighing.add(w.delivery_id[0]);
+        });
+        
+        this.state.pickings = allPickings.filter(p => !pickingIdsWithWeighing.has(p.id));
+        this.state.pickingsWithWeighing = allPickings.filter(p => pickingIdsWithWeighing.has(p.id));
     }
 
     async loadWeighings() {
-        let domain = [];
-        
-        if (this.state.weighingFilter === "in_progress") {
-            domain = [["state", "in", ["draft", "gross"]]];
-        } else if (this.state.weighingFilter === "done") {
-            domain = [["state", "=", "done"]];
-        } else {
-            domain = [["state", "in", ["draft", "gross", "tare", "done"]]];
-        }
+        let domain = [["state", "in", ["draft", "first", "second"]]];
         
         if (this.state.searchText) {
             domain.push(["name", "ilike", this.state.searchText]);
         }
         
-        const weighings = await this.orm.searchRead(
+        this.state.recentWeighings = await this.orm.searchRead(
             "truck.weighing",
             domain,
             ["name", "truck_plate", "state", "operation_type", "barcode", "partner_id", "product_id", "net_weight", "gross_weight", "tare_weight"],
-            { limit: 20, order: "create_date desc" }
+            { limit: 30, order: "create_date desc" }
         );
-        
-        if (this.state.weighingFilter === "in_progress") {
-            this.state.recentWeighings = weighings;
-            this.state.doneWeighings = [];
-        } else if (this.state.weighingFilter === "done") {
-            this.state.recentWeighings = [];
-            this.state.doneWeighings = weighings;
-        } else {
-            this.state.recentWeighings = weighings.filter(w => ["draft", "gross"].includes(w.state));
-            this.state.doneWeighings = weighings.filter(w => w.state === "done");
-        }
     }
 
     async onBarcodeInput(ev) {
@@ -89,25 +87,68 @@ class WeighingCashierInterface extends Component {
     }
 
     async scanBarcode() {
+        if (!this.state.barcode) return;
+        
         try {
-            const weighing = await this.orm.call(
+            // Try to find weighing record first by barcode
+            const weighings = await this.orm.searchRead(
                 "truck.weighing",
-                "action_scan_barcode",
-                [[], this.state.barcode]
+                [["barcode", "=", this.state.barcode], ["state", "in", ["draft", "first", "second"]]],
+                ["id"],
+                { limit: 1 }
             );
             
-            if (weighing) {
+            if (weighings.length > 0) {
                 this.action.doAction({
                     type: "ir.actions.act_window",
                     res_model: "truck.weighing",
-                    res_id: weighing.id,
+                    res_id: weighings[0].id,
                     views: [[false, "form"]],
                     view_mode: "form",
                     target: "current",
                 });
+                this.state.barcode = "";
+                return;
             }
+            
+            // Try to find by name (reference number)
+            const weighingsByName = await this.orm.searchRead(
+                "truck.weighing",
+                [["name", "=", this.state.barcode], ["state", "in", ["draft", "first", "second"]]],
+                ["id"],
+                { limit: 1 }
+            );
+            
+            if (weighingsByName.length > 0) {
+                this.action.doAction({
+                    type: "ir.actions.act_window",
+                    res_model: "truck.weighing",
+                    res_id: weighingsByName[0].id,
+                    views: [[false, "form"]],
+                    view_mode: "form",
+                    target: "current",
+                });
+                this.state.barcode = "";
+                return;
+            }
+            
+            // Try to find picking order
+            const pickings = await this.orm.searchRead(
+                "stock.picking",
+                [["name", "=", this.state.barcode], ["state", "in", ["assigned", "confirmed"]]],
+                ["id"],
+                { limit: 1 }
+            );
+            
+            if (pickings.length > 0) {
+                await this.createWeighingFromPicking(pickings[0].id);
+                this.state.barcode = "";
+                return;
+            }
+            
+            this.notification.add("Barcode not found: " + this.state.barcode, { type: "danger" });
         } catch (error) {
-            this.notification.add(error.message || "Barcode not found", { type: "danger" });
+            this.notification.add(error.message || "Error scanning barcode", { type: "danger" });
         }
         this.state.barcode = "";
     }
@@ -163,11 +204,6 @@ class WeighingCashierInterface extends Component {
         await this.loadPendingPickings();
     }
     
-    async onWeighingFilterChange(filter) {
-        this.state.weighingFilter = filter;
-        await this.loadWeighings();
-    }
-    
     async onSearchChange(ev) {
         this.state.searchText = ev.target.value;
     }
@@ -175,6 +211,51 @@ class WeighingCashierInterface extends Component {
     async onSearch() {
         await this.loadPendingPickings();
         await this.loadWeighings();
+    }
+    
+    async applyUserTheme() {
+        try {
+            const user = await this.orm.read(
+                "res.users",
+                [this.env.uid],
+                ["color_scheme"]
+            );
+            
+            if (user && user[0] && user[0].color_scheme === "dark") {
+                document.body.classList.add('o_dark');
+            } else {
+                document.body.classList.remove('o_dark');
+            }
+        } catch (error) {
+            // Default to light mode if error
+            document.body.classList.remove('o_dark');
+        }
+    }
+    
+    openWeighingList(filter) {
+        let domain = [];
+        let name = "Weighings";
+        
+        if (filter === "in_progress") {
+            domain = [["state", "in", ["draft", "first", "second"]]];
+            name = "In Progress Weighings";
+        } else if (filter === "draft") {
+            domain = [["state", "=", "draft"]];
+            name = "Draft Weighings";
+        } else if (filter === "done") {
+            domain = [["state", "=", "done"]];
+            name = "Done Weighings";
+        }
+        
+        this.action.doAction({
+            type: "ir.actions.act_window",
+            name: name,
+            res_model: "truck.weighing",
+            views: [[false, "kanban"], [false, "list"], [false, "form"]],
+            view_mode: "kanban,list,form",
+            domain: domain,
+            target: "current",
+        });
     }
 }
 

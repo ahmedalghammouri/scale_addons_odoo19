@@ -92,7 +92,7 @@ class TruckWeighing(models.Model):
     
     def action_scan_barcode(self, barcode):
         """Find weighing record by barcode"""
-        weighing = self.search([('barcode', '=', barcode), ('state', '=', 'gross')], limit=1)
+        weighing = self.search([('barcode', '=', barcode), ('state', 'in', ['draft', 'first', 'second'])], limit=1)
         if not weighing:
             raise UserError(_("No pending weighing found with barcode: %s") % barcode)
         return weighing

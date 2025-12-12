@@ -38,8 +38,8 @@ class TruckWeighing(models.Model):
 
     state = fields.Selection([
         ('draft', 'Draft'),
-        ('gross', 'Gross Captured'),
-        ('tare', 'Tare Captured'),
+        ('first', 'First Weighing Captured'),
+        ('second', 'Second Weighing Captured'),
         ('done', 'Done'),
         ('cancel', 'Cancelled')
     ], string='Status', default='draft', tracking=True)
@@ -110,7 +110,7 @@ class TruckWeighing(models.Model):
             self.tare_date = fields.Datetime.now()
             self.message_post(body=_("First weight (Tare - Empty truck): %s KG") % self.tare_weight)
         
-        self.state = 'gross'
+        self.state = 'first'
 
     def action_set_second_weight(self):
         self.ensure_one()
@@ -132,7 +132,7 @@ class TruckWeighing(models.Model):
             self.gross_date = fields.Datetime.now()
             self.message_post(body=_("Second weight (Gross - Full truck): %s KG") % self.gross_weight)
         
-        self.state = 'tare'
+        self.state = 'second'
 
     # Keep old methods for backward compatibility
     def action_set_gross_from_live(self):
@@ -143,7 +143,7 @@ class TruckWeighing(models.Model):
     
     def action_mark_done(self):
         self.ensure_one()
-        if self.state == 'tare' and self.net_weight > 0:
+        if self.state == 'second' and self.net_weight > 0:
             self.state = 'done'
         else:
             raise UserError(_("Cannot mark as done. Complete tare weighing first."))

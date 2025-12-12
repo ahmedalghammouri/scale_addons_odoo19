@@ -26,7 +26,7 @@ class ScaleController(http.Controller):
 
             # البحث عن أحدث عملية موازنة مفتوحة
             weighing_record = request.env['truck.weighing'].sudo().search([
-                ('state', 'in', ['draft', 'gross'])
+                ('state', 'in', ['draft', 'first'])
             ], limit=1, order='create_date desc')
 
             if not weighing_record:
@@ -36,19 +36,19 @@ class ScaleController(http.Controller):
             if weighing_record.state == 'draft':
                 weighing_record.sudo().write({
                     'gross_weight': weight,
-                    'state': 'gross',
+                    'state': 'first',
                 })
                 message = f"Gross Weight ({weight} KG) recorded for {weighing_record.name} - Truck: {weighing_record.truck_plate}."
             
             # 2. تسجيل الوزن الفارغ (Tare)
-            elif weighing_record.state == 'gross':
+            elif weighing_record.state == 'first':
                 if weight >= weighing_record.gross_weight:
                     # تفريغ غير مكتمل أو خطأ في الميزان
                     return json.dumps({'error': f"Tare Weight ({weight} KG) must be less than Gross Weight ({weighing_record.gross_weight} KG). Please re-weigh the empty truck.", 'success': False})
                     
                 weighing_record.sudo().write({
                     'tare_weight': weight,
-                    'state': 'tare',
+                    'state': 'second',
                 })
                 # بعد تسجيل الوزن الفارغ، يتم حساب الوزن الصافي وتحديث المخزون
                 weighing_record.sudo().action_update_inventory()

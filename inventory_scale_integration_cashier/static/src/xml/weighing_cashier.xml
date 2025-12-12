@@ -5,31 +5,56 @@
             <!-- Header -->
             <div class="cashier_header">
                 <h1>⚖️ Weighing Cashier</h1>
-                <button class="btn btn-primary btn-lg" t-on-click="() => this.createNewWeighing()">
-                    ➕ New Weighing
-                </button>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="barcode_section">
-                <div class="barcode_input_group">
-                    <label>🔍 Search / Scan Barcode:</label>
-                    <input type="text" 
-                           class="form-control form-control-lg" 
-                           placeholder="Search orders or scan barcode..."
-                           t-model="state.searchText"
-                           t-on-keydown="(ev) => ev.key === 'Enter' ? (state.barcode ? this.scanBarcode() : this.onSearch()) : null"
-                           t-on-input="onSearchChange"
-                           autofocus="autofocus"/>
-                    <button class="btn btn-success btn-lg" t-on-click="() => this.onSearch()">
-                        Search
+                <div class="header_actions">
+                    <button class="btn btn-outline-secondary" t-on-click="() => this.openWeighingList('all')">
+                        📋 All
+                    </button>
+                    <button class="btn btn-outline-info" t-on-click="() => this.openWeighingList('in_progress')">
+                        ⏱️ In Progress
+                    </button>
+                    <button class="btn btn-outline-success" t-on-click="() => this.openWeighingList('done')">
+                        ✓ Done
+                    </button>
+                    <button class="btn btn-primary" t-on-click="() => this.createNewWeighing()">
+                        ➕ New
                     </button>
                 </div>
             </div>
 
+            <!-- Scan and Search in same row -->
+            <div class="input_section">
+                <div class="input_row">
+                    <div class="input_group">
+                        <label>🎫 Scan Barcode:</label>
+                        <input type="text" 
+                               class="form-control form-control-lg" 
+                               placeholder="Scan barcode..."
+                               t-model="state.barcode"
+                               t-on-keydown="(ev) => ev.key === 'Enter' &amp;&amp; state.barcode ? this.scanBarcode() : null"
+                               autofocus="autofocus"/>
+                        <button class="btn btn-success btn-lg" t-on-click="() => this.scanBarcode()">
+                            Scan
+                        </button>
+                    </div>
+                    
+                    <div class="input_group">
+                        <label>🔍 Search:</label>
+                        <input type="text" 
+                               class="form-control form-control-lg" 
+                               placeholder="Search orders..."
+                               t-model="state.searchText"
+                               t-on-keydown="(ev) => ev.key === 'Enter' ? this.onSearch() : null"
+                               t-on-input="onSearchChange"/>
+                        <button class="btn btn-info btn-lg" t-on-click="() => this.onSearch()">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="cashier_content">
-                <!-- Pending Orders -->
-                <div class="pending_orders_section">
+                <!-- Pending Orders (No Weighing) -->
+                <div class="section_card">
                     <div class="section_header">
                         <h3>📋 Pending Orders</h3>
                         <div class="filter_buttons">
@@ -41,14 +66,14 @@
                                     t-on-click="() => this.onPickingFilterChange('outgoing')">Outgoing</button>
                         </div>
                     </div>
-                    <div class="orders_list">
+                    <div class="scrollable_list">
                         <t t-if="state.pickings.length === 0">
                             <div class="empty_state">No pending orders</div>
                         </t>
                         <t t-foreach="state.pickings" t-as="picking" t-key="picking.id">
-                            <div class="order_card" t-on-click="() => this.createWeighingFromPicking(picking.id)">
-                                <div class="order_header">
-                                    <span class="order_name">
+                            <div class="card_item" t-on-click="() => this.createWeighingFromPicking(picking.id)">
+                                <div class="card_header">
+                                    <span class="card_name">
                                         <t t-if="picking.picking_type_code === 'incoming'">📥</t>
                                         <t t-if="picking.picking_type_code === 'outgoing'">📤</t>
                                         <t t-esc="picking.name"/>
@@ -57,7 +82,7 @@
                                         <t t-esc="picking.picking_type_code"/>
                                     </span>
                                 </div>
-                                <div class="order_details">
+                                <div class="card_details">
                                     <div><strong>Partner:</strong> <t t-esc="picking.partner_id[1]"/></div>
                                     <div><strong>Scheduled:</strong> <t t-esc="picking.scheduled_date"/></div>
                                     <div t-if="picking.origin"><strong>Origin:</strong> <t t-esc="picking.origin"/></div>
@@ -67,68 +92,66 @@
                     </div>
                 </div>
 
-                <!-- Weighings -->
-                <div class="recent_weighings_section">
+                <!-- Orders with Weighing (Not Validated) -->
+                <div class="section_card">
                     <div class="section_header">
-                        <h3>⏱️ Weighings</h3>
-                        <div class="filter_buttons">
-                            <button t-attf-class="btn btn-sm {{state.weighingFilter === 'in_progress' ? 'btn-primary' : 'btn-outline-primary'}}" 
-                                    t-on-click="() => this.onWeighingFilterChange('in_progress')">In Progress</button>
-                            <button t-attf-class="btn btn-sm {{state.weighingFilter === 'done' ? 'btn-primary' : 'btn-outline-primary'}}" 
-                                    t-on-click="() => this.onWeighingFilterChange('done')">Done</button>
-                            <button t-attf-class="btn btn-sm {{state.weighingFilter === 'all' ? 'btn-primary' : 'btn-outline-primary'}}" 
-                                    t-on-click="() => this.onWeighingFilterChange('all')">All</button>
-                        </div>
+                        <h3>📦 Orders with Weighing</h3>
                     </div>
-                    <div class="weighings_list">
-                        <t t-if="state.weighingFilter !== 'done'">
-                            <t t-if="state.recentWeighings.length === 0">
-                                <div class="empty_state">No weighings in progress</div>
-                            </t>
-                            <t t-foreach="state.recentWeighings" t-as="weighing" t-key="weighing.id">
-                                <div class="weighing_card" t-on-click="() => this.openWeighing(weighing.id)">
-                                    <div class="weighing_header">
-                                        <span class="weighing_name">
-                                            <t t-if="weighing.operation_type === 'incoming'">📥</t>
-                                            <t t-if="weighing.operation_type === 'outgoing'">📤</t>
-                                            <t t-esc="weighing.name"/>
-                                        </span>
-                                        <span t-attf-class="badge badge-{{weighing.state === 'draft' ? 'secondary' : 'info'}}">
-                                            <t t-esc="weighing.state"/>
-                                        </span>
-                                    </div>
-                                    <div class="weighing_details">
-                                        <div><strong>Truck:</strong> <t t-esc="weighing.truck_plate"/></div>
-                                        <div t-if="weighing.partner_id"><strong>Partner:</strong> <t t-esc="weighing.partner_id[1]"/></div>
-                                        <div t-if="weighing.product_id"><strong>Product:</strong> <t t-esc="weighing.product_id[1]"/></div>
-                                        <div t-if="weighing.barcode"><strong>Barcode:</strong> <t t-esc="weighing.barcode"/></div>
-                                    </div>
-                                </div>
-                            </t>
+                    <div class="scrollable_list">
+                        <t t-if="state.pickingsWithWeighing.length === 0">
+                            <div class="empty_state">No orders with weighing</div>
                         </t>
-                        
-                        <t t-if="state.weighingFilter !== 'in_progress'">
-                            <t t-if="state.doneWeighings.length === 0">
-                                <div class="empty_state">No completed weighings</div>
-                            </t>
-                            <t t-foreach="state.doneWeighings" t-as="weighing" t-key="weighing.id">
-                                <div class="weighing_card done" t-on-click="() => this.openWeighing(weighing.id)">
-                                    <div class="weighing_header">
-                                        <span class="weighing_name">
-                                            <t t-if="weighing.operation_type === 'incoming'">📥</t>
-                                            <t t-if="weighing.operation_type === 'outgoing'">📤</t>
-                                            <t t-esc="weighing.name"/>
-                                        </span>
-                                        <span class="badge badge-success">✓ Done</span>
-                                    </div>
-                                    <div class="weighing_details">
-                                        <div><strong>Truck:</strong> <t t-esc="weighing.truck_plate"/></div>
-                                        <div t-if="weighing.partner_id"><strong>Partner:</strong> <t t-esc="weighing.partner_id[1]"/></div>
-                                        <div t-if="weighing.product_id"><strong>Product:</strong> <t t-esc="weighing.product_id[1]"/></div>
-                                        <div><strong>Net Weight:</strong> <t t-esc="weighing.net_weight"/> KG</div>
-                                    </div>
+                        <t t-foreach="state.pickingsWithWeighing" t-as="picking" t-key="picking.id">
+                            <div class="card_item in_progress">
+                                <div class="card_header">
+                                    <span class="card_name">
+                                        <t t-if="picking.picking_type_code === 'incoming'">📥</t>
+                                        <t t-if="picking.picking_type_code === 'outgoing'">📤</t>
+                                        <t t-esc="picking.name"/>
+                                    </span>
+                                    <span class="badge badge-info">In Progress</span>
                                 </div>
-                            </t>
+                                <div class="card_details">
+                                    <div><strong>Partner:</strong> <t t-esc="picking.partner_id[1]"/></div>
+                                    <div><strong>Scheduled:</strong> <t t-esc="picking.scheduled_date"/></div>
+                                    <div t-if="picking.origin"><strong>Origin:</strong> <t t-esc="picking.origin"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <!-- In Progress Weighings -->
+                <div class="section_card">
+                    <div class="section_header">
+                        <h3>⏱️ In Progress Weighings</h3>
+                        <button class="btn btn-sm btn-outline-primary" t-on-click="() => this.openWeighingList('in_progress')">
+                            View All
+                        </button>
+                    </div>
+                    <div class="scrollable_list">
+                        <t t-if="state.recentWeighings.length === 0">
+                            <div class="empty_state">No weighings in progress</div>
+                        </t>
+                        <t t-foreach="state.recentWeighings" t-as="weighing" t-key="weighing.id">
+                            <div class="card_item" t-on-click="() => this.openWeighing(weighing.id)">
+                                <div class="card_header">
+                                    <span class="card_name">
+                                        <t t-if="weighing.operation_type === 'incoming'">📥</t>
+                                        <t t-if="weighing.operation_type === 'outgoing'">📤</t>
+                                        <t t-esc="weighing.name"/>
+                                    </span>
+                                    <span t-attf-class="badge badge-{{weighing.state === 'draft' ? 'secondary' : weighing.state === 'first' ? 'info' : 'warning'}}">
+                                        <t t-esc="weighing.state"/>
+                                    </span>
+                                </div>
+                                <div class="card_details">
+                                    <div><strong>Truck:</strong> <t t-esc="weighing.truck_plate"/></div>
+                                    <div t-if="weighing.partner_id"><strong>Partner:</strong> <t t-esc="weighing.partner_id[1]"/></div>
+                                    <div t-if="weighing.product_id"><strong>Product:</strong> <t t-esc="weighing.product_id[1]"/></div>
+                                    <div t-if="weighing.barcode"><strong>Barcode:</strong> <t t-esc="weighing.barcode"/></div>
+                                </div>
+                            </div>
                         </t>
                     </div>
                 </div>

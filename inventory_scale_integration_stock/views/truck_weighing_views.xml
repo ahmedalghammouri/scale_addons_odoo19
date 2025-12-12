@@ -72,7 +72,7 @@
             </field>
             <button name="action_mark_done" position="replace">
                 <button name="action_update_inventory" string="Update Inventory" type="object"
-                        invisible="state != 'tare'" class="oe_highlight"/>
+                        invisible="state != 'second'" class="oe_highlight"/>
             </button>
             <xpath expr="//div[hasclass('oe_title')]" position="before">
                 <div class="oe_button_box" name="button_box">

@@ -17,9 +17,9 @@ class WeighingDashboard(http.Controller):
         ])
         
         draft_count = request.env['truck.weighing'].search_count([('state', '=', 'draft')])
-        gross_count = request.env['truck.weighing'].search_count([('state', '=', 'gross')])
-        tare_count = request.env['truck.weighing'].search_count([('state', '=', 'tare')])
-        in_progress_count = draft_count + gross_count + tare_count
+        first_count = request.env['truck.weighing'].search_count([('state', '=', 'first')])
+        second_count = request.env['truck.weighing'].search_count([('state', '=', 'second')])
+        in_progress_count = draft_count + first_count + second_count
         
         done_records = request.env['truck.weighing'].search([('state', '=', 'done')])
         done_count = len(done_records)
@@ -30,8 +30,8 @@ class WeighingDashboard(http.Controller):
             'pos_count': pos_count,
             'in_progress_count': in_progress_count,
             'draft_count': draft_count,
-            'gross_count': gross_count,
-            'tare_count': tare_count,
+            'first_count': first_count,
+            'second_count': second_count,
             'done_count': done_count,
             'total_weight': total_weight,
         }

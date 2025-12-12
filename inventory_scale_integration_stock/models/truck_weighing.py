@@ -23,7 +23,7 @@ class TruckWeighing(models.Model):
 
     def action_update_inventory(self):
         self.ensure_one()
-        if self.state != 'tare' or self.net_weight <= 0.0:
+        if self.state != 'second' or self.net_weight <= 0.0:
             raise UserError(_("Cannot update inventory. Net weight must be positive."))
         if not self.product_id:
             raise UserError(_("Product is required."))

@@ -13,7 +13,7 @@
         <field name="name">In Progress Weighing</field>
         <field name="res_model">truck.weighing</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('state', 'in', ['draft', 'gross', 'tare'])]</field>
+        <field name="domain">[('state', 'in', ['draft', 'first', 'second'])]</field>
         <field name="context">{}</field>
     </record>
 

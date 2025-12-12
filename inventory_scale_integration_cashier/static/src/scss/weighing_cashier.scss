@@ -1,104 +1,112 @@
 .weighing_cashier_interface {
-    min-height: 100vh;
-    padding: 20px;
-    padding-bottom: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
     background: #f5f7fa;
-    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 
     .cashier_header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: white;
-        padding: 25px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        flex-shrink: 0;
 
         h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: 20px;
             font-weight: 700;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
-
-        .btn {
-            border-radius: 25px;
-            font-weight: 600;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            transition: all 0.3s ease;
-
-            &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        
+        .header_actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            
+            .btn {
+                border-radius: 18px;
+                font-weight: 600;
+                padding: 6px 14px;
+                font-size: 12px;
+                white-space: nowrap;
+                
+                &.btn-primary {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border: none;
+                    color: white;
+                }
+                
+                &.btn-outline-secondary,
+                &.btn-outline-info,
+                &.btn-outline-success {
+                    background: white;
+                    border: 2px solid currentColor;
+                }
             }
         }
     }
 
-    .barcode_section {
+    .input_section {
         background: white;
-        padding: 30px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        padding: 12px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        flex-shrink: 0;
 
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        .input_row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
-
-        .barcode_input_group {
+        
+        .input_group {
             display: flex;
-            gap: 15px;
+            gap: 8px;
             align-items: center;
 
             label {
-                font-size: 18px;
+                font-size: 13px;
                 font-weight: 600;
-                min-width: 250px;
+                min-width: 100px;
                 color: #333;
             }
 
             input {
                 flex: 1;
-                font-size: 20px;
-                padding: 15px;
-                border-radius: 12px;
+                font-size: 14px;
+                padding: 8px 10px;
+                border-radius: 8px;
                 border: 2px solid #e9ecef;
-                transition: all 0.3s ease;
-
-                &:focus {
-                    border-color: #667eea;
-                    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-                }
             }
 
             button {
-                min-width: 120px;
-                border-radius: 25px;
+                min-width: 70px;
+                border-radius: 18px;
                 font-weight: 600;
-                padding: 15px 30px;
-                background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+                padding: 8px 14px;
                 border: none;
-                transition: all 0.3s ease;
-
-                &:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
-                    background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+                font-size: 13px;
+                color: white;
+                
+                &.btn-success {
+                    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+                }
+                
+                &.btn-info {
+                    background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
                 }
             }
         }
@@ -106,182 +114,229 @@
 
     .cashier_content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
 
-        .pending_orders_section,
-        .recent_weighings_section {
+        .section_card {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-            &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-            }
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
 
             .section_header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 20px;
-                padding-bottom: 15px;
-                border-bottom: 3px solid;
-                border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
+                padding: 12px;
+                border-bottom: 2px solid #667eea;
+                flex-shrink: 0;
                 
                 h3 {
                     margin: 0;
-                    font-size: 24px;
+                    font-size: 16px;
                     font-weight: 700;
                     color: #333;
                 }
                 
                 .filter_buttons {
                     display: flex;
-                    gap: 8px;
+                    gap: 4px;
                     
                     .btn {
-                        border-radius: 20px;
-                        font-size: 12px;
+                        border-radius: 12px;
+                        font-size: 10px;
                         font-weight: 600;
-                        padding: 6px 16px;
-                        transition: all 0.3s ease;
+                        padding: 4px 10px;
                         
                         &.btn-primary {
                             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                             border: none;
+                            color: white;
                         }
                         
                         &.btn-outline-primary {
                             border: 2px solid #667eea;
                             color: #667eea;
-                            background: transparent;
-                            
-                            &:hover {
-                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                                color: white;
-                                border-color: transparent;
-                            }
+                            background: white;
                         }
                     }
                 }
             }
 
+            .scrollable_list {
+                flex: 1;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 10px;
+                min-height: 0;
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                    border-radius: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border-radius: 10px;
+                }
+            }
+
             .empty_state {
                 text-align: center;
-                padding: 60px 20px;
+                padding: 30px 15px;
                 color: #999;
-                font-size: 16px;
-                font-weight: 500;
+                font-size: 12px;
             }
         }
 
-        .orders_list,
-        .weighings_list {
-            max-height: 600px;
-            overflow-y: auto;
-            padding-right: 5px;
-
-            &::-webkit-scrollbar {
-                width: 6px;
-            }
-
-            &::-webkit-scrollbar-track {
-                background: #f1f1f1;
-                border-radius: 10px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                border-radius: 10px;
-
-                &:hover {
-                    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-                }
-            }
-        }
-
-        .order_card,
-        .weighing_card {
+        .card_item {
             border: 2px solid #e9ecef;
-            
-            &.done {
-                border-left: 4px solid #28a745;
-                
-                &:hover {
-                    border-color: #28a745;
-                    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.2);
-                }
-            }
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 12px;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             background: white;
-            position: relative;
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 4px;
-                height: 100%;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                border-radius: 12px 0 0 12px;
-                transform: scaleY(0);
-                transition: transform 0.3s ease;
+            
+            &.in_progress {
+                border-left: 4px solid #17a2b8;
             }
 
             &:hover {
                 background: #f8f9fa;
                 border-color: #667eea;
-                transform: translateX(5px);
-                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
-
-                &::before {
-                    transform: scaleY(1);
-                }
+                transform: translateX(2px);
+                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
             }
 
-            .order_header,
-            .weighing_header {
+            .card_header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 12px;
+                margin-bottom: 6px;
+                gap: 6px;
 
-                .order_name,
-                .weighing_name {
-                    font-size: 18px;
+                .card_name {
+                    font-size: 13px;
                     font-weight: 700;
                     color: #333;
+                    flex: 1;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
 
                 .badge {
-                    font-size: 12px;
+                    font-size: 9px;
                     font-weight: 600;
-                    padding: 6px 12px;
-                    border-radius: 20px;
+                    padding: 3px 8px;
+                    border-radius: 10px;
+                    flex-shrink: 0;
                 }
             }
 
-            .order_details,
-            .weighing_details {
-                font-size: 14px;
+            .card_details {
+                font-size: 11px;
                 color: #666;
-                line-height: 1.8;
+                line-height: 1.4;
 
                 div {
-                    margin: 5px 0;
+                    margin: 2px 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
 
                     strong {
                         font-weight: 600;
                         color: #333;
                     }
+                }
+            }
+        }
+    }
+}
+
+// Tablet
+@media (max-width: 1024px) {
+    .weighing_cashier_interface {
+        .cashier_header h1 {
+            font-size: 18px;
+        }
+        
+        .cashier_content {
+            grid-template-columns: 1fr;
+            gap: 8px;
+            
+            .section_card {
+                max-height: 300px;
+            }
+        }
+    }
+}
+
+// Mobile
+@media (max-width: 768px) {
+    .weighing_cashier_interface {
+        padding: 8px;
+        
+        .cashier_header {
+            padding: 10px;
+            margin-bottom: 8px;
+            
+            h1 {
+                font-size: 16px;
+            }
+            
+            .header_actions .btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+        }
+        
+        .input_section {
+            padding: 10px;
+            margin-bottom: 8px;
+            
+            .input_row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .input_group {
+                label {
+                    min-width: 70px;
+                    font-size: 12px;
+                }
+                
+                input {
+                    font-size: 13px;
+                    padding: 7px 8px;
+                }
+                
+                button {
+                    min-width: 60px;
+                    padding: 7px 10px;
+                    font-size: 12px;
+                }
+            }
+        }
+        
+        .cashier_content {
+            .section_card {
+                max-height: 250px;
+                
+                .section_header h3 {
+                    font-size: 14px;
                 }
             }
         }
@@ -295,30 +350,28 @@ body.o_dark .weighing_cashier_interface,
     background: #1a1d23;
 
     .cashier_header {
-        background: rgba(55, 65, 82, 0.9);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-
-        &:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
+        background: rgba(55, 65, 82, 0.95);
+        
         h1 {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+        }
+        
+        .header_actions .btn {
+            &.btn-outline-secondary,
+            &.btn-outline-info,
+            &.btn-outline-success {
+                background: rgba(30, 35, 45, 0.9);
+                border-color: currentColor;
+            }
         }
     }
 
-    .barcode_section {
-        background: rgba(55, 65, 82, 0.9);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    .input_section {
+        background: rgba(55, 65, 82, 0.95);
 
-        &:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        .barcode_input_group {
+        .input_group {
             label {
                 color: #e0e0e0;
             }
@@ -327,39 +380,29 @@ body.o_dark .weighing_cashier_interface,
                 background: rgba(30, 35, 45, 0.9);
                 border-color: rgba(255,255,255,0.1);
                 color: #e0e0e0;
-
-                &:focus {
-                    border-color: #667eea;
-                    background: rgba(30, 35, 45, 1);
-                }
             }
         }
     }
 
     .cashier_content {
-        .pending_orders_section,
-        .recent_weighings_section {
-            background: rgba(55, 65, 82, 0.9);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-
-            &:hover {
-                box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            }
+        .section_card {
+            background: rgba(55, 65, 82, 0.95);
 
             .section_header {
+                border-bottom-color: #667eea;
+                
                 h3 {
                     color: #e0e0e0;
                 }
                 
-                .filter_buttons .btn {
-                    &.btn-outline-primary {
-                        border-color: #667eea;
-                        color: #667eea;
-                        
-                        &:hover {
-                            color: white;
-                        }
-                    }
+                .filter_buttons .btn.btn-outline-primary {
+                    background: rgba(30, 35, 45, 0.9);
+                }
+            }
+
+            .scrollable_list {
+                &::-webkit-scrollbar-track {
+                    background: rgba(30, 35, 45, 0.5);
                 }
             }
 
@@ -368,34 +411,20 @@ body.o_dark .weighing_cashier_interface,
             }
         }
 
-        .orders_list,
-        .weighings_list {
-            &::-webkit-scrollbar-track {
-                background: rgba(30, 35, 45, 0.5);
-            }
-        }
-
-        .order_card,
-        .weighing_card {
+        .card_item {
             background: rgba(30, 35, 45, 0.9);
             border-color: rgba(255,255,255,0.1);
 
             &:hover {
                 background: rgba(40, 45, 55, 0.95);
                 border-color: #667eea;
-                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
             }
 
-            .order_header,
-            .weighing_header {
-                .order_name,
-                .weighing_name {
-                    color: #e0e0e0;
-                }
+            .card_header .card_name {
+                color: #e0e0e0;
             }
 
-            .order_details,
-            .weighing_details {
+            .card_details {
                 color: #a0a0a0;
 
                 div strong {
