@@ -59,29 +59,31 @@
     .card-header {
         font-weight: 600;
         border: none;
-        padding: 1.5rem;
-        position: relative;
-        overflow: hidden;
+        border-top: 4px solid #17a2b8 !important;
+        border-top-left-radius: 12px !important;
+        border-top-right-radius: 12px !important;
+        padding: 0.75rem 1.25rem;
+        background: transparent !important;
         
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+        &.bg-primary { 
+            border-top: 4px solid #667eea !important;
+            background: transparent !important;
         }
         
-        &:hover::before {
-            left: 100%;
+        &.bg-info { 
+            border-top: 4px solid #17a2b8 !important;
+            background: transparent !important;
         }
         
-        &.bg-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; }
-        &.bg-info { background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%) !important; }
-        &.bg-warning { background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%) !important; color: #333 !important; }
-        &.bg-success { background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important; }
+        &.bg-warning { 
+            border-top: 4px solid #ffc107 !important;
+            background: transparent !important;
+        }
+        
+        &.bg-success { 
+            border-top: 4px solid #28a745 !important;
+            background: transparent !important;
+        }
         
         h5 {
             margin: 0;
