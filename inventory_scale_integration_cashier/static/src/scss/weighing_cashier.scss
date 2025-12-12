@@ -39,15 +39,39 @@
             gap: 10px;
 
             .btn {
-                border-radius: 25px;
+                border-radius: 12px;
                 font-weight: 600;
-                padding: 0.5rem 1rem;
-                transition: all 0.3s ease;
+                padding: 0.6rem 1.2rem;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 border: 2px solid;
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.2);
+                    transform: translate(-50%, -50%);
+                    transition: width 0.6s, height 0.6s;
+                }
 
                 &:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    transform: translateY(-3px) scale(1.05);
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+                    &::before {
+                        width: 300px;
+                        height: 300px;
+                    }
+                }
+
+                &:active {
+                    transform: translateY(-1px) scale(1.02);
                 }
 
                 &.btn-primary {
@@ -57,17 +81,28 @@
 
                     &:hover {
                         background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
                     }
                 }
 
                 &.btn-outline-secondary {
-                    border-color: #6c757d;
+                    border-color: rgba(108, 117, 125, 0.3);
                     color: #6c757d;
+                    background: rgba(108, 117, 125, 0.05);
+
+                    i {
+                        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
 
                     &:hover {
                         background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
                         color: white;
                         border-color: transparent;
+                        box-shadow: 0 8px 20px rgba(108, 117, 125, 0.3);
+
+                        i {
+                            transform: rotate(360deg);
+                        }
                     }
                 }
 
@@ -391,10 +426,57 @@
 
                 .badge {
                     font-size: 0.7rem;
-                    font-weight: 600;
-                    padding: 0.35rem 0.7rem;
+                    font-weight: 700;
+                    padding: 0.4rem 0.9rem;
                     border-radius: 20px;
                     flex-shrink: 0;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                        transition: left 0.5s;
+                    }
+
+                    &:hover::before {
+                        left: 100%;
+                    }
+
+                    &.badge-primary {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        border: 2px solid rgba(102, 126, 234, 0.3);
+                    }
+
+                    &.badge-warning {
+                        background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+                        color: #fff;
+                        border: 2px solid rgba(255, 193, 7, 0.3);
+                    }
+
+                    &.badge-info {
+                        background: linear-gradient(135deg, #17a2b8 0%, #0dcaf0 100%);
+                        border: 2px solid rgba(23, 162, 184, 0.3);
+                    }
+
+                    &.badge-secondary {
+                        background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+                        border: 2px solid rgba(108, 117, 125, 0.3);
+                    }
+
+                    &.badge-success {
+                        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                        border: 2px solid rgba(40, 167, 69, 0.3);
+                    }
                 }
             }
 
