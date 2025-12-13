@@ -5,9 +5,9 @@ class WeighingOverview(models.TransientModel):
     _inherit = 'weighing.overview'
 
     @api.model
-    def get_overview_data(self):
+    def get_overview_data(self, **kwargs):
         from datetime import date
-        data = super().get_overview_data()
+        data = super().get_overview_data(**kwargs)
         today = date.today()
         
         # Get all SOs with weighable products

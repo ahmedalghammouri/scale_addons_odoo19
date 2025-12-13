@@ -308,7 +308,18 @@
                     <div class="col-12">
                         <div class="card shadow-sm">
                             <div class="card-header bg-light">
-                                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <ul class="nav nav-tabs card-header-tabs mb-0" role="tablist" style="border-bottom: none;">
+                                    <li class="nav-item">
+                                        <a class="nav-link" t-att-class="state.activeTab === 'records' ? 'active' : ''" t-on-click="() => this.setActiveTab('records')" style="cursor: pointer;">
+                                            <i class="fa fa-balance-scale"/> Weighing Records
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" t-att-class="state.activeTab === 'products' ? 'active' : ''" t-on-click="() => this.setActiveTab('products')" style="cursor: pointer;">
+                                            <i class="fa fa-cube"/> Products Tracking
+                                        </a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" t-att-class="state.activeTab === 'stock' ? 'active' : ''" t-on-click="() => this.setActiveTab('stock')" style="cursor: pointer;">
                                             <i class="fa fa-chart-line"/> Stock Performance
@@ -325,8 +336,117 @@
                                         </a>
                                     </li>
                                 </ul>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'day' ? 'active' : ''" t-on-click.prevent="() => this.setTimePeriod('day')">
+                                            <i class="fa fa-calendar-day"/> Daily
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'week' ? 'active' : ''" t-on-click.prevent="() => this.setTimePeriod('week')">
+                                            <i class="fa fa-calendar-week"/> Weekly
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'month' ? 'active' : ''" t-on-click.prevent="() => this.setTimePeriod('month')">
+                                            <i class="fa fa-calendar-alt"/> Monthly
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
+
+                                <!-- Weighing Records Tab -->
+                                <div t-if="state.activeTab === 'records'" class="tab-content-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card shadow-sm border-primary">
+                                                <div class="card-header bg-gradient-primary text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-chart-bar"/> Workflow Progress</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 350px;">
+                                                    <canvas t-ref="recordsChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card shadow-sm border-success">
+                                                <div class="card-header bg-gradient-success text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-chart-pie"/> Status Distribution</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 350px;">
+                                                    <canvas t-ref="recordsStatusChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-gradient-info text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-weight"/> Weight Operations</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 350px;">
+                                                    <canvas t-ref="weightsChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card shadow-sm border-warning">
+                                                <div class="card-header bg-gradient-warning text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-clock"/> Time Tracking</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 350px;">
+                                                    <canvas t-ref="timeTrackingChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Products Tracking Tab -->
+                                <div t-if="state.activeTab === 'products'" class="tab-content-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-4 mb-4">
+                                            <div class="card shadow-sm border-primary">
+                                                <div class="card-header bg-gradient-primary text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-cube"/> Operations Summary</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 300px;">
+                                                    <canvas t-ref="productsChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 mb-4">
+                                            <div class="card shadow-sm border-success">
+                                                <div class="card-header bg-gradient-success text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-weight"/> Weight Trends</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 300px;">
+                                                    <canvas t-ref="productsWeightChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 mb-4">
+                                            <div class="card shadow-sm border-warning">
+                                                <div class="card-header bg-gradient-warning text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-clock"/> Processing Speed</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 300px;">
+                                                    <canvas t-ref="productsTimeChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 mb-4">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-gradient-info text-white">
+                                                    <h5 class="mb-0"><i class="fa fa-chart-line"/> Operations &amp; Time Trend Analysis</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 350px;">
+                                                    <canvas t-ref="productsTrendChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Stock Performance Tab -->
                                 <div t-if="state.activeTab === 'stock'" class="tab-content-wrapper">
                                     <div class="row">

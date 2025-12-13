@@ -6,8 +6,8 @@ class WeighingOverview(models.TransientModel):
     _inherit = 'weighing.overview'
 
     @api.model
-    def get_overview_data(self):
-        data = super().get_overview_data()
+    def get_overview_data(self, **kwargs):
+        data = super().get_overview_data(**kwargs)
         today = fields.Date.today()
         
         deliveries_to_weigh_ids = self.get_deliveries_to_weigh_ids()

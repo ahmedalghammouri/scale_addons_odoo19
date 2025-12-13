@@ -6,10 +6,21 @@ class WeighingOverview(models.TransientModel):
     _inherit = 'weighing.overview'
 
     @api.model
-    def get_overview_data(self):
+    def get_overview_data(self, **kwargs):
+        period = kwargs.get('period', 'week')
         """Get comprehensive overview data for dashboard cards"""
         today = fields.Date.today()
-        week_ago = today - timedelta(days=7)
+        
+        # Calculate date range based on period
+        if period == 'day':
+            start_date = today
+            week_ago = today - timedelta(days=7)
+        elif period == 'month':
+            start_date = today - timedelta(days=30)
+            week_ago = today - timedelta(days=30)
+        else:  # week (default)
+            start_date = today - timedelta(days=7)
+            week_ago = today - timedelta(days=7)
         
         # Get IDs for consistent filtering
         receipts_to_weigh_ids = self.get_receipts_to_weigh_ids()
@@ -18,19 +29,21 @@ class WeighingOverview(models.TransientModel):
         receipts_to_weigh = self.env['stock.picking'].browse(receipts_to_weigh_ids)
         deliveries_to_weigh = self.env['stock.picking'].browse(deliveries_to_weigh_ids)
         
-        # In Progress Weighings - Split by operation type
+        # In Progress Weighings - Split by operation type (filtered by period)
         in_progress_incoming = self.env['truck.weighing'].search([
             ('state', 'in', ['draft', 'first', 'second']),
-            ('operation_type', '=', 'incoming')
+            ('operation_type', '=', 'incoming'),
+            ('weighing_date', '>=', start_date)
         ])
         
         in_progress_outgoing = self.env['truck.weighing'].search([
             ('state', 'in', ['draft', 'first', 'second']),
-            ('operation_type', '=', 'outgoing')
+            ('operation_type', '=', 'outgoing'),
+            ('weighing_date', '>=', start_date)
         ])
         
-        # All Records
-        all_records = self.env['truck.weighing'].search([])
+        # All Records filtered by period
+        all_records = self.env['truck.weighing'].search([('weighing_date', '>=', start_date)])
         completed_today = all_records.filtered(lambda r: r.state == 'done' and r.weighing_date.date() == today)
         completed_week = all_records.filtered(lambda r: r.state == 'done' and r.weighing_date.date() >= week_ago)
         
@@ -125,7 +138,8 @@ class WeighingOverview(models.TransientModel):
             },
             'stock_performance': self._get_stock_performance_data(all_records, completed_week),
             'waiting_time_analysis': self._get_waiting_time_analysis(all_records, completed_today, completed_week),
-            'truck_performance': self._get_truck_performance(all_trucks, all_records, completed_week)
+            'truck_performance': self._get_truck_performance(all_trucks, all_records, completed_week),
+            'trend_data': self._get_trend_data(period, start_date, today)
         }
     
     def _calculate_avg_processing_time(self, records):
@@ -304,6 +318,84 @@ class WeighingOverview(models.TransientModel):
             'normal_count': normal,
             'slow_count': slow
         }
+    
+    def _get_trend_data(self, period, start_date, end_date):
+        """Get actual time-series data for trends"""
+        from datetime import datetime, timedelta
+        
+        trend_data = {'labels': [], 'received_weights': [], 'delivered_weights': [], 'operations_count': [], 'avg_wait_times': []}
+        
+        if period == 'day':
+            # Last 7 days
+            for i in range(7):
+                date = end_date - timedelta(days=6-i)
+                trend_data['labels'].append(date.strftime('%a'))
+                
+                day_records = self.env['truck.weighing'].search([
+                    ('weighing_date', '>=', datetime.combine(date, datetime.min.time())),
+                    ('weighing_date', '<', datetime.combine(date + timedelta(days=1), datetime.min.time())),
+                    ('state', '=', 'done')
+                ])
+                
+                received = sum(day_records.filtered(lambda r: r.picking_id).mapped('net_weight')) / 1000
+                delivered = sum(day_records.filtered(lambda r: r.delivery_id).mapped('net_weight')) / 1000
+                ops_count = len(day_records)
+                avg_wait = sum(day_records.mapped('total_waiting_time')) / max(len(day_records), 1)
+                
+                trend_data['received_weights'].append(round(received, 2))
+                trend_data['delivered_weights'].append(round(delivered, 2))
+                trend_data['operations_count'].append(ops_count)
+                trend_data['avg_wait_times'].append(round(avg_wait, 1))
+                
+        elif period == 'week':
+            # Last 4 weeks
+            for i in range(4):
+                week_start = end_date - timedelta(days=(3-i)*7 + end_date.weekday())
+                week_end = week_start + timedelta(days=7)
+                trend_data['labels'].append(f'Week {i+1}')
+                
+                week_records = self.env['truck.weighing'].search([
+                    ('weighing_date', '>=', datetime.combine(week_start, datetime.min.time())),
+                    ('weighing_date', '<', datetime.combine(week_end, datetime.min.time())),
+                    ('state', '=', 'done')
+                ])
+                
+                received = sum(week_records.filtered(lambda r: r.picking_id).mapped('net_weight')) / 1000
+                delivered = sum(week_records.filtered(lambda r: r.delivery_id).mapped('net_weight')) / 1000
+                ops_count = len(week_records)
+                avg_wait = sum(week_records.mapped('total_waiting_time')) / max(len(week_records), 1)
+                
+                trend_data['received_weights'].append(round(received, 2))
+                trend_data['delivered_weights'].append(round(delivered, 2))
+                trend_data['operations_count'].append(ops_count)
+                trend_data['avg_wait_times'].append(round(avg_wait, 1))
+                
+        else:  # month
+            # Last 6 months
+            for i in range(6):
+                month_date = end_date - timedelta(days=(5-i)*30)
+                month_start = month_date.replace(day=1)
+                next_month = month_start + timedelta(days=32)
+                month_end = next_month.replace(day=1)
+                trend_data['labels'].append(month_start.strftime('%b'))
+                
+                month_records = self.env['truck.weighing'].search([
+                    ('weighing_date', '>=', datetime.combine(month_start, datetime.min.time())),
+                    ('weighing_date', '<', datetime.combine(month_end, datetime.min.time())),
+                    ('state', '=', 'done')
+                ])
+                
+                received = sum(month_records.filtered(lambda r: r.picking_id).mapped('net_weight')) / 1000
+                delivered = sum(month_records.filtered(lambda r: r.delivery_id).mapped('net_weight')) / 1000
+                ops_count = len(month_records)
+                avg_wait = sum(month_records.mapped('total_waiting_time')) / max(len(month_records), 1)
+                
+                trend_data['received_weights'].append(round(received, 2))
+                trend_data['delivered_weights'].append(round(delivered, 2))
+                trend_data['operations_count'].append(ops_count)
+                trend_data['avg_wait_times'].append(round(avg_wait, 1))
+        
+        return trend_data
     
     def _get_truck_performance(self, all_trucks, all_records, completed_week):
         active_trucks = all_trucks.filtered(lambda t: t.active)

@@ -12,8 +12,17 @@ export class WeighingOverviewDashboard extends Component {
         this.state = useState({
             data: {},
             loading: true,
-            activeTab: 'stock'
+            activeTab: 'records',
+            timePeriod: 'week'
         });
+        this.recordsChartRef = useRef("recordsChart");
+        this.recordsStatusChartRef = useRef("recordsStatusChart");
+        this.weightsChartRef = useRef("weightsChart");
+        this.timeTrackingChartRef = useRef("timeTrackingChart");
+        this.productsChartRef = useRef("productsChart");
+        this.productsWeightChartRef = useRef("productsWeightChart");
+        this.productsTimeChartRef = useRef("productsTimeChart");
+        this.productsTrendChartRef = useRef("productsTrendChart");
         this.stockChartRef = useRef("stockChart");
         this.waitingChartRef = useRef("waitingChart");
         this.truckChartRef = useRef("truckChart");
@@ -33,14 +42,340 @@ export class WeighingOverviewDashboard extends Component {
         setTimeout(() => this.renderCharts(), 100);
     }
 
+    async setTimePeriod(period) {
+        this.state.timePeriod = period;
+        await this.loadData();
+        setTimeout(() => this.renderCharts(), 100);
+    }
+
+    renderProductsChart() {
+        if (this.charts.products) this.charts.products.destroy();
+        const ctx = this.productsChartRef.el.getContext('2d');
+        const data = this.state.data.stock_performance || {};
+        this.charts.products = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Products Weighed', 'Receipts', 'Deliveries'],
+                datasets: [{
+                    label: 'Count',
+                    data: [
+                        data.products_count || 0,
+                        data.receipts_count || 0,
+                        data.deliveries_count || 0
+                    ],
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.8)',
+                        'rgba(46, 204, 113, 0.8)',
+                        'rgba(231, 76, 60, 0.8)'
+                    ],
+                    borderColor: ['#3498db', '#2ecc71', '#e74c3c'],
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } } }
+            }
+        });
+    }
+
+    renderProductsWeightChart() {
+        if (this.charts.productsWeight) this.charts.productsWeight.destroy();
+        const ctx = this.productsWeightChartRef.el.getContext('2d');
+        const trendData = this.state.data.trend_data || {};
+        
+        const labels = trendData.labels || [];
+        const receivedData = trendData.received_weights || [];
+        const deliveredData = trendData.delivered_weights || [];
+        
+        this.charts.productsWeight = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Received (Tons)',
+                    data: receivedData,
+                    backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                    borderColor: '#2ecc71',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6
+                }, {
+                    label: 'Delivered (Tons)',
+                    data: deliveredData,
+                    backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                    borderColor: '#e74c3c',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top', labels: { font: { size: 12, weight: 'bold' } } } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: (value) => value.toFixed(1) + ' T' } } }
+            }
+        });
+    }
+
+    renderProductsTimeChart() {
+        if (this.charts.productsTime) this.charts.productsTime.destroy();
+        const ctx = this.productsTimeChartRef.el.getContext('2d');
+        const data = this.state.data.waiting_time_analysis || {};
+        this.charts.productsTime = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Fast (<30min)', 'Normal (30-60min)', 'Slow (>60min)'],
+                datasets: [{
+                    label: 'Processing Count',
+                    data: [
+                        data.fast_count || 0,
+                        data.normal_count || 0,
+                        data.slow_count || 0
+                    ],
+                    backgroundColor: [
+                        'rgba(46, 204, 113, 0.8)',
+                        'rgba(241, 196, 15, 0.8)',
+                        'rgba(231, 76, 60, 0.8)'
+                    ],
+                    borderColor: ['#2ecc71', '#f1c40f', '#e74c3c'],
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } } }
+            }
+        });
+    }
+
+    renderProductsTrendChart() {
+        if (this.charts.productsTrend) this.charts.productsTrend.destroy();
+        const ctx = this.productsTrendChartRef.el.getContext('2d');
+        const trendData = this.state.data.trend_data || {};
+        
+        const labels = trendData.labels || [];
+        const opsData = trendData.operations_count || [];
+        const waitData = trendData.avg_wait_times || [];
+        
+        this.charts.productsTrend = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Operations Count',
+                    data: opsData,
+                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                    borderColor: '#3498db',
+                    borderWidth: 3,
+                    yAxisID: 'y',
+                    tension: 0.4,
+                    pointRadius: 6
+                }, {
+                    label: 'Avg Wait Time (min)',
+                    data: waitData,
+                    backgroundColor: 'rgba(155, 89, 182, 0.2)',
+                    borderColor: '#9b59b6',
+                    borderWidth: 3,
+                    yAxisID: 'y1',
+                    tension: 0.4,
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: { legend: { display: true, position: 'top', labels: { font: { size: 12, weight: 'bold' } } } },
+                scales: {
+                    y: { type: 'linear', display: true, position: 'left', beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } },
+                    y1: { type: 'linear', display: true, position: 'right', beginAtZero: true, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+    }
+
     renderCharts() {
-        if (this.state.activeTab === 'stock' && this.stockChartRef.el) {
+        if (this.state.activeTab === 'records' && this.recordsChartRef.el) {
+            this.renderRecordsChart();
+            this.renderRecordsStatusChart();
+            this.renderWeightsChart();
+            this.renderTimeTrackingChart();
+        } else if (this.state.activeTab === 'products' && this.productsChartRef.el) {
+            this.renderProductsChart();
+            this.renderProductsWeightChart();
+            this.renderProductsTimeChart();
+            this.renderProductsTrendChart();
+        } else if (this.state.activeTab === 'stock' && this.stockChartRef.el) {
             this.renderStockChart();
         } else if (this.state.activeTab === 'waiting' && this.waitingChartRef.el) {
             this.renderWaitingChart();
         } else if (this.state.activeTab === 'truck' && this.truckChartRef.el) {
             this.renderTruckChart();
         }
+    }
+
+    renderRecordsChart() {
+        if (this.charts.records) this.charts.records.destroy();
+        const ctx = this.recordsChartRef.el.getContext('2d');
+        const data = this.state.data;
+        this.charts.records = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Awaiting Initial', 'First Captured', 'Second Captured', 'Completed'],
+                datasets: [{
+                    label: 'Incoming',
+                    data: [
+                        data.draft_details?.incoming_count || 0,
+                        data.in_progress_incoming?.first_count || 0,
+                        data.in_progress_incoming?.second_count || 0,
+                        data.all_records?.completed_today || 0
+                    ],
+                    backgroundColor: 'rgba(52, 152, 219, 0.8)',
+                    borderColor: '#3498db',
+                    borderWidth: 2,
+                    borderRadius: 8
+                }, {
+                    label: 'Outgoing',
+                    data: [
+                        data.draft_details?.outgoing_count || 0,
+                        data.in_progress_outgoing?.first_count || 0,
+                        data.in_progress_outgoing?.second_count || 0,
+                        data.all_records?.completed_week || 0
+                    ],
+                    backgroundColor: 'rgba(230, 126, 34, 0.8)',
+                    borderColor: '#e67e22',
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top', labels: { font: { size: 12, weight: 'bold' } } } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } } }
+            }
+        });
+    }
+
+    renderRecordsStatusChart() {
+        if (this.charts.recordsStatus) this.charts.recordsStatus.destroy();
+        const ctx = this.recordsStatusChartRef.el.getContext('2d');
+        const data = this.state.data.all_records || {};
+        this.charts.recordsStatus = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Draft', 'First Weigh', 'Second Weigh', 'Done'],
+                datasets: [{
+                    data: [
+                        data.draft_percent || 0,
+                        data.first_percent || 0,
+                        data.second_percent || 0,
+                        data.done_percent || 0
+                    ],
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.8)',
+                        'rgba(155, 89, 182, 0.8)',
+                        'rgba(241, 196, 15, 0.8)',
+                        'rgba(46, 204, 113, 0.8)'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#fff',
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: true, position: 'right', labels: { font: { size: 12, weight: 'bold' }, padding: 15 } }
+                }
+            }
+        });
+    }
+
+    renderWeightsChart() {
+        if (this.charts.weights) this.charts.weights.destroy();
+        const ctx = this.weightsChartRef.el.getContext('2d');
+        const data = this.state.data.stock_performance || {};
+        const received = (data.total_received || 0) / 1000;
+        const delivered = (data.total_delivered || 0) / 1000;
+        this.charts.weights = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Received', 'Delivered'],
+                datasets: [{
+                    label: 'Total Weight (Tons)',
+                    data: [received, delivered],
+                    backgroundColor: [
+                        'rgba(46, 204, 113, 0.8)',
+                        'rgba(231, 76, 60, 0.8)'
+                    ],
+                    borderColor: ['#2ecc71', '#e74c3c'],
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { display: true, position: 'top', labels: { font: { size: 12, weight: 'bold' } } },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => `${context.parsed.y.toFixed(2)} Tons`
+                        }
+                    }
+                },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: (value) => value.toFixed(1) + ' T' } } }
+            }
+        });
+    }
+
+    renderTimeTrackingChart() {
+        if (this.charts.timeTracking) this.charts.timeTracking.destroy();
+        const ctx = this.timeTrackingChartRef.el.getContext('2d');
+        const data = this.state.data.waiting_time_analysis || {};
+        this.charts.timeTracking = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['To First', 'To Second', 'To Done', 'Total Avg'],
+                datasets: [{
+                    label: 'Average Time (minutes)',
+                    data: [
+                        data.avg_to_first || 0,
+                        data.avg_to_second || 0,
+                        data.avg_to_done || 0,
+                        data.avg_total || 0
+                    ],
+                    backgroundColor: 'rgba(155, 89, 182, 0.2)',
+                    borderColor: '#9b59b6',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#9b59b6',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top', labels: { font: { size: 12, weight: 'bold' } } } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } } }
+            }
+        });
     }
 
     renderStockChart() {
@@ -134,7 +469,7 @@ export class WeighingOverviewDashboard extends Component {
     async loadData() {
         this.state.loading = true;
         try {
-            const data = await this.orm.call("weighing.overview", "get_overview_data", []);
+            const data = await this.orm.call("weighing.overview", "get_overview_data", [], {period: this.state.timePeriod});
             this.state.data = data;
         } catch (error) {
             console.error("Error loading dashboard data:", error);
