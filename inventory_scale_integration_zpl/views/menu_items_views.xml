@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add ZPL Printers to Configuration Menu -->
+    <menuitem id="menu_zpl_printers" 
+              name="ZPL Printers" 
+              parent="inventory_scale_integration_base.menu_truck_Configuration_root" 
+              action="action_zpl_printer" 
+              sequence="4"/>
+    
+    <menuitem id="menu_zpl_print_jobs" 
+              name="Print Jobs" 
+              parent="inventory_scale_integration_base.menu_truck_Configuration_root" 
+              action="action_zpl_print_job" 
+              sequence="5"/>
+</odoo>

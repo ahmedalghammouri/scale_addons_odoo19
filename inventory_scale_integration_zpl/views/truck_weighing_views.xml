@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Truck Weighing Form with ZPL Print Buttons -->
+    <record id="truck_weighing_view_form_zpl" model="ir.ui.view">
+        <field name="name">truck.weighing.view.form.zpl</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_form"/>
+        <field name="arch" type="xml">
+            <button name="action_print_certificate" position="after">
+                <button name="action_print_zpl_label" string="🖨️ ZPL Label" type="object" class="btn-info" invisible="not zpl_printer_id"/>
+                <button name="action_print_zpl_ticket" string="🎫 ZPL Ticket" type="object" class="btn-warning" invisible="not zpl_printer_id or state == 'draft'"/>
+                <button name="action_print_zpl_certificate" string="📄 ZPL Certificate" type="object" class="btn-success" invisible="not zpl_printer_id or state != 'done'"/>
+            </button>
+            
+            <field name="scale_id" position="after">
+                <field name="zpl_printer_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Extend Weighing Scale Form with ZPL Printers -->
+    <record id="weighing_scale_view_form_zpl" model="ir.ui.view">
+        <field name="name">weighing.scale.view.form.zpl</field>
+        <field name="model">weighing.scale</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.view_weighing_scale_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='users']" position="after">
+                <page string="ZPL Printers" name="zpl_printers">
+                    <field name="zpl_printer_ids" widget="many2many_tags"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend User Form with ZPL Printer Settings -->
+    <record id="view_users_form_zpl" model="ir.ui.view">
+        <field name="name">res.users.form.zpl</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.view_users_form_scale"/>
+        <field name="arch" type="xml">
+            <field name="default_scale_id" position="after">
+                <field name="default_zpl_printer_id" domain="[('is_enabled', '=', True)]"/>
+                <field name="assigned_zpl_printer_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Cashier Form View with ZPL Print Buttons -->
+    <record id="truck_weighing_view_form_cashier_zpl" model="ir.ui.view">
+        <field name="name">truck.weighing.view.form.cashier.zpl</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_cashier.truck_weighing_view_form_cashier"/>
+        <field name="arch" type="xml">
+            <button name="action_print_driver_ticket" position="after">
+                <button name="action_print_zpl_ticket" string="🖨️ ZPL Ticket" type="object"
+                        invisible="state != 'first' or not zpl_printer_id" class="btn-warning btn-lg"/>
+            </button>
+            
+            <button name="action_print_certificate" position="after">
+                <button name="action_print_zpl_label" string="🖨️ ZPL Label" type="object"
+                        invisible="state != 'done' or not zpl_printer_id" class="btn-info btn-lg"/>
+                <button name="action_print_zpl_certificate" string="🖨️ ZPL Certificate" type="object"
+                        invisible="state != 'done' or not zpl_printer_id" class="btn-success btn-lg"/>
+            </button>
+            
+            <field name="cashier_session_id" position="after">
+                <field name="zpl_printer_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>
