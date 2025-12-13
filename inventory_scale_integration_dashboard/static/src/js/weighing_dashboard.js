@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { Component, onWillStart, useState } from "@odoo/owl";
+import { Component, onWillStart, onMounted, useState, useRef } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { rpc } from "@web/core/network/rpc";
@@ -14,14 +14,121 @@ export class WeighingOverviewDashboard extends Component {
             loading: true,
             activeTab: 'stock'
         });
+        this.stockChartRef = useRef("stockChart");
+        this.waitingChartRef = useRef("waitingChart");
+        this.truckChartRef = useRef("truckChart");
+        this.charts = {};
 
         onWillStart(async () => {
             await this.loadData();
+        });
+
+        onMounted(() => {
+            this.renderCharts();
         });
     }
 
     setActiveTab(tab) {
         this.state.activeTab = tab;
+        setTimeout(() => this.renderCharts(), 100);
+    }
+
+    renderCharts() {
+        if (this.state.activeTab === 'stock' && this.stockChartRef.el) {
+            this.renderStockChart();
+        } else if (this.state.activeTab === 'waiting' && this.waitingChartRef.el) {
+            this.renderWaitingChart();
+        } else if (this.state.activeTab === 'truck' && this.truckChartRef.el) {
+            this.renderTruckChart();
+        }
+    }
+
+    renderStockChart() {
+        if (this.charts.stock) this.charts.stock.destroy();
+        const ctx = this.stockChartRef.el.getContext('2d');
+        const data = this.state.data.stock_performance || {};
+        this.charts.stock = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['High Fulfillment', 'Exact Match', 'Over Delivered', 'Under Delivered'],
+                datasets: [{
+                    label: 'Records Count',
+                    data: [
+                        data.high_fulfillment || 0,
+                        data.exact_match || 0,
+                        data.over_delivered || 0,
+                        data.under_delivered || 0
+                    ],
+                    backgroundColor: ['#28a745', '#007bff', '#17a2b8', '#ffc107'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    }
+
+    renderWaitingChart() {
+        if (this.charts.waiting) this.charts.waiting.destroy();
+        const ctx = this.waitingChartRef.el.getContext('2d');
+        const data = this.state.data.waiting_time_analysis || {};
+        this.charts.waiting = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Fast (<30min)', 'Normal (30-60min)', 'Slow (>60min)'],
+                datasets: [{
+                    label: 'Processing Speed Distribution',
+                    data: [
+                        data.fast_count || 0,
+                        data.normal_count || 0,
+                        data.slow_count || 0
+                    ],
+                    backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                    borderColor: '#667eea',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    }
+
+    renderTruckChart() {
+        if (this.charts.truck) this.charts.truck.destroy();
+        const ctx = this.truckChartRef.el.getContext('2d');
+        const data = this.state.data.truck_performance || {};
+        this.charts.truck = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['High Activity', 'Moderate Activity', 'Idle Trucks'],
+                datasets: [{
+                    label: 'Truck Distribution',
+                    data: [
+                        data.high_activity || 0,
+                        data.moderate_activity || 0,
+                        data.idle_trucks || 0
+                    ],
+                    backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
     }
 
     async loadData() {

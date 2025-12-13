@@ -473,6 +473,19 @@
                         </div>
                     </div>
                                     </div>
+                                    <!-- Stock Performance Chart -->
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="card shadow-sm">
+                                                <div class="card-header bg-light">
+                                                    <h5 class="mb-0"><i class="fa fa-chart-bar"/> Fulfillment Distribution Chart</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 300px;">
+                                                    <canvas t-ref="stockChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Waiting Time Tab -->
@@ -582,6 +595,19 @@
                             </div>
                         </div>
                     </div>
+                                    </div>
+                                    <!-- Waiting Time Chart -->
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="card shadow-sm">
+                                                <div class="card-header bg-light">
+                                                    <h5 class="mb-0"><i class="fa fa-chart-area"/> Processing Speed Trend</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 300px;">
+                                                    <canvas t-ref="waitingChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -724,6 +750,19 @@
                             </div>
                         </div>
                     </div>
+                                    </div>
+                                    <!-- Truck Performance Chart -->
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="card shadow-sm">
+                                                <div class="card-header bg-light">
+                                                    <h5 class="mb-0"><i class="fa fa-chart-bar"/> Truck Activity Distribution</h5>
+                                                </div>
+                                                <div class="card-body" style="height: 300px;">
+                                                    <canvas t-ref="truckChart"/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -17,6 +17,8 @@
     ],
     'assets': {
         'web.assets_backend': [
+            ('include', 'web._assets_helpers'),
+            'web/static/lib/Chart/Chart.js',
             'inventory_scale_integration_dashboard/static/src/js/weighing_dashboard.js',
             'inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml',
             # 'inventory_scale_integration_stock/static/src/css/weighing_dashboard.css',
