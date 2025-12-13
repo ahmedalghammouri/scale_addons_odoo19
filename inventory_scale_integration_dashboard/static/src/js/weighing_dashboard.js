@@ -11,12 +11,17 @@ export class WeighingOverviewDashboard extends Component {
         this.action = useService("action");
         this.state = useState({
             data: {},
-            loading: true
+            loading: true,
+            activeTab: 'stock'
         });
 
         onWillStart(async () => {
             await this.loadData();
         });
+    }
+
+    setActiveTab(tab) {
+        this.state.activeTab = tab;
     }
 
     async loadData() {

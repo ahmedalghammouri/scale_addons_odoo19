@@ -102,19 +102,18 @@
 
                     <!-- Truck Utilization Chart -->
                     <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="card shadow-sm" style="border-left: 4px solid #ffc107;">
+                        <div class="card shadow-sm" t-att-style="'border-left: 4px solid ' + ((state.data.truck_performance?.utilization_rate || 0) >= 80 ? '#28a745' : (state.data.truck_performance?.utilization_rate || 0) >= 50 ? '#ffc107' : '#dc3545')">
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <small class="text-muted font-weight-bold">Truck Assignment</small>
-                                    <i class="fa fa-truck text-warning"/>
+                                    <small class="text-muted font-weight-bold">Utilization Rate</small>
+                                    <i class="fa fa-truck" t-att-class="'fa fa-truck text-' + this.getProgressColor(state.data.truck_performance?.utilization_rate || 0)"/>
                                 </div>
-                                <div class="progress mb-2" style="height: 12px;">
-                                    <div class="progress-bar bg-success" t-att-style="'width: ' + ((state.data.draft_details?.with_truck || 0) / Math.max((state.data.draft_details?.with_truck || 0) + (state.data.draft_details?.without_truck || 0), 1) * 100) + '%'"/>
-                                    <div class="progress-bar bg-danger" t-att-style="'width: ' + ((state.data.draft_details?.without_truck || 0) / Math.max((state.data.draft_details?.with_truck || 0) + (state.data.draft_details?.without_truck || 0), 1) * 100) + '%'"/>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="mb-0 mr-2" t-att-class="'mb-0 mr-2 text-' + this.getProgressColor(state.data.truck_performance?.utilization_rate || 0)" style="font-weight: 700;" t-esc="(state.data.truck_performance?.utilization_rate || 0) + '%'"/>
+                                    <small class="text-muted">active</small>
                                 </div>
-                                <div class="d-flex justify-content-between" style="font-size: 0.65rem;">
-                                    <span class="text-success"><i class="fa fa-check"/> Assigned</span>
-                                    <span class="text-danger"><i class="fa fa-times"/> Unassigned</span>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar" t-att-class="'progress-bar bg-' + this.getProgressColor(state.data.truck_performance?.utilization_rate || 0)" t-att-style="'width: ' + (state.data.truck_performance?.utilization_rate || 0) + '%'"/>
                                 </div>
                             </div>
                         </div>
@@ -304,13 +303,33 @@
                     </div>
                 </div>
 
-                <!-- Stock Performance Analytics -->
+                <!-- Analytics Tabs Section -->
                 <div class="row mt-4 mb-4">
                     <div class="col-12">
-                        <div class="section-header mb-3">
-                            <h4><i class="fa fa-chart-line m-2"/>Stock Performance Analytics</h4>
-                        </div>
-                    </div>
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" t-att-class="state.activeTab === 'stock' ? 'active' : ''" t-on-click="() => this.setActiveTab('stock')" style="cursor: pointer;">
+                                            <i class="fa fa-chart-line"/> Stock Performance
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" t-att-class="state.activeTab === 'waiting' ? 'active' : ''" t-on-click="() => this.setActiveTab('waiting')" style="cursor: pointer;">
+                                            <i class="fa fa-hourglass-half"/> Waiting Time
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" t-att-class="state.activeTab === 'truck' ? 'active' : ''" t-on-click="() => this.setActiveTab('truck')" style="cursor: pointer;">
+                                            <i class="fa fa-truck"/> Truck Performance
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <!-- Stock Performance Tab -->
+                                <div t-if="state.activeTab === 'stock'" class="tab-content-wrapper">
+                                    <div class="row">
                     
                     <!-- Fulfillment Analysis Card -->
                     <div class="col-lg-4 col-md-6 mb-4">
@@ -453,15 +472,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                                    </div>
+                                </div>
 
-                <!-- Waiting Time Analysis Section -->
-                <div class="row mt-4 mb-4">
-                    <div class="col-12">
-                        <div class="section-header mb-3">
-                            <h4><i class="fa fa-hourglass-half m-2"/>Waiting Time Analysis</h4>
-                        </div>
-                    </div>
+                                <!-- Waiting Time Tab -->
+                                <div t-if="state.activeTab === 'waiting'" class="tab-content-wrapper">
+                                    <div class="row">
                     
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card border-primary h-100 shadow-sm">
@@ -533,33 +549,187 @@
                                 <h5 class="m-2"><i class="fa fa-tachometer-alt m-2"/>Processing Speed</h5>
                             </div>
                             <div class="card-body">
-                                <div class="mb-2" style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_fast')">
-                                    <div class="d-flex justify-content-between">
+                                <div class="mb-3" style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_fast')">
+                                    <div class="d-flex justify-content-between mb-1">
                                         <small class="text-muted">Fast (&lt;30min)</small>
                                         <span class="badge badge-success" t-esc="state.data.waiting_time_analysis?.fast_count || 0"/>
                                     </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-success" t-att-style="'width: ' + ((state.data.waiting_time_analysis?.fast_count || 0) / Math.max((state.data.waiting_time_analysis?.fast_count || 0) + (state.data.waiting_time_analysis?.normal_count || 0) + (state.data.waiting_time_analysis?.slow_count || 0), 1) * 100) + '%'"/>
+                                    </div>
                                 </div>
-                                <div class="mb-2" style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_normal')">
-                                    <div class="d-flex justify-content-between">
+                                <div class="mb-3" style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_normal')">
+                                    <div class="d-flex justify-content-between mb-1">
                                         <small class="text-muted">Normal (30-60min)</small>
                                         <span class="badge badge-warning" t-esc="state.data.waiting_time_analysis?.normal_count || 0"/>
                                     </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-warning" t-att-style="'width: ' + ((state.data.waiting_time_analysis?.normal_count || 0) / Math.max((state.data.waiting_time_analysis?.fast_count || 0) + (state.data.waiting_time_analysis?.normal_count || 0) + (state.data.waiting_time_analysis?.slow_count || 0), 1) * 100) + '%'"/>
+                                    </div>
                                 </div>
-                                <div style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_slow')">
-                                    <div class="d-flex justify-content-between">
+                                <div class="mb-3" style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_slow')">
+                                    <div class="d-flex justify-content-between mb-1">
                                         <small class="text-muted">Slow (&gt;60min)</small>
                                         <span class="badge badge-danger" t-esc="state.data.waiting_time_analysis?.slow_count || 0"/>
                                     </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-danger" t-att-style="'width: ' + ((state.data.waiting_time_analysis?.slow_count || 0) / Math.max((state.data.waiting_time_analysis?.fast_count || 0) + (state.data.waiting_time_analysis?.normal_count || 0) + (state.data.waiting_time_analysis?.slow_count || 0), 1) * 100) + '%'"/>
+                                    </div>
                                 </div>
-                                <hr/>
                                 <button class="btn btn-warning btn-sm btn-block" t-on-click="() => this.onCardAction('waiting_time_analysis')">
                                     <i class="fa fa-chart-bar"/> View Analysis
                                 </button>
                             </div>
                         </div>
                     </div>
+                                    </div>
+                                </div>
+
+                                <!-- Truck Performance Tab -->
+                                <div t-if="state.activeTab === 'truck'" class="tab-content-wrapper">
+                                    <div class="row">
+                    
+                    <!-- Efficiency Score Card -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                                <h5 class="m-2"><i class="fa fa-chart-line m-2"/>Efficiency Score</h5>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.truck_performance?.trips_per_truck || 0).toFixed(1)"/>
+                            </div>
+                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                                <i class="fa fa-chart-line" style="font-size: 3rem;"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-2">
+                                    <h3 class="mb-0" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;" t-esc="(state.data.truck_performance?.trips_per_truck || 0).toFixed(1)"/>
+                                    <small class="text-muted">Trips per Truck/Week</small>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="text-center">
+                                    <h6 class="text-primary mb-0" t-esc="state.data.truck_performance?.weekly_activity || 0"/>
+                                    <small class="text-muted">Weekly Activity Count</small>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm btn-block" t-on-click="() => this.onCardAction('truck_efficiency')">
+                                    <i class="fa fa-chart-bar"/> View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Performer Card -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                                <h5 class="m-2"><i class="fa fa-trophy m-2"/>Top Performer</h5>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.truck_performance?.top_truck_trips || 0"/>
+                            </div>
+                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                                <i class="fa fa-trophy" style="font-size: 3rem;"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-2">
+                                    <h5 class="text-success mb-1" t-esc="state.data.truck_performance?.top_truck_name || 'N/A'"/>
+                                    <small class="text-muted">Highest Trip Count</small>
+                                </div>
+                                <hr class="my-2"/>
+                                <div class="text-center">
+                                    <h6 class="text-info mb-0" t-esc="(state.data.truck_performance?.avg_per_truck || 0).toFixed(1)"/>
+                                    <small class="text-muted">Average per Truck</small>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-success btn-sm btn-block" t-on-click="() => this.onCardAction('truck_performance')">
+                                    <i class="fa fa-list"/> View All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Utilization Rate Card -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                                <h5 class="m-2"><i class="fa fa-percentage m-2"/>Utilization Rate</h5>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.truck_performance?.utilization_rate || 0) + '%'"/>
+                            </div>
+                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                                <i class="fa fa-percentage" style="font-size: 3rem;"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-2">
+                                    <h3 class="mb-0" t-att-class="'mb-0 text-' + this.getProgressColor(state.data.truck_performance?.utilization_rate || 0)" style="font-weight: 700;" t-esc="(state.data.truck_performance?.utilization_rate || 0) + '%'"/>
+                                    <small class="text-muted">Active Trucks</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 15px;">
+                                    <div class="progress-bar" t-att-class="'progress-bar bg-' + this.getProgressColor(state.data.truck_performance?.utilization_rate || 0)" t-att-style="'width: ' + (state.data.truck_performance?.utilization_rate || 0) + '%'"/>
+                                </div>
+                                <div class="d-flex justify-content-between" style="font-size: 0.7rem;">
+                                    <span t-att-class="'text-' + this.getProgressColor(state.data.truck_performance?.utilization_rate || 0)"><i class="fa fa-circle"/> <t t-if="(state.data.truck_performance?.utilization_rate || 0) >= 80">Excellent</t><t t-elif="(state.data.truck_performance?.utilization_rate || 0) >= 50">Good</t><t t-else="">Low</t></span>
+                                    <span class="text-muted">≥80% <i class="fa fa-check text-success"/> ≥50% <i class="fa fa-exclamation text-warning"/> &lt;50% <i class="fa fa-times text-danger"/></span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-info btn-sm btn-block" t-on-click="() => this.onCardAction('truck_utilization')">
+                                    <i class="fa fa-chart-pie"/> View Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Distribution Card -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                                <h5 class="m-2"><i class="fa fa-chart-bar m-2"/>Activity Distribution</h5>
+                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.truck_performance?.total_trucks || 0"/>
+                            </div>
+                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                                <i class="fa fa-chart-bar" style="font-size: 3rem;"/>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3" style="cursor: pointer;" t-on-click="() => this.onCardAction('busy_trucks')">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">High Activity</small>
+                                        <span class="badge badge-success" t-esc="state.data.truck_performance?.high_activity || 0"/>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-success" t-att-style="'width: ' + ((state.data.truck_performance?.high_activity || 0) / Math.max(state.data.truck_performance?.total_trucks || 1, 1) * 100) + '%'"/>
+                                    </div>
+                                </div>
+                                <div class="mb-3" style="cursor: pointer;" t-on-click="() => this.onCardAction('active_trucks')">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Moderate Activity</small>
+                                        <span class="badge badge-warning" t-esc="state.data.truck_performance?.moderate_activity || 0"/>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-warning" t-att-style="'width: ' + ((state.data.truck_performance?.moderate_activity || 0) / Math.max(state.data.truck_performance?.total_trucks || 1, 1) * 100) + '%'"/>
+                                    </div>
+                                </div>
+                                <div class="mb-3" style="cursor: pointer;" t-on-click="() => this.onCardAction('idle_trucks')">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Idle Trucks</small>
+                                        <span class="badge badge-danger" t-esc="state.data.truck_performance?.idle_trucks || 0"/>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-danger" t-att-style="'width: ' + ((state.data.truck_performance?.idle_trucks || 0) / Math.max(state.data.truck_performance?.total_trucks || 1, 1) * 100) + '%'"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-warning btn-sm btn-block" t-on-click="() => this.onCardAction('weekly_truck_activity')">
+                                    <i class="fa fa-calendar-week"/> Weekly Activity
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
 
             </div>
 

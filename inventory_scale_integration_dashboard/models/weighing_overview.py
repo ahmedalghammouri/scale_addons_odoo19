@@ -309,33 +309,48 @@ class WeighingOverview(models.TransientModel):
         active_trucks = all_trucks.filtered(lambda t: t.active)
         if not active_trucks:
             return {
-                'efficiency_score': 0, 'top_performer_trips': 0, 'avg_trips_per_truck': 0,
-                'idle_trucks': 0, 'busy_trucks': 0, 'moderate_trucks': 0,
-                'utilization_percent': 0, 'weekly_trips': 0
+                'trips_per_truck': 0, 'weekly_activity': 0, 'top_truck_trips': 0,
+                'top_truck_name': 'N/A', 'avg_per_truck': 0,
+                'utilization_rate': 0, 'total_trucks': 0,
+                'high_activity': 0, 'moderate_activity': 0, 'idle_trucks': 0
             }
         
         done_records = all_records.filtered(lambda r: r.state == 'done' and r.truck_id)
         week_records = completed_week.filtered(lambda r: r.truck_id)
         
+        # Calculate trips per truck
         truck_trips = {}
-        for rec in done_records:
+        truck_names = {}
+        for rec in week_records:
             truck_trips[rec.truck_id.id] = truck_trips.get(rec.truck_id.id, 0) + 1
+            truck_names[rec.truck_id.id] = rec.truck_id.plate_number
         
         trips_list = list(truck_trips.values())
         avg_trips = sum(trips_list) / len(trips_list) if trips_list else 0
-        top_trips = max(trips_list) if trips_list else 0
         
+        # Find top performer
+        top_truck_id = max(truck_trips, key=truck_trips.get) if truck_trips else None
+        top_trips = truck_trips.get(top_truck_id, 0) if top_truck_id else 0
+        top_truck_name = truck_names.get(top_truck_id, 'N/A') if top_truck_id else 'N/A'
+        
+        # Categorize trucks by activity
         idle = len([t for t in active_trucks if t.id not in truck_trips])
-        busy = len([t for t, c in truck_trips.items() if c > avg_trips * 1.5])
-        moderate = len(truck_trips) - busy
+        high = len([tid for tid, count in truck_trips.items() if count > avg_trips * 1.2])
+        moderate = len(truck_trips) - high
+        
+        # Utilization rate
+        utilized_trucks = len(truck_trips)
+        utilization_rate = round((utilized_trucks / max(len(active_trucks), 1)) * 100, 1)
         
         return {
-            'efficiency_score': round((len(week_records) / max(len(active_trucks), 1)), 1),
-            'top_performer_trips': top_trips,
-            'avg_trips_per_truck': round(avg_trips, 1),
-            'idle_trucks': idle,
-            'busy_trucks': busy,
-            'moderate_trucks': moderate,
-            'utilization_percent': round((len(truck_trips) / max(len(active_trucks), 1)) * 100, 1),
-            'weekly_trips': len(week_records)
+            'trips_per_truck': round(avg_trips, 1),
+            'weekly_activity': len(week_records),
+            'top_truck_trips': top_trips,
+            'top_truck_name': top_truck_name,
+            'avg_per_truck': round(avg_trips, 1),
+            'utilization_rate': utilization_rate,
+            'total_trucks': len(active_trucks),
+            'high_activity': high,
+            'moderate_activity': moderate,
+            'idle_trucks': idle
         }
