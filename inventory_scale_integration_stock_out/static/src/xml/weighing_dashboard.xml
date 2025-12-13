@@ -5,8 +5,8 @@
         <div class="row mb-4">
             <!-- Operations Section -->
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card border-warning h-100 shadow-sm">
-                    <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                <div class="card border-primary h-100 shadow-sm">
+                    <div class="card-header bg-primary text-dark d-flex justify-content-between align-items-center">
                         <h5 class="m-2"><i class="fa fa-truck m-2"/>Deliveries to Weigh</h5>
                         <span class="badge badge-dark" style="font-size: 1.5rem;" t-esc="state.data.deliveries_to_weigh?.count || 0"/>
                     </div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-warning btn-sm btn-block" t-on-click="() => this.onCardAction('deliveries_to_weigh')">
+                        <button class="btn btn-primary btn-sm btn-block" t-on-click="() => this.onCardAction('deliveries_to_weigh')">
                             <i class="fa fa-list"/> View All Deliveries
                         </button>
                     </div>

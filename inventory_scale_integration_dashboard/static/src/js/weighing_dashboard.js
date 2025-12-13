@@ -470,6 +470,34 @@ export class WeighingOverviewDashboard extends Component {
                 view_mode: 'list,form',
                 views: [[false, 'list'], [false, 'form']],
                 domain: [['state', 'in', ['draft', 'first', 'second']], ['operation_type', '=', 'outgoing']],
+            },
+            'waiting_time_fast': {
+                name: 'Fast Processing (<30 min)',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'done'], ['total_waiting_time', '<', 30]],
+            },
+            'waiting_time_normal': {
+                name: 'Normal Processing (30-60 min)',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'done'], ['total_waiting_time', '>=', 30], ['total_waiting_time', '<=', 60]],
+            },
+            'waiting_time_slow': {
+                name: 'Slow Processing (>60 min)',
+                res_model: 'truck.weighing',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['state', '=', 'done'], ['total_waiting_time', '>', 60]],
+            },
+            'waiting_time_analysis': {
+                name: 'Waiting Time Analysis',
+                res_model: 'truck.weighing',
+                view_mode: 'graph,pivot',
+                views: [[false, 'graph'], [false, 'pivot']],
+                domain: [['state', '=', 'done'], ['total_waiting_time', '>', 0]],
             }
         };
 
@@ -496,6 +524,15 @@ export class WeighingOverviewDashboard extends Component {
             return `${(weight / 1000).toFixed(1)} T`;
         }
         return `${weight.toLocaleString()} KG`;
+    }
+
+    formatTime(minutes) {
+        if (minutes < 60) {
+            return `${minutes.toFixed(1)} min`;
+        }
+        const hours = Math.floor(minutes / 60);
+        const mins = Math.round(minutes % 60);
+        return `${hours}h ${mins}m`;
     }
 }
 

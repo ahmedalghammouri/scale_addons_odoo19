@@ -3,8 +3,8 @@
     <t t-name="inventory_scale_integration_sale.SOCard" t-inherit="inventory_scale_integration.WeighingDashboardTemplate" t-inherit-mode="extension" owl="1">
         <xpath expr="//h5[contains(text(), 'Deliveries to Weigh')]/ancestor::div[hasclass('col-lg-3')]" position="after">
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card border-success h-100 shadow-sm">
-                    <div class="card-header bg-success d-flex justify-content-between align-items-center">
+                <div class="card border-info h-100 shadow-sm">
+                    <div class="card-header bg-info d-flex justify-content-between align-items-center">
                         <h5 class="m-2"><i class="fa fa-file-invoice-dollar m-2"/>Sale Orders</h5>
                         <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.sale_orders?.count || 0"/>
                     </div>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-success btn-sm btn-block" t-on-click="() => this.onCardAction('sale_orders')">
+                        <button class="btn btn-info btn-sm btn-block" t-on-click="() => this.onCardAction('sale_orders')">
                             <i class="fa fa-list"/> View All SOs
                         </button>
                     </div>

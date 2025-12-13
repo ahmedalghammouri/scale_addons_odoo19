@@ -123,7 +123,8 @@ class WeighingOverview(models.TransientModel):
                 'urgent_count': len(deliveries_to_weigh.filtered(lambda d: d.scheduled_date and d.scheduled_date.date() <= today)),
                 'partners': len(deliveries_to_weigh.mapped('partner_id')),
             },
-            'stock_performance': self._get_stock_performance_data(all_records, completed_week)
+            'stock_performance': self._get_stock_performance_data(all_records, completed_week),
+            'waiting_time_analysis': self._get_waiting_time_analysis(all_records, completed_today, completed_week)
         }
     
     def _calculate_avg_processing_time(self, records):
@@ -269,4 +270,36 @@ class WeighingOverview(models.TransientModel):
             'deliveries_count': len(deliveries),
             'products_count': len(completed_with_stock.mapped('product_id')),
             'accuracy_rate': round((accuracy_count / max(len(completed_with_stock), 1)) * 100, 1),
+        }
+    
+    def _get_waiting_time_analysis(self, all_records, completed_today, completed_week):
+        done_records = all_records.filtered(lambda r: r.state == 'done' and r.total_waiting_time > 0)
+        if not done_records:
+            return {
+                'avg_to_first': 0, 'avg_to_second': 0, 'avg_to_done': 0, 'avg_total': 0,
+                'max_total': 0, 'min_total': 0,
+                'today_avg': 0, 'week_avg': 0,
+                'fast_count': 0, 'normal_count': 0, 'slow_count': 0
+            }
+        
+        today_done = completed_today.filtered(lambda r: r.total_waiting_time > 0)
+        week_done = completed_week.filtered(lambda r: r.total_waiting_time > 0)
+        
+        total_times = done_records.mapped('total_waiting_time')
+        fast = len([t for t in total_times if t < 30])
+        normal = len([t for t in total_times if 30 <= t <= 60])
+        slow = len([t for t in total_times if t > 60])
+        
+        return {
+            'avg_to_first': round(sum(done_records.mapped('waiting_time_to_first')) / len(done_records), 1),
+            'avg_to_second': round(sum(done_records.mapped('waiting_time_to_second')) / len(done_records), 1),
+            'avg_to_done': round(sum(done_records.mapped('waiting_time_to_done')) / len(done_records), 1),
+            'avg_total': round(sum(total_times) / len(total_times), 1),
+            'max_total': round(max(total_times), 1),
+            'min_total': round(min(total_times), 1),
+            'today_avg': round(sum(today_done.mapped('total_waiting_time')) / max(len(today_done), 1), 1),
+            'week_avg': round(sum(week_done.mapped('total_waiting_time')) / max(len(week_done), 1), 1),
+            'fast_count': fast,
+            'normal_count': normal,
+            'slow_count': slow
         }

@@ -6,11 +6,11 @@
                 <!-- Professional Header with Quick Actions -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="card shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                        <div class="card shadow-sm card-header bg-primary " >
                             <div class="card-body py-3">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h3 class="text-white mb-1"><i class="fa fa-tachometer-alt mr-2"/>Weighing Operations Dashboard</h3>
+                                        <h3 class="mb-1"><i class="fa fa-tachometer-alt mr-2"/>Weighing Operations Dashboard</h3>
                                         <!-- <p class="text-white-50 mb-0" style="font-size: 0.9rem;">Real-time monitoring and control center</p> -->
                                     </div>
                                     <div class="d-flex flex-wrap align-items-center" style="gap: 0.5rem;">
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="progress mb-2" style="height: 12px;">
                                     <div class="progress-bar bg-info" t-att-style="'width: ' + (state.data.all_records?.draft_percent || 0) + '%'"/>
-                                    <div class="progress-bar bg-primary" t-att-style="'width: ' + (state.data.all_records?.first_percent || 0) + '%'"/>
+                                    <div class="progress-bar bg-primary " t-att-style="'width: ' + (state.data.all_records?.first_percent || 0) + '%'"/>
                                     <div class="progress-bar bg-warning" t-att-style="'width: ' + (state.data.all_records?.second_percent || 0) + '%'"/>
                                     <div class="progress-bar bg-success" t-att-style="'width: ' + (state.data.all_records?.done_percent || 0) + '%'"/>
                                 </div>
@@ -121,78 +121,6 @@
                     </div>
                 </div>
 
-                <!-- Operations Section -->
-                <!-- <div class="row mb-4">
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card border-primary h-100 shadow-sm">
-                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
-                                <h5 class="m-2"><i class="fa fa-inbox m-2"/>Receipts to Weigh</h5>
-                                <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.receipts_to_weigh?.count || 0"/>
-                            </div>
-                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
-                                <i class="fa fa-inbox" style="font-size: 3rem;"/>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-center mb-3">
-                                    <h3 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.receipts_to_weigh?.total_qty || 0)" t-on-click="() => this.onCardAction('receipts_to_weigh')"/>
-                                    <small class="text-muted">Expected Weight</small>
-                                </div>
-                                <hr/>
-                                <div class="row text-center">
-                                    <div class="col-6">
-                                        <h5 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.receipts_to_weigh?.urgent_count || 0" t-on-click="() => this.onCardAction('receipts_urgent')"/>
-                                        <small class="text-muted">Urgent</small>
-                                    </div>
-                                    <div class="col-6">
-                                        <h5 class="text-info mb-0" style="cursor: pointer;" t-esc="state.data.receipts_to_weigh?.partners || 0" t-on-click="() => this.onCardAction('receipts_by_vendor')"/>
-                                        <small class="text-muted">Vendors</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary btn-sm btn-block" t-on-click="() => this.onCardAction('receipts_to_weigh')">
-                                    <i class="fa fa-list"/> View All Receipts
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card border-warning h-100 shadow-sm">
-                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
-                                <h5 class="m-2"><i class="fa fa-truck m-2"/>Deliveries to Weigh</h5>
-                                <span class="badge badge-dark" style="font-size: 1.5rem;" t-esc="state.data.deliveries_to_weigh?.count || 0"/>
-                            </div>
-                            <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
-                                <i class="fa fa-truck" style="font-size: 3rem;"/>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-center mb-3">
-                                    <h3 class="text-warning mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.deliveries_to_weigh?.total_qty || 0)" t-on-click="() => this.onCardAction('deliveries_to_weigh')"/>
-                                    <small class="text-muted">Expected Weight</small>
-                                </div>
-                                <hr/>
-                                <div class="row text-center">
-                                    <div class="col-6">
-                                        <h5 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.deliveries_to_weigh?.urgent_count || 0" t-on-click="() => this.onCardAction('deliveries_urgent')"/>
-                                        <small class="text-muted">Urgent</small>
-                                    </div>
-                                    <div class="col-6">
-                                        <h5 class="text-info mb-0" style="cursor: pointer;" t-esc="state.data.deliveries_to_weigh?.partners || 0" t-on-click="() => this.onCardAction('deliveries_by_customer')"/>
-                                        <small class="text-muted">Customers</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-warning btn-sm btn-block" t-on-click="() => this.onCardAction('deliveries_to_weigh')">
-                                    <i class="fa fa-list"/> View All Deliveries
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> -->
-
                 <!-- Weighing Records Section -->
                 <div class="row mb-4">
                     <div class="col-12">
@@ -203,8 +131,8 @@
                     
                     <!-- Awaiting Initial Weigh -->
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card border-info h-100 shadow-sm">
-                            <div class="card-header bg-info d-flex justify-content-between align-items-center">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
                                 <h5 class="m-2"><i class="fa fa-hourglass-start m-2"/>Awaiting Initial Weigh</h5>
                                 <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.draft_details?.incoming_count || 0) + (state.data.draft_details?.outgoing_count || 0)"/>
                             </div>
@@ -283,8 +211,8 @@
 
                     <!-- Second Weighing Captured -->
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card border-warning h-100 shadow-sm">
-                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary text-dark d-flex justify-content-between align-items-center">
                                 <h5 class="m-2"><i class="fa fa-clock m-2"/>Second Weighing Captured</h5>
                                 <span class="badge badge-dark" style="font-size: 1.5rem;" t-esc="(state.data.in_progress_incoming?.second_count || 0) + (state.data.in_progress_outgoing?.second_count || 0)"/>
                             </div>
@@ -322,8 +250,8 @@
 
                     <!-- All Records -->
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card border-success h-100 shadow-sm">
-                            <div class="card-header bg-success d-flex justify-content-between align-items-center">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
                                 <h5 class="m-2"><i class="fa fa-check-circle m-2"/>All Records</h5>
                                 <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.all_records?.total_count || 0"/>
                             </div>
@@ -344,7 +272,7 @@
                                     </div>
                                     <div class="progress" style="height: 20px;">
                                         <div class="progress-bar bg-info" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.draft_percent || 0) + '%'" t-att-title="'Draft: ' + (state.data.all_records?.draft_percent || 0) + '%'"/>
-                                        <div class="progress-bar bg-primary" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.first_percent || 0) + '%'" t-att-title="'First: ' + (state.data.all_records?.first_percent || 0) + '%'"/>
+                                        <div class="progress-bar bg-primary " role="progressbar" t-att-style="'width: ' + (state.data.all_records?.first_percent || 0) + '%'" t-att-title="'First: ' + (state.data.all_records?.first_percent || 0) + '%'"/>
                                         <div class="progress-bar bg-warning" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.second_percent || 0) + '%'" t-att-title="'Second: ' + (state.data.all_records?.second_percent || 0) + '%'"/>
                                         <div class="progress-bar bg-success" role="progressbar" t-att-style="'width: ' + (state.data.all_records?.done_percent || 0) + '%'" t-att-title="'Done: ' + (state.data.all_records?.done_percent || 0) + '%'"/>
                                     </div>
@@ -386,8 +314,8 @@
                     
                     <!-- Fulfillment Analysis Card -->
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card border-success h-100 shadow-sm">
-                            <div class="card-header bg-success d-flex justify-content-between align-items-center">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
                                 <h5 class="m-2"><i class="fa fa-chart-pie m-2"/>Fulfillment Analysis</h5>
                                 <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.stock_performance?.total_completed || 0"/>
                             </div>
@@ -406,7 +334,7 @@
                                     </div>
                                     <div class="progress" style="height: 20px;">
                                         <div class="progress-bar bg-success" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.high_fulfillment || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'High: ' + (state.data.stock_performance?.high_fulfillment || 0)"/>
-                                        <div class="progress-bar bg-primary" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.exact_match || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'Exact: ' + (state.data.stock_performance?.exact_match || 0)"/>
+                                        <div class="progress-bar bg-primary " role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.exact_match || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'Exact: ' + (state.data.stock_performance?.exact_match || 0)"/>
                                         <div class="progress-bar bg-info" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.over_delivered || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'Over: ' + (state.data.stock_performance?.over_delivered || 0)"/>
                                         <div class="progress-bar bg-warning" role="progressbar" t-att-style="'width: ' + ((state.data.stock_performance?.under_delivered || 0) / Math.max(state.data.stock_performance?.total_completed || 1, 1) * 100) + '%'" t-att-title="'Under: ' + (state.data.stock_performance?.under_delivered || 0)"/>
                                     </div>
@@ -483,8 +411,8 @@
                     
                     <!-- Accuracy & Variance Card -->
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card border-info h-100 shadow-sm">
-                            <div class="card-header bg-info d-flex justify-content-between align-items-center">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary d-flex justify-content-between align-items-center">
                                 <h5 class="m-2"><i class="fa fa-bullseye m-2"/>Accuracy and Variance</h5>
                                 <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="(state.data.stock_performance?.accuracy_rate || 0) + '%'"/>
                             </div>
@@ -521,6 +449,111 @@
                             <div class="card-footer">
                                 <button class="btn btn-info btn-sm btn-block" t-on-click="() => this.onCardAction('accuracy_rate')">
                                     <i class="fa fa-chart-bar"/> View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waiting Time Analysis Section -->
+                <div class="row mt-4 mb-4">
+                    <div class="col-12">
+                        <div class="section-header mb-3">
+                            <h4><i class="fa fa-hourglass-half m-2"/>Waiting Time Analysis</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary ">
+                                <h5 class="m-2"><i class="fa fa-clock m-2"/>Average Times</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-2">
+                                    <small class="text-muted">To First Weigh</small>
+                                    <h5 class="text-primary" t-esc="this.formatTime(state.data.waiting_time_analysis?.avg_to_first || 0)"/>
+                                </div>
+                                <div class="mb-2">
+                                    <small class="text-muted">To Second Weigh</small>
+                                    <h5 class="text-warning" t-esc="this.formatTime(state.data.waiting_time_analysis?.avg_to_second || 0)"/>
+                                </div>
+                                <div class="mb-2">
+                                    <small class="text-muted">To Done</small>
+                                    <h5 class="text-success" t-esc="this.formatTime(state.data.waiting_time_analysis?.avg_to_done || 0)"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary ">
+                                <h5 class="m-2"><i class="fa fa-chart-line m-2"/>Total Waiting Time</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3 class="text-primary mb-2" t-esc="this.formatTime(state.data.waiting_time_analysis?.avg_total || 0)"/>
+                                <small class="text-muted">Average Total</small>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="text-success" t-esc="this.formatTime(state.data.waiting_time_analysis?.min_total || 0)"/>
+                                        <small class="text-muted">Min</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="text-danger" t-esc="this.formatTime(state.data.waiting_time_analysis?.max_total || 0)"/>
+                                        <small class="text-muted">Max</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary ">
+                                <h5 class="m-2"><i class="fa fa-calendar m-2"/>Period Averages</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <h5 class="text-info" t-esc="this.formatTime(state.data.waiting_time_analysis?.today_avg || 0)"/>
+                                    <small class="text-muted">Today Average</small>
+                                </div>
+                                <hr/>
+                                <div>
+                                    <h5 class="text-success" t-esc="this.formatTime(state.data.waiting_time_analysis?.week_avg || 0)"/>
+                                    <small class="text-muted">Week Average</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card border-primary h-100 shadow-sm">
+                            <div class="card-header bg-primary  text-dark">
+                                <h5 class="m-2"><i class="fa fa-tachometer-alt m-2"/>Processing Speed</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-2" style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_fast')">
+                                    <div class="d-flex justify-content-between">
+                                        <small class="text-muted">Fast (&lt;30min)</small>
+                                        <span class="badge badge-success" t-esc="state.data.waiting_time_analysis?.fast_count || 0"/>
+                                    </div>
+                                </div>
+                                <div class="mb-2" style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_normal')">
+                                    <div class="d-flex justify-content-between">
+                                        <small class="text-muted">Normal (30-60min)</small>
+                                        <span class="badge badge-warning" t-esc="state.data.waiting_time_analysis?.normal_count || 0"/>
+                                    </div>
+                                </div>
+                                <div style="cursor: pointer;" t-on-click="() => this.onCardAction('waiting_time_slow')">
+                                    <div class="d-flex justify-content-between">
+                                        <small class="text-muted">Slow (&gt;60min)</small>
+                                        <span class="badge badge-danger" t-esc="state.data.waiting_time_analysis?.slow_count || 0"/>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <button class="btn btn-warning btn-sm btn-block" t-on-click="() => this.onCardAction('waiting_time_analysis')">
+                                    <i class="fa fa-chart-bar"/> View Analysis
                                 </button>
                             </div>
                         </div>
