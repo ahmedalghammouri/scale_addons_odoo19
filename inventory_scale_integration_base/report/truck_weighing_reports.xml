@@ -132,10 +132,10 @@
                             </div>
                         </div>
                         <div class="text-center" style="margin: 20px 0; padding: 15px; background: #27ae60; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
-                            <div style="font-size: 32px; font-weight: bold; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                            <div style="font-size: 32px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
                                 <span t-esc="'%.2f KG' % o.net_weight"/>
                             </div>
-                            <div style="font-size: 11px; color: #ecf0f1; margin-top: 5px;">NET WEIGHT</div>
+                            <div style="font-size: 11px;  margin-top: 5px;">NET WEIGHT</div>
                         </div>
                         <div class="text-center" style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #bdc3c7; font-size: 10px; color: #7f8c8d;">
                             <span t-field="o.weighing_date" t-options='{"widget": "datetime", "format": "yyyy-MM-dd HH:mm"}'/>
@@ -179,13 +179,13 @@
                                 <tr>
                                     <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Operation:</td>
                                     <td style="padding: 12px; border: 1px solid #dee2e6;">
-                                        <span t-if="o.operation_type == 'incoming'" style="background: #28a745; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;">INCOMING</span>
+                                        <span t-if="o.operation_type == 'incoming'" style="background: #28a745; padding: 3px 8px; border-radius: 3px; font-size: 11px;">INCOMING</span>
                                         <span t-if="o.operation_type == 'outgoing'" style="background: #ffc107; color: #212529; padding: 3px 8px; border-radius: 3px; font-size: 11px;">OUTGOING</span>
                                     </td>
                                     <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">State:</td>
                                     <td style="padding: 12px; border: 1px solid #dee2e6;">
-                                        <span t-if="o.state == 'done'" style="background: #28a745; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;">COMPLETED</span>
-                                        <span t-if="o.state != 'done'" style="background: #6c757d; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;" t-esc="o.state.upper()"/>
+                                        <span t-if="o.state == 'done'" style="background: #28a745; padding: 3px 8px; border-radius: 3px; font-size: 11px;">COMPLETED</span>
+                                        <span t-if="o.state != 'done'" style="background: #6c757d; padding: 3px 8px; border-radius: 3px; font-size: 11px;" t-esc="o.state.upper()"/>
                                     </td>
                                 </tr>
                             </table>
@@ -206,8 +206,8 @@
                                         <td style="padding: 10px; border: 1px solid #dee2e6;"><span t-field="o.tare_date" t-options='{"widget": "datetime"}'/></td>
                                     </tr>
                                     <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                        <td colspan="2" style="padding: 15px; border: 1px solid #dee2e6; font-weight: bold; color: white; font-size: 16px;">NET WEIGHT:</td>
-                                        <td colspan="2" style="padding: 15px; border: 1px solid #dee2e6; font-weight: bold; color: white; font-size: 18px;"><span t-esc="'%.2f KG' % o.net_weight"/></td>
+                                        <td colspan="2" style="padding: 15px; border: 1px solid #dee2e6; font-weight: bold; font-size: 16px;">NET WEIGHT:</td>
+                                        <td colspan="2" style="padding: 15px; border: 1px solid #dee2e6; font-weight: bold; font-size: 18px;"><span t-esc="'%.2f KG' % o.net_weight"/></td>
                                     </tr>
                                 </table>
                             </div>
@@ -235,7 +235,7 @@
             <t t-foreach="docs" t-as="o">
                 <div class="page" style="font-family: Arial, sans-serif; font-size: 10px; padding: 0;">
                     <div style="border: 2px solid #2c3e50; border-radius: 4px; padding: 8px; background: white;">
-                        <div class="text-center" style="background: #34495e; color: white; padding: 8px; margin: -8px -8px 8px -8px; border-radius: 2px 2px 0 0;">
+                        <div class="text-center" style="background: #34495e; padding: 8px; margin: -8px -8px 8px -8px; border-radius: 2px 2px 0 0;">
                             <h4 style="margin: 0; font-size: 14px; font-weight: bold;">WEIGHING TICKET</h4>
                         </div>
                         <div style="margin: 8px 0; line-height: 1.6;">
@@ -277,7 +277,7 @@
             <t t-foreach="docs" t-as="o">
                 <div class="page" style="font-family: Arial, sans-serif; padding: 0;">
                     <div style="border: 3px solid #2c3e50; border-radius: 6px; padding: 12px; text-align: center; background: white;">
-                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px; margin: -12px -12px 12px -12px; border-radius: 3px 3px 0 0;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 10px; margin: -12px -12px 12px -12px; border-radius: 3px 3px 0 0;">
                             <h3 style="margin: 0; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); color: #495057;">DRIVER TICKET</h3>
                         </div>
                         
