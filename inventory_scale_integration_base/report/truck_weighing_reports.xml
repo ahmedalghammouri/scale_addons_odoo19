@@ -3,26 +3,42 @@
     <!-- Paper Formats -->
     <record id="paperformat_label" model="report.paperformat">
         <field name="name">Label Format (A5 Landscape)</field>
-        <field name="default" eval="True"/>
+        <field name="default" eval="False"/>
         <field name="format">custom</field>
         <field name="page_height">148</field>
         <field name="page_width">210</field>
         <field name="orientation">Landscape</field>
-        <field name="margin_top">10</field>
-        <field name="margin_bottom">10</field>
-        <field name="margin_left">10</field>
-        <field name="margin_right">10</field>
+        <field name="margin_top">7</field>
+        <field name="margin_bottom">7</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
         <field name="header_line" eval="False"/>
-        <field name="header_spacing">5</field>
-        <field name="dpi">90</field>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
     </record>
 
     <record id="paperformat_ticket" model="report.paperformat">
         <field name="name">Ticket Format (80mm Thermal)</field>
-        <field name="default" eval="True"/>
+        <field name="default" eval="False"/>
         <field name="format">custom</field>
-        <field name="page_height">200</field>
+        <field name="page_height">297</field>
         <field name="page_width">80</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="paperformat_driver_ticket" model="report.paperformat">
+        <field name="name">Driver Ticket (A6 Portrait)</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_height">148</field>
+        <field name="page_width">105</field>
         <field name="orientation">Portrait</field>
         <field name="margin_top">5</field>
         <field name="margin_bottom">5</field>
@@ -30,23 +46,21 @@
         <field name="margin_right">5</field>
         <field name="header_line" eval="False"/>
         <field name="header_spacing">0</field>
-        <field name="dpi">90</field>
+        <field name="dpi">96</field>
     </record>
 
-    <record id="paperformat_driver_ticket" model="report.paperformat">
-        <field name="name">Driver Ticket (A6 Portrait)</field>
-        <field name="default" eval="True"/>
-        <field name="format">custom</field>
-        <field name="page_height">148</field>
-        <field name="page_width">105</field>
+    <record id="paperformat_certificate" model="report.paperformat">
+        <field name="name">Certificate Format (A4)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">8</field>
-        <field name="margin_bottom">8</field>
-        <field name="margin_left">8</field>
-        <field name="margin_right">8</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">25</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
         <field name="header_line" eval="False"/>
-        <field name="header_spacing">0</field>
-        <field name="dpi">90</field>
+        <field name="header_spacing">35</field>
+        <field name="dpi">96</field>
     </record>
 
     <!-- Weighing Label Report -->
@@ -70,6 +84,7 @@
         <field name="report_file">inventory_scale_integration_base.report_weighing_certificate</field>
         <field name="binding_model_id" ref="model_truck_weighing"/>
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_certificate"/>
     </record>
 
     <!-- Weighing Ticket Report -->
@@ -98,21 +113,32 @@
     <template id="report_weighing_label">
         <t t-call="web.basic_layout">
             <t t-foreach="docs" t-as="o">
-                <div class="page" style="font-size: 11px;">
-                    <div class="text-center" style="border: 3px solid black; padding: 15px; margin: 10px;">
-                        <h3 style="margin: 5px 0; font-size: 16px;"><strong t-esc="'WEIGHING LABEL'"/></h3>
-                        <div style="margin: 15px 0;">
-                            <div style="font-size: 18px; font-weight: bold;"><span t-esc="o.name"/></div>
+                <div class="page" style="font-family: Arial, sans-serif;">
+                    <div style="border: 3px solid #2c3e50; border-radius: 8px; padding: 20px; background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div class="text-center" style="border-bottom: 2px solid #3498db; padding-bottom: 12px; margin-bottom: 15px;">
+                            <h2 style="margin: 0; font-size: 22px; color: #2c3e50; font-weight: bold;">WEIGHING LABEL</h2>
                         </div>
-                        <div style="margin: 10px 0; font-size: 12px;">
-                            <div style="margin: 5px 0;"><strong t-esc="'Truck:'"/> <span t-esc="o.truck_plate"/></div>
-                            <div style="margin: 5px 0;"><strong t-esc="'Product:'"/> <span t-esc="o.product_id.name"/></div>
-                            <div style="margin: 15px 0; font-size: 20px; font-weight: bold;">
-                                <span t-esc="'%s KG' % o.net_weight"/>
+                        <div class="text-center" style="margin: 15px 0;">
+                            <div style="font-size: 20px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;">
+                                <span t-field="o.name"/>
                             </div>
-                            <div style="margin: 5px 0; font-size: 9px;">
-                                <span t-esc="o.weighing_date"/>
+                        </div>
+                        <div style="margin: 15px 0; font-size: 14px; line-height: 1.8;">
+                            <div style="margin: 8px 0; padding: 5px; background: #ecf0f1; border-radius: 4px;">
+                                <strong style="color: #34495e;">Truck:</strong> <span t-field="o.truck_plate" style="font-weight: 600;"/>
                             </div>
+                            <div style="margin: 8px 0; padding: 5px;">
+                                <strong style="color: #34495e;">Product:</strong> <span t-field="o.product_id"/>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin: 20px 0; padding: 15px; background: #27ae60; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                            <div style="font-size: 32px; font-weight: bold; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                                <span t-esc="'%.2f KG' % o.net_weight"/>
+                            </div>
+                            <div style="font-size: 11px; color: #ecf0f1; margin-top: 5px;">NET WEIGHT</div>
+                        </div>
+                        <div class="text-center" style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #bdc3c7; font-size: 10px; color: #7f8c8d;">
+                            <span t-field="o.weighing_date" t-options='{"widget": "datetime", "format": "yyyy-MM-dd HH:mm"}'/>
                         </div>
                     </div>
                 </div>
@@ -124,52 +150,78 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <div class="page">
-                        <h2 class="text-center">WEIGHING CERTIFICATE</h2>
-                        <div style="margin-top: 30px;">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td><strong>Reference:</strong></td>
-                                    <td><span t-field="o.name"/></td>
-                                    <td><strong>Date:</strong></td>
-                                    <td><span t-field="o.weighing_date"/></td>
+                    <div class="page" style="font-family: Arial, sans-serif;">
+                        <div class="text-center" style="margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <h1 style="margin: 0; font-size: 28px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">WEIGHING CERTIFICATE</h1>
+                            <p style="margin: 5px 0 0 0; font-size: 12px;">Official Weight Measurement Document</p>
+                        </div>
+                        
+                        <div style="margin-top: 25px;">
+                            <table class="table table-sm" style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                                <tr style="background: #f8f9fa;">
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; width: 25%; font-weight: 600; color: #495057;">Reference:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; width: 25%;"><span t-field="o.name" style="font-weight: 600; color: #2c3e50;"/></td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; width: 25%; font-weight: 600; color: #495057;">Date:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; width: 25%;"><span t-field="o.weighing_date" t-options='{"widget": "datetime"}'/></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Truck Plate:</strong></td>
-                                    <td><span t-field="o.truck_plate"/></td>
-                                    <td><strong>Driver:</strong></td>
-                                    <td><span t-field="o.driver_name"/></td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Truck Plate:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6;"><span t-field="o.truck_plate" style="font-weight: 600;"/></td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Driver:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6;"><span t-field="o.driver_name"/></td>
+                                </tr>
+                                <tr style="background: #f8f9fa;">
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Partner:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6;"><span t-field="o.partner_id"/></td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Product:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6;"><span t-field="o.product_id"/></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Partner:</strong></td>
-                                    <td><span t-field="o.partner_id"/></td>
-                                    <td><strong>Product:</strong></td>
-                                    <td><span t-field="o.product_id"/></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Gross Weight:</strong></td>
-                                    <td><span t-field="o.gross_weight"/> KG</td>
-                                    <td><strong>Gross Date:</strong></td>
-                                    <td><span t-field="o.gross_date"/></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Tare Weight:</strong></td>
-                                    <td><span t-field="o.tare_weight"/> KG</td>
-                                    <td><strong>Tare Date:</strong></td>
-                                    <td><span t-field="o.tare_date"/></td>
-                                </tr>
-                                <tr style="background-color: #f0f0f0;">
-                                    <td colspan="2"><strong>Net Weight:</strong></td>
-                                    <td colspan="2"><strong><span t-field="o.net_weight"/> KG</strong></td>
-                                </tr>
-                                <tr t-if="o.scale_id">
-                                    <td><strong>Scale:</strong></td>
-                                    <td colspan="3"><span t-field="o.scale_id"/></td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Operation:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6;">
+                                        <span t-if="o.operation_type == 'incoming'" style="background: #28a745; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;">INCOMING</span>
+                                        <span t-if="o.operation_type == 'outgoing'" style="background: #ffc107; color: #212529; padding: 3px 8px; border-radius: 3px; font-size: 11px;">OUTGOING</span>
+                                    </td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">State:</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6;">
+                                        <span t-if="o.state == 'done'" style="background: #28a745; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;">COMPLETED</span>
+                                        <span t-if="o.state != 'done'" style="background: #6c757d; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;" t-esc="o.state.upper()"/>
+                                    </td>
                                 </tr>
                             </table>
-                            <div t-if="o.notes" style="margin-top: 20px;">
-                                <strong>Notes:</strong>
-                                <p><span t-field="o.notes"/></p>
+                            
+                            <div style="margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db;">
+                                <h4 style="margin: 0 0 15px 0; color: #2c3e50; font-size: 16px;">Weight Measurements</h4>
+                                <table class="table table-sm" style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                                    <tr>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6; width: 25%; font-weight: 600; color: #495057;">Gross Weight:</td>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6; width: 25%; font-weight: 600; color: #e74c3c;"><span t-esc="'%.2f KG' % o.gross_weight"/></td>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6; width: 25%; font-weight: 600; color: #495057;">Gross Date:</td>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6; width: 25%;"><span t-field="o.gross_date" t-options='{"widget": "datetime"}'/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Tare Weight:</td>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: 600; color: #f39c12;"><span t-esc="'%.2f KG' % o.tare_weight"/></td>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: 600; color: #495057;">Tare Date:</td>
+                                        <td style="padding: 10px; border: 1px solid #dee2e6;"><span t-field="o.tare_date" t-options='{"widget": "datetime"}'/></td>
+                                    </tr>
+                                    <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                        <td colspan="2" style="padding: 15px; border: 1px solid #dee2e6; font-weight: bold; color: white; font-size: 16px;">NET WEIGHT:</td>
+                                        <td colspan="2" style="padding: 15px; border: 1px solid #dee2e6; font-weight: bold; color: white; font-size: 18px;"><span t-esc="'%.2f KG' % o.net_weight"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <table class="table table-sm" style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 20px;">
+                                <tr t-if="o.scale_id" style="background: #f8f9fa;">
+                                    <td style="padding: 10px; border: 1px solid #dee2e6; width: 25%; font-weight: 600; color: #495057;">Scale:</td>
+                                    <td colspan="3" style="padding: 10px; border: 1px solid #dee2e6;"><span t-field="o.scale_id"/></td>
+                                </tr>
+                            </table>
+                            
+                            <div t-if="o.notes" style="margin-top: 25px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+                                <strong style="color: #856404; font-size: 14px;">Notes:</strong>
+                                <p style="margin: 8px 0 0 0; color: #856404;"><span t-field="o.notes"/></p>
                             </div>
                         </div>
                     </div>
@@ -181,34 +233,36 @@
     <template id="report_weighing_ticket">
         <t t-call="web.basic_layout">
             <t t-foreach="docs" t-as="o">
-                <div class="page" style="font-size: 8px; padding: 2px;">
-                    <div style="border: 1px solid black; padding: 5px;">
-                        <h4 class="text-center" style="margin: 3px 0; font-size: 10px;"><strong>WEIGHING TICKET</strong></h4>
-                        <hr style="margin: 3px 0;"/>
-                        <div style="margin: 3px 0;">
-                            <div style="margin: 2px 0;"><strong>Ticket:</strong> <span t-esc="o.name"/></div>
-                            <div style="margin: 2px 0;"><strong>Date:</strong> <span t-esc="o.weighing_date"/></div>
-                            <div style="margin: 2px 0;"><strong>Truck:</strong> <span t-esc="o.truck_plate"/></div>
-                            <div style="margin: 2px 0;"><strong>Driver:</strong> <span t-esc="o.driver_name"/></div>
-                            <div style="margin: 2px 0;"><strong>Partner:</strong> <span t-esc="o.partner_id.name"/></div>
-                            <div style="margin: 2px 0;"><strong>Product:</strong> <span t-esc="o.product_id.name"/></div>
+                <div class="page" style="font-family: Arial, sans-serif; font-size: 10px; padding: 0;">
+                    <div style="border: 2px solid #2c3e50; border-radius: 4px; padding: 8px; background: white;">
+                        <div class="text-center" style="background: #34495e; color: white; padding: 8px; margin: -8px -8px 8px -8px; border-radius: 2px 2px 0 0;">
+                            <h4 style="margin: 0; font-size: 14px; font-weight: bold;">WEIGHING TICKET</h4>
                         </div>
-                        <hr style="margin: 3px 0;"/>
-                        <table style="width: 100%; font-size: 8px; margin: 3px 0;">
-                            <tr>
-                                <td>Gross:</td>
-                                <td style="text-align: right;"><strong><span t-esc="o.gross_weight"/> KG</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Tare:</td>
-                                <td style="text-align: right;"><strong><span t-esc="o.tare_weight"/> KG</strong></td>
-                            </tr>
-                            <tr style="border-top: 1px solid black;">
-                                <td><strong>Net:</strong></td>
-                                <td style="text-align: right;"><strong style="font-size: 11px;"><span t-esc="o.net_weight"/> KG</strong></td>
-                            </tr>
-                        </table>
-                        <div class="text-center" style="margin-top: 5px; font-size: 6px;">
+                        <div style="margin: 8px 0; line-height: 1.6;">
+                            <div style="margin: 4px 0; padding: 3px; background: #ecf0f1; border-radius: 2px;"><strong style="color: #2c3e50;">Ticket:</strong> <span t-field="o.name" style="font-weight: 600;"/></div>
+                            <div style="margin: 4px 0; padding: 3px;"><strong style="color: #2c3e50;">Date:</strong> <span t-field="o.weighing_date" t-options='{"widget": "datetime", "format": "yyyy-MM-dd HH:mm"}'/></div>
+                            <div style="margin: 4px 0; padding: 3px; background: #ecf0f1; border-radius: 2px;"><strong style="color: #2c3e50;">Truck:</strong> <span t-field="o.truck_plate" style="font-weight: 600;"/></div>
+                            <div style="margin: 4px 0; padding: 3px;"><strong style="color: #2c3e50;">Driver:</strong> <span t-field="o.driver_name"/></div>
+                            <div style="margin: 4px 0; padding: 3px; background: #ecf0f1; border-radius: 2px;"><strong style="color: #2c3e50;">Partner:</strong> <span t-field="o.partner_id"/></div>
+                            <div style="margin: 4px 0; padding: 3px;"><strong style="color: #2c3e50;">Product:</strong> <span t-field="o.product_id"/></div>
+                        </div>
+                        <div style="border-top: 2px dashed #bdc3c7; margin: 8px 0; padding-top: 8px;">
+                            <table style="width: 100%; font-size: 11px;">
+                                <tr style="background: #ecf0f1;">
+                                    <td style="padding: 5px;">Gross:</td>
+                                    <td style="text-align: right; padding: 5px; font-weight: 600; color: #e74c3c;"><span t-esc="'%.2f KG' % o.gross_weight"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;">Tare:</td>
+                                    <td style="text-align: right; padding: 5px; font-weight: 600; color: #f39c12;"><span t-esc="'%.2f KG' % o.tare_weight"/></td>
+                                </tr>
+                                <tr style="background: #27ae60; color: white;">
+                                    <td style="padding: 8px; font-weight: bold;">NET:</td>
+                                    <td style="text-align: right; padding: 8px; font-weight: bold; font-size: 14px;"><span t-esc="'%.2f KG' % o.net_weight"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="text-center" style="margin-top: 8px; padding-top: 6px; border-top: 1px solid #ecf0f1; font-size: 8px; color: #95a5a6;">
                             <span>Computer-generated document</span>
                         </div>
                     </div>
@@ -221,32 +275,40 @@
     <template id="report_driver_ticket">
         <t t-call="web.basic_layout">
             <t t-foreach="docs" t-as="o">
-                <div class="page" style="font-size: 9px; padding: 3px;">
-                    <div style="border: 2px solid black; padding: 8px; text-align: center;">
-                        <h4 style="margin: 3px 0; font-size: 12px;"><strong t-esc="'DRIVER TICKET'"/></h4>
-                        <hr style="border-top: 1px solid black; margin: 5px 0;"/>
+                <div class="page" style="font-family: Arial, sans-serif; padding: 0;">
+                    <div style="border: 3px solid #2c3e50; border-radius: 6px; padding: 12px; text-align: center; background: white;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px; margin: -12px -12px 12px -12px; border-radius: 3px 3px 0 0;">
+                            <h3 style="margin: 0; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); color: #495057;">DRIVER TICKET</h3>
+                        </div>
                         
-                        <div style="margin: 8px 0;">
-                            <div style="font-size: 10px; margin: 5px 0;">
-                                <strong t-esc="'Weighing #:'"/> <span t-esc="o.name" style="font-size: 12px; font-weight: bold;"/>
+                        <div style="margin: 12px 0; padding: 10px; background: #f8f9fa; border-radius: 4px;">
+                            <div style="font-size: 12px; margin: 6px 0; color: #495057;">
+                                <strong style="color: #2c3e50;">Weighing #:</strong> <span t-field="o.name" style="font-size: 14px; font-weight: bold; color: #667eea;"/>
                             </div>
-                            <div style="font-size: 10px; margin: 5px 0;">
-                                <strong t-esc="'Truck:'"/> <span t-esc="o.truck_plate" style="font-size: 12px; font-weight: bold;"/>
+                            <div style="font-size: 12px; margin: 6px 0; color: #495057;">
+                                <strong style="color: #2c3e50;">Truck:</strong> <span t-field="o.truck_plate" style="font-size: 14px; font-weight: bold; color: #2c3e50;"/>
                             </div>
                         </div>
 
                         <!-- Barcode (force LTR for proper rendering) -->
-                        <div style="margin: 10px 0; direction: ltr;">
-                            <img t-att-src="'/report/barcode/Code128/%s?width=300&amp;height=50&amp;humanreadable=1' % o.name" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" alt="Barcode"/>
+                        <div style="margin: 15px 0; padding: 10px; background: white; border: 2px dashed #dee2e6; border-radius: 4px; direction: ltr;">
+                            <img t-att-src="'/report/barcode/Code128/%s?width=300&amp;height=60&amp;humanreadable=1' % o.name" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" alt="Barcode"/>
                         </div>
 
-                        <div style="margin: 8px 0; font-size: 9px;">
-                            <div style="margin: 3px 0;"><strong t-esc="'Date:'"/> <span t-esc="o.gross_date"/></div>
-                            <div style="margin: 3px 0;"><strong t-esc="'Gross:'"/> <span t-esc="'%s KG' % o.gross_weight"/></div>
+                        <div style="margin: 12px 0; font-size: 11px; line-height: 1.8;">
+                            <div style="margin: 5px 0; padding: 5px; background: #ecf0f1; border-radius: 3px;">
+                                <strong style="color: #2c3e50;">Date:</strong> <span t-field="o.gross_date" t-options='{"widget": "datetime", "format": "yyyy-MM-dd HH:mm"}'/>
+                            </div>
+                            <div style="margin: 5px 0; padding: 5px;">
+                                <strong style="color: #2c3e50;">First Weight:</strong> 
+                                <span t-if="o.operation_type == 'incoming'" style="font-weight: 600; color: #e74c3c;">Gross: <span t-esc="'%.2f KG' % o.gross_weight"/></span>
+                                <span t-if="o.operation_type == 'outgoing'" style="font-weight: 600; color: #f39c12;">Tare: <span t-esc="'%.2f KG' % o.tare_weight"/></span>
+                            </div>
                         </div>
 
-                        <hr style="border-top: 1px solid black; margin: 5px 0;"/>
-                        <p style="margin: 3px 0; font-size: 7px;" t-esc="'Present for tare weighing'"/>
+                        <div style="border-top: 2px solid #dee2e6; margin: 12px -12px -12px -12px; padding: 10px 12px; background: #f8f9fa; border-radius: 0 0 3px 3px;">
+                            <p style="margin: 0; font-size: 9px; color: #6c757d; font-style: italic;">Present this ticket for second weighing</p>
+                        </div>
                     </div>
                 </div>
             </t>

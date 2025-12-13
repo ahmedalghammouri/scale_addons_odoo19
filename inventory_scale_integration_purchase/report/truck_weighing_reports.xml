@@ -12,8 +12,10 @@
 
     <!-- Extend Driver Ticket to include Purchase info -->
     <template id="report_driver_ticket" inherit_id="inventory_scale_integration_base.report_driver_ticket">
-        <xpath expr="//div[@style='margin: 8px 0; font-size: 9px;']" position="inside">
-            <div t-if="o.purchase_order_id" style="margin: 3px 0;"><strong>PO:</strong> <span t-esc="o.purchase_order_id.name"/></div>
+        <xpath expr="//div[@style='margin: 12px 0; font-size: 11px; line-height: 1.8;']" position="inside">
+            <div t-if="o.purchase_order_id" style="margin: 5px 0; padding: 5px; background: #ecf0f1; border-radius: 3px;">
+                <strong style="color: #2c3e50;">PO:</strong> <span t-esc="o.purchase_order_id.name" style="font-weight: 600;"/>
+            </div>
         </xpath>
     </template>
 </odoo>
