@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="inventory_scale_integration_stock_out.WeighingDashboardTemplate" owl="1">
+        <div class="o_weighing_dashboard">
+            <div class="container-fluid" t-if="!state.loading">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card shadow-sm" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); border: none;">
+                            <div class="card-body py-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h3 class="text-white mb-1"><i class="fa fa-truck mr-2"/>Outgoing Weighing Dashboard</h3>
+                                    </div>
+                                    <button class="btn btn-light btn-sm" t-on-click="refreshData">
+                                        <i class="fa fa-sync-alt"/>Refresh
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="card border-warning h-100 shadow-sm">
+                            <div class="card-header bg-warning">
+                                <h5 class="m-2"><i class="fa fa-truck m-2"/>Deliveries to Weigh</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3 class="text-warning" t-esc="state.data.deliveries_to_weigh?.count || 0"/>
+                                <p class="text-muted">Pending Deliveries</p>
+                                <hr/>
+                                <h4 t-esc="formatWeight(state.data.deliveries_to_weigh?.total_qty || 0)"/>
+                                <small class="text-muted">Expected Weight</small>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-warning btn-sm btn-block" t-on-click="() => this.onCardAction('deliveries_to_weigh')">
+                                    View All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <div class="card border-info h-100 shadow-sm">
+                            <div class="card-header bg-info">
+                                <h5 class="m-2"><i class="fa fa-hourglass-half m-2"/>In Progress</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3 class="text-info" t-esc="state.data.in_progress_outgoing?.count || 0"/>
+                                <p class="text-muted">Active Weighings</p>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <h5 t-esc="state.data.in_progress_outgoing?.draft_count || 0"/>
+                                        <small>Draft</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 t-esc="state.data.in_progress_outgoing?.first_count || 0"/>
+                                        <small>1st</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 t-esc="state.data.in_progress_outgoing?.second_count || 0"/>
+                                        <small>2nd</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-info btn-sm btn-block" t-on-click="() => this.onCardAction('in_progress_outgoing')">
+                                    View All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <div class="card border-success h-100 shadow-sm">
+                            <div class="card-header bg-success">
+                                <h5 class="m-2"><i class="fa fa-check-circle m-2"/>All Records</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3 class="text-success" t-esc="state.data.all_records?.total_count || 0"/>
+                                <p class="text-muted">Total Outgoing</p>
+                                <hr/>
+                                <h4 t-esc="formatWeight(state.data.all_records?.total_weight_today || 0)"/>
+                                <small class="text-muted">Today's Weight</small>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-success btn-sm btn-block" t-on-click="() => this.onCardAction('all_records')">
+                                    View All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center p-5" t-if="state.loading">
+                <i class="fa fa-spinner fa-spin fa-3x text-muted"/>
+                <p class="mt-3 text-muted">Loading dashboard data...</p>
+            </div>
+        </div>
+    </t>
+</templates>

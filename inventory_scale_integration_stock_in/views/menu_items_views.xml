@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_receipts_need_weighing" model="ir.actions.act_window">
+        <field name="name">Receipts Need Weighing</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('picking_type_code', '=', 'incoming'), ('state', 'in', ['assigned', 'confirmed']), ('move_ids.product_id.is_weighable', '=', True)]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_truck_weighing_incoming" model="ir.actions.act_window">
+        <field name="name">Incoming Weighing</field>
+        <field name="res_model">truck.weighing</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('operation_type', '=', 'incoming')]</field>
+        <field name="context">{'default_operation_type': 'incoming'}</field>
+    </record>
+
+    <record id="action_truck_weighing_incoming_progress" model="ir.actions.act_window">
+        <field name="name">In Progress (Incoming)</field>
+        <field name="res_model">truck.weighing</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', 'in', ['draft', 'first', 'second']), ('operation_type', '=', 'incoming')]</field>
+        <field name="context">{'default_operation_type': 'incoming'}</field>
+    </record>
+
+    <menuitem id="menu_weighing_incoming_root" name="Incoming Weighing" parent="inventory_scale_integration_base.menu_truck_weighing_root" sequence="10"/>
+    <menuitem id="menu_receipts_need_weighing" name="Receipts to Weigh" parent="menu_weighing_incoming_root" action="action_receipts_need_weighing" sequence="1"/>
+    <menuitem id="menu_truck_weighing_incoming_progress" name="In Progress" parent="menu_weighing_incoming_root" action="action_truck_weighing_incoming_progress" sequence="2"/>
+    <menuitem id="menu_truck_weighing_incoming" name="All Incoming Records" parent="menu_weighing_incoming_root" action="action_truck_weighing_incoming" sequence="3"/>
+    <menuitem id="menu_weighing_overview_in" name="Incoming Overview" parent="menu_weighing_incoming_root" action="action_weighing_overview_dashboard_in" sequence="4"/>
+</odoo>

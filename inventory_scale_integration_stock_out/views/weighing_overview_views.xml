@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_weighing_overview_dashboard_out" model="ir.actions.client">
+        <field name="name">Outgoing Weighing Overview</field>
+        <field name="tag">weighing_overview_dashboard_out</field>
+    </record>
+</odoo>
