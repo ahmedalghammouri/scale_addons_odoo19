@@ -1,0 +1,768 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * inventory_scale_integration_zpl
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-13 00:38+0000\n"
+"PO-Revision-Date: 2025-12-13 00:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "/dev/usb/lp0 or COM1"
+msgstr "/dev/usb/lp0 أو COM1"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__darkness
+msgid "0-30, higher = darker"
+msgstr "0-30، الأعلى يعني أغمق"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "192.168.1.100"
+msgstr "192.168.1.100"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__dpi__203
+msgid "203 DPI"
+msgstr "203 نقطة في البوصة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__dpi__300
+msgid "300 DPI"
+msgstr "300 نقطة في البوصة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__dpi__600
+msgid "600 DPI"
+msgstr "600 نقطة في البوصة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_needaction
+msgid "Action Needed"
+msgstr "يتطلب إجراء"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "تزيين استثناء النشاط"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Additional printer information..."
+msgstr "معلومات إضافية عن الطابعة..."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__scale_ids
+msgid "Assigned Scales"
+msgstr "الموازين المخصصة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__user_ids
+msgid "Assigned Users"
+msgstr "المستخدمون المخصصون"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_res_users__assigned_zpl_printer_ids
+msgid "Assigned ZPL Printers"
+msgstr "طابعات ZPL المخصصة"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Assignments"
+msgstr "التخصيصات"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Auto-Print Settings"
+msgstr "إعدادات الطباعة التلقائية"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__auto_print_certificate
+msgid "Auto-print Certificate"
+msgstr "طباعة الشهادة تلقائياً"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__auto_print_label
+msgid "Auto-print Label"
+msgstr "طباعة الملصق تلقائياً"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__auto_print_ticket
+msgid "Auto-print Ticket"
+msgstr "طباعة التذكرة تلقائياً"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__print_type__certificate
+msgid "Certificate"
+msgstr "الشهادة"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+msgid "Certificate sent to printer: %s"
+msgstr "تم إرسال الشهادة إلى الطابعة: %s"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__connection_status__connected
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_search
+msgid "Connected"
+msgstr "متصل"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Connection"
+msgstr "الاتصال"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+msgid "Connection Failed"
+msgstr "فشل الاتصال"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__connection_type
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_search
+msgid "Connection Type"
+msgstr "نوع الاتصال"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__create_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__create_uid
+msgid "Created by"
+msgstr "تم الإنشاء بواسطة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__create_date
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__print_type__custom
+msgid "Custom"
+msgstr "مخصص"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__darkness
+msgid "Darkness"
+msgstr "القتامة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_res_users__default_zpl_printer_id
+msgid "Default ZPL Printer"
+msgstr "طابعة ZPL الافتراضية"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Disable"
+msgstr "تعطيل"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_search
+msgid "Disabled"
+msgstr "معطل"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__connection_status__disconnected
+msgid "Disconnected"
+msgstr "غير متصل"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_res_users__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_truck_weighing__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_weighing_scale__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__state__done
+msgid "Done"
+msgstr "تم"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Enable"
+msgstr "تفعيل"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__support_arabic
+msgid ""
+"Enable if printer has Arabic fonts installed. Disable to skip Arabic text "
+"fields."
+msgstr ""
+"تفعيل إذا كانت الطابعة تحتوي على خطوط عربية مثبتة. تعطيل لتخطي حقول النص "
+"العربي."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__is_enabled
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_search
+msgid "Enabled"
+msgstr "مفعل"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__connection_status__error
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_search
+msgid "Error"
+msgstr "خطأ"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Error Log"
+msgstr "سجل الأخطاء"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__error_message
+msgid "Error Message"
+msgstr "رسالة الخطأ"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__state__failed
+msgid "Failed"
+msgstr "فشل"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__print_speed__6
+msgid "Fast (6 ips)"
+msgstr "سريع (6 بوصات/ثانية)"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font awesome مثال fa-tasks"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__has_message
+msgid "Has Message"
+msgstr "يوجد رسالة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_res_users__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_truck_weighing__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_weighing_scale__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__ip_address
+msgid "IP Address"
+msgstr "عنوان IP"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+msgid "IP Address and Port are required for network printers."
+msgstr "عنوان IP والمنفذ مطلوبان لطابعات الشبكة."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثنائي."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم التحقق، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__message_has_error
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم التحقق، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__name
+msgid "Job Name"
+msgstr "اسم المهمة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__print_type__label
+msgid "Label"
+msgstr "ملصق"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__label_height
+msgid "Label Height (mm)"
+msgstr "ارتفاع الملصق (مم)"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__label_width
+msgid "Label Width (mm)"
+msgstr "عرض الملصق (مم)"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+msgid "Label sent to printer: %s"
+msgstr "تم إرسال الملصق إلى الطابعة: %s"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__last_check_date
+msgid "Last Check"
+msgstr "آخر فحص"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__error_message
+msgid "Last Error"
+msgstr "آخر خطأ"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__write_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__write_date
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__write_date
+msgid "Last Updated on"
+msgstr "تاريخ آخر تحديث"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__print_speed__4
+msgid "Medium (4 ips)"
+msgstr "متوسط (4 بوصات/ثانية)"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لـ 'نشاطي'"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__connection_type__network
+msgid "Network (IP)"
+msgstr "الشبكة (IP)"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+msgid "No ZPL printer configured."
+msgstr "لم يتم تهيئة طابعة ZPL."
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+msgid "No ZPL printer configured. Please configure a printer first."
+msgstr "لم يتم تهيئة طابعة ZPL. يرجى تهيئة طابعة أولاً."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__notes
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__state__pending
+msgid "Pending"
+msgstr "معلق"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__port
+msgid "Port"
+msgstr "المنفذ"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_list
+msgid "Print"
+msgstr "طباعة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__print_date
+msgid "Print Date"
+msgstr "تاريخ الطباعة"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_form
+msgid "Print Job"
+msgstr "مهمة الطباعة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_truck_weighing__print_job_count
+msgid "Print Job Count"
+msgstr "عدد مهام الطباعة"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+#: model:ir.actions.act_window,name:inventory_scale_integration_zpl.action_zpl_print_job
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_truck_weighing__print_job_ids
+#: model:ir.ui.menu,name:inventory_scale_integration_zpl.menu_zpl_print_jobs
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_list
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Print Jobs"
+msgstr "مهام الطباعة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__print_speed
+msgid "Print Speed"
+msgstr "سرعة الطباعة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__print_type
+msgid "Print Type"
+msgstr "نوع الطباعة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__printer_id
+msgid "Printer"
+msgstr "الطابعة"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+msgid "Printer '%s' is disabled."
+msgstr "الطابعة '%s' معطلة."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__name
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Printer Name"
+msgstr "اسم الطابعة"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Printer Settings"
+msgstr "إعدادات الطابعة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_weighing_scale__zpl_printer_ids
+msgid "Printers assigned to this scale"
+msgstr "الطابعات المخصصة لهذا الميزان"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__state__printing
+msgid "Printing"
+msgstr "جاري الطباعة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__dpi
+msgid "Resolution"
+msgstr "الدقة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_form
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_list
+msgid "Retry"
+msgstr "إعادة المحاولة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل النصية القصيرة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__print_speed__2
+msgid "Slow (2 ips)"
+msgstr "بطيء (2 بوصة/ثانية)"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__state
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__connection_status
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Status"
+msgstr "الحالة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد مر بالفعل\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+msgid "Success"
+msgstr "نجاح"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__support_arabic
+msgid "Support Arabic Text"
+msgstr "دعم النص العربي"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "Test Connection"
+msgstr "اختبار الاتصال"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+msgid "Test print sent successfully!"
+msgstr "تم إرسال الطباعة التجريبية بنجاح!"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_print_job__print_type__ticket
+msgid "Ticket"
+msgstr "تذكرة"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+msgid "Ticket sent to printer: %s"
+msgstr "تم إرسال التذكرة إلى الطابعة: %s"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__print_count
+msgid "Total Prints"
+msgstr "إجمالي عدد المطبوعات"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model,name:inventory_scale_integration_zpl.model_truck_weighing
+msgid "Truck Weighing Record"
+msgstr "سجل وزن الشاحنة"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي على السجل."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__usb_device
+msgid "USB Device Path"
+msgstr "مسار جهاز USB"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+msgid "USB Device Path is required for USB printers."
+msgstr "مسار جهاز USB مطلوب لطابعات USB."
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__connection_type__usb
+msgid "USB/Serial"
+msgstr "USB/تسلسلي"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model,name:inventory_scale_integration_zpl.model_res_users
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields.selection,name:inventory_scale_integration_zpl.selection__zpl_printer__print_speed__8
+msgid "Very Fast (8 ips)"
+msgstr "سريع جداً (8 بوصات/ثانية)"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_printer__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__website_message_ids
+msgid "Website communication history"
+msgstr "سجل التواصل عبر الموقع"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__weighing_id
+msgid "Weighing Record"
+msgstr "سجل الوزن"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model,name:inventory_scale_integration_zpl.model_weighing_scale
+msgid "Weighing Scale Configuration"
+msgstr "إعدادات ميزان الوزن"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_zpl_print_job__zpl_code
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_print_job_view_form
+msgid "ZPL Code"
+msgstr "رمز ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model,name:inventory_scale_integration_zpl.model_zpl_print_job
+msgid "ZPL Print Job"
+msgstr "مهمة طباعة ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_truck_weighing__zpl_printer_id
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "ZPL Printer"
+msgstr "طابعة ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.actions.act_window,name:inventory_scale_integration_zpl.action_zpl_printer
+#: model:ir.model.fields,field_description:inventory_scale_integration_zpl.field_weighing_scale__zpl_printer_ids
+#: model:ir.ui.menu,name:inventory_scale_integration_zpl.menu_zpl_printers
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.weighing_scale_view_form_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_list
+msgid "ZPL Printers"
+msgstr "طابعات ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model,name:inventory_scale_integration_zpl.model_zpl_printer
+msgid "ZPL Thermal Printer"
+msgstr "طابعة ZPL حرارية"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.zpl_printer_view_form
+msgid "e.g. Zebra ZT230"
+msgstr "مثال: Zebra ZT230"
+
+#. module: inventory_scale_integration_zpl
+#: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__usb_device
+msgid "e.g., /dev/usb/lp0 or COM1"
+msgstr "مثال: /dev/usb/lp0 أو COM1"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/zpl_printer.py:0
+msgid "printer_id"
+msgstr "معرف_الطابعة"
+
+#. module: inventory_scale_integration_zpl
+#. odoo-python
+#: code:addons/inventory_scale_integration_zpl/models/truck_weighing.py:0
+msgid "weighing_id"
+msgstr "معرف_الوزن"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.truck_weighing_view_form_zpl
+msgid "🎫 ZPL Ticket"
+msgstr "🎫 تذكرة ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.truck_weighing_view_form_zpl
+msgid "📄 ZPL Certificate"
+msgstr "📄 شهادة ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.truck_weighing_view_form_cashier_zpl
+msgid "🖨️ ZPL Certificate"
+msgstr "🖨️ شهادة ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.truck_weighing_view_form_cashier_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.truck_weighing_view_form_zpl
+msgid "🖨️ ZPL Label"
+msgstr "🖨️ ملصق ZPL"
+
+#. module: inventory_scale_integration_zpl
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_zpl.truck_weighing_view_form_cashier_zpl
+msgid "🖨️ ZPL Ticket"
+msgstr "🖨️ تذكرة ZPL"

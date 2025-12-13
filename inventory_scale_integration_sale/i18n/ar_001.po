@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 23:21+0000\n"
-"PO-Revision-Date: 2025-12-11 23:21+0000\n"
+"POT-Creation-Date: 2025-12-13 00:29+0000\n"
+"PO-Revision-Date: 2025-12-13 00:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,8 +41,8 @@ msgstr "<span class=\"o_stat_text\">وزن</span>"
 
 #. module: inventory_scale_integration_sale
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.report_driver_ticket
-msgid "<strong>SO:</strong>"
-msgstr "<strong>أمر البيع:</strong>"
+msgid "<strong style=\"color: #2c3e50;\">SO:</strong>"
+msgstr "<strong style=\"color: #2c3e50;\">أمر البيع:</strong>"
 
 #. module: inventory_scale_integration_sale
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.report_weighing_certificate
@@ -71,7 +71,8 @@ msgstr "تسليمات للوزن"
 msgid ""
 "Delivery orders with weighable products will appear here when they are "
 "ready."
-msgstr "ستظهر هنا أوامر التسليم التي تحتوي على منتجات قابلة للوزن عندما تكون جاهزة."
+msgstr ""
+"ستظهر هنا أوامر التسليم التي تحتوي على منتجات قابلة للوزن عندما تكون جاهزة."
 
 #. module: inventory_scale_integration_sale
 #: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__display_name
@@ -80,6 +81,12 @@ msgstr "ستظهر هنا أوامر التسليم التي تحتوي على �
 #: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_weighing_overview__display_name
 msgid "Display Name"
 msgstr "اسم العرض"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "Expected Weight"
+msgstr "الوزن المتوقع"
 
 #. module: inventory_scale_integration_sale
 #: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__has_weighable_products
@@ -95,12 +102,6 @@ msgid "ID"
 msgstr "المُعرف"
 
 #. module: inventory_scale_integration_sale
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
-msgid "New"
-msgstr "جديد"
-
-#. module: inventory_scale_integration_sale
 #: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_deliveries_need_weighing
 msgid "No deliveries with weighable products found!"
 msgstr "لم يتم العثور على تسليمات بمنتجات قابلة للوزن!"
@@ -109,12 +110,6 @@ msgstr "لم يتم العثور على تسليمات بمنتجات قابلة
 #: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_sales_need_weighing
 msgid "No sales orders with weighable products found!"
 msgstr "لم يتم العثور على أوامر بيع بمنتجات قابلة للوزن!"
-
-#. module: inventory_scale_integration_sale
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
-msgid "Pending Qty"
-msgstr "الكمية المعلقة"
 
 #. module: inventory_scale_integration_sale
 #: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_truck_weighing__sale_order_id
@@ -129,20 +124,20 @@ msgid "Sale Order Line"
 msgstr "بند أمر البيع"
 
 #. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "Sale Orders"
+msgstr "أوامر البيع"
+
+#. module: inventory_scale_integration_sale
 #: model:ir.model,name:inventory_scale_integration_sale.model_sale_order
 msgid "Sales Order"
-msgstr "أمر المبيعات"
+msgstr "أمر البيع"
 
 #. module: inventory_scale_integration_sale
 #: model:ir.model,name:inventory_scale_integration_sale.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "بند أمر المبيعات"
-
-#. module: inventory_scale_integration_sale
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
-msgid "Sales Orders"
-msgstr "أوامر المبيعات"
 
 #. module: inventory_scale_integration_sale
 #: model:ir.actions.act_window,name:inventory_scale_integration_sale.action_sales_need_weighing
@@ -154,11 +149,11 @@ msgstr "أوامر المبيعات للوزن"
 msgid ""
 "Sales orders with weighable products will appear here when they are "
 "confirmed."
-msgstr "ستظهر هنا أوامر المبيعات التي تحتوي على منتجات قابلة للوزن عندما يتم تأكيدها."
+msgstr ""
+"ستظهر هنا أوامر المبيعات التي تحتوي على منتجات قابلة للوزن عندما يتم "
+"تأكيدها."
 
 #. module: inventory_scale_integration_sale
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
 #: model:ir.ui.menu,name:inventory_scale_integration_sale.menu_sales_need_weighing
 msgid "Sales to Weigh"
 msgstr "مبيعات للوزن"
@@ -174,12 +169,6 @@ msgid "Total Net Weight"
 msgstr "إجمالي الوزن الصافي"
 
 #. module: inventory_scale_integration_sale
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
-msgid "Total Value"
-msgstr "إجمالي القيمة"
-
-#. module: inventory_scale_integration_sale
 #: model:ir.model,name:inventory_scale_integration_sale.model_truck_weighing
 msgid "Truck Weighing Record"
 msgstr "سجل وزن الشاحنة"
@@ -187,8 +176,14 @@ msgstr "سجل وزن الشاحنة"
 #. module: inventory_scale_integration_sale
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
-msgid "View All"
-msgstr "عرض الكل"
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: inventory_scale_integration_sale
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml:0
+msgid "View All SOs"
+msgstr "عرض جميع أوامر البيع"
 
 #. module: inventory_scale_integration_sale
 #: model:ir.model.fields,field_description:inventory_scale_integration_sale.field_sale_order__weighing_count

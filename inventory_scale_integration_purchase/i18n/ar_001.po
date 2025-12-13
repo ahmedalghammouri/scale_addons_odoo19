@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 23:20+0000\n"
-"PO-Revision-Date: 2025-12-11 23:20+0000\n"
+"POT-Creation-Date: 2025-12-13 00:32+0000\n"
+"PO-Revision-Date: 2025-12-13 00:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,8 +41,8 @@ msgstr "<span class=\"o_stat_text\">وزن</span>"
 
 #. module: inventory_scale_integration_purchase
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.report_driver_ticket
-msgid "<strong>PO:</strong>"
-msgstr "<strong>أمر الشراء:</strong>"
+msgid "<strong style=\"color: #2c3e50;\">PO:</strong>"
+msgstr "<strong style=\"color: #2c3e50;\">أمر الشراء:</strong>"
 
 #. module: inventory_scale_integration_purchase
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.report_weighing_certificate
@@ -58,6 +58,12 @@ msgid "Display Name"
 msgstr "اسم العرض"
 
 #. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "Expected Weight"
+msgstr "الوزن المتوقع"
+
+#. module: inventory_scale_integration_purchase
 #: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__has_weighable_products
 msgid "Has Weighable Products"
 msgstr "يحتوي على منتجات قابلة للوزن"
@@ -71,23 +77,9 @@ msgid "ID"
 msgstr "المُعرف"
 
 #. module: inventory_scale_integration_purchase
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
-msgid "New"
-msgstr "جديد"
-
-#. module: inventory_scale_integration_purchase
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
 #: model:ir.ui.menu,name:inventory_scale_integration_purchase.menu_pos_need_weighing
 msgid "POs to Weigh"
 msgstr "أوامر الشراء للوزن"
-
-#. module: inventory_scale_integration_purchase
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
-msgid "Pending Qty"
-msgstr "الكمية المعلقة"
 
 #. module: inventory_scale_integration_purchase
 #: model:ir.model,name:inventory_scale_integration_purchase.model_purchase_order
@@ -115,12 +107,6 @@ msgid "Purchase Orders Need Weighing"
 msgstr "أوامر الشراء تحتاج إلى وزن"
 
 #. module: inventory_scale_integration_purchase
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
-msgid "Suppliers"
-msgstr "الموردون"
-
-#. module: inventory_scale_integration_purchase
 #: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__total_net_weight
 msgid "Total Net Weight"
 msgstr "إجمالي الوزن الصافي"
@@ -131,15 +117,15 @@ msgid "Total Received (KG)"
 msgstr "إجمالي المستلم (كجم)"
 
 #. module: inventory_scale_integration_purchase
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
-msgid "Total Value"
-msgstr "إجمالي القيمة"
-
-#. module: inventory_scale_integration_purchase
 #: model:ir.model,name:inventory_scale_integration_purchase.model_truck_weighing
 msgid "Truck Weighing Record"
 msgstr "سجل وزن الشاحنة"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "Urgent"
+msgstr "عاجل"
 
 #. module: inventory_scale_integration_purchase
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_purchase.truck_weighing_view_search_purchase
@@ -149,8 +135,14 @@ msgstr "المورد"
 #. module: inventory_scale_integration_purchase
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
-msgid "View All"
-msgstr "عرض الكل"
+msgid "Vendors"
+msgstr "الموردون"
+
+#. module: inventory_scale_integration_purchase
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml:0
+msgid "View All POs"
+msgstr "عرض جميع أوامر الشراء"
 
 #. module: inventory_scale_integration_purchase
 #: model:ir.model.fields,field_description:inventory_scale_integration_purchase.field_purchase_order__weighing_count
