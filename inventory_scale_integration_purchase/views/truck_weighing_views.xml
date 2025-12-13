@@ -45,7 +45,7 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_kanban_stock_in"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='variance_qty']" position="after">
+            <xpath expr="//field[@name='variance_qty_in']" position="after">
                 <field name="purchase_order_id"/>
             </xpath>
             <xpath expr="//div[hasclass('mb-2')][last()]" position="after">

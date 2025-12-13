@@ -16,18 +16,15 @@ class StockPicking(models.Model):
 
     def _compute_weighing_data(self):
         for picking in self:
-            weighings = self.env['truck.weighing'].search([('picking_id', '=', picking.id)])
-            if weighings:
-                picking.weighing_count = len(weighings)
-                picking.total_net_weight = sum(weighings.mapped('net_weight'))
-                if picking.total_net_weight > 2000:
-                    picking.total_net_weight_display = f"{picking.total_net_weight / 1000:.1f} T"
-                else:
-                    picking.total_net_weight_display = f"{picking.total_net_weight:.0f} KG"
+            weighings_in = self.env['truck.weighing'].search([('picking_id', '=', picking.id)])
+            weighings_out = self.env['truck.weighing'].search([('delivery_id', '=', picking.id)])
+            all_weighings = weighings_in | weighings_out
+            picking.weighing_count = len(all_weighings)
+            picking.total_net_weight = sum(all_weighings.mapped('net_weight'))
+            if picking.total_net_weight > 2000:
+                picking.total_net_weight_display = f"{picking.total_net_weight / 1000:.1f} T"
             else:
-                picking.weighing_count = 0
-                picking.total_net_weight = 0.0
-                picking.total_net_weight_display = "0 KG"
+                picking.total_net_weight_display = f"{picking.total_net_weight:.0f} KG"
 
     def action_view_weighing_records(self):
         self.ensure_one()

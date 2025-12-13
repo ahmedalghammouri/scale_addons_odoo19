@@ -28,14 +28,14 @@
                 </group>
                 <group name="transfer_info_in" string="Transfer Information" invisible="not picking_id or operation_type != 'incoming'">
                     <group>
-                        <field name="source_document" readonly="1" invisible="operation_type != 'incoming'"/>
-                        <field name="scheduled_date" readonly="1" invisible="operation_type != 'incoming'"/>
+                        <field name="source_document_in" readonly="1" invisible="operation_type != 'incoming'"/>
+                        <field name="scheduled_date_in" readonly="1" invisible="operation_type != 'incoming'"/>
                     </group>
                     <group>
-                        <label for="demand_qty" string="Demand Quantity" invisible="operation_type != 'incoming'"/>
+                        <label for="demand_qty_in" string="Demand Quantity" invisible="operation_type != 'incoming'"/>
                         <div invisible="operation_type != 'incoming'">
-                            <field name="demand_qty" readonly="1" style="display: inline-block;"/> 
-                            <field name="product_uom" readonly="1" nolabel="1" style="display: inline-block; margin-left: 5px;"/>
+                            <field name="demand_qty_in" readonly="1" style="display: inline-block;"/> 
+                            <field name="product_uom_in" readonly="1" nolabel="1" style="display: inline-block; margin-left: 5px;"/>
                         </div>
                     </group>
                 </group>
@@ -52,18 +52,18 @@
                 </div>
                 <group string="Quantity Analysis" invisible="not picking_id or state == 'draft' or operation_type != 'incoming'">
                     <group>
-                        <label for="remaining_qty" string="Remaining Quantity"/>
+                        <label for="remaining_qty_in" string="Remaining Quantity"/>
                         <div>
-                            <field name="remaining_qty" readonly="1" decoration-danger="remaining_qty &gt; 0" decoration-success="remaining_qty &lt;= 0" style="font-size: 14px; font-weight: 500; display: inline-block;"/> 
+                            <field name="remaining_qty_in" readonly="1" decoration-danger="remaining_qty_in &gt; 0" decoration-success="remaining_qty_in &lt;= 0" style="font-size: 14px; font-weight: 500; display: inline-block;"/> 
                             <span style="font-size: 13px; color: #6c757d; margin-left: 5px;">KG</span>
                         </div>
-                        <label for="variance_qty" string="Variance"/>
+                        <label for="variance_qty_in" string="Variance"/>
                         <div>
-                            <field name="variance_qty" readonly="1" decoration-success="variance_qty &gt;= 0" decoration-warning="variance_qty &lt; 0" style="font-size: 14px; font-weight: 500; display: inline-block;"/> 
+                            <field name="variance_qty_in" readonly="1" decoration-success="variance_qty_in &gt;= 0" decoration-warning="variance_qty_in &lt; 0" style="font-size: 14px; font-weight: 500; display: inline-block;"/> 
                             <span style="font-size: 13px; color: #6c757d; margin-left: 5px;">KG</span>
                         </div>
-                        <field name="variance_percent" readonly="1" widget="percentage" decoration-success="variance_percent &gt;= -0.05 and variance_percent &lt;= 0.05" decoration-warning="variance_percent &lt; -0.05 or variance_percent &gt; 0.05" style="font-size: 14px; font-weight: 500;"/>
-                        <field name="fulfillment_percent" readonly="1" widget="percentage" decoration-success="fulfillment_percent &gt;= 0.95" decoration-warning="fulfillment_percent &lt; 0.95 and fulfillment_percent &gt;= 0.90" decoration-danger="fulfillment_percent &lt; 0.90" style="font-size: 14px; font-weight: 500;"/>
+                        <field name="variance_percent_in" readonly="1" widget="percentage" decoration-success="variance_percent_in &gt;= -0.05 and variance_percent_in &lt;= 0.05" decoration-warning="variance_percent_in &lt; -0.05 or variance_percent_in &gt; 0.05" style="font-size: 14px; font-weight: 500;"/>
+                        <field name="fulfillment_percent_in" readonly="1" widget="percentage" decoration-success="fulfillment_percent_in &gt;= 0.95" decoration-warning="fulfillment_percent_in &lt; 0.95 and fulfillment_percent_in &gt;= 0.90" decoration-danger="fulfillment_percent_in &lt; 0.90" style="font-size: 14px; font-weight: 500;"/>
                     </group>
                 </group>
             </field>
@@ -91,10 +91,10 @@
         <field name="arch" type="xml">
             <field name="operation_type" position="after">
                 <field name="picking_id" optional="show" decoration-primary="picking_id"/>
-                <field name="source_document" optional="hide"/>
-                <field name="demand_qty" optional="hide" widget="float"/>
-                <field name="variance_qty" optional="hide" widget="float" decoration-success="variance_qty &gt;= 0" decoration-warning="variance_qty &lt; 0"/>
-                <field name="fulfillment_percent" optional="hide" widget="percentage" decoration-success="fulfillment_percent &gt;= 0.95" decoration-warning="fulfillment_percent &lt; 0.95 and fulfillment_percent &gt;= 0.90" decoration-danger="fulfillment_percent &lt; 0.90"/>
+                <field name="source_document_in" optional="hide"/>
+                <field name="demand_qty_in" optional="hide" widget="float"/>
+                <field name="variance_qty_in" optional="hide" widget="float" decoration-success="variance_qty_in &gt;= 0" decoration-warning="variance_qty_in &lt; 0"/>
+                <field name="fulfillment_percent_in" optional="hide" widget="percentage" decoration-success="fulfillment_percent_in &gt;= 0.95" decoration-warning="fulfillment_percent_in &lt; 0.95 and fulfillment_percent_in &gt;= 0.90" decoration-danger="fulfillment_percent_in &lt; 0.90"/>
                 <field name="location_dest_id" optional="hide"/>
             </field>
         </field>
@@ -128,18 +128,18 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='state']" position="after">
                 <field name="picking_id"/>
-                <field name="source_document"/>
-                <field name="demand_qty"/>
-                <field name="variance_qty"/>
+                <field name="source_document_in"/>
+                <field name="demand_qty_in"/>
+                <field name="variance_qty_in"/>
             </xpath>
             <xpath expr="//div[hasclass('mb-2')][last()]" position="after">
                 <div t-if="record.picking_id.raw_value" class="mb-2 p-2 border rounded">
-                    <div class="mb-1"><i class="fa fa-file-text-o text-primary" title="Source"/> <strong><t t-out="record.source_document.value"/></strong></div>
-                    <div class="row" t-if="record.demand_qty.raw_value &gt; 0">
-                        <div class="col-6 small"><span class="text-muted">Demand:</span> <strong><t t-out="record.demand_qty.value"/> KG</strong></div>
+                    <div class="mb-1"><i class="fa fa-file-text-o text-primary" title="Source"/> <strong><t t-out="record.source_document_in.value"/></strong></div>
+                    <div class="row" t-if="record.demand_qty_in.raw_value &gt; 0">
+                        <div class="col-6 small"><span class="text-muted">Demand:</span> <strong><t t-out="record.demand_qty_in.value"/> KG</strong></div>
                         <div class="col-6 small text-end">
-                            <span t-att-class="'badge ' + (record.variance_qty.raw_value &gt;= 0 ? 'badge-success' : 'badge-warning')">
-                                <t t-if="record.variance_qty.raw_value &gt;= 0">+</t><t t-out="record.variance_qty.value"/> KG
+                            <span t-att-class="'badge ' + (record.variance_qty_in.raw_value &gt;= 0 ? 'badge-success' : 'badge-warning')">
+                                <t t-if="record.variance_qty_in.raw_value &gt;= 0">+</t><t t-out="record.variance_qty_in.value"/> KG
                             </span>
                         </div>
                     </div>

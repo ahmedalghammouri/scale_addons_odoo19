@@ -47,7 +47,7 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock_out.truck_weighing_view_kanban_stock_out"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='variance_qty']" position="after">
+            <xpath expr="//field[@name='variance_qty_out']" position="after">
                 <field name="sale_order_id"/>
             </xpath>
             <xpath expr="//div[hasclass('mb-2')][last()]" position="after">
@@ -63,7 +63,7 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock_out.truck_weighing_view_list_stock_out"/>
         <field name="arch" type="xml">
-            <field name="location_dest_id" position="after">
+            <field name="location_id" position="after">
                 <field name="sale_order_id" optional="show" decoration-warning="sale_order_id" decoration-bf="1"/>
                 <field name="sale_line_id" optional="hide"/>
             </field>
@@ -97,7 +97,7 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock_out.truck_weighing_view_search_stock_out"/>
         <field name="arch" type="xml">
-            <field name="location_dest_id" position="after">
+            <field name="location_id" position="after">
                 <field name="sale_order_id"/>
                 <field name="sale_line_id"/>
             </field>

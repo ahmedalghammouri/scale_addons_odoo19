@@ -16,34 +16,31 @@ class StockPicking(models.Model):
 
     def _compute_weighing_data(self):
         for picking in self:
-            weighings = self.env['truck.weighing'].search([('delivery_id', '=', picking.id)])
-            if weighings:
-                picking.weighing_count = len(weighings)
-                picking.total_net_weight = sum(weighings.mapped('net_weight'))
-                if picking.total_net_weight > 2000:
-                    picking.total_net_weight_display = f"{picking.total_net_weight / 1000:.1f} T"
-                else:
-                    picking.total_net_weight_display = f"{picking.total_net_weight:.0f} KG"
+            weighings_in = self.env['truck.weighing'].search([('picking_id', '=', picking.id)])
+            weighings_out = self.env['truck.weighing'].search([('delivery_id', '=', picking.id)])
+            all_weighings = weighings_in | weighings_out
+            picking.weighing_count = len(all_weighings)
+            picking.total_net_weight = sum(all_weighings.mapped('net_weight'))
+            if picking.total_net_weight > 2000:
+                picking.total_net_weight_display = f"{picking.total_net_weight / 1000:.1f} T"
             else:
-                picking.weighing_count = 0
-                picking.total_net_weight = 0.0
-                picking.total_net_weight_display = "0 KG"
+                picking.total_net_weight_display = f"{picking.total_net_weight:.0f} KG"
 
     def action_view_weighing_records(self):
         self.ensure_one()
-        if self.picking_type_code == 'outgoing':
-            context = {
-                'default_partner_id': self.partner_id.id,
-                'default_delivery_id': self.id,
-                'default_operation_type': 'outgoing',
-                'create': True
-            }
-            return {
-                'name': 'Weighing Records',
-                'type': 'ir.actions.act_window',
-                'res_model': 'truck.weighing',
-                'view_mode': 'list,form',
-                'domain': [('delivery_id', '=', self.id)],
-                'context': context
-            }
-        return super().action_view_weighing_records()
+        if self.picking_type_code == 'incoming':
+            return super().action_view_weighing_records()
+        context = {
+            'default_partner_id': self.partner_id.id,
+            'default_delivery_id': self.id,
+            'default_operation_type': 'outgoing',
+            'create': True
+        }
+        return {
+            'name': 'Weighing Records',
+            'type': 'ir.actions.act_window',
+            'res_model': 'truck.weighing',
+            'view_mode': 'list,form',
+            'domain': [('delivery_id', '=', self.id)],
+            'context': context
+        }

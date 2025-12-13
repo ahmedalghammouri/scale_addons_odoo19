@@ -8,30 +8,30 @@ class TruckWeighing(models.Model):
     picking_id = fields.Many2one('stock.picking', string='Receipt', ondelete='restrict', tracking=True, domain="[('picking_type_code', '=', 'incoming')]")
     location_dest_id = fields.Many2one('stock.location', string='Destination Location')
     
-    demand_qty = fields.Float(string='Demand Qty', compute='_compute_picking_info', store=False)
-    product_uom = fields.Char(string='Unit', compute='_compute_picking_info', store=False)
-    source_document = fields.Char(string='Source Document', compute='_compute_picking_info', store=False)
-    scheduled_date = fields.Datetime(string='Scheduled Date', compute='_compute_picking_info', store=False)
+    demand_qty_in = fields.Float(string='Demand Qty', compute='_compute_picking_info_in', store=False)
+    product_uom_in = fields.Char(string='Unit', compute='_compute_picking_info_in', store=False)
+    source_document_in = fields.Char(string='Source Document', compute='_compute_picking_info_in', store=False)
+    scheduled_date_in = fields.Datetime(string='Scheduled Date', compute='_compute_picking_info_in', store=False)
     
-    remaining_qty = fields.Float(string='Remaining Qty', compute='_compute_variance_info', store=False)
-    variance_qty = fields.Float(string='Variance', compute='_compute_variance_info', store=False)
-    variance_percent = fields.Float(string='Variance %', compute='_compute_variance_info', store=False)
-    fulfillment_percent = fields.Float(string='Fulfillment %', compute='_compute_variance_info', store=False)
+    remaining_qty_in = fields.Float(string='Remaining Qty', compute='_compute_variance_info_in', store=False)
+    variance_qty_in = fields.Float(string='Variance', compute='_compute_variance_info_in', store=False)
+    variance_percent_in = fields.Float(string='Variance %', compute='_compute_variance_info_in', store=False)
+    fulfillment_percent_in = fields.Float(string='Fulfillment %', compute='_compute_variance_info_in', store=False)
 
     def action_update_inventory(self):
         self.ensure_one()
+        if self.operation_type != 'incoming':
+            return super().action_update_inventory()
         if self.state != 'second' or self.net_weight <= 0.0:
             raise UserError(_("Cannot update inventory. Net weight must be positive."))
         if not self.product_id:
             raise UserError(_("Product is required."))
-        
         if self.picking_id and self.picking_id.picking_type_code == 'incoming':
             self._update_receipt_quantity()
             self.message_post(body=_("Receipt updated: %s KG of %s") % (self.net_weight, self.product_id.name))
+            self.state = 'done'
         else:
             raise UserError(_("Please select a receipt first."))
-        
-        self.state = 'done'
     
     def _update_receipt_quantity(self):
         move = self.picking_id.move_ids.filtered(lambda m: m.product_id == self.product_id)
@@ -105,37 +105,34 @@ class TruckWeighing(models.Model):
         }
     
     @api.depends('picking_id', 'product_id', 'operation_type')
-    def _compute_picking_info(self):
+    def _compute_picking_info_in(self):
         for rec in self:
+            rec.demand_qty_in = 0.0
+            rec.product_uom_in = ''
+            rec.source_document_in = ''
+            rec.scheduled_date_in = False
             if rec.picking_id and rec.product_id and rec.operation_type == 'incoming':
                 move = rec.picking_id.move_ids.filtered(lambda m: m.product_id == rec.product_id)
                 if move:
-                    rec.demand_qty = move[0].product_uom_qty
-                    rec.product_uom = move[0].product_uom.name
+                    rec.demand_qty_in = move[0].product_uom_qty
+                    rec.product_uom_in = move[0].product_uom.name
                 else:
-                    rec.demand_qty = 0.0
-                    rec.product_uom = rec.product_id.uom_id.name if rec.product_id else ''
-                rec.source_document = rec.picking_id.origin or rec.picking_id.name
-                rec.scheduled_date = rec.picking_id.scheduled_date
-            else:
-                rec.demand_qty = 0.0
-                rec.product_uom = ''
-                rec.source_document = ''
-                rec.scheduled_date = False
+                    rec.product_uom_in = rec.product_id.uom_id.name if rec.product_id else ''
+                rec.source_document_in = rec.picking_id.origin or rec.picking_id.name
+                rec.scheduled_date_in = rec.picking_id.scheduled_date
     
-    @api.depends('demand_qty', 'net_weight', 'operation_type')
-    def _compute_variance_info(self):
+    @api.depends('demand_qty_in', 'net_weight', 'operation_type')
+    def _compute_variance_info_in(self):
         for rec in self:
-            if rec.operation_type == 'incoming' and rec.demand_qty > 0 and rec.net_weight > 0:
-                rec.remaining_qty = rec.demand_qty - rec.net_weight
-                rec.variance_qty = rec.net_weight - rec.demand_qty
-                rec.variance_percent = rec.variance_qty / rec.demand_qty
-                rec.fulfillment_percent = rec.net_weight / rec.demand_qty
-            else:
-                rec.remaining_qty = 0.0
-                rec.variance_qty = 0.0
-                rec.variance_percent = 0.0
-                rec.fulfillment_percent = 0.0
+            rec.remaining_qty_in = 0.0
+            rec.variance_qty_in = 0.0
+            rec.variance_percent_in = 0.0
+            rec.fulfillment_percent_in = 0.0
+            if rec.operation_type == 'incoming' and rec.demand_qty_in > 0 and rec.net_weight > 0:
+                rec.remaining_qty_in = rec.demand_qty_in - rec.net_weight
+                rec.variance_qty_in = rec.net_weight - rec.demand_qty_in
+                rec.variance_percent_in = rec.variance_qty_in / rec.demand_qty_in
+                rec.fulfillment_percent_in = rec.net_weight / rec.demand_qty_in
     
     @api.model_create_multi
     def create(self, vals_list):
