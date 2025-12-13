@@ -183,7 +183,7 @@ msgstr "الوزن الصافي"
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_cashier/static/src/xml/weighing_cashier.xml:0
 msgid "No orders with weighing"
-msgstr "لا توجد طلبات تتطلب وزناً"
+msgstr "لا توجدطلبات قيد التنفيذ"
 
 #. module: inventory_scale_integration_cashier
 #. odoo-javascript
@@ -460,7 +460,7 @@ msgstr "⏱️ قيد التقدم"
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_cashier/static/src/xml/weighing_cashier.xml:0
 msgid "⏱️ In Progress Weighings"
-msgstr "⏱️ عمليات وزن قيد التقدم"
+msgstr "⏱️ عمليات وزن قيد التنفيذ"
 
 #. module: inventory_scale_integration_cashier
 #. odoo-javascript
@@ -527,7 +527,7 @@ msgstr "📋 الطلبات المعلقة"
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_cashier/static/src/xml/weighing_cashier.xml:0
 msgid "📦 Orders with Weighing"
-msgstr "📦 طلبات تتطلب وزناً"
+msgstr "📦طلبات قيد التنفيذ"
 
 #. module: inventory_scale_integration_cashier
 #. odoo-javascript

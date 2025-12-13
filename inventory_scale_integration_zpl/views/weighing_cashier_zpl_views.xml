@@ -6,12 +6,10 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_cashier.truck_weighing_view_form_cashier"/>
         <field name="arch" type="xml">
-            <button name="action_print_driver_ticket" position="after">
+ 
+            <button name="action_print_certificate" position="after">
                 <button name="action_print_zpl_ticket" string="🖨️ ZPL Ticket" type="object"
                         invisible="state != 'first' or not zpl_printer_id" class="btn-warning btn-lg"/>
-            </button>
-            
-            <button name="action_print_certificate" position="after">
                 <button name="action_print_zpl_label" string="🖨️ ZPL Label" type="object"
                         invisible="state != 'done' or not zpl_printer_id" class="btn-info btn-lg"/>
                 <button name="action_print_zpl_certificate" string="🖨️ ZPL Certificate" type="object"

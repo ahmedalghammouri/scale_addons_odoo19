@@ -19,8 +19,8 @@
                     <button name="action_set_first_weight" string="Weigh First" type="object"
                             invisible="state != 'draft'" class="oe_highlight"
                             help="Incoming: Weigh full truck | Outgoing: Weigh empty truck"/>
-                    <button name="action_print_driver_ticket" string="Print Driver Ticket" type="object"
-                            invisible="state != 'first'" class="btn-warning"/>
+                    <!-- <button name="action_print_driver_ticket" string="Print Driver Ticket" type="object"
+                            invisible="state != 'first'" class="btn-warning"/> -->
                     <!-- Incoming: Second = Empty truck (Tare), Outgoing: Second = Full truck (Gross) -->
                     <button name="action_set_second_weight" string="Weigh Second" type="object"
                             invisible="state != 'first'" class="oe_highlight"

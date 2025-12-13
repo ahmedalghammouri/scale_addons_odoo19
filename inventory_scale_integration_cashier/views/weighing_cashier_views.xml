@@ -11,8 +11,8 @@
                     <button name="action_fetch_live_weight" string="📊 Fetch Weight" type="object" class="btn-primary btn-lg"/>
                     <button name="action_set_first_weight" string="✓ Weigh First" type="object"
                             invisible="state != 'draft'" class="oe_highlight btn-lg"/>
-                    <button name="action_print_driver_ticket" string="🎫 Print Ticket" type="object"
-                            invisible="state != 'first'" class="btn-warning btn-lg"/>
+                    <!-- <button name="action_print_driver_ticket" string="🎫 Print Ticket" type="object"
+                            invisible="state != 'first'" class="btn-warning btn-lg"/> -->
                     <button name="action_set_second_weight" string="✓ Weigh Second" type="object"
                             invisible="state != 'first'" class="oe_highlight btn-lg"/>
                     <button name="action_print_certificate" string="📄 Print Certificate" type="object"
