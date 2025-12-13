@@ -17,9 +17,9 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'inventory_scale_integration_stock_out/static/src/js/weighing_dashboard.js',
-            'inventory_scale_integration_stock_out/static/src/xml/weighing_dashboard.xml',
-            'inventory_scale_integration_stock_out/static/src/scss/weighing_dashboard.scss',
+            # 'inventory_scale_integration_stock_out/static/src/js/weighing_dashboard.js',
+            # 'inventory_scale_integration_stock_out/static/src/xml/weighing_dashboard.xml',
+            # 'inventory_scale_integration_stock_out/static/src/scss/weighing_dashboard.scss',
         ],
     },
     'installable': True,

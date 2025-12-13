@@ -5,19 +5,17 @@
         <field name="model">truck.weighing</field>
         <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_form_stock_in"/>
         <field name="arch" type="xml">
-            <field name="delivery_id" position="attributes">
-                <attribute name="invisible">operation_type == 'incoming'</attribute>
-            </field>
+
             <field name="partner_id" position="attributes">
-                <attribute name="readonly">picking_id or delivery_id or purchase_order_id</attribute>
+                <attribute name="readonly">picking_id or purchase_order_id</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
             <field name="product_id" position="attributes">
-                <attribute name="readonly">picking_id or delivery_id or purchase_order_id</attribute>
+                <attribute name="readonly">picking_id or purchase_order_id</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
             <field name="operation_type" position="attributes">
-                <attribute name="readonly">picking_id or delivery_id or purchase_order_id</attribute>
+                <attribute name="readonly">picking_id or purchase_order_id</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
 
@@ -101,7 +99,7 @@
                 <field name="purchase_order_id"/>
                 <field name="purchase_line_id"/>
             </field>
-            <filter name="with_delivery" position="after">
+            <filter name="with_receipt" position="after">
                 <filter string="With Purchase Order" name="with_po" domain="[('purchase_order_id', '!=', False)]"/>
                 <filter string="Without Purchase Order" name="without_po" domain="[('purchase_order_id', '=', False), ('operation_type', '=', 'incoming')]"/>
             </filter>

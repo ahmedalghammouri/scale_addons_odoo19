@@ -122,4 +122,53 @@
             </filter>
         </field>
     </record>
+
+    <record id="truck_weighing_view_kanban_stock_in" model="ir.ui.view">
+        <field name="name">truck.weighing.view.kanban.stock.in</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="picking_id"/>
+                <field name="source_document"/>
+                <field name="demand_qty"/>
+                <field name="variance_qty"/>
+            </xpath>
+            <xpath expr="//div[hasclass('mb-2')][last()]" position="after">
+                <div t-if="record.picking_id.raw_value" class="mb-2 p-2 border rounded">
+                    <div class="mb-1"><i class="fa fa-file-text-o text-primary" title="Source"/> <strong><t t-out="record.source_document.value"/></strong></div>
+                    <div class="row" t-if="record.demand_qty.raw_value &gt; 0">
+                        <div class="col-6 small"><span class="text-muted">Demand:</span> <strong><t t-out="record.demand_qty.value"/> KG</strong></div>
+                        <div class="col-6 small text-end">
+                            <span t-att-class="'badge ' + (record.variance_qty.raw_value &gt;= 0 ? 'badge-success' : 'badge-warning')">
+                                <t t-if="record.variance_qty.raw_value &gt;= 0">+</t><t t-out="record.variance_qty.value"/> KG
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_graph_stock_in" model="ir.ui.view">
+        <field name="name">truck.weighing.view.graph.stock.in</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_graph"/>
+        <field name="arch" type="xml">
+            <field name="weighing_date" position="before">
+                <field name="operation_type"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_pivot_stock_in" model="ir.ui.view">
+        <field name="name">truck.weighing.view.pivot.stock.in</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_pivot"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="before">
+                <field name="operation_type" type="col"/>
+            </field>
+        </field>
+    </record>
 </odoo>

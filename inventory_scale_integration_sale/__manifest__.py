@@ -6,7 +6,7 @@
     'author': 'Gemy',
     'website': 'https://www.example.com',
     'license': 'LGPL-3',
-    'depends': ['inventory_scale_integration_base', 'inventory_scale_integration_stock', 'sale'],
+    'depends': ['inventory_scale_integration_base', 'inventory_scale_integration_stock_out', 'sale'],
     'data': [
         'security/ir.model.access.csv',
         'report/truck_weighing_reports.xml',
@@ -16,7 +16,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # 'inventory_scale_integration_sale/static/src/js/weighing_dashboard_sale.js',
+            'inventory_scale_integration_sale/static/src/js/weighing_dashboard_sale.js',
             # 'inventory_scale_integration_sale/static/src/xml/weighing_dashboard_sale.xml',
         ],
     },

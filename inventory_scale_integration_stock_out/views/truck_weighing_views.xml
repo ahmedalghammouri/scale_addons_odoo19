@@ -21,6 +21,7 @@
                 <group string="Stock Operations">
                     <group>
                         <field name="delivery_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'outgoing'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
+                        <field name="picking_id" invisible="1"/>
                     </group>
                     <group>
                         <field name="location_dest_id" readonly="delivery_id" force_save="1"/>
@@ -69,10 +70,7 @@
                     </group>
                 </group>
             </field>
-            <button name="action_mark_done" position="replace">
-                <button name="action_update_inventory" string="Update Inventory" type="object"
-                        invisible="state != 'second'" class="oe_highlight"/>
-            </button>
+
             <xpath expr="//div[hasclass('oe_title')]" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button name="action_view_delivery" type="object" class="oe_stat_button" icon="fa-truck"
@@ -120,6 +118,55 @@
                 <filter string="Delivery" name="group_delivery" domain="[]" context="{'group_by':'delivery_id'}"/>
                 <filter string="Destination Location" name="group_location" domain="[]" context="{'group_by':'location_dest_id'}"/>
             </filter>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_kanban_stock_out" model="ir.ui.view">
+        <field name="name">truck.weighing.view.kanban.stock.out</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="delivery_id"/>
+                <field name="source_document"/>
+                <field name="demand_qty"/>
+                <field name="variance_qty"/>
+            </xpath>
+            <xpath expr="//div[hasclass('mb-2')][last()]" position="after">
+                <div t-if="record.delivery_id.raw_value" class="mb-2 p-2 border rounded">
+                    <div class="mb-1"><i class="fa fa-file-text-o text-primary" title="Source"/> <strong><t t-out="record.source_document.value"/></strong></div>
+                    <div class="row" t-if="record.demand_qty.raw_value &gt; 0">
+                        <div class="col-6 small"><span class="text-muted">Demand:</span> <strong><t t-out="record.demand_qty.value"/> KG</strong></div>
+                        <div class="col-6 small text-end">
+                            <span t-att-class="'badge ' + (record.variance_qty.raw_value &gt;= 0 ? 'badge-success' : 'badge-warning')">
+                                <t t-if="record.variance_qty.raw_value &gt;= 0">+</t><t t-out="record.variance_qty.value"/> KG
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_graph_stock_out" model="ir.ui.view">
+        <field name="name">truck.weighing.view.graph.stock.out</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_graph"/>
+        <field name="arch" type="xml">
+            <field name="weighing_date" position="before">
+                <field name="operation_type"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="truck_weighing_view_pivot_stock_out" model="ir.ui.view">
+        <field name="name">truck.weighing.view.pivot.stock.out</field>
+        <field name="model">truck.weighing</field>
+        <field name="inherit_id" ref="inventory_scale_integration_base.truck_weighing_view_pivot"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="before">
+                <field name="operation_type" type="col"/>
+            </field>
         </field>
     </record>
 </odoo>

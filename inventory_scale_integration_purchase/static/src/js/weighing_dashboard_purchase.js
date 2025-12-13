@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { WeighingOverviewDashboard } from "@inventory_scale_integration_stock_in/js/weighing_dashboard";
+import { WeighingOverviewDashboard } from "@inventory_scale_integration_dashboard/js/weighing_dashboard";
 import { patch } from "@web/core/utils/patch";
 
 patch(WeighingOverviewDashboard.prototype, {

@@ -16,7 +16,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # 'inventory_scale_integration_purchase/static/src/js/weighing_dashboard_purchase.js',
+            'inventory_scale_integration_purchase/static/src/js/weighing_dashboard_purchase.js',
             # 'inventory_scale_integration_purchase/static/src/xml/weighing_dashboard_purchase.xml',
         ],
     },

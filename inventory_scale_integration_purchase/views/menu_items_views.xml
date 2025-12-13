@@ -8,5 +8,5 @@
         <field name="context">{}</field>
     </record>
 
-    <menuitem id="menu_pos_need_weighing" name="POs to Weigh" parent="inventory_scale_integration_stock_in.menu_truck_weighing_operations" action="action_pos_need_weighing" sequence="2"/>
+    <menuitem id="menu_pos_need_weighing" name="POs to Weigh" parent="inventory_scale_integration_stock_in.menu_weighing_incoming_root" action="action_pos_need_weighing" sequence="4"/>
 </odoo>
