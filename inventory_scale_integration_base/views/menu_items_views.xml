@@ -2,10 +2,12 @@
 <odoo>
     <menuitem id="menu_truck_weighing_root" name="Weighbridge" sequence="20" web_icon="inventory_scale_integration_base,static/description/icon.svg"/>
     
+    
     <menuitem id="menu_truck_weighing" name="Weighing Records" parent="menu_truck_weighing_root" action="action_truck_weighing" sequence="1"/>
-    <menuitem id="menu_truck_fleet" name="Truck Fleet" parent="menu_truck_weighing_root" action="action_truck_fleet" sequence="5"/>
+    <menuitem id="menu_truck_weighing_oprtations" name="Weighing Operations" parent="menu_truck_weighing_root" sequence="5"/>
+    <menuitem id="menu_truck_fleet" name="Truck Fleet" parent="menu_truck_weighing_root" action="action_truck_fleet" sequence="10"/>
 
-    <menuitem id="menu_truck_Configuration_root" name="Configuration" parent="menu_truck_weighing_root" sequence="10"/>
+    <menuitem id="menu_truck_Configuration_root" name="Configuration" parent="menu_truck_weighing_root" sequence="20"/>
     <menuitem id="menu_truck_type" name="Truck Types" parent="menu_truck_Configuration_root" action="action_truck_type" sequence="1"/>
     <menuitem id="menu_truck_weighing_scale_setting" name="Weighing Scales" parent="menu_truck_Configuration_root" action="action_weighing_scale" sequence="2"/>
     <menuitem id="menu_weighable_products" name="Weighable Products" parent="menu_truck_Configuration_root" action="action_weighable_products" sequence="3"/>

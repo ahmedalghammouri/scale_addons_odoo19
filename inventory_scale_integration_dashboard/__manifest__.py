@@ -9,7 +9,7 @@
     'depends': ['inventory_scale_integration_base', 'stock'],
     'data': [
         'security/ir.model.access.csv',
-        'report/truck_weighing_reports.xml',
+        # 'report/truck_weighing_reports.xml',
         # 'views/truck_weighing_views.xml',
         # 'views/stock_picking_views.xml',
         'views/weighing_overview_views.xml',
@@ -21,10 +21,10 @@
             'inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml',
             # 'inventory_scale_integration_stock/static/src/css/weighing_dashboard.css',
             'inventory_scale_integration_dashboard/static/src/scss/weighing_dashboard.scss',
-            'inventory_scale_integration_dashboard/static/src/js/weighing_dashboard_purchase.js',
-            'inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard_purchase.xml',
-            'inventory_scale_integration_dashboard/static/src/js/weighing_dashboard_sale.js',
-            'inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard_sale.xml',
+            # 'inventory_scale_integration_dashboard/static/src/js/weighing_dashboard_purchase.js',
+            # 'inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard_purchase.xml',
+            # 'inventory_scale_integration_dashboard/static/src/js/weighing_dashboard_sale.js',
+            # 'inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard_sale.xml',
 
         ],
     },

@@ -3,8 +3,7 @@ from odoo import models, fields, api
 from datetime import datetime, timedelta
 
 class WeighingOverview(models.TransientModel):
-    _name = 'weighing.overview'
-    _description = 'Weighing Operations Overview Dashboard'
+    _inherit = 'weighing.overview'
 
     @api.model
     def get_overview_data(self):

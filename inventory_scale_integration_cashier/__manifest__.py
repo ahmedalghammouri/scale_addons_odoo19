@@ -16,7 +16,7 @@ Simplified interface for weighbridge operators:
     'author': 'Gemy',
     'website': 'https://www.example.com',
     'license': 'LGPL-3',
-    'depends': ['inventory_scale_integration_base'],
+    'depends': ['inventory_scale_integration_base','stock'],
     'data': [
         'security/ir.model.access.csv',
         'wizard/truck_selection_wizard_views.xml',

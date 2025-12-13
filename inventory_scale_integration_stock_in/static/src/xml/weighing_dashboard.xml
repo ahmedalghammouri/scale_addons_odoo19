@@ -1,79 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <!-- Extend base dashboard with incoming section -->
-    <t t-name="inventory_scale_integration_dashboard.StockInSection" owl="1" t-inherit="inventory_scale_integration_dashboard.WeighingDashboardTemplate" t-inherit-mode="extension">
+    <t t-name="inventory_scale_integration_dashboard.StockInSection" owl="1" t-inherit="inventory_scale_integration.WeighingDashboardTemplate" t-inherit-mode="extension">
+        <!-- Operations Section -->
         <div class="row mb-4">
-                    <div class="col-lg-4 mb-4">
-                        <div class="card border-primary h-100 shadow-sm">
-                            <div class="card-header bg-primary">
-                                <h5 class="m-2"><i class="fa fa-inbox m-2"/>Receipts to Weigh</h5>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-primary h-100 shadow-sm">
+                    <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                        <h5 class="m-2"><i class="fa fa-inbox m-2"/>Receipts to Weigh</h5>
+                        <span class="badge badge-light" style="font-size: 1.5rem;" t-esc="state.data.receipts_to_weigh?.count || 0"/>
+                    </div>
+                    <div class="position-absolute" style="top: 10px; right: 10px; opacity: 0.1;">
+                        <i class="fa fa-inbox" style="font-size: 3rem;"/>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <h3 class="text-primary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.receipts_to_weigh?.total_qty || 0)" t-on-click="() => this.onCardAction('receipts_to_weigh')"/>
+                            <small class="text-muted">Expected Weight</small>
+                        </div>
+                        <hr/>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <h5 class="text-danger mb-0" style="cursor: pointer;" t-esc="state.data.receipts_to_weigh?.urgent_count || 0" t-on-click="() => this.onCardAction('receipts_urgent')"/>
+                                <small class="text-muted">Urgent</small>
                             </div>
-                            <div class="card-body text-center">
-                                <h3 class="text-primary" t-esc="state.data.receipts_to_weigh?.count || 0"/>
-                                <p class="text-muted">Pending Receipts</p>
-                                <hr/>
-                                <h4 t-esc="formatWeight(state.data.receipts_to_weigh?.total_qty || 0)"/>
-                                <small class="text-muted">Expected Weight</small>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary btn-sm btn-block" t-on-click="() => this.onCardAction('receipts_to_weigh')">
-                                    View All
-                                </button>
+                            <div class="col-6">
+                                <h5 class="text-info mb-0" style="cursor: pointer;" t-esc="state.data.receipts_to_weigh?.partners || 0" t-on-click="() => this.onCardAction('receipts_by_vendor')"/>
+                                <small class="text-muted">Vendors</small>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 mb-4">
-                        <div class="card border-warning h-100 shadow-sm">
-                            <div class="card-header bg-warning">
-                                <h5 class="m-2"><i class="fa fa-hourglass-half m-2"/>In Progress</h5>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="text-warning" t-esc="state.data.in_progress_incoming?.count || 0"/>
-                                <p class="text-muted">Active Weighings</p>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <h5 t-esc="state.data.in_progress_incoming?.draft_count || 0"/>
-                                        <small>Draft</small>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5 t-esc="state.data.in_progress_incoming?.first_count || 0"/>
-                                        <small>1st</small>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5 t-esc="state.data.in_progress_incoming?.second_count || 0"/>
-                                        <small>2nd</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-warning btn-sm btn-block" t-on-click="() => this.onCardAction('in_progress_incoming')">
-                                    View All
-                                </button>
-                            </div>
-                        </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm btn-block" t-on-click="() => this.onCardAction('receipts_to_weigh')">
+                            <i class="fa fa-list"/> View All Receipts
+                        </button>
                     </div>
-
-                    <div class="col-lg-4 mb-4">
-                        <div class="card border-success h-100 shadow-sm">
-                            <div class="card-header bg-success">
-                                <h5 class="m-2"><i class="fa fa-check-circle m-2"/>All Records</h5>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3 class="text-success" t-esc="state.data.all_records?.total_count || 0"/>
-                                <p class="text-muted">Total Incoming</p>
-                                <hr/>
-                                <h4 t-esc="formatWeight(state.data.all_records?.total_weight_today || 0)"/>
-                                <small class="text-muted">Today's Weight</small>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-success btn-sm btn-block" t-on-click="() => this.onCardAction('all_records')">
-                                    View All
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>              
         </div>
     </t>
 </templates>
