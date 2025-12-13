@@ -214,11 +214,12 @@ class ZPLPrintJob(models.Model):
                     'error_message': False
                 })
             except Exception as e:
+                error_msg = str(e)
                 job.write({
                     'state': 'failed',
-                    'error_message': str(e)
+                    'error_message': error_msg
                 })
-                raise
+                raise UserError(_("Print failed: %s") % error_msg)
 
     def action_retry(self):
         self.filtered(lambda j: j.state == 'failed').action_print()

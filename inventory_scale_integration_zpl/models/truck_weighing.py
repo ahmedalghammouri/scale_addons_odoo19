@@ -31,77 +31,140 @@ class TruckWeighing(models.Model):
     def action_print_zpl_label(self):
         self.ensure_one()
         if not self.zpl_printer_id:
-            raise UserError(_("No ZPL printer configured. Please configure a printer first."))
-        
-        zpl_code = self._generate_zpl_label()
-        job = self.env['zpl.print.job'].create({
-            'name': f'Label - {self.name}',
-            'printer_id': self.zpl_printer_id.id,
-            'weighing_id': self.id,
-            'print_type': 'label',
-            'zpl_code': zpl_code,
-        })
-        job.action_print()
-        
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('Success'),
-                'message': _('Label sent to printer: %s') % self.zpl_printer_id.name,
-                'type': 'success',
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Error'),
+                    'message': _('No ZPL printer configured. Please configure a printer first.'),
+                    'type': 'danger',
+                    'sticky': True,
+                }
             }
-        }
+        
+        try:
+            zpl_code = self._generate_zpl_label()
+            job = self.env['zpl.print.job'].create({
+                'name': f'Label - {self.name}',
+                'printer_id': self.zpl_printer_id.id,
+                'weighing_id': self.id,
+                'print_type': 'label',
+                'zpl_code': zpl_code,
+            })
+            job.action_print()
+            
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Success'),
+                    'message': _('Label sent to printer: %s') % self.zpl_printer_id.name,
+                    'type': 'success',
+                }
+            }
+        except Exception as e:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Print Failed'),
+                    'message': str(e),
+                    'type': 'danger',
+                    'sticky': True,
+                }
+            }
 
     def action_print_zpl_ticket(self):
         self.ensure_one()
         if not self.zpl_printer_id:
-            raise UserError(_("No ZPL printer configured."))
-        
-        zpl_code = self._generate_zpl_ticket()
-        job = self.env['zpl.print.job'].create({
-            'name': f'Ticket - {self.name}',
-            'printer_id': self.zpl_printer_id.id,
-            'weighing_id': self.id,
-            'print_type': 'ticket',
-            'zpl_code': zpl_code,
-        })
-        job.action_print()
-        
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('Success'),
-                'message': _('Ticket sent to printer: %s') % self.zpl_printer_id.name,
-                'type': 'success',
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Error'),
+                    'message': _('No ZPL printer configured.'),
+                    'type': 'danger',
+                    'sticky': True,
+                }
             }
-        }
+        
+        try:
+            zpl_code = self._generate_zpl_ticket()
+            job = self.env['zpl.print.job'].create({
+                'name': f'Ticket - {self.name}',
+                'printer_id': self.zpl_printer_id.id,
+                'weighing_id': self.id,
+                'print_type': 'ticket',
+                'zpl_code': zpl_code,
+            })
+            job.action_print()
+            
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Success'),
+                    'message': _('Ticket sent to printer: %s') % self.zpl_printer_id.name,
+                    'type': 'success',
+                }
+            }
+        except Exception as e:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Print Failed'),
+                    'message': str(e),
+                    'type': 'danger',
+                    'sticky': True,
+                }
+            }
 
     def action_print_zpl_certificate(self):
         self.ensure_one()
         if not self.zpl_printer_id:
-            raise UserError(_("No ZPL printer configured."))
-        
-        zpl_code = self._generate_zpl_certificate()
-        job = self.env['zpl.print.job'].create({
-            'name': f'Certificate - {self.name}',
-            'printer_id': self.zpl_printer_id.id,
-            'weighing_id': self.id,
-            'print_type': 'certificate',
-            'zpl_code': zpl_code,
-        })
-        job.action_print()
-        
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('Success'),
-                'message': _('Certificate sent to printer: %s') % self.zpl_printer_id.name,
-                'type': 'success',
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Error'),
+                    'message': _('No ZPL printer configured.'),
+                    'type': 'danger',
+                    'sticky': True,
+                }
             }
-        }
+        
+        try:
+            zpl_code = self._generate_zpl_certificate()
+            job = self.env['zpl.print.job'].create({
+                'name': f'Certificate - {self.name}',
+                'printer_id': self.zpl_printer_id.id,
+                'weighing_id': self.id,
+                'print_type': 'certificate',
+                'zpl_code': zpl_code,
+            })
+            job.action_print()
+            
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Success'),
+                    'message': _('Certificate sent to printer: %s') % self.zpl_printer_id.name,
+                    'type': 'success',
+                }
+            }
+        except Exception as e:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Print Failed'),
+                    'message': str(e),
+                    'type': 'danger',
+                    'sticky': True,
+                }
+            }
 
     def _generate_zpl_label(self):
         """Generate ZPL code for weighing label"""
