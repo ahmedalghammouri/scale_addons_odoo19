@@ -75,6 +75,20 @@
                             </div>
                         </group>
                     </group>
+                    <separator string="Waiting Times"/>
+                    <group>
+                        <group>
+                            <field name="first_time" readonly="1"/>
+                            <field name="second_time" readonly="1"/>
+                            <field name="done_time" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="waiting_time_to_first" readonly="1" widget="float_time"/>
+                            <field name="waiting_time_to_second" readonly="1" widget="float_time"/>
+                            <field name="waiting_time_to_done" readonly="1" widget="float_time"/>
+                            <field name="total_waiting_time" readonly="1" widget="float_time" decoration-bf="1"/>
+                        </group>
+                    </group>
                     <group>
                         <field name="notes" placeholder="Additional notes..."/>
                     </group>
@@ -153,6 +167,7 @@
                 <field name="gross_weight" optional="show" sum="Total Gross" widget="float" decoration-bf="gross_weight &gt; 0"/>
                 <field name="tare_weight" optional="show" sum="Total Tare" widget="float" decoration-bf="tare_weight &gt; 0"/>
                 <field name="net_weight" sum="Total Net Weight" widget="float" decoration-bf="1" decoration-success="net_weight &gt; 0"/>
+                <field name="total_waiting_time" optional="show" widget="float_time" sum="Total Waiting Time"/>
                 <field name="scale_id" optional="hide"/>
                 <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'first'" decoration-warning="state == 'second'"/>
             </list>
@@ -168,6 +183,7 @@
                 <field name="net_weight" type="measure"/>
                 <field name="gross_weight" type="measure"/>
                 <field name="tare_weight" type="measure"/>
+                <field name="total_waiting_time" type="measure"/>
             </graph>
         </field>
     </record>
@@ -183,6 +199,7 @@
                 <field name="net_weight" type="measure"/>
                 <field name="gross_weight" type="measure"/>
                 <field name="tare_weight" type="measure"/>
+                <field name="total_waiting_time" type="measure"/>
             </pivot>
         </field>
     </record>

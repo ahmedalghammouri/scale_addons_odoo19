@@ -18,7 +18,7 @@
                 <attribute name="force_save">1</attribute>
             </field>
             <group name="partner_operation" position="after">
-                <group string="Stock Operations">
+                <group string="Stock Operations" invisible="operation_type != 'outgoing'">
                     <group>
                         <field name="delivery_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'outgoing'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
                         <field name="picking_id" invisible="1"/>
@@ -29,7 +29,7 @@
                 </group>
             </group>
             <group name="partner_operation" position="after">
-                <group string="Transfer Information" invisible="not delivery_id">
+                <group string="Transfer Information" invisible="not delivery_id or operation_type != 'outgoing'">
                     <group>
                         <field name="source_document" readonly="1"/>
                         <field name="scheduled_date" readonly="1"/>
@@ -44,7 +44,7 @@
                 </group>
             </group>
             <field name="notes" position="before">
-                <div class="alert alert-info" role="alert" invisible="not delivery_id or state == 'draft'" style="margin-bottom: 10px;">
+                <div class="alert alert-info" role="alert" invisible="not delivery_id or state == 'draft' or operation_type != 'outgoing'" style="margin-bottom: 10px;">
                     <strong>Visual Indicators:</strong>
                     <ul style="margin-bottom: 0; padding-left: 20px;">
                         <li><strong>Remaining Qty:</strong> <span style="color: #d9534f;">Red</span> if positive (under-delivery), <span style="color: #5cb85c;">Green</span> if zero/negative (fulfilled/over-delivered)</li>
@@ -53,7 +53,7 @@
                         <li><strong>Fulfillment %:</strong> <span style="color: #5cb85c;">Green</span> if ≥95%, <span style="color: #f0ad4e;">Orange</span> if 90-95%, <span style="color: #d9534f;">Red</span> if &lt;90%</li>
                     </ul>
                 </div>
-                <group string="Quantity Analysis" invisible="not delivery_id or state == 'draft'">
+                <group string="Quantity Analysis" invisible="not delivery_id or state == 'draft' or operation_type != 'outgoing'">
                     <group>
                         <label for="remaining_qty" string="Remaining Quantity"/>
                         <div>
@@ -74,7 +74,7 @@
             <xpath expr="//div[hasclass('oe_title')]" position="before">
                 <div class="oe_button_box" name="button_box">
                     <button name="action_view_delivery" type="object" class="oe_stat_button" icon="fa-truck"
-                            invisible="not delivery_id">
+                            invisible="not delivery_id or operation_type != 'outgoing'">
                         <div class="o_stat_info">
                             <span class="o_stat_text">Delivery</span>
                         </div>

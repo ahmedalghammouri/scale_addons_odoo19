@@ -1,0 +1,16 @@
+STEPS TO REINSTALL MODULE:
+
+1. Go to Odoo Apps menu
+2. Remove "Apps" filter
+3. Search "Weigh Point"
+4. Click "Uninstall"
+5. Restart Odoo server
+6. Go to Apps menu again
+7. Click "Update Apps List"
+8. Search "Weigh Point"
+9. Click "Install"
+10. Hard refresh browser (Ctrl+Shift+R)
+
+The menu should appear in the top menu bar.
+
+If still not visible, check browser console (F12) for JavaScript errors.

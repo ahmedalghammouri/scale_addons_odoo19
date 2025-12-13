@@ -44,12 +44,41 @@ class TruckWeighing(models.Model):
         ('cancel', 'Cancelled')
     ], string='Status', default='draft', tracking=True)
     
+    first_time = fields.Datetime(string='First Weighing Time', readonly=True)
+    second_time = fields.Datetime(string='Second Weighing Time', readonly=True)
+    done_time = fields.Datetime(string='Done Time', readonly=True)
+    
+    waiting_time_to_first = fields.Float(string='Waiting Time to First Weigh (minutes)', compute='_compute_waiting_times', store=True)
+    waiting_time_to_second = fields.Float(string='Waiting Time to Second Weigh (minutes)', compute='_compute_waiting_times', store=True)
+    waiting_time_to_done = fields.Float(string='Waiting Time to Update Inventory (minutes)', compute='_compute_waiting_times', store=True)
+    total_waiting_time = fields.Float(string='Total Waiting Time (minutes)', compute='_compute_waiting_times', store=True)
+    
     notes = fields.Text(string='Notes')
     
     @api.depends('name')
     def _compute_barcode(self):
         for record in self:
             record.barcode = record.name
+    
+    @api.depends('create_date', 'first_time', 'second_time', 'done_time')
+    def _compute_waiting_times(self):
+        for record in self:
+            if record.create_date and record.first_time:
+                record.waiting_time_to_first = (record.first_time - record.create_date).total_seconds() / 60
+            else:
+                record.waiting_time_to_first = 0.0
+            
+            if record.first_time and record.second_time:
+                record.waiting_time_to_second = (record.second_time - record.first_time).total_seconds() / 60
+            else:
+                record.waiting_time_to_second = 0.0
+            
+            if record.second_time and record.done_time:
+                record.waiting_time_to_done = (record.done_time - record.second_time).total_seconds() / 60
+            else:
+                record.waiting_time_to_done = 0.0
+            
+            record.total_waiting_time = record.waiting_time_to_first + record.waiting_time_to_second + record.waiting_time_to_done
     
     @api.depends('gross_weight', 'tare_weight')
     def _compute_net_weight(self):
@@ -110,6 +139,7 @@ class TruckWeighing(models.Model):
             self.tare_date = fields.Datetime.now()
             self.message_post(body=_("First weight (Tare - Empty truck): %s KG") % self.tare_weight)
         
+        self.first_time = fields.Datetime.now()
         self.state = 'first'
 
     def action_set_second_weight(self):
@@ -132,6 +162,7 @@ class TruckWeighing(models.Model):
             self.gross_date = fields.Datetime.now()
             self.message_post(body=_("Second weight (Gross - Full truck): %s KG") % self.gross_weight)
         
+        self.second_time = fields.Datetime.now()
         self.state = 'second'
 
     # Keep old methods for backward compatibility
@@ -144,6 +175,7 @@ class TruckWeighing(models.Model):
     def action_mark_done(self):
         self.ensure_one()
         if self.state == 'second' and self.net_weight > 0:
+            self.done_time = fields.Datetime.now()
             self.state = 'done'
         else:
             raise UserError(_("Cannot mark as done. Complete tare weighing first."))

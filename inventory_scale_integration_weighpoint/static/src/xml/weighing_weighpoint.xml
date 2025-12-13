@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="inventory_scale_integration_weighpoint.WeighPointInterface">
+        <div class="weighing_weighpoint_interface">
+            <!-- Header -->
+            <div class="weighpoint_header">
+                <h1>⚖️ Weigh Point</h1>
+                <div class="header_actions">
+                    <button class="btn btn-outline-secondary" t-on-click="() => this.refreshData()">
+                        <i class="fa fa-sync-alt"/> Refresh
+                    </button>
+                    <button class="btn btn-outline-secondary" t-on-click="() => this.openWeighingList('all')">
+                        📋 All
+                    </button>
+                    <button class="btn btn-outline-info" t-on-click="() => this.openWeighingList('in_progress')">
+                        ⏱️ In Progress
+                    </button>
+                    <button class="btn btn-outline-success" t-on-click="() => this.openWeighingList('done')">
+                        ✓ Done
+                    </button>
+                    <button class="btn btn-primary" t-on-click="() => this.createNewWeighing()">
+                        ➕ New
+                    </button>
+                </div>
+            </div>
+
+            <!-- Analytics Charts -->
+            <div class="analytics_section">
+                <div class="analytics_row">
+                    <!-- Today's Progress -->
+                    <div class="analytics_card" style="border-left: 4px solid #28a745;">
+                        <div class="analytics_header">
+                            <small>Today's Progress</small>
+                            <i class="fa fa-chart-line text-success"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 t-esc="state.analytics?.completed_today || 0"/>
+                            <span>completed</span>
+                        </div>
+                        <div class="analytics_footer">
+                            <small><i class="fa fa-clock"/> <t t-esc="state.analytics?.in_progress || 0"/> in progress</small>
+                        </div>
+                    </div>
+
+                    <!-- Avg Wait Time -->
+                    <div class="analytics_card" style="border-left: 4px solid #667eea;">
+                        <div class="analytics_header">
+                            <small>Avg Wait Time</small>
+                            <i class="fa fa-hourglass-half text-primary"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" t-esc="state.analytics?.avg_wait_time || '0m'"/>
+                        </div>
+                        <div class="analytics_footer">
+                            <small><i class="fa fa-users"/> <t t-esc="state.analytics?.waiting_count || 0"/> waiting</small>
+                        </div>
+                    </div>
+
+                    <!-- Pending Orders -->
+                    <div class="analytics_card" style="border-left: 4px solid #ffc107;">
+                        <div class="analytics_header">
+                            <small>Pending Orders</small>
+                            <i class="fa fa-inbox text-warning"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 t-esc="state.pickings?.length || 0"/>
+                            <span>orders</span>
+                        </div>
+                        <div class="analytics_footer">
+                            <small><i class="fa fa-exclamation-triangle"/> <t t-esc="state.analytics?.urgent_count || 0"/> urgent</small>
+                        </div>
+                    </div>
+
+                    <!-- Efficiency Rate -->
+                    <div class="analytics_card" style="border-left: 4px solid #17a2b8;">
+                        <div class="analytics_header">
+                            <small>Efficiency Rate</small>
+                            <i class="fa fa-tachometer-alt text-info"/>
+                        </div>
+                        <div class="analytics_value">
+                            <h2 style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" t-esc="(state.analytics?.efficiency_rate || 0) + '%'"/>
+                        </div>
+                        <div class="analytics_footer">
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-info" t-att-style="'width: ' + (state.analytics?.efficiency_rate || 0) + '%'"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scan and Search in same row -->
+            <div class="input_section">
+                <div class="input_row">
+                    <div class="input_group">
+                        <label>🎫 Scan Barcode:</label>
+                        <input type="text" 
+                               class="form-control form-control-lg" 
+                               placeholder="Scan barcode..."
+                               t-model="state.barcode"
+                               t-on-keydown="(ev) => ev.key === 'Enter' &amp;&amp; state.barcode ? this.scanBarcode() : null"
+                               autofocus="autofocus"/>
+                        <button class="btn btn-success btn-lg" t-on-click="() => this.scanBarcode()">
+                            Scan
+                        </button>
+                    </div>
+                    
+                    <div class="input_group">
+                        <label>🔍 Search:</label>
+                        <input type="text" 
+                               class="form-control form-control-lg" 
+                               placeholder="Search orders..."
+                               t-model="state.searchText"
+                               t-on-keydown="(ev) => ev.key === 'Enter' ? this.onSearch() : null"
+                               t-on-input="onSearchChange"/>
+                        <button class="btn btn-info btn-lg" t-on-click="() => this.onSearch()">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weighpoint_content">
+                <!-- Pending Orders (No Weighing) -->
+                <div class="section_card">
+                    <div class="section_header">
+                        <h3>📋 Pending Orders</h3>
+                        <div class="filter_buttons">
+                            <button t-attf-class="btn btn-sm {{state.pickingFilter === 'all' ? 'btn-primary' : 'btn-outline-primary'}}" 
+                                    t-on-click="() => this.onPickingFilterChange('all')">All</button>
+                            <button t-attf-class="btn btn-sm {{state.pickingFilter === 'incoming' ? 'btn-primary' : 'btn-outline-primary'}}" 
+                                    t-on-click="() => this.onPickingFilterChange('incoming')">Incoming</button>
+                            <button t-attf-class="btn btn-sm {{state.pickingFilter === 'outgoing' ? 'btn-primary' : 'btn-outline-primary'}}" 
+                                    t-on-click="() => this.onPickingFilterChange('outgoing')">Outgoing</button>
+                        </div>
+                    </div>
+                    <div class="scrollable_list">
+                        <t t-if="state.pickings.length === 0">
+                            <div class="empty_state">No pending orders</div>
+                        </t>
+                        <t t-foreach="state.pickings" t-as="picking" t-key="picking.id">
+                            <div class="card_item" t-on-click="() => this.createWeighingFromPicking(picking.id)">
+                                <div class="card_header">
+                                    <span class="card_name">
+                                        <t t-if="picking.picking_type_code === 'incoming'">📥</t>
+                                        <t t-if="picking.picking_type_code === 'outgoing'">📤</t>
+                                        <t t-esc="picking.name"/>
+                                    </span>
+                                    <span t-attf-class="badge badge-{{picking.picking_type_code === 'incoming' ? 'primary' : 'warning'}}">
+                                        <t t-esc="picking.picking_type_code"/>
+                                    </span>
+                                </div>
+                                <div class="card_details">
+                                    <div><strong>Partner:</strong> <t t-esc="picking.partner_id[1]"/></div>
+                                    <div><strong>Scheduled:</strong> <t t-esc="picking.scheduled_date"/></div>
+                                    <div t-if="picking.origin"><strong>Origin:</strong> <t t-esc="picking.origin"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <!-- Orders with Weighing (Not Validated) -->
+                <div class="section_card">
+                    <div class="section_header">
+                        <h3>📦 Orders with Weighing</h3>
+                    </div>
+                    <div class="scrollable_list">
+                        <t t-if="state.pickingsWithWeighing.length === 0">
+                            <div class="empty_state">No orders with weighing</div>
+                        </t>
+                        <t t-foreach="state.pickingsWithWeighing" t-as="picking" t-key="picking.id">
+                            <div class="card_item in_progress">
+                                <div class="card_header">
+                                    <span class="card_name">
+                                        <t t-if="picking.picking_type_code === 'incoming'">📥</t>
+                                        <t t-if="picking.picking_type_code === 'outgoing'">📤</t>
+                                        <t t-esc="picking.name"/>
+                                    </span>
+                                    <span class="badge badge-info">In Progress</span>
+                                </div>
+                                <div class="card_details">
+                                    <div><strong>Partner:</strong> <t t-esc="picking.partner_id[1]"/></div>
+                                    <div><strong>Scheduled:</strong> <t t-esc="picking.scheduled_date"/></div>
+                                    <div t-if="picking.origin"><strong>Origin:</strong> <t t-esc="picking.origin"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <!-- In Progress Weighings -->
+                <div class="section_card">
+                    <div class="section_header">
+                        <h3>⏱️ In Progress Weighings</h3>
+                        <button class="btn btn-sm btn-outline-primary" t-on-click="() => this.openWeighingList('in_progress')">
+                            View All
+                        </button>
+                    </div>
+                    <div class="scrollable_list">
+                        <t t-if="state.recentWeighings.length === 0">
+                            <div class="empty_state">No weighings in progress</div>
+                        </t>
+                        <t t-foreach="state.recentWeighings" t-as="weighing" t-key="weighing.id">
+                            <div class="card_item" t-on-click="() => this.openWeighing(weighing.id)">
+                                <div class="card_header">
+                                    <span class="card_name">
+                                        <t t-if="weighing.operation_type === 'incoming'">📥</t>
+                                        <t t-if="weighing.operation_type === 'outgoing'">📤</t>
+                                        <t t-esc="weighing.name"/>
+                                    </span>
+                                    <span t-attf-class="badge badge-{{weighing.state === 'draft' ? 'secondary' : weighing.state === 'first' ? 'info' : 'warning'}}">
+                                        <t t-esc="weighing.state"/>
+                                    </span>
+                                </div>
+                                <div class="card_details">
+                                    <div><strong>Truck:</strong> <t t-esc="weighing.truck_plate"/></div>
+                                    <div t-if="weighing.partner_id"><strong>Partner:</strong> <t t-esc="weighing.partner_id[1]"/></div>
+                                    <div t-if="weighing.product_id"><strong>Product:</strong> <t t-esc="weighing.product_id[1]"/></div>
+                                    <div t-if="weighing.barcode"><strong>Barcode:</strong> <t t-esc="weighing.barcode"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

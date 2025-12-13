@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Simplified Weigh Point Form View -->
+    <record id="truck_weighing_view_form_weighpoint" model="ir.ui.view">
+        <field name="name">truck.weighing.view.form.weighpoint</field>
+        <field name="model">truck.weighing</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form string="Weigh Point">
+                <header>
+                    <button name="action_fetch_live_weight" string="📊 Fetch Weight" type="object" class="btn-primary btn-lg"/>
+                    <button name="action_set_first_weight" string="✓ Weigh First" type="object"
+                            invisible="state != 'draft'" class="oe_highlight btn-lg"/>
+                    <!-- <button name="action_print_driver_ticket" string="🎫 Print Ticket" type="object"
+                            invisible="state != 'first'" class="btn-warning btn-lg"/> -->
+                    <button name="action_set_second_weight" string="✓ Weigh Second" type="object"
+                            invisible="state != 'first'" class="oe_highlight btn-lg"/>
+                    <button name="action_print_certificate" string="📄 Print Certificate" type="object"
+                            invisible="state != 'second'" class="btn-success btn-lg"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,first,second,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    
+                    <!-- Live Weight Display -->
+                    <group>
+                        <group>
+                            <label for="live_weight" string="LIVE WEIGHT"/>
+                            <div>
+                                <field name="live_weight" class="oe_inline" 
+                                       style="font-size: 48px; font-weight: bold; color: #0066cc;"/>
+                                <span style="font-size: 24px; margin-left: 10px;">KG</span>
+                            </div>
+                        </group>
+                        <group>
+                            <label for="net_weight" string="NET WEIGHT"/>
+                            <div>
+                                <field name="net_weight" readonly="1" class="oe_inline" 
+                                       style="font-size: 48px; font-weight: bold; color: #00aa00;"/>
+                                <span style="font-size: 24px; margin-left: 10px;">KG</span>
+                            </div>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Truck Info">
+                            <field name="truck_id" options="{'no_create': True}"/>
+                            <field name="truck_plate"/>
+                            <field name="driver_name"/>
+                        </group>
+                        <group string="Operation">
+                            <field name="operation_type" widget="badge"/>
+                            <field name="partner_id"/>
+                            <field name="product_id" domain="[('is_weighable', '=', True)]"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Weights">
+                            <field name="gross_weight" readonly="1"/>
+                            <field name="tare_weight" readonly="1"/>
+                        </group>
+                        <group string="Dates">
+                            <field name="gross_date" readonly="1"/>
+                            <field name="tare_date" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <field name="scale_id" invisible="1"/>
+                        <field name="barcode" invisible="1"/>
+                        <field name="weighpoint_session_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Weigh Point Action -->
+    <record id="action_weighing_weighpoint" model="ir.actions.act_window">
+        <field name="name">Weigh Point</field>
+        <field name="res_model">truck.weighing</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="truck_weighing_view_form_weighpoint"/>
+        <field name="target">current</field>
+        <field name="context">{
+            'default_scale_id': uid.default_scale_id.id if uid.default_scale_id else False,
+            'form_view_ref': 'inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint',
+        }</field>
+    </record>
+
+    <!-- Weigh Point Client Action (Main Interface) -->
+    <record id="action_weighing_weighpoint_interface" model="ir.actions.client">
+        <field name="name">Weigh Point</field>
+        <field name="tag">weighing_weighpoint_interface</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

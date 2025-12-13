@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_weighing_cashier_user,weighing.cashier.user,model_weighing_cashier,inventory_scale_integration_base.group_scale_user,1,1,1,1
-access_weighing_cashier_manager,weighing.cashier.manager,model_weighing_cashier,inventory_scale_integration_base.group_scale_manager,1,1,1,1
-access_truck_selection_wizard_user,truck.selection.wizard.user,model_truck_selection_wizard,inventory_scale_integration_base.group_scale_user,1,1,1,1

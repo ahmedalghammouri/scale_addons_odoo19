@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Root Application Menu -->
-    <menuitem id="menu_weighing_cashier_root"
-              name="Weighing Cashier"
-              action="action_weighing_cashier_interface"
-              web_icon="inventory_scale_integration_cashier,static/description/icon.png"
-              sequence="155"/>
-</odoo>
