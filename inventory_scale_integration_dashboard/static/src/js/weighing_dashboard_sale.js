@@ -1,46 +1,46 @@
 /** @odoo-module **/
 
-import { WeighingOverviewDashboard } from "@inventory_scale_integration_stock_in/js/weighing_dashboard";
+import { WeighingOverviewDashboard } from "@inventory_scale_integration_stock/js/weighing_dashboard";
 import { patch } from "@web/core/utils/patch";
 
 patch(WeighingOverviewDashboard.prototype, {
     async onCardAction(actionName) {
-        const purchaseActions = {
-            'purchase_orders': {
-                name: 'Purchase Orders with Weighable Products',
-                res_model: 'purchase.order',
+        const saleActions = {
+            'sale_orders': {
+                name: 'Sale Orders with Weighable Products',
+                res_model: 'sale.order',
                 view_mode: 'list,form',
                 views: [[false, 'list'], [false, 'form']],
                 domain: [
-                    ['state', 'in', ['draft', 'sent', 'to approve', 'purchase']],
+                    ['state', 'in', ['draft', 'sent', 'sale']],
                     ['order_line.product_id.is_weighable', '=', true]
                 ],
             },
-            'purchase_urgent': {
-                name: 'Urgent Purchase Orders',
-                res_model: 'purchase.order',
+            'sale_urgent': {
+                name: 'Urgent Sale Orders',
+                res_model: 'sale.order',
                 view_mode: 'list,form',
                 views: [[false, 'list'], [false, 'form']],
                 domain: [
-                    ['state', 'in', ['draft', 'sent', 'to approve', 'purchase']],
+                    ['state', 'in', ['draft', 'sent', 'sale']],
                     ['order_line.product_id.is_weighable', '=', true],
-                    ['date_planned', '<=', new Date().toISOString().split('T')[0]]
+                    ['commitment_date', '<=', new Date().toISOString().split('T')[0]]
                 ],
             },
-            'purchase_by_vendor': {
-                name: 'Purchase Orders by Vendor',
-                res_model: 'purchase.order',
+            'sale_by_customer': {
+                name: 'Sale Orders by Customer',
+                res_model: 'sale.order',
                 view_mode: 'list,form',
                 views: [[false, 'list'], [false, 'form']],
                 domain: [
-                    ['state', 'in', ['draft', 'sent', 'to approve', 'purchase']],
+                    ['state', 'in', ['draft', 'sent', 'sale']],
                     ['order_line.product_id.is_weighable', '=', true]
                 ],
                 context: { 'group_by': 'partner_id' }
             },
         };
 
-        const actionConfig = purchaseActions[actionName];
+        const actionConfig = saleActions[actionName];
         if (actionConfig) {
             let domain = actionConfig.domain;
             if (typeof domain === 'function') {

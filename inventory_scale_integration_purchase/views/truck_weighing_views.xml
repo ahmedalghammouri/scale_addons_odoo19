@@ -3,7 +3,7 @@
     <record id="truck_weighing_view_form_purchase" model="ir.ui.view">
         <field name="name">truck.weighing.view.form.purchase</field>
         <field name="model">truck.weighing</field>
-        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_form_stock"/>
+        <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_form_stock_in"/>
         <field name="arch" type="xml">
             <field name="delivery_id" position="attributes">
                 <attribute name="invisible">operation_type == 'incoming'</attribute>
@@ -45,7 +45,7 @@
     <record id="truck_weighing_view_kanban_purchase" model="ir.ui.view">
         <field name="name">truck.weighing.view.kanban.purchase</field>
         <field name="model">truck.weighing</field>
-        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_kanban_stock"/>
+        <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_kanban_stock_in"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='variance_qty']" position="after">
                 <field name="purchase_order_id"/>
@@ -61,7 +61,7 @@
     <record id="truck_weighing_view_list_purchase" model="ir.ui.view">
         <field name="name">truck.weighing.view.list.purchase</field>
         <field name="model">truck.weighing</field>
-        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_list_stock"/>
+        <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_list_stock_in"/>
         <field name="arch" type="xml">
             <field name="location_dest_id" position="after">
                 <field name="purchase_order_id" optional="show" decoration-primary="purchase_order_id" decoration-bf="1"/>
@@ -73,7 +73,7 @@
     <record id="truck_weighing_view_graph_purchase" model="ir.ui.view">
         <field name="name">truck.weighing.view.graph.purchase</field>
         <field name="model">truck.weighing</field>
-        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_graph_stock"/>
+        <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_graph_stock_in"/>
         <field name="arch" type="xml">
             <field name="operation_type" position="after">
                 <field name="purchase_order_id"/>
@@ -84,7 +84,7 @@
     <record id="truck_weighing_view_pivot_purchase" model="ir.ui.view">
         <field name="name">truck.weighing.view.pivot.purchase</field>
         <field name="model">truck.weighing</field>
-        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_pivot_stock"/>
+        <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_pivot_stock_in"/>
         <field name="arch" type="xml">
             <field name="operation_type" position="after">
                 <field name="purchase_order_id" type="col"/>
@@ -95,7 +95,7 @@
     <record id="truck_weighing_view_search_purchase" model="ir.ui.view">
         <field name="name">truck.weighing.view.search.purchase</field>
         <field name="model">truck.weighing</field>
-        <field name="inherit_id" ref="inventory_scale_integration_stock.truck_weighing_view_search_stock"/>
+        <field name="inherit_id" ref="inventory_scale_integration_stock_in.truck_weighing_view_search_stock_in"/>
         <field name="arch" type="xml">
             <field name="location_dest_id" position="after">
                 <field name="purchase_order_id"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="inventory_scale_integration_dashboard.WeighingDashboardTemplate" owl="1">
+    <t t-name="inventory_scale_integration.WeighingDashboardTemplate" owl="1">
         <div class="o_weighing_dashboard">
             <div class="container-fluid" t-if="!state.loading">
                 <!-- Professional Header with Quick Actions -->

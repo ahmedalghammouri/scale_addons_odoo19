@@ -12,14 +12,14 @@ class WeighingOverview(models.TransientModel):
         today = fields.Date.today()
         week_ago = today - timedelta(days=7)
         
-        # Get IDs - will return empty if modules not installed
+        # Get IDs for consistent filtering
         receipts_to_weigh_ids = self.get_receipts_to_weigh_ids()
         deliveries_to_weigh_ids = self.get_deliveries_to_weigh_ids()
         
         receipts_to_weigh = self.env['stock.picking'].browse(receipts_to_weigh_ids)
         deliveries_to_weigh = self.env['stock.picking'].browse(deliveries_to_weigh_ids)
         
-        # In Progress Weighings - will be empty if modules not installed
+        # In Progress Weighings - Split by operation type
         in_progress_incoming = self.env['truck.weighing'].search([
             ('state', 'in', ['draft', 'first', 'second']),
             ('operation_type', '=', 'incoming')
@@ -150,7 +150,7 @@ class WeighingOverview(models.TransientModel):
         total_weight = 0
         
         for record in draft_records:
-            picking = (hasattr(record, 'picking_id') and record.picking_id) or (hasattr(record, 'delivery_id') and record.delivery_id)
+            picking = record.picking_id or record.delivery_id
             if picking and picking.move_ids:
                 for move in picking.move_ids.filtered(lambda m: m.product_id.is_weighable):
                     total_weight += move.product_uom_qty
@@ -159,18 +159,37 @@ class WeighingOverview(models.TransientModel):
     
     @api.model
     def get_receipts_to_weigh_ids(self):
-        """Get receipt IDs that need weighing - Override in stock_in module"""
-        return []
+        """Get receipt IDs that need weighing"""
+        all_receipts = self.env['stock.picking'].search([
+            ('state', 'in', ['assigned', 'confirmed']),
+            ('picking_type_code', '=', 'incoming'),
+            ('move_ids.product_id.is_weighable', '=', True)
+        ])
+        # Filter out those with existing weighing records
+        receipts_to_weigh = all_receipts.filtered(lambda r: 
+            not self.env['truck.weighing'].search([('picking_id', '=', r.id)], limit=1)
+        )
+        return receipts_to_weigh.ids
     
+
     @api.model
     def get_deliveries_to_weigh_ids(self):
-        """Get Delivery IDs that need weighing - Override in stock_out module"""
-        return []
+        """Get Delivery IDs that need weighing"""
+        all_deliveries = self.env['stock.picking'].search([
+            ('state', 'in', ['assigned', 'confirmed']),
+            ('picking_type_code', '=', 'outgoing'),
+            ('move_ids.product_id.is_weighable', '=', True)
+        ])
+        # Filter out those with existing weighing records
+        deliveries_to_weigh = all_deliveries.filtered(lambda d: 
+            not self.env['truck.weighing'].search([('delivery_id', '=', d.id)], limit=1)
+        )
+        return deliveries_to_weigh.ids
     
     def _get_stock_performance_data(self, all_records, completed_week):
         """Calculate stock performance analytics"""
         # Get completed weighings with picking/delivery
-        completed_with_stock = all_records.filtered(lambda r: r.state == 'done' and (hasattr(r, 'picking_id') and r.picking_id or hasattr(r, 'delivery_id') and r.delivery_id))
+        completed_with_stock = all_records.filtered(lambda r: r.state == 'done' and (r.picking_id or r.delivery_id))
         
         if not completed_with_stock:
             return {
@@ -199,7 +218,7 @@ class WeighingOverview(models.TransientModel):
         accuracy_count = 0
         
         for rec in completed_with_stock:
-            picking = (hasattr(rec, 'picking_id') and rec.picking_id) or (hasattr(rec, 'delivery_id') and rec.delivery_id)
+            picking = rec.picking_id or rec.delivery_id
             if not picking:
                 continue
             
@@ -234,8 +253,8 @@ class WeighingOverview(models.TransientModel):
                 accuracy_count += 1
         
         # Calculate totals
-        receipts = completed_with_stock.filtered(lambda r: hasattr(r, 'picking_id') and r.picking_id)
-        deliveries = completed_with_stock.filtered(lambda r: hasattr(r, 'delivery_id') and r.delivery_id)
+        receipts = completed_with_stock.filtered(lambda r: r.picking_id)
+        deliveries = completed_with_stock.filtered(lambda r: r.delivery_id)
         
         return {
             'total_completed': len(completed_with_stock),

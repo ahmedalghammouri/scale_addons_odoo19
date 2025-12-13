@@ -28,5 +28,5 @@
     <menuitem id="menu_receipts_need_weighing" name="Receipts to Weigh" parent="menu_weighing_incoming_root" action="action_receipts_need_weighing" sequence="1"/>
     <menuitem id="menu_truck_weighing_incoming_progress" name="In Progress" parent="menu_weighing_incoming_root" action="action_truck_weighing_incoming_progress" sequence="2"/>
     <menuitem id="menu_truck_weighing_incoming" name="All Incoming Records" parent="menu_weighing_incoming_root" action="action_truck_weighing_incoming" sequence="3"/>
-    <menuitem id="menu_weighing_overview_in" name="Incoming Overview" parent="menu_weighing_incoming_root" action="action_weighing_overview_dashboard_in" sequence="4"/>
+    <!-- <menuitem id="menu_weighing_overview_in" name="Incoming Overview" parent="menu_weighing_incoming_root" action="action_weighing_overview_dashboard_in" sequence="4"/> -->
 </odoo>

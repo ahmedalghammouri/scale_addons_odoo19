@@ -499,6 +499,6 @@ export class WeighingOverviewDashboard extends Component {
     }
 }
 
-WeighingOverviewDashboard.template = "inventory_scale_integration_dashboard.WeighingDashboardTemplate";
+WeighingOverviewDashboard.template = "inventory_scale_integration.WeighingDashboardTemplate";
 
 registry.category("actions").add("weighing_overview_dashboard", WeighingOverviewDashboard);
