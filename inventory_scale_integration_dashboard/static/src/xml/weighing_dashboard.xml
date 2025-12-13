@@ -337,13 +337,13 @@
                                     </li>
                                 </ul>
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'day' ? 'active' : ''" t-on-click.prevent="() => this.setTimePeriod('day')">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'day' ? 'active' : ''" t-on-click="(ev) => this.setTimePeriod('day', ev)">
                                             <i class="fa fa-calendar-day"/> Daily
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'week' ? 'active' : ''" t-on-click.prevent="() => this.setTimePeriod('week')">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'week' ? 'active' : ''" t-on-click="(ev) => this.setTimePeriod('week', ev)">
                                             <i class="fa fa-calendar-week"/> Weekly
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'month' ? 'active' : ''" t-on-click.prevent="() => this.setTimePeriod('month')">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" t-att-class="state.timePeriod === 'month' ? 'active' : ''" t-on-click="(ev) => this.setTimePeriod('month', ev)">
                                             <i class="fa fa-calendar-alt"/> Monthly
                                         </button>
                                     </div>

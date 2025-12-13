@@ -42,9 +42,11 @@ export class WeighingOverviewDashboard extends Component {
         setTimeout(() => this.renderCharts(), 100);
     }
 
-    async setTimePeriod(period) {
+    async setTimePeriod(period, ev) {
+        if (ev) ev.preventDefault();
         this.state.timePeriod = period;
-        await this.loadData();
+        const trendData = await this.orm.call("weighing.overview", "get_overview_data", [], {period: period});
+        this.state.data.trend_data = trendData.trend_data;
         setTimeout(() => this.renderCharts(), 100);
     }
 
