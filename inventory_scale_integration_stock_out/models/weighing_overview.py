@@ -3,13 +3,12 @@ from odoo import models, fields, api
 from datetime import datetime, timedelta
 
 class WeighingOverview(models.TransientModel):
-    _name = 'weighing.overview.outgoing'
-    _description = 'Weighing Outgoing Operations Overview Dashboard'
+    _inherit = 'weighing.overview'
 
     @api.model
     def get_overview_data(self):
+        data = super().get_overview_data()
         today = fields.Date.today()
-        week_ago = today - timedelta(days=7)
         
         deliveries_to_weigh_ids = self.get_deliveries_to_weigh_ids()
         deliveries_to_weigh = self.env['stock.picking'].browse(deliveries_to_weigh_ids)
@@ -19,11 +18,7 @@ class WeighingOverview(models.TransientModel):
             ('operation_type', '=', 'outgoing')
         ])
         
-        all_records = self.env['truck.weighing'].search([('operation_type', '=', 'outgoing')])
-        completed_today = all_records.filtered(lambda r: r.state == 'done' and r.weighing_date.date() == today)
-        completed_week = all_records.filtered(lambda r: r.state == 'done' and r.weighing_date.date() >= week_ago)
-        
-        return {
+        data.update({
             'deliveries_to_weigh': {
                 'count': len(deliveries_to_weigh),
                 'total_qty': sum(deliveries_to_weigh.mapped('move_ids.product_uom_qty')),
@@ -39,16 +34,8 @@ class WeighingOverview(models.TransientModel):
                 'first_weight': sum(in_progress_outgoing.filtered(lambda r: r.state == 'first').mapped('tare_weight')),
                 'second_weight': sum(in_progress_outgoing.filtered(lambda r: r.state == 'second').mapped('gross_weight')),
             },
-            'all_records': {
-                'total_count': len(all_records),
-                'completed_today': len(completed_today),
-                'completed_week': len(completed_week),
-                'total_weight_today': sum(completed_today.mapped('net_weight')),
-                'total_weight_week': sum(completed_week.mapped('net_weight')),
-                'avg_weight': sum(all_records.filtered(lambda r: r.state == 'done').mapped('net_weight')) / max(len(all_records.filtered(lambda r: r.state == 'done')), 1),
-            },
-            'stock_performance': self._get_stock_performance_data(all_records, completed_week)
-        }
+        })
+        return data
     
     def _calculate_avg_processing_time(self, records):
         if not records:
@@ -74,68 +61,3 @@ class WeighingOverview(models.TransientModel):
             not self.env['truck.weighing'].search([('delivery_id', '=', d.id)], limit=1)
         )
         return deliveries_to_weigh.ids
-    
-    def _get_stock_performance_data(self, all_records, completed_week):
-        completed_with_stock = all_records.filtered(lambda r: r.state == 'done' and r.delivery_id)
-        
-        if not completed_with_stock:
-            return {
-                'total_completed': 0,
-                'high_fulfillment': 0,
-                'over_delivered': 0,
-                'exact_match': 0,
-                'under_delivered': 0,
-                'avg_fulfillment': 0,
-                'total_variance': 0,
-                'total_delivered': 0,
-                'deliveries_count': 0,
-                'products_count': 0,
-                'accuracy_rate': 0,
-            }
-        
-        high_fulfillment = 0
-        over_delivered = 0
-        exact_match = 0
-        under_delivered = 0
-        total_fulfillment = 0
-        total_variance = 0
-        accuracy_count = 0
-        
-        for rec in completed_with_stock:
-            if not rec.delivery_id:
-                continue
-            move = rec.delivery_id.move_ids.filtered(lambda m: m.product_id == rec.product_id)
-            if not move:
-                continue
-            demand_qty = move[0].product_uom_qty
-            if demand_qty <= 0:
-                continue
-            variance = rec.net_weight - demand_qty
-            variance_percent = variance / demand_qty
-            fulfillment = rec.net_weight / demand_qty
-            total_variance += abs(variance)
-            total_fulfillment += fulfillment
-            if fulfillment >= 0.95:
-                high_fulfillment += 1
-            if variance > 0:
-                over_delivered += 1
-            elif variance == 0:
-                exact_match += 1
-            else:
-                under_delivered += 1
-            if abs(variance_percent) <= 0.05:
-                accuracy_count += 1
-        
-        return {
-            'total_completed': len(completed_with_stock),
-            'high_fulfillment': high_fulfillment,
-            'over_delivered': over_delivered,
-            'exact_match': exact_match,
-            'under_delivered': under_delivered,
-            'avg_fulfillment': round((total_fulfillment / max(len(completed_with_stock), 1)) * 100, 1),
-            'total_variance': round(total_variance, 2),
-            'total_delivered': round(sum(completed_with_stock.mapped('net_weight')), 2),
-            'deliveries_count': len(completed_with_stock),
-            'products_count': len(completed_with_stock.mapped('product_id')),
-            'accuracy_rate': round((accuracy_count / max(len(completed_with_stock), 1)) * 100, 1),
-        }

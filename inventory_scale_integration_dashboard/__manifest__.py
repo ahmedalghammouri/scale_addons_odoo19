@@ -1,0 +1,25 @@
+{
+    'name': 'Scale Integration - Dashboard',
+    'version': '19.0.1.0.0',
+    'category': 'Inventory/Stock',
+    'summary': 'Base dashboard for weighbridge operations',
+    'author': 'Gemy',
+    'website': 'https://www.example.com',
+    'license': 'LGPL-3',
+    'depends': ['inventory_scale_integration_base', 'stock'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/weighing_overview_views.xml',
+        'views/menu_items_views.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'inventory_scale_integration_dashboard/static/src/js/weighing_dashboard.js',
+            'inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml',
+            'inventory_scale_integration_dashboard/static/src/scss/weighing_dashboard.scss',
+        ],
+    },
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

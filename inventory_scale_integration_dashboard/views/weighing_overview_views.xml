@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_weighing_overview_dashboard" model="ir.actions.client">
+        <field name="name">Weighing Overview</field>
+        <field name="tag">weighing_overview_dashboard</field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_weighing_overview" name="Overview" parent="inventory_scale_integration_base.menu_truck_weighing_root" action="action_weighing_overview_dashboard" sequence="0"/>
+</odoo>
