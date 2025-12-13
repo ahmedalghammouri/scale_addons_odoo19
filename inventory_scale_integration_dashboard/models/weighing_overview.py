@@ -124,7 +124,8 @@ class WeighingOverview(models.TransientModel):
                 'partners': len(deliveries_to_weigh.mapped('partner_id')),
             },
             'stock_performance': self._get_stock_performance_data(all_records, completed_week),
-            'waiting_time_analysis': self._get_waiting_time_analysis(all_records, completed_today, completed_week)
+            'waiting_time_analysis': self._get_waiting_time_analysis(all_records, completed_today, completed_week),
+            'truck_performance': self._get_truck_performance(all_trucks, all_records, completed_week)
         }
     
     def _calculate_avg_processing_time(self, records):
@@ -302,4 +303,39 @@ class WeighingOverview(models.TransientModel):
             'fast_count': fast,
             'normal_count': normal,
             'slow_count': slow
+        }
+    
+    def _get_truck_performance(self, all_trucks, all_records, completed_week):
+        active_trucks = all_trucks.filtered(lambda t: t.active)
+        if not active_trucks:
+            return {
+                'efficiency_score': 0, 'top_performer_trips': 0, 'avg_trips_per_truck': 0,
+                'idle_trucks': 0, 'busy_trucks': 0, 'moderate_trucks': 0,
+                'utilization_percent': 0, 'weekly_trips': 0
+            }
+        
+        done_records = all_records.filtered(lambda r: r.state == 'done' and r.truck_id)
+        week_records = completed_week.filtered(lambda r: r.truck_id)
+        
+        truck_trips = {}
+        for rec in done_records:
+            truck_trips[rec.truck_id.id] = truck_trips.get(rec.truck_id.id, 0) + 1
+        
+        trips_list = list(truck_trips.values())
+        avg_trips = sum(trips_list) / len(trips_list) if trips_list else 0
+        top_trips = max(trips_list) if trips_list else 0
+        
+        idle = len([t for t in active_trucks if t.id not in truck_trips])
+        busy = len([t for t, c in truck_trips.items() if c > avg_trips * 1.5])
+        moderate = len(truck_trips) - busy
+        
+        return {
+            'efficiency_score': round((len(week_records) / max(len(active_trucks), 1)), 1),
+            'top_performer_trips': top_trips,
+            'avg_trips_per_truck': round(avg_trips, 1),
+            'idle_trucks': idle,
+            'busy_trucks': busy,
+            'moderate_trucks': moderate,
+            'utilization_percent': round((len(truck_trips) / max(len(active_trucks), 1)) * 100, 1),
+            'weekly_trips': len(week_records)
         }

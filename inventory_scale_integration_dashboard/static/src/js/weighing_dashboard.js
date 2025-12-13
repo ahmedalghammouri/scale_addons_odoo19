@@ -498,6 +498,29 @@ export class WeighingOverviewDashboard extends Component {
                 view_mode: 'graph,pivot',
                 views: [[false, 'graph'], [false, 'pivot']],
                 domain: [['state', '=', 'done'], ['total_waiting_time', '>', 0]],
+            },
+            'truck_performance': {
+                name: 'Truck Performance Analysis',
+                res_model: 'truck.weighing',
+                view_mode: 'graph,pivot',
+                views: [[false, 'graph'], [false, 'pivot']],
+                domain: [['state', '=', 'done'], ['truck_id', '!=', false]],
+                context: { 'group_by': 'truck_id' }
+            },
+            'idle_trucks': {
+                name: 'Idle Trucks',
+                res_model: 'truck.fleet',
+                view_mode: 'list,form',
+                views: [[false, 'list'], [false, 'form']],
+                domain: [['active', '=', true]],
+            },
+            'busy_trucks': {
+                name: 'High Activity Trucks',
+                res_model: 'truck.weighing',
+                view_mode: 'list,graph',
+                views: [[false, 'list'], [false, 'graph']],
+                domain: [['state', '=', 'done'], ['truck_id', '!=', false]],
+                context: { 'group_by': 'truck_id' }
             }
         };
 
@@ -533,6 +556,12 @@ export class WeighingOverviewDashboard extends Component {
         const hours = Math.floor(minutes / 60);
         const mins = Math.round(minutes % 60);
         return `${hours}h ${mins}m`;
+    }
+
+    getProgressColor(percent) {
+        if (percent >= 80) return 'success';
+        if (percent >= 50) return 'warning';
+        return 'danger';
     }
 }
 
