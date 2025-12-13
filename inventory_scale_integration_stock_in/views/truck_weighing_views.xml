@@ -17,31 +17,29 @@
                 <attribute name="readonly">picking_id</attribute>
                 <attribute name="force_save">1</attribute>
             </field>
-            <group name="partner_operation" position="after">
-                <group string="Stock Operations" invisible="operation_type != 'incoming'">
+            <xpath expr="//group[@name='partner_operation']" position="after">
+                <group name="stock_operations_in" string="Stock Operations" invisible="operation_type != 'incoming'">
                     <group>
-                        <field name="picking_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'incoming'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]"/>
+                        <field name="picking_id" domain="[('partner_id', '=', partner_id), ('picking_type_code', '=', 'incoming'), ('state', 'in', ['draft', 'waiting', 'confirmed', 'assigned']), ('move_ids.product_id.is_weighable', '=', True)]" invisible="operation_type != 'incoming'"/>
                     </group>
                     <group>
-                        <field name="location_dest_id" readonly="picking_id" force_save="1"/>
+                        <field name="location_dest_id" readonly="picking_id" force_save="1" invisible="operation_type != 'incoming'"/>
                     </group>
                 </group>
-            </group>
-            <group name="partner_operation" position="after">
-                <group string="Transfer Information" invisible="not picking_id or operation_type != 'incoming'">
+                <group name="transfer_info_in" string="Transfer Information" invisible="not picking_id or operation_type != 'incoming'">
                     <group>
-                        <field name="source_document" readonly="1"/>
-                        <field name="scheduled_date" readonly="1"/>
+                        <field name="source_document" readonly="1" invisible="operation_type != 'incoming'"/>
+                        <field name="scheduled_date" readonly="1" invisible="operation_type != 'incoming'"/>
                     </group>
                     <group>
-                        <label for="demand_qty" string="Demand Quantity"/>
-                        <div>
+                        <label for="demand_qty" string="Demand Quantity" invisible="operation_type != 'incoming'"/>
+                        <div invisible="operation_type != 'incoming'">
                             <field name="demand_qty" readonly="1" style="display: inline-block;"/> 
                             <field name="product_uom" readonly="1" nolabel="1" style="display: inline-block; margin-left: 5px;"/>
                         </div>
                     </group>
                 </group>
-            </group>
+            </xpath>
             <field name="notes" position="before">
                 <div class="alert alert-info" role="alert" invisible="not picking_id or state == 'draft' or operation_type != 'incoming'" style="margin-bottom: 10px;">
                     <strong>Visual Indicators:</strong>

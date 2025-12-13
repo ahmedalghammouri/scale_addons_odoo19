@@ -16,8 +16,8 @@ class StockPicking(models.Model):
 
     def _compute_weighing_data(self):
         for picking in self:
-            if picking.picking_type_code == 'incoming':
-                weighings = self.env['truck.weighing'].search([('picking_id', '=', picking.id)])
+            weighings = self.env['truck.weighing'].search([('picking_id', '=', picking.id)])
+            if weighings:
                 picking.weighing_count = len(weighings)
                 picking.total_net_weight = sum(weighings.mapped('net_weight'))
                 if picking.total_net_weight > 2000:
@@ -31,17 +31,19 @@ class StockPicking(models.Model):
 
     def action_view_weighing_records(self):
         self.ensure_one()
-        context = {
-            'default_partner_id': self.partner_id.id,
-            'default_picking_id': self.id,
-            'default_operation_type': 'incoming',
-            'create': True
-        }
-        return {
-            'name': 'Weighing Records',
-            'type': 'ir.actions.act_window',
-            'res_model': 'truck.weighing',
-            'view_mode': 'list,form',
-            'domain': [('picking_id', '=', self.id)],
-            'context': context
-        }
+        if self.picking_type_code == 'incoming':
+            context = {
+                'default_partner_id': self.partner_id.id,
+                'default_picking_id': self.id,
+                'default_operation_type': 'incoming',
+                'create': True
+            }
+            return {
+                'name': 'Weighing Records',
+                'type': 'ir.actions.act_window',
+                'res_model': 'truck.weighing',
+                'view_mode': 'list,form',
+                'domain': [('picking_id', '=', self.id)],
+                'context': context
+            }
+        return super().action_view_weighing_records()

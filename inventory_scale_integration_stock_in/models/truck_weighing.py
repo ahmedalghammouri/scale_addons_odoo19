@@ -70,6 +70,14 @@ class TruckWeighing(models.Model):
             (self.net_weight, self.product_id.name, demand_qty, status, self.name)
         )
     
+    def _is_incoming_picking(self, picking):
+        if not picking or not picking.move_ids:
+            return False
+        move = picking.move_ids[0]
+        return move.location_id.usage in ('customer', 'supplier') or (
+            move.location_id.usage == 'transit' and not move.location_id.company_id
+        )
+    
     @api.onchange('picking_id')
     def _onchange_picking_id(self):
         if self.picking_id:
@@ -96,10 +104,10 @@ class TruckWeighing(models.Model):
             'res_id': self.picking_id.id,
         }
     
-    @api.depends('picking_id', 'product_id')
+    @api.depends('picking_id', 'product_id', 'operation_type')
     def _compute_picking_info(self):
         for rec in self:
-            if rec.picking_id and rec.product_id:
+            if rec.picking_id and rec.product_id and rec.operation_type == 'incoming':
                 move = rec.picking_id.move_ids.filtered(lambda m: m.product_id == rec.product_id)
                 if move:
                     rec.demand_qty = move[0].product_uom_qty
@@ -115,10 +123,10 @@ class TruckWeighing(models.Model):
                 rec.source_document = ''
                 rec.scheduled_date = False
     
-    @api.depends('demand_qty', 'net_weight')
+    @api.depends('demand_qty', 'net_weight', 'operation_type')
     def _compute_variance_info(self):
         for rec in self:
-            if rec.demand_qty > 0 and rec.net_weight > 0:
+            if rec.operation_type == 'incoming' and rec.demand_qty > 0 and rec.net_weight > 0:
                 rec.remaining_qty = rec.demand_qty - rec.net_weight
                 rec.variance_qty = rec.net_weight - rec.demand_qty
                 rec.variance_percent = rec.variance_qty / rec.demand_qty
@@ -134,30 +142,32 @@ class TruckWeighing(models.Model):
         for vals in vals_list:
             if vals.get('picking_id') and not vals.get('product_id'):
                 picking = self.env['stock.picking'].browse(vals['picking_id'])
-                weighable_moves = picking.move_ids.filtered(lambda m: m.product_id.is_weighable)
-                move_to_use = weighable_moves[0] if weighable_moves else (picking.move_ids[0] if picking.move_ids else False)
-                if move_to_use:
-                    vals['product_id'] = move_to_use.product_id.id
-                    if not vals.get('partner_id'):
-                        vals['partner_id'] = picking.partner_id.id
-                    if not vals.get('operation_type'):
-                        vals['operation_type'] = 'incoming'
-                    if not vals.get('location_dest_id'):
-                        vals['location_dest_id'] = picking.location_dest_id.id
+                if self._is_incoming_picking(picking):
+                    weighable_moves = picking.move_ids.filtered(lambda m: m.product_id.is_weighable)
+                    move_to_use = weighable_moves[0] if weighable_moves else (picking.move_ids[0] if picking.move_ids else False)
+                    if move_to_use:
+                        vals['product_id'] = move_to_use.product_id.id
+                        if not vals.get('partner_id'):
+                            vals['partner_id'] = picking.partner_id.id
+                        if not vals.get('operation_type'):
+                            vals['operation_type'] = 'incoming'
+                        if not vals.get('location_dest_id'):
+                            vals['location_dest_id'] = picking.location_dest_id.id
         return super().create(vals_list)
     
     def write(self, vals):
         for rec in self:
             if vals.get('picking_id') and 'product_id' not in vals and not rec.product_id:
                 picking = self.env['stock.picking'].browse(vals['picking_id'])
-                weighable_moves = picking.move_ids.filtered(lambda m: m.product_id.is_weighable)
-                move_to_use = weighable_moves[0] if weighable_moves else (picking.move_ids[0] if picking.move_ids else False)
-                if move_to_use:
-                    vals['product_id'] = move_to_use.product_id.id
-                    if not rec.partner_id and 'partner_id' not in vals:
-                        vals['partner_id'] = picking.partner_id.id
-                    if not rec.operation_type and 'operation_type' not in vals:
-                        vals['operation_type'] = 'incoming'
-                    if not rec.location_dest_id and 'location_dest_id' not in vals:
-                        vals['location_dest_id'] = picking.location_dest_id.id
+                if rec._is_incoming_picking(picking):
+                    weighable_moves = picking.move_ids.filtered(lambda m: m.product_id.is_weighable)
+                    move_to_use = weighable_moves[0] if weighable_moves else (picking.move_ids[0] if picking.move_ids else False)
+                    if move_to_use:
+                        vals['product_id'] = move_to_use.product_id.id
+                        if not rec.partner_id and 'partner_id' not in vals:
+                            vals['partner_id'] = picking.partner_id.id
+                        if not rec.operation_type and 'operation_type' not in vals:
+                            vals['operation_type'] = 'incoming'
+                        if not rec.location_dest_id and 'location_dest_id' not in vals:
+                            vals['location_dest_id'] = picking.location_dest_id.id
         return super().write(vals)
