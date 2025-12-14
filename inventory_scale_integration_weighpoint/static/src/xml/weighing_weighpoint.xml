@@ -4,41 +4,59 @@
         <div class="weighing_weighpoint_interface">
             <div class="container-fluid" t-if="!state.loading">
                 <!-- Header with Tabs -->
-                <div class="weighpoint_header">
-                    <h1>⚖️ Weigh Point</h1>
+                <!-- Professional Header -->
+                <div class="weighpoint_header_new">
+                    <div class="header_top">
+                        <div class="header_brand">
+                            <i class="fa fa-balance-scale" style="font-size: 1.8rem; margin-right: 12px;"/>
+                            <div>
+                                <h1 style="margin: 0; font-size: 1.5rem; font-weight: 700;">Weigh Point</h1>
+                                <small style="color: #6c757d; font-size: 0.85rem;">Scale Management System</small>
+                            </div>
+                        </div>
+                        <div class="header_actions_new">
+                            <div class="header_info">
+                                <i class="fa fa-clock"/>
+                                <span t-esc="this.getLastRefreshTime()"/>
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary" t-on-click="() => this.refreshData()">
+                                <i class="fa fa-sync-alt"/> Refresh
+                            </button>
+                            <button class="btn btn-sm btn-primary" t-on-click="() => this.createNewWeighing()">
+                                <i class="fa fa-plus"/> New (F1)
+                            </button>
+                        </div>
+                    </div>
                     
-                    <ul class="nav nav-tabs" style="border: none; margin: 0;">
-                        <li class="nav-item">
-                            <a t-att-class="'nav-link ' + (state.activeTab === 'overview' ? 'active' : '')" t-on-click="() => this.setActiveTab('overview')" style="cursor: pointer;">
-                                <i class="fa fa-tachometer-alt"/> Overview
+                    <div class="header_tabs">
+                        <div class="nav nav-tabs">
+                            <a t-att-class="'nav-link ' + (state.activeTab === 'overview' ? 'active' : '')" t-on-click="() => this.setActiveTab('overview')">
+                                <i class="fa fa-tachometer-alt"/> <span>Overview</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a t-att-class="'nav-link ' + (state.activeTab === 'queue' ? 'active' : '')" t-on-click="() => this.setActiveTab('queue')" style="cursor: pointer;">
-                                <i class="fa fa-list-ol"/> Queue (<t t-esc="state.truckQueue.length"/>)
+                            <a t-att-class="'nav-link ' + (state.activeTab === 'queue' ? 'active' : '')" t-on-click="() => this.setActiveTab('queue')">
+                                <i class="fa fa-list-ol"/> <span>Queue</span> <span class="badge" t-esc="state.truckQueue.length"/>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a t-att-class="'nav-link ' + (state.activeTab === 'orders' ? 'active' : '')" t-on-click="() => this.setActiveTab('orders')" style="cursor: pointer;">
-                                <i class="fa fa-inbox"/> Orders (<t t-esc="state.pickings.length"/>)
+                            <a t-att-class="'nav-link ' + (state.activeTab === 'orders' ? 'active' : '')" t-on-click="() => this.setActiveTab('orders')">
+                                <i class="fa fa-inbox"/> <span>Orders</span> <span class="badge" t-esc="state.pickings.length"/>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a t-att-class="'nav-link ' + (state.activeTab === 'weighings' ? 'active' : '')" t-on-click="() => this.setActiveTab('weighings')" style="cursor: pointer;">
-                                <i class="fa fa-balance-scale"/> Weighings (<t t-esc="state.recentWeighings.length"/>)
+                            <a t-att-class="'nav-link ' + (state.activeTab === 'weighings' ? 'active' : '')" t-on-click="() => this.setActiveTab('weighings')">
+                                <i class="fa fa-weight"/> <span>Weighings</span> <span class="badge" t-esc="state.recentWeighings.length"/>
                             </a>
-                        </li>
-                    </ul>
-                    
-                    <div class="header_actions">
-                        <small class="text-muted" style="margin-right: 10px; align-self: center;">
-                            <i class="fa fa-clock"/> <t t-esc="this.getLastRefreshTime()"/>
-                        </small>
-                        <button class="btn btn-outline-secondary" t-on-click="() => this.refreshData()" t-att-disabled="state.loading">
-                            <i t-att-class="'fa fa-sync-alt' + (state.loading ? ' fa-spin' : '')"/> Refresh
-                        </button>
-                        <button class="btn btn-primary" t-on-click="() => this.createNewWeighing()">
-                            ➕ New (F1)
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Barcode Scanner Bar -->
+                <div class="barcode_scanner_bar">
+                    <div class="scanner_container">
+                        <i class="fa fa-barcode scanner_icon"/>
+                        <input type="text" 
+                               class="form-control scanner_input" 
+                               placeholder="Scan or enter barcode / order number..."
+                               t-model="state.barcode"
+                               t-on-keydown="(ev) => ev.key === 'Enter' &amp;&amp; state.barcode ? this.scanBarcode() : null"/>
+                        <button class="btn btn-success scanner_btn" t-on-click="() => this.scanBarcode()">
+                            <i class="fa fa-search"/> Scan
                         </button>
                     </div>
                 </div>
@@ -182,23 +200,6 @@
                         </div>
                     </div>
 
-                    <!-- Scan Barcode -->
-                    <div class="input_section">
-                        <div class="input_row">
-                            <div class="input_group">
-                                <label>🎫 Scan Barcode:</label>
-                                <input type="text" 
-                                       class="form-control form-control-lg" 
-                                       placeholder="Scan barcode..."
-                                       t-model="state.barcode"
-                                       t-on-keydown="(ev) => ev.key === 'Enter' &amp;&amp; state.barcode ? this.scanBarcode() : null"
-                                       autofocus="autofocus"/>
-                                <button class="btn btn-success btn-lg" t-on-click="() => this.scanBarcode()">
-                                    Scan
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Tab: Queue -->

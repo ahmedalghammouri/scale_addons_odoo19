@@ -284,19 +284,19 @@
     }
 
     .input_section {
-        background: linear-gradient(135deg, rgba(40, 167, 69, 0.08) 0%, rgba(30, 126, 52, 0.04) 100%);
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.03) 100%);
         border-radius: 20px;
         padding: 1.5rem;
         margin-bottom: 20px;
         box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(40, 167, 69, 0.12);
+        border: 1px solid rgba(102, 126, 234, 0.12);
 
         &:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
-            background: linear-gradient(135deg, rgba(40, 167, 69, 0.12) 0%, rgba(30, 126, 52, 0.06) 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.06) 100%);
         }
 
         .input_row {
@@ -403,19 +403,19 @@
             backdrop-filter: blur(10px);
 
             &:hover {
-                transform: translateY(-6px) scale(1.01);
-                box-shadow: 0 16px 40px rgba(0,0,0,0.12), 0 6px 12px rgba(0,0,0,0.08);
-                background: linear-gradient(135deg, rgba(102, 126, 234, 0.10) 0%, rgba(118, 75, 162, 0.05) 100%);
+                transform: translateY(-4px);
+                box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.06) 100%);
             }
 
             .section_header {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.04) 100%);
+                border: 1px solid rgba(102, 126, 234, 0.12);
                 color: white;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 padding: 1.5rem;
-                border: none;
                 position: relative;
                 overflow: hidden;
 
@@ -933,6 +933,217 @@ body.o_dark .weighing_weighpoint_interface,
             
             &::placeholder {
                 color: #a0a0a0 !important;
+            }
+        }
+    }
+}
+
+
+// New Professional Header
+.weighing_weighpoint_interface {
+    .weighpoint_header_new {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.03) 100%);
+        border: 1px solid rgba(102, 126, 234, 0.12);
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+        margin-bottom: 16px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.06) 100%);
+        }
+        
+        .header_top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.12);
+            
+            .header_brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                // color: #667eea;
+                
+                // h1 {
+                //     color: #667eea;
+                // }
+            }
+            
+            .header_actions_new {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                
+                .header_info {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 6px 12px;
+                    background: rgba(102, 126, 234, 0.08);
+                    border-radius: 8px;
+                    font-size: 0.85rem;
+                    // color: #667eea;
+                }
+                
+                .btn {
+                    border-radius: 8px;
+                    font-weight: 600;
+                    transition: all 0.2s;
+                    
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    }
+                }
+            }
+        }
+        
+        .header_tabs {
+            padding: 0 1.5rem;
+            
+            .nav-tabs {
+                border: none;
+                display: flex;
+                gap: 4px;
+                
+                .nav-link {
+                    border: none;
+                    padding: 1rem 1.5rem;
+                    // color: #667eea;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                    border-radius: 0;
+                    border-bottom: 3px solid transparent;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    
+                    i {
+                        font-size: 1.1rem;
+                    }
+                    
+                    .badge {
+                        background: rgba(102, 126, 234, 0.15);
+                        // color: #667eea;
+                        padding: 2px 8px;
+                        border-radius: 12px;
+                        font-size: 0.75rem;
+                        font-weight: 700;
+                    }
+                    
+                    &:hover {
+                        color: #667eea;
+                        background: rgba(102, 126, 234, 0.05);
+                    }
+                    
+                    &.active {
+                        color: #667eea;
+                        background: rgba(102, 126, 234, 0.08);
+                        border-bottom-color: #667eea;
+                        
+                        .badge {
+                            background: #667eea;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .barcode_scanner_bar {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.03) 100%);
+        border: 1px solid rgba(102, 126, 234, 0.12);
+        padding: 1rem 1.5rem;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.06) 100%);
+        }
+        
+        .scanner_container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+            
+            .scanner_icon {
+                // color: #667eea;
+                font-size: 1.5rem;
+            }
+            
+            .scanner_input {
+                flex: 1;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 10px;
+                font-size: 1rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+                }
+            }
+            
+            .scanner_btn {
+                padding: 12px 24px;
+                border-radius: 10px;
+                font-weight: 600;
+                border: none;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                transition: all 0.2s;
+                
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .weighing_weighpoint_interface {
+        .weighpoint_header_new {
+            .header_top {
+                flex-direction: column;
+                gap: 12px;
+                
+                .header_actions_new {
+                    width: 100%;
+                    justify-content: space-between;
+                }
+            }
+            
+            .header_tabs .nav-tabs {
+                overflow-x: auto;
+                
+                .nav-link span:not(.badge) {
+                    display: none;
+                }
+            }
+        }
+        
+        .barcode_scanner_bar .scanner_container {
+            flex-wrap: wrap;
+            
+            .scanner_icon {
+                display: none;
             }
         }
     }

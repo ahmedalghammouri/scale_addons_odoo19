@@ -59,8 +59,8 @@ class WeighingWeighPointInterface extends Component {
         });
 
         onMounted(() => {
-            this.refreshInterval = setInterval(() => {
-                this.refreshData();
+            this.refreshInterval = setInterval(async () => {
+                await this.refreshData();
             }, 60000);
             document.addEventListener('keydown', this.handleKeyPress.bind(this));
         });
@@ -380,14 +380,15 @@ class WeighingWeighPointInterface extends Component {
             
             let totalWaitMinutes = 0;
             const now = Date.now();
-            draftRecords.forEach(record => {
+            const waitingRecords = inProgressRecords.filter(r => r.state === 'draft' || r.state === 'first');
+            waitingRecords.forEach(record => {
                 if (record.create_date) {
                     const createDate = new Date(record.create_date + ' UTC').getTime();
                     const waitMinutes = Math.floor((now - createDate) / 60000);
                     totalWaitMinutes += waitMinutes;
                 }
             });
-            const avgWaitMinutes = draftRecords.length > 0 ? Math.floor(totalWaitMinutes / draftRecords.length) : 0;
+            const avgWaitMinutes = waitingRecords.length > 0 ? Math.floor(totalWaitMinutes / waitingRecords.length) : 0;
             const avgWaitTime = avgWaitMinutes < 60 ? `${avgWaitMinutes}m` : `${Math.floor(avgWaitMinutes / 60)}h ${avgWaitMinutes % 60}m`;
             
             let totalWeight = 0;
@@ -467,7 +468,6 @@ class WeighingWeighPointInterface extends Component {
     }
 
     async refreshData() {
-        this.state.loading = true;
         try {
             await this.loadPendingPickings();
             await this.loadWeighings();
@@ -475,8 +475,8 @@ class WeighingWeighPointInterface extends Component {
             await this.loadRecentActivity();
             this.checkUrgentOrders();
             this.state.lastRefresh = new Date();
-        } finally {
-            this.state.loading = false;
+        } catch (error) {
+            console.error("Error refreshing data:", error);
         }
     }
     
@@ -566,8 +566,8 @@ class WeighingWeighPointInterface extends Component {
         let name = "Weighings";
         
         if (filter === "in_progress") {
-            domain = [["state", "in", ["draft", "first", "second"]]];
-            name = "In Progress Weighings";
+            domain = [["state", "=", "second"]];
+            name = "Processing Weighings";
         } else if (filter === "draft") {
             domain = [["state", "=", "draft"]];
             name = "Draft Weighings";
