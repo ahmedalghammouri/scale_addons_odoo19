@@ -14,6 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 20px;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(102, 126, 234, 0.12);
@@ -230,6 +231,52 @@
 
                     i {
                         margin-right: 0.25rem;
+                    }
+                }
+            }
+            
+            &.chart_card {
+                padding: 1.5rem;
+                
+                .hourly_chart {
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: space-around;
+                    height: 120px;
+                    gap: 8px;
+                    margin-top: 12px;
+                    
+                    .chart_bar {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 4px;
+                        
+                        .bar_fill {
+                            width: 100%;
+                            min-height: 4px;
+                            border-radius: 4px 4px 0 0;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+                            
+                            &:hover {
+                                transform: scaleY(1.1);
+                                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+                            }
+                        }
+                        
+                        .bar_label {
+                            font-size: 0.7rem;
+                            font-weight: 600;
+                            opacity: 0.7;
+                        }
+                        
+                        .bar_value {
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            color: #667eea;
+                        }
                     }
                 }
             }
@@ -498,6 +545,12 @@
                 background: linear-gradient(135deg, rgba(23, 162, 184, 0.12) 0%, rgba(17, 122, 139, 0.06) 100%);
                 border-color: rgba(23, 162, 184, 0.2);
             }
+            
+            &.overdue-item {
+                border-left: 4px solid #dc3545;
+                background: linear-gradient(135deg, rgba(220, 53, 69, 0.12) 0%, rgba(200, 35, 51, 0.06) 100%);
+                animation: pulse-overdue 2s infinite;
+            }
 
             &:hover {
                 transform: translateY(-4px) scale(1.02);
@@ -598,7 +651,150 @@
                     }
                 }
             }
+            
+            &.workflow_card {
+                .workflow_progress {
+                    margin: 8px 0;
+                    
+                    .workflow_steps {
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 0.7rem;
+                        margin-top: 4px;
+                        
+                        .step {
+                            font-weight: 600;
+                            opacity: 0.4;
+                            transition: all 0.3s ease;
+                            
+                            &.active {
+                                opacity: 1;
+                                color: #667eea;
+                                font-weight: 700;
+                            }
+                            
+                            &.completed {
+                                opacity: 0.7;
+                                color: #28a745;
+                            }
+                        }
+                    }
+                }
+                
+                &.selected {
+                    border: 2px solid #667eea;
+                    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+                    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.1) 100%);
+                }
+            }
         }
+    }
+    
+    .queue_section {
+        background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 152, 0, 0.04) 100%);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        border: 1px solid rgba(255, 193, 7, 0.12);
+        
+        h4 {
+            margin: 0 0 1rem 0;
+            font-weight: 700;
+            color: #f39c12;
+        }
+        
+        .queue_list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .queue_item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(20, 197, 124, 0.05) 0%, rgba(26, 66, 196, 0.09) 100%);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 193, 7, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            &:hover {
+                transform: translateX(8px);
+                box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+                border-color: #f39c12;
+            }
+            
+            &.urgent {
+                border-color: #e74c3c;
+                background: linear-gradient(135deg, rgba(231, 76, 60, 0.08) 0%, rgba(192, 57, 43, 0.04) 100%);
+                animation: pulse-urgent 2s infinite;
+            }
+            
+            .queue_position {
+                font-size: 1.2rem;
+                font-weight: 700;
+                padding: 8px 12px;
+                border-radius: 8px;
+            }
+            
+            .queue_info {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                
+                strong {
+                    font-size: 1rem;
+                    font-weight: 700;
+                }
+                
+                small {
+                    font-size: 0.85rem;
+                    opacity: 0.7;
+                }
+            }
+            
+            .queue_time {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                font-size: 0.85rem;
+                text-align: right;
+                
+                i {
+                    margin-right: 4px;
+                }
+            }
+            
+            .queue_urgent {
+                color: #e74c3c;
+                font-weight: 700;
+                font-size: 0.85rem;
+                
+                i {
+                    animation: shake 0.5s infinite;
+                }
+            }
+        }
+    }
+    
+    @keyframes pulse-urgent {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+        50% { box-shadow: 0 0 0 8px rgba(231, 76, 60, 0); }
+    }
+    
+    @keyframes pulse-overdue {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.3); }
+        50% { box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
+    }
+    
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-2px); }
+        75% { transform: translateX(2px); }
     }
 }
 
