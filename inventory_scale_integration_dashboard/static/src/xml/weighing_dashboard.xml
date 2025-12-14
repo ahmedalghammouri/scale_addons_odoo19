@@ -307,7 +307,7 @@
                 <div class="row mt-4 mb-4">
                     <div class="col-12">
                         <div class="card shadow-sm">
-                            <div class="card-header bg-light">
+                            <div class="card-header bg-primary ">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <ul class="nav nav-tabs card-header-tabs mb-0" role="tablist" style="border-bottom: none;">
                                     <li class="nav-item">
@@ -355,8 +355,8 @@
                                 <div t-if="state.activeTab === 'records'" class="tab-content-wrapper">
                                     <div class="row">
                                         <div class="col-lg-6 mb-4">
-                                            <div class="card shadow-sm border-primary">
-                                                <div class="card-header bg-gradient-primary text-white">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-primary text-white">
                                                     <h5 class="mb-0"><i class="fa fa-chart-bar"/> Workflow Progress</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 350px;">
@@ -365,8 +365,8 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4">
-                                            <div class="card shadow-sm border-success">
-                                                <div class="card-header bg-gradient-success text-white">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-primary  text-white">
                                                     <h5 class="mb-0"><i class="fa fa-chart-pie"/> Status Distribution</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 350px;">
@@ -378,7 +378,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 mb-4">
                                             <div class="card shadow-sm border-info">
-                                                <div class="card-header bg-gradient-info text-white">
+                                                <div class="card-header bg-primary  text-white">
                                                     <h5 class="mb-0"><i class="fa fa-weight"/> Weight Operations</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 350px;">
@@ -387,8 +387,8 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4">
-                                            <div class="card shadow-sm border-warning">
-                                                <div class="card-header bg-gradient-warning text-white">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-primary  text-white">
                                                     <h5 class="mb-0"><i class="fa fa-clock"/> Time Tracking</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 350px;">
@@ -403,8 +403,8 @@
                                 <div t-if="state.activeTab === 'products'" class="tab-content-wrapper">
                                     <div class="row">
                                         <div class="col-lg-4 mb-4">
-                                            <div class="card shadow-sm border-primary">
-                                                <div class="card-header bg-gradient-primary text-white">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-primary   text-white">
                                                     <h5 class="mb-0"><i class="fa fa-cube"/> Operations Summary</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 300px;">
@@ -413,8 +413,8 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 mb-4">
-                                            <div class="card shadow-sm border-success">
-                                                <div class="card-header bg-gradient-success text-white">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-primary  text-white">
                                                     <h5 class="mb-0"><i class="fa fa-weight"/> Weight Trends</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 300px;">
@@ -423,8 +423,8 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 mb-4">
-                                            <div class="card shadow-sm border-warning">
-                                                <div class="card-header bg-gradient-warning text-white">
+                                            <div class="card shadow-sm border-info">
+                                                <div class="card-header bg-primary  text-white">
                                                     <h5 class="mb-0"><i class="fa fa-clock"/> Processing Speed</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 300px;">
@@ -436,7 +436,7 @@
                                     <div class="row">
                                         <div class="col-12 mb-4">
                                             <div class="card shadow-sm border-info">
-                                                <div class="card-header bg-gradient-info text-white">
+                                                <div class="card-header bg-primary  text-white">
                                                     <h5 class="mb-0"><i class="fa fa-chart-line"/> Operations &amp; Time Trend Analysis</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 350px;">
@@ -597,7 +597,7 @@
                                     <div class="row mt-3">
                                         <div class="col-12">
                                             <div class="card shadow-sm">
-                                                <div class="card-header bg-light">
+                                                <div class="card-header bg-primary ">
                                                     <h5 class="mb-0"><i class="fa fa-chart-bar"/> Fulfillment Distribution Chart</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 300px;">
@@ -720,7 +720,7 @@
                                     <div class="row mt-3">
                                         <div class="col-12">
                                             <div class="card shadow-sm">
-                                                <div class="card-header bg-light">
+                                                <div class="card-header bg-primary ">
                                                     <h5 class="mb-0"><i class="fa fa-chart-area"/> Processing Speed Trend</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 300px;">
@@ -875,7 +875,7 @@
                                     <div class="row mt-3">
                                         <div class="col-12">
                                             <div class="card shadow-sm">
-                                                <div class="card-header bg-light">
+                                                <div class="card-header bg-primary ">
                                                     <h5 class="mb-0"><i class="fa fa-chart-bar"/> Truck Activity Distribution</h5>
                                                 </div>
                                                 <div class="card-body" style="height: 300px;">

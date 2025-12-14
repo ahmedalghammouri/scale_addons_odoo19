@@ -989,6 +989,7 @@ export class WeighingOverviewDashboard extends Component {
 
     async refreshData() {
         await this.loadData();
+        setTimeout(() => this.renderCharts(), 100);
     }
 
     formatWeight(weight) {
