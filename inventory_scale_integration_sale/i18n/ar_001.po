@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 00:29+0000\n"
-"PO-Revision-Date: 2025-12-13 00:29+0000\n"
+"POT-Creation-Date: 2025-12-14 00:39+0000\n"
+"PO-Revision-Date: 2025-12-14 00:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,10 +18,10 @@ msgstr ""
 #. module: inventory_scale_integration_sale
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_sale.truck_weighing_view_kanban_sale
 msgid ""
-"<i class=\"fa fa-shopping-bag text-warning\" title=\"Sale Order\"/> "
+"<i class=\"fa fa-shopping-bag text-warning\" title=\"Sale Order\"/>"
 "<strong>SO:</strong>"
 msgstr ""
-"<i class=\"fa fa-shopping-bag text-warning\" title=\"أمر البيع\"/> "
+"<i class=\"fa fa-shopping-bag text-warning\" title=\"أمر البيع\"/>"
 "<strong>أمر البيع:</strong>"
 
 #. module: inventory_scale_integration_sale
@@ -62,14 +62,13 @@ msgstr "العملاء"
 
 #. module: inventory_scale_integration_sale
 #: model:ir.actions.act_window,name:inventory_scale_integration_sale.action_deliveries_need_weighing
-#: model:ir.ui.menu,name:inventory_scale_integration_sale.menu_deliveries_need_weighing
 msgid "Deliveries to Weigh"
 msgstr "تسليمات للوزن"
 
 #. module: inventory_scale_integration_sale
 #: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_deliveries_need_weighing
 msgid ""
-"Delivery orders with weighable products will appear here when they are "
+"Delivery orders with weighable products will appear here when they are"
 "ready."
 msgstr ""
 "ستظهر هنا أوامر التسليم التي تحتوي على منتجات قابلة للوزن عندما تكون جاهزة."
@@ -130,12 +129,12 @@ msgid "Sale Orders"
 msgstr "أوامر البيع"
 
 #. module: inventory_scale_integration_sale
-#: model:ir.model,name:inventory_scale_integration_sale.model_sale_order
+#: model:ir.model.name:inventory_scale_integration_sale.model_sale_order
 msgid "Sales Order"
 msgstr "أمر البيع"
 
 #. module: inventory_scale_integration_sale
-#: model:ir.model,name:inventory_scale_integration_sale.model_sale_order_line
+#: model:ir.model.name:inventory_scale_integration_sale.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "بند أمر المبيعات"
 
@@ -147,10 +146,10 @@ msgstr "أوامر المبيعات للوزن"
 #. module: inventory_scale_integration_sale
 #: model_terms:ir.actions.act_window,help:inventory_scale_integration_sale.action_sales_need_weighing
 msgid ""
-"Sales orders with weighable products will appear here when they are "
+"Sales orders with weighable products will appear here when they are"
 "confirmed."
 msgstr ""
-"ستظهر هنا أوامر المبيعات التي تحتوي على منتجات قابلة للوزن عندما يتم "
+"ستظهر هنا أوامر المبيعات التي تحتوي على منتجات قابلة للوزن عندما يتم"
 "تأكيدها."
 
 #. module: inventory_scale_integration_sale
@@ -169,7 +168,7 @@ msgid "Total Net Weight"
 msgstr "إجمالي الوزن الصافي"
 
 #. module: inventory_scale_integration_sale
-#: model:ir.model,name:inventory_scale_integration_sale.model_truck_weighing
+#: model:ir.model.name:inventory_scale_integration_sale.model_truck_weighing
 msgid "Truck Weighing Record"
 msgstr "سجل وزن الشاحنة"
 
@@ -191,7 +190,7 @@ msgid "Weighing Count"
 msgstr "عدد عمليات الوزن"
 
 #. module: inventory_scale_integration_sale
-#: model:ir.model,name:inventory_scale_integration_sale.model_weighing_overview
+#: model:ir.model.name:inventory_scale_integration_sale.model_weighing_overview
 msgid "Weighing Operations Overview Dashboard"
 msgstr "لوحة قيادة نظرة عامة على عمليات الوزن"
 

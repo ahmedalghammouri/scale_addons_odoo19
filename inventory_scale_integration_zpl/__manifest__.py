@@ -19,13 +19,11 @@ Professional thermal printer support:
     'license': 'LGPL-3',
     'depends': [
         'inventory_scale_integration_base',
-        'inventory_scale_integration_cashier',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/zpl_printer_views.xml',
         'views/truck_weighing_views.xml',
-        'views/weighing_cashier_zpl_views.xml',
         'views/menu_items_views.xml',
     ],
     'installable': True,

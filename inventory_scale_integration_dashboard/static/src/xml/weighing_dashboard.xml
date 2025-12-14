@@ -576,7 +576,7 @@
                                 <hr class="my-2"/>
                                 <div class="row text-center">
                                     <div class="col-6">
-                                        <h6 class="text-secondary mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.stock_performance?.total_variance || 0)" t-on-click="() => this.onCardAction('total_variance')"/>
+                                        <h6 class="text-info mb-0" style="cursor: pointer;" t-esc="this.formatWeight(state.data.stock_performance?.total_variance || 0)" t-on-click="() => this.onCardAction('total_variance')"/>
                                         <small class="text-muted">Total Variance</small>
                                     </div>
                                     <div class="col-6">

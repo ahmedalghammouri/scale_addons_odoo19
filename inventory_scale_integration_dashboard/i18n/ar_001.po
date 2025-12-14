@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 00:26+0000\n"
-"PO-Revision-Date: 2025-12-13 00:26+0000\n"
+"POT-Creation-Date: 2025-12-14 00:40+0000\n"
+"PO-Revision-Date: 2025-12-14 00:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,113 +26,6 @@ msgstr "الأول"
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "2nd"
 msgstr "الثاني"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_kanban_stock
-msgid "<i class=\"fa fa-file-text-o text-primary\" title=\"Source\"/>"
-msgstr "<i class=\"fa fa-file-text-o text-primary\" title=\"المصدر\"/>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.stock_picking_form_inherit_weighing
-msgid "<span class=\"o_stat_text\" style=\"font-size: 11px;\">Total Weight</span>"
-msgstr "<span class=\"o_stat_text\" style=\"font-size: 11px;\">إجمالي الوزن</span>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "<span class=\"o_stat_text\">Delivery</span>"
-msgstr "<span class=\"o_stat_text\">تسليم</span>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "<span class=\"o_stat_text\">Receipt</span>"
-msgstr "<span class=\"o_stat_text\">استلام</span>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.stock_picking_form_inherit_weighing
-msgid "<span class=\"o_stat_text\">Weighing</span>"
-msgstr "<span class=\"o_stat_text\">وزن</span>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_kanban_stock
-msgid "<span class=\"text-muted\">Demand:</span>"
-msgstr "<span class=\"text-muted\">الطلب:</span>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid ""
-"<span style=\"font-size: 13px; color: #6c757d; margin-left: 5px;\">KG</span>"
-msgstr ""
-"<span style=\"font-size: 13px; color: #6c757d; margin-left: "
-"5px;\">كجم</span>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.report_driver_ticket
-msgid "<strong style=\"color: #2c3e50;\">Transfer:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">التحويل:</strong>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.report_weighing_certificate
-msgid "<strong>Delivery:</strong>"
-msgstr "<strong>التسليم:</strong>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid ""
-"<strong>Fulfillment %:</strong> <span style=\"color: #5cb85c;\">Green</span>"
-" if ≥95%, <span style=\"color: #f0ad4e;\">Orange</span> if 90-95%, <span "
-"style=\"color: #d9534f;\">Red</span> if <90%"
-msgstr ""
-"<strong>نسبة الإنجاز:</strong> <span style=\"color: #5cb85c;\">أخضر</span>"
-" إذا كانت ≥95%، <span style=\"color: #f0ad4e;\">برتقالي</span> إذا كانت بين"
-" 90-95%، <span style=\"color: #d9534f;\">أحمر</span> إذا كانت <90%"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.report_weighing_certificate
-msgid "<strong>Receipt:</strong>"
-msgstr "<strong>الإيصال:</strong>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid ""
-"<strong>Remaining Qty:</strong> <span style=\"color: #d9534f;\">Red</span> "
-"if positive (under-delivery), <span style=\"color: #5cb85c;\">Green</span> "
-"if zero/negative (fulfilled/over-delivered)"
-msgstr ""
-"<strong>الكمية المتبقية:</strong> <span style=\"color: "
-"#d9534f;\">أحمر</span> إذا كانت موجبة (نقص في التسليم)، <span style=\"color:"
-" #5cb85c;\">أخضر</span> إذا كانت صفر/سالبة (تم الإنجاز/تسليم زائد)"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.report_weighing_certificate
-msgid "<strong>Source Document:</strong>"
-msgstr "<strong>مستند المصدر:</strong>"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid ""
-"<strong>Variance %:</strong> <span style=\"color: #5cb85c;\">Green</span> if"
-" within ±5%, <span style=\"color: #f0ad4e;\">Orange</span> if outside that "
-"range"
-msgstr ""
-"<strong>نسبة التباين:</strong> <span style=\"color: #5cb85c;\">أخضر</span> "
-"إذا كانت ضمن ±5%، <span style=\"color: #f0ad4e;\">برتقالي</span> إذا كانت "
-"خارج هذا النطاق"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid ""
-"<strong>Variance:</strong> <span style=\"color: #5cb85c;\">Green</span> if "
-"positive/zero (met or exceeded), <span style=\"color: "
-"#f0ad4e;\">Orange</span> if negative (short)"
-msgstr ""
-"<strong>التباين:</strong> <span style=\"color: #5cb85c;\">أخضر</span> إذا "
-"كانت موجبة/صفر (محققة أو متجاوزة)، <span style=\"color: "
-"#f0ad4e;\">برتقالي</span> إذا كانت سالبة (نقص)"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "<strong>Visual Indicators:</strong>"
-msgstr "<strong>المؤشرات البصرية:</strong>"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -155,7 +48,18 @@ msgstr "الدقة والتباين"
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-#: model:ir.ui.menu,name:inventory_scale_integration_dashboard.menu_truck_weighing_all
+msgid "Active Trucks"
+msgstr "الشاحنات النشطة"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Activity Distribution"
+msgstr "توزيع النشاط"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "All Records"
 msgstr "جميع السجلات"
 
@@ -167,8 +71,20 @@ msgstr "جميع سجلات الوزن"
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Assigned"
-msgstr "مُعيّن"
+msgid "Average Times"
+msgstr "متوسط الأوقات"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Average Total"
+msgstr "المتوسط الإجمالي"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Average per Truck"
+msgstr "المتوسط لكل شاحنة"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -195,20 +111,10 @@ msgid "Completion Rate"
 msgstr "معدل الإكمال"
 
 #. module: inventory_scale_integration_dashboard
-#: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_weighing_overview__create_uid
-msgid "Created by"
-msgstr "تم الإنشاء بواسطة"
-
-#. module: inventory_scale_integration_dashboard
-#: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_weighing_overview__create_date
-msgid "Created on"
-msgstr "تاريخ الإنشاء"
-
-#. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Customers"
-msgstr "العملاء"
+msgid "Daily"
+msgstr "يومي"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-python
@@ -223,14 +129,7 @@ msgid "Deliveries"
 msgstr "التسليمات"
 
 #. module: inventory_scale_integration_dashboard
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Deliveries to Weigh"
-msgstr "تسليمات للوزن"
-
-#. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_truck_weighing__delivery_id
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
 msgid "Delivery"
 msgstr "تسليم"
 
@@ -246,13 +145,7 @@ msgid "Demand Qty"
 msgstr "الكمية المطلوبة"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "Demand Quantity"
-msgstr "كمية الطلب"
-
-#. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_truck_weighing__location_dest_id
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
 msgid "Destination Location"
 msgstr "موقع الوجهة"
 
@@ -278,6 +171,12 @@ msgstr "مسودة"
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Efficiency Score"
+msgstr "درجة الكفاءة"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "Exact"
 msgstr "دقيق"
 
@@ -296,8 +195,14 @@ msgstr "تسليم دقيق"
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Expected Weight"
-msgstr "الوزن المتوقع"
+msgid "Excellent"
+msgstr "ممتاز"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Fast (<30min)"
+msgstr "سريع (<30 دقيقة)"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -323,6 +228,18 @@ msgid "Fulfillment Distribution"
 msgstr "توزيع الإنجاز"
 
 #. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Fulfillment Distribution Chart"
+msgstr "مخطط توزيع الإنجاز"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Good"
+msgstr "جيد"
+
+#. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_stock_picking__has_weighable_products
 msgid "Has Weighable Products"
 msgstr "يحتوي على منتجات قابلة للوزن"
@@ -340,6 +257,18 @@ msgid "High (95%+)"
 msgstr "مرتفع (95%+)"
 
 #. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "High Activity"
+msgstr "نشاط مرتفع"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Highest Trip Count"
+msgstr "أعلى عدد رحلات"
+
+#. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_stock_picking__id
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_truck_weighing__id
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_weighing_overview__id
@@ -347,9 +276,10 @@ msgid "ID"
 msgstr "المُعرف"
 
 #. module: inventory_scale_integration_dashboard
-#: model:ir.ui.menu,name:inventory_scale_integration_dashboard.menu_truck_weighing_in_progress
-msgid "In Progress"
-msgstr "قيد التنفيذ"
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Idle Trucks"
+msgstr "الشاحنات الخاملة"
 
 #. module: inventory_scale_integration_dashboard
 #: model:ir.actions.act_window,name:inventory_scale_integration_dashboard.action_truck_weighing_in_progress
@@ -359,7 +289,6 @@ msgstr "وزن قيد التنفيذ"
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
 msgid "Incoming"
 msgstr "وارد"
 
@@ -376,25 +305,40 @@ msgid "Incoming (Tare)"
 msgstr "وارد (حمولة فارغة)"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_kanban_stock
-msgid "KG"
-msgstr "كجم"
-
-#. module: inventory_scale_integration_dashboard
-#: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_weighing_overview__write_uid
-msgid "Last Updated by"
-msgstr "آخر تحديث بواسطة"
-
-#. module: inventory_scale_integration_dashboard
-#: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_weighing_overview__write_date
-msgid "Last Updated on"
-msgstr "تاريخ آخر تحديث"
-
-#. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "Loading dashboard data..."
 msgstr "جاري تحميل بيانات لوحة القيادة..."
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Low"
+msgstr "منخفض"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Max"
+msgstr "الحد الأقصى"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Min"
+msgstr "الحد الأدنى"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Moderate Activity"
+msgstr "نشاط معتدل"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Monthly"
+msgstr "شهري"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -415,19 +359,26 @@ msgid "No Weighable Products"
 msgstr "لا يوجد منتجات قابلة للوزن"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
-msgid "Operation Type"
-msgstr "نوع العملية"
-
-#. module: inventory_scale_integration_dashboard
-#: model:ir.ui.menu,name:inventory_scale_integration_dashboard.menu_truck_weighing_operations
-msgid "Operations"
-msgstr "العمليات"
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Normal (30-60min)"
+msgstr "عادي (30-60 دقيقة)"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
+msgid "Operations & Time Trend Analysis"
+msgstr "تحليل العمليات واتجاه الوقت"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Operations Summary"
+msgstr "ملخص العمليات"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "Outgoing"
 msgstr "صادر"
 
@@ -461,10 +412,28 @@ msgid "Overview"
 msgstr "نظرة عامة"
 
 #. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Period Averages"
+msgstr "متوسطات الفترة"
+
+#. module: inventory_scale_integration_dashboard
 #. odoo-python
 #: code:addons/inventory_scale_integration_dashboard/models/truck_weighing.py:0
 msgid "Please select a receipt or delivery first."
 msgstr "الرجاء تحديد إيصال أو تسليم أولاً."
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Processing Speed"
+msgstr "سرعة المعالجة"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Processing Speed Trend"
+msgstr "اتجاه سرعة المعالجة"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-python
@@ -487,17 +456,17 @@ msgstr "المنتج مطلوب."
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Products Tracking"
+msgstr "تتبع المنتجات"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "Products Weighed"
 msgstr "المنتجات الموزونة"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "Quantity Analysis"
-msgstr "تحليل الكمية"
-
-#. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_truck_weighing__picking_id
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
 msgid "Receipt"
 msgstr "إيصال"
 
@@ -519,13 +488,6 @@ msgid "Receipts Need Weighing"
 msgstr "إيصالات تحتاج إلى وزن"
 
 #. module: inventory_scale_integration_dashboard
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-#: model:ir.ui.menu,name:inventory_scale_integration_dashboard.menu_receipts_need_weighing
-msgid "Receipts to Weigh"
-msgstr "إيصالات للوزن"
-
-#. module: inventory_scale_integration_dashboard
 #. odoo-python
 #: code:addons/inventory_scale_integration_dashboard/models/truck_weighing.py:0
 msgid "Received: %s KG of %s (Demand: %s KG) - %s (from weighing %s)"
@@ -543,14 +505,8 @@ msgid "Remaining Qty"
 msgstr "الكمية المتبقية"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "Remaining Quantity"
-msgstr "الكمية المتبقية"
-
-#. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-#: model:ir.ui.menu,name:inventory_scale_integration_dashboard.menu_truck_weighing_reports
 msgid "Reports"
 msgstr "التقارير"
 
@@ -572,6 +528,12 @@ msgid "Settings"
 msgstr "الإعدادات"
 
 #. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Slow (>60min)"
+msgstr "بطيء (>60 دقيقة)"
+
+#. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_truck_weighing__source_document
 msgid "Source Document"
 msgstr "مستند المصدر"
@@ -583,15 +545,10 @@ msgid "Status Distribution"
 msgstr "توزيع الحالة"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "Stock Operations"
-msgstr "عمليات المخزون"
-
-#. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Stock Performance Analytics"
-msgstr "تحليلات أداء المخزون"
+msgid "Stock Performance"
+msgstr "أداء المخزون"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -618,14 +575,50 @@ msgstr ""
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Time Tracking"
+msgstr "تتبع الوقت"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "To Done"
+msgstr "إلى تم"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "To First Weigh"
+msgstr "إلى الوزن الأول"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "To Second Weigh"
+msgstr "إلى الوزن الثاني"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "Today"
 msgstr "اليوم"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Today Average"
+msgstr "متوسط اليوم"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "Today's Net Weight"
 msgstr "الوزن الصافي اليومي"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Top Performer"
+msgstr "الأداء الأفضل"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -651,20 +644,27 @@ msgid "Total Variance"
 msgstr "إجمالي التباين"
 
 #. module: inventory_scale_integration_dashboard
-#: model:ir.model,name:inventory_scale_integration_dashboard.model_stock_picking
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Total Waiting Time"
+msgstr "إجمالي وقت الانتظار"
+
+#. module: inventory_scale_integration_dashboard
+#: model:ir.model.name:inventory_scale_integration_dashboard.model_stock_picking
 msgid "Transfer"
 msgstr "تحويل"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "Transfer Information"
-msgstr "معلومات التحويل"
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Trips per Truck/Week"
+msgstr "الرحلات لكل شاحنة/أسبوع"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Truck Assignment"
-msgstr "تخصيص الشاحنة"
+msgid "Truck Activity Distribution"
+msgstr "توزيع نشاط الشاحنات"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -673,15 +673,15 @@ msgid "Truck Fleet"
 msgstr "أسطول الشاحنات"
 
 #. module: inventory_scale_integration_dashboard
-#: model:ir.model,name:inventory_scale_integration_dashboard.model_truck_weighing
-msgid "Truck Weighing Record"
-msgstr "سجل وزن الشاحنة"
-
-#. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Unassigned"
-msgstr "غير مُعيّن"
+msgid "Truck Performance"
+msgstr "أداء الشاحنة"
+
+#. module: inventory_scale_integration_dashboard
+#: model:ir.model.name:inventory_scale_integration_dashboard.model_truck_weighing
+msgid "Truck Weighing Record"
+msgstr "سجل وزن الشاحنة"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -701,19 +701,13 @@ msgid "Unit"
 msgstr "الوحدة"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
-msgid "Update Inventory"
-msgstr "تحديث المخزون"
-
-#. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Urgent"
-msgstr "عاجل"
+msgid "Utilization Rate"
+msgstr "معدل الاستخدام"
 
 #. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_truck_weighing__variance_qty
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_form_stock
 msgid "Variance"
 msgstr "التباين"
 
@@ -725,26 +719,8 @@ msgstr "نسبة التباين"
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "Vendors"
-msgstr "الموردون"
-
-#. module: inventory_scale_integration_dashboard
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "View All"
 msgstr "عرض الكل"
-
-#. module: inventory_scale_integration_dashboard
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "View All Deliveries"
-msgstr "عرض جميع التسليمات"
-
-#. module: inventory_scale_integration_dashboard
-#. odoo-javascript
-#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
-msgid "View All Receipts"
-msgstr "عرض جميع الإيصالات"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -765,9 +741,34 @@ msgid "View Reports"
 msgstr "عرض التقارير"
 
 #. module: inventory_scale_integration_dashboard
-#: model:ir.ui.menu,name:inventory_scale_integration_dashboard.menu_truck_weighing_overview
-msgid "Weighing Analysis"
-msgstr "تحليل الوزن"
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Waiting Time"
+msgstr "وقت الانتظار"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Week Average"
+msgstr "متوسط الأسبوع"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Weekly"
+msgstr "أسبوعي"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Weekly Activity"
+msgstr "النشاط الأسبوعي"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Weekly Activity Count"
+msgstr "عدد الأنشطة الأسبوعية"
 
 #. module: inventory_scale_integration_dashboard
 #: model:ir.model.fields,field_description:inventory_scale_integration_dashboard.field_stock_picking__weighing_count
@@ -781,7 +782,7 @@ msgid "Weighing Operations Dashboard"
 msgstr "لوحة قيادة عمليات الوزن"
 
 #. module: inventory_scale_integration_dashboard
-#: model:ir.model,name:inventory_scale_integration_dashboard.model_weighing_overview
+#: model:ir.model.name:inventory_scale_integration_dashboard.model_weighing_overview
 msgid "Weighing Operations Overview Dashboard"
 msgstr "لوحة قيادة نظرة عامة على عمليات الوزن"
 
@@ -815,14 +816,10 @@ msgid "Weight Operations"
 msgstr "عمليات الوزن"
 
 #. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
-msgid "With Delivery"
-msgstr "مع التسليم"
-
-#. module: inventory_scale_integration_dashboard
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_dashboard.truck_weighing_view_search_stock
-msgid "With Receipt"
-msgstr "مع الإيصال"
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Weight Trends"
+msgstr "اتجاهات الوزن"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
@@ -833,8 +830,20 @@ msgstr "مع شاحنة"
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript
 #: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "Workflow Progress"
+msgstr "تقدم سير العمل"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
 msgid "Workflow Status"
 msgstr "حالة سير العمل"
+
+#. module: inventory_scale_integration_dashboard
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_dashboard/static/src/xml/weighing_dashboard.xml:0
+msgid "active"
+msgstr "نشط"
 
 #. module: inventory_scale_integration_dashboard
 #. odoo-javascript

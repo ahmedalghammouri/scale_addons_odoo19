@@ -229,10 +229,10 @@ msgstr "تفعيل"
 #. module: inventory_scale_integration_zpl
 #: model:ir.model.fields,help:inventory_scale_integration_zpl.field_zpl_printer__support_arabic
 msgid ""
-"Enable if printer has Arabic fonts installed. Disable to skip Arabic text "
+"Enable if printer has Arabic fonts installed. Disable to skip Arabic text"
 "fields."
 msgstr ""
-"تفعيل إذا كانت الطابعة تحتوي على خطوط عربية مثبتة. تعطيل لتخطي حقول النص "
+"تفعيل إذا كانت الطابعة تحتوي على خطوط عربية مثبتة. تعطيل لتخطي حقول النص"
 "العربي."
 
 #. module: inventory_scale_integration_zpl

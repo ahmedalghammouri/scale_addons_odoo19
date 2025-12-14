@@ -201,7 +201,7 @@ From any weighing record or cashier interface:
 ## Compatibility
 - Odoo 19.0+
 - Requires: inventory_scale_integration_base
-- Optional: inventory_scale_integration_cashier (adds ZPL buttons to cashier)
+- Optional: inventory_scale_integration_weighpoint (adds ZPL buttons to cashier)
 - Optional: inventory_scale_integration_stock
 - Works with all weighing modules
 - Compatible with Odoo.sh and App Store (no external dependencies)

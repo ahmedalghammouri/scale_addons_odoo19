@@ -19,6 +19,6 @@ class TruckSelectionWizard(models.TransientModel):
             'res_model': 'truck.weighing',
             'res_id': weighing.id,
             'view_mode': 'form',
-            'view_id': self.env.ref('inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint').id,
+            'view_id': self.env.ref('inventory_scale_integration_base.truck_weighing_view_form').id,
             'target': 'current',
         }

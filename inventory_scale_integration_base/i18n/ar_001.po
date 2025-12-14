@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 00:24+0000\n"
-"PO-Revision-Date: 2025-12-13 00:24+0000\n"
+"POT-Creation-Date: 2025-12-14 00:38+0000\n"
+"PO-Revision-Date: 2025-12-14 00:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,55 +22,55 @@ msgstr "192.168.1.100"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_kanban
-msgid "<i class=\"fa fa-balance-scale\" title=\"Weight\"/> Max:"
-msgstr "<i class=\"fa fa-balance-scale\" title=\"الوزن\"/> الحد الأقصى:"
+msgid "<i class=\\"fa fa-balance-scale\\" title=\\"Weight\\"/> Max:"
+msgstr "<i class=\\"fa fa-balance-scale\\" title=\\"الوزن\\"/> الحد الأقصى:"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_kanban
-msgid "<i class=\"fa fa-building text-info\" title=\"Owner\"/>"
-msgstr "<i class=\"fa fa-building text-info\" title=\"المالك\"/>"
+msgid "<i class=\\"fa fa-building text-info\\" title=\\"Owner\\"/>"
+msgstr "<i class=\\"fa fa-building text-info\\" title=\\"المالك\\"/>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_kanban
-msgid "<i class=\"fa fa-building text-info\" title=\"Partner\"/>"
-msgstr "<i class=\"fa fa-building text-info\" title=\"الشريك\"/>"
+msgid "<i class=\\"fa fa-building text-info\\" title=\\"Partner\\"/>"
+msgstr "<i class=\\"fa fa-building text-info\\" title=\\"الشريك\\"/>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_kanban
-msgid "<i class=\"fa fa-clock-o\" title=\"Date\"/>"
-msgstr "<i class=\"fa fa-clock-o\" title=\"التاريخ\"/>"
+msgid "<i class=\\"fa fa-clock-o\\" title=\\"Date\\"/>"
+msgstr "<i class=\\"fa fa-clock-o\\" title=\\"التاريخ\\"/>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_kanban
-msgid "<i class=\"fa fa-cube text-success\" title=\"Product\"/>"
-msgstr "<i class=\"fa fa-cube text-success\" title=\"المنتج\"/>"
+msgid "<i class=\\"fa fa-cube text-success\\" title=\\"Product\\"/>"
+msgstr "<i class=\\"fa fa-cube text-success\\" title=\\"المنتج\\"/>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_kanban
-msgid "<i class=\"fa fa-list-alt\" title=\"Records\"/>"
-msgstr "<i class=\"fa fa-list-alt\" title=\"السجلات\"/>"
-
-#. module: inventory_scale_integration_base
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_kanban
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_kanban
-msgid "<i class=\"fa fa-truck\" title=\"Truck\"/>"
-msgstr "<i class=\"fa fa-truck\" title=\"الشاحنة\"/>"
+msgid "<i class=\\"fa fa-list-alt\\" title=\\"Records\\"/>"
+msgstr "<i class=\\"fa fa-list-alt\\" title=\\"السجلات\\"/>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_kanban
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_kanban
-msgid "<i class=\"fa fa-user text-muted\" title=\"Driver\"/>"
-msgstr "<i class=\"fa fa-user text-muted\" title=\"السائق\"/>"
+msgid "<i class=\\"fa fa-truck\\" title=\\"Truck\\"/>"
+msgstr "<i class=\\"fa fa-truck\\" title=\\"الشاحنة\\"/>"
+
+#. module: inventory_scale_integration_base
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_kanban
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_kanban
+msgid "<i class=\\"fa fa-user text-muted\\" title=\\"Driver\\"/>"
+msgstr "<i class=\\"fa fa-user text-muted\\" title=\\"السائق\\"/>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_kanban
-msgid "<small class=\"text-muted\">Net Weight</small>"
-msgstr "<small class=\"text-muted\">الوزن الصافي</small>"
+msgid "<small class=\\"text-muted\\">Net Weight</small>"
+msgstr "<small class=\\"text-muted\\">الوزن الصافي</small>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.view_weighing_scale_form
-msgid "<span style=\"font-size: 16px; margin-left: 5px;\">KG</span>"
-msgstr "<span style=\"font-size: 16px; margin-left: 5px;\">كجم</span>"
+msgid "<span style=\\"font-size: 16px; margin-left: 5px;\\">KG</span>"
+msgstr "<span style=\\"font-size: 16px; margin-left: 5px;\\">كجم</span>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
@@ -80,59 +80,59 @@ msgstr "<span>مستند مُنشأ بواسطة الحاسوب</span>"
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_driver_ticket
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
-msgid "<strong style=\"color: #2c3e50;\">Date:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">التاريخ:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">Date:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">التاريخ:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
-msgid "<strong style=\"color: #2c3e50;\">Driver:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">السائق:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">Driver:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">السائق:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_driver_ticket
-msgid "<strong style=\"color: #2c3e50;\">First Weight:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">الوزن الأول:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">First Weight:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">الوزن الأول:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
-msgid "<strong style=\"color: #2c3e50;\">Partner:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">الشريك:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">Partner:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">الشريك:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
-msgid "<strong style=\"color: #2c3e50;\">Product:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">المنتج:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">Product:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">المنتج:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
-msgid "<strong style=\"color: #2c3e50;\">Ticket:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">التذكرة:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">Ticket:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">التذكرة:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_driver_ticket
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
-msgid "<strong style=\"color: #2c3e50;\">Truck:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">الشاحنة:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">Truck:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">الشاحنة:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_driver_ticket
-msgid "<strong style=\"color: #2c3e50;\">Weighing #:</strong>"
-msgstr "<strong style=\"color: #2c3e50;\">رقم الوزن:</strong>"
+msgid "<strong style=\\"color: #2c3e50;\\">Weighing #:</strong>"
+msgstr "<strong style=\\"color: #2c3e50;\\">رقم الوزن:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_label
-msgid "<strong style=\"color: #34495e;\">Product:</strong>"
-msgstr "<strong style=\"color: #34495e;\">المنتج:</strong>"
+msgid "<strong style=\\"color: #34495e;\\">Product:</strong>"
+msgstr "<strong style=\\"color: #34495e;\\">المنتج:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_label
-msgid "<strong style=\"color: #34495e;\">Truck:</strong>"
-msgstr "<strong style=\"color: #34495e;\">الشاحنة:</strong>"
+msgid "<strong style=\\"color: #34495e;\\">Truck:</strong>"
+msgstr "<strong style=\\"color: #34495e;\\">الشاحنة:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_certificate
-msgid "<strong style=\"color: #856404; font-size: 14px;\">Notes:</strong>"
-msgstr "<strong style=\"color: #856404; font-size: 14px;\">ملاحظات:</strong>"
+msgid "<strong style=\\"color: #856404; font-size: 14px;\\">Notes:</strong>"
+msgstr "<strong style=\\"color: #856404; font-size: 14px;\\">ملاحظات:</strong>"
 
 #. module: inventory_scale_integration_base
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__message_needaction
@@ -220,6 +220,26 @@ msgstr "عدد المرفقات"
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_search
 msgid "Available"
 msgstr "متاح"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__avg_total_waiting_time
+msgid "Avg Total Waiting Time"
+msgstr "متوسط إجمالي وقت الانتظار"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__avg_waiting_time_to_done
+msgid "Avg Wait to Done"
+msgstr "متوسط وقت الانتظار حتى الانتهاء"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__avg_waiting_time_to_first
+msgid "Avg Wait to First Weigh"
+msgstr "متوسط وقت الانتظار حتى الوزن الأول"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__avg_waiting_time_to_second
+msgid "Avg Wait to Second Weigh"
+msgstr "متوسط وقت الانتظار حتى الوزن الثاني"
 
 #. module: inventory_scale_integration_base
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__barcode
@@ -336,6 +356,7 @@ msgstr "أنشئ أول سجل وزن لك"
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__create_uid
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_type__create_uid
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__create_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__create_uid
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_scale__create_uid
 msgid "Created by"
 msgstr "تم الإنشاء بواسطة"
@@ -344,6 +365,7 @@ msgstr "تم الإنشاء بواسطة"
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__create_date
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_type__create_date
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__create_date
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__create_date
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_scale__create_date
 msgid "Created on"
 msgstr "تاريخ الإنشاء"
@@ -395,6 +417,7 @@ msgstr "غير متصل"
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__display_name
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_type__display_name
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__display_name
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_scale__display_name
 msgid "Display Name"
 msgstr "اسم العرض"
@@ -404,6 +427,11 @@ msgstr "اسم العرض"
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_search
 msgid "Done"
 msgstr "تم"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__done_time
+msgid "Done Time"
+msgstr "وقت الانتهاء"
 
 #. module: inventory_scale_integration_base
 #: model:ir.model.fields.selection,name:inventory_scale_integration_base.selection__truck_weighing__state__draft
@@ -512,6 +540,11 @@ msgid "First Weighing Captured"
 msgstr "تم التقاط الوزن الأول"
 
 #. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__first_time
+msgid "First Weighing Time"
+msgstr "وقت الوزن الأول"
+
+#. module: inventory_scale_integration_base
 #. odoo-python
 #: code:addons/inventory_scale_integration_base/models/truck_weighing.py:0
 msgid "First weight (Gross - Full truck): %s KG"
@@ -593,6 +626,7 @@ msgstr "وزن مرتفع (>10 طن)"
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__id
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_type__id
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__id
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_scale__id
 msgid "ID"
 msgstr "المُعرف"
@@ -720,6 +754,7 @@ msgstr "آخر قراءة"
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__write_uid
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_type__write_uid
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__write_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__write_uid
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_scale__write_uid
 msgid "Last Updated by"
 msgstr "آخر تحديث بواسطة"
@@ -728,6 +763,7 @@ msgstr "آخر تحديث بواسطة"
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__write_date
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_type__write_date
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__write_date
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__write_date
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_scale__write_date
 msgid "Last Updated on"
 msgstr "تاريخ آخر تحديث"
@@ -795,6 +831,11 @@ msgstr ""
 "                فقط المنتجات القابلة للوزن ستظهر في أوامر الشراء والإيصالات للوزن."
 
 #. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__max_waiting_time
+msgid "Max Waiting Time"
+msgstr "الحد الأقصى لوقت الانتظار"
+
+#. module: inventory_scale_integration_base
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__max_weight_per_trailer
 msgid "Max Weight per Trailer (KG)"
 msgstr "الوزن الأقصى لكل مقطورة (كجم)"
@@ -817,6 +858,11 @@ msgstr "خطأ في تسليم الرسالة"
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_scale__message_ids
 msgid "Messages"
 msgstr "الرسائل"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_weighing_overview__min_waiting_time
+msgid "Min Waiting Time"
+msgstr "الحد الأدنى لوقت الانتظار"
 
 #. module: inventory_scale_integration_base
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_fleet__model
@@ -1022,12 +1068,7 @@ msgid "Print Certificate"
 msgstr "طباعة الشهادة"
 
 #. module: inventory_scale_integration_base
-#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_form
-msgid "Print Driver Ticket"
-msgstr "طباعة تذكرة السائق"
-
-#. module: inventory_scale_integration_base
-#: model:ir.model,name:inventory_scale_integration_base.model_product_template
+#: model:ir.model.name:inventory_scale_integration_base.model_product_template
 #: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__product_id
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_search
 msgid "Product"
@@ -1113,6 +1154,11 @@ msgid "Second Weighing Captured"
 msgstr "تم التقاط الوزن الثاني"
 
 #. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__second_time
+msgid "Second Weighing Time"
+msgstr "وقت الوزن الثاني"
+
+#. module: inventory_scale_integration_base
 #. odoo-python
 #: code:addons/inventory_scale_integration_base/models/truck_weighing.py:0
 msgid "Second weight (Gross - Full truck): %s KG"
@@ -1129,14 +1175,16 @@ msgstr "الوزن الثاني (الحمولة الفارغة - شاحنة فا
 #: code:addons/inventory_scale_integration_base/models/truck_weighing.py:0
 msgid ""
 "Second weight (empty truck) must be less than first weight (full truck)."
-msgstr "يجب أن يكون الوزن الثاني (شاحنة فارغة) أقل من الوزن الأول (شاحنة ممتلئة)."
+msgstr ""
+"يجب أن يكون الوزن الثاني (شاحنة فارغة) أقل من الوزن الأول (شاحنة ممتلئة)."
 
 #. module: inventory_scale_integration_base
 #. odoo-python
 #: code:addons/inventory_scale_integration_base/models/truck_weighing.py:0
 msgid ""
 "Second weight (full truck) must be greater than first weight (empty truck)."
-msgstr "يجب أن يكون الوزن الثاني (شاحنة ممتلئة) أكبر من الوزن الأول (شاحنة فارغة)."
+msgstr ""
+"يجب أن يكون الوزن الثاني (شاحنة ممتلئة) أكبر من الوزن الأول (شاحنة فارغة)."
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.actions.act_window,help:inventory_scale_integration_base.action_weighing_scale
@@ -1241,6 +1289,16 @@ msgid "Total Tare"
 msgstr "إجمالي الحمولة الفارغة"
 
 #. module: inventory_scale_integration_base
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_list
+msgid "Total Waiting Time"
+msgstr "إجمالي وقت الانتظار"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__total_waiting_time
+msgid "Total Waiting Time (minutes)"
+msgstr "إجمالي وقت الانتظار (بالدقائق)"
+
+#. module: inventory_scale_integration_base
 #: model_terms:ir.actions.act_window,help:inventory_scale_integration_base.action_truck_weighing
 msgid "Track truck weights with real-time scale integration."
 msgstr "تتبع أوزان الشاحنات مع تكامل الميزان في الوقت الفعلي."
@@ -1260,7 +1318,7 @@ msgid "Truck Fleet"
 msgstr "أسطول الشاحنات"
 
 #. module: inventory_scale_integration_base
-#: model:ir.model,name:inventory_scale_integration_base.model_truck_fleet
+#: model:ir.model.name:inventory_scale_integration_base.model_truck_fleet
 msgid "Truck Fleet Management"
 msgstr "إدارة أسطول الشاحنات"
 
@@ -1280,7 +1338,7 @@ msgid "Truck Specifications"
 msgstr "مواصفات الشاحنة"
 
 #. module: inventory_scale_integration_base
-#: model:ir.model,name:inventory_scale_integration_base.model_truck_type
+#: model:ir.model.name:inventory_scale_integration_base.model_truck_type
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_fleet_view_search
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_type_view_form
 msgid "Truck Type"
@@ -1299,7 +1357,7 @@ msgid "Truck Weighing"
 msgstr "وزن الشاحنة"
 
 #. module: inventory_scale_integration_base
-#: model:ir.model,name:inventory_scale_integration_base.model_truck_weighing
+#: model:ir.model.name:inventory_scale_integration_base.model_truck_weighing
 msgid "Truck Weighing Record"
 msgstr "سجل وزن الشاحنة"
 
@@ -1321,7 +1379,7 @@ msgid "Type of the exception activity on record."
 msgstr "نوع النشاط الاستثنائي على السجل."
 
 #. module: inventory_scale_integration_base
-#: model:ir.model,name:inventory_scale_integration_base.model_res_users
+#: model:ir.model.name:inventory_scale_integration_base.model_res_users
 msgid "User"
 msgstr "المستخدم"
 
@@ -1359,6 +1417,26 @@ msgstr "ملصق الوزن"
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.report_weighing_ticket
 msgid "WEIGHING TICKET"
 msgstr "تذكرة الوزن"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__waiting_time_to_first
+msgid "Waiting Time to First Weigh (minutes)"
+msgstr "وقت الانتظار حتى الوزن الأول (بالدقائق)"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__waiting_time_to_second
+msgid "Waiting Time to Second Weigh (minutes)"
+msgstr "وقت الانتظار حتى الوزن الثاني (بالدقائق)"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.fields,field_description:inventory_scale_integration_base.field_truck_weighing__waiting_time_to_done
+msgid "Waiting Time to Update Inventory (minutes)"
+msgstr "وقت الانتظار لتحديث المخزون (بالدقائق)"
+
+#. module: inventory_scale_integration_base
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_form
+msgid "Waiting Times"
+msgstr "أوقات الانتظار"
 
 #. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_search
@@ -1413,6 +1491,16 @@ msgid "Weighing Label"
 msgstr "ملصق الوزن"
 
 #. module: inventory_scale_integration_base
+#: model:ir.ui.menu,name:inventory_scale_integration_base.menu_truck_weighing_oprtations
+msgid "Weighing Operations"
+msgstr "عمليات الوزن"
+
+#. module: inventory_scale_integration_base
+#: model:ir.model.name:inventory_scale_integration_base.model_weighing_overview
+msgid "Weighing Operations Overview Dashboard"
+msgstr "لوحة قيادة نظرة عامة على عمليات الوزن"
+
+#. module: inventory_scale_integration_base
 #: model_terms:ir.ui.view,arch_db:inventory_scale_integration_base.truck_weighing_view_pivot
 msgid "Weighing Pivot"
 msgstr "محور الوزن"
@@ -1446,7 +1534,7 @@ msgid "Weighing Scale / User"
 msgstr "مستخدم ميزان الوزن"
 
 #. module: inventory_scale_integration_base
-#: model:ir.model,name:inventory_scale_integration_base.model_weighing_scale
+#: model:ir.model.name:inventory_scale_integration_base.model_weighing_scale
 msgid "Weighing Scale Configuration"
 msgstr "إعدادات ميزان الوزن"
 

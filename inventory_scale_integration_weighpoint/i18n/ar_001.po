@@ -1,0 +1,744 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * inventory_scale_integration_weighpoint
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-14 02:24+0000\n"
+"PO-Revision-Date: 2025-12-14 02:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "(OVERDUE)"
+msgstr "(متأخر)"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "1st Weigh"
+msgstr "الوزن الأول"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "2nd Weigh"
+msgstr "الوزن الثاني"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "<span style=\"font-size: 24px; margin-left: 10px;\">KG</span>"
+msgstr "<span style=\"font-size: 24px; margin-left: 10px;\">كجم</span>"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_needaction
+msgid "Action Needed"
+msgstr "يتطلب إجراء"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "All"
+msgstr "الكل"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "All States"
+msgstr "جميع الحالات"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Apply Filters"
+msgstr "تطبيق الفلاتر"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Avg Process Time:"
+msgstr "متوسط وقت المعالجة:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Avg Wait Time"
+msgstr "متوسط وقت الانتظار"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_selection_wizard_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Clear"
+msgstr "مسح"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields.selection,name:inventory_scale_integration_weighpoint.selection__weighing_weighpoint__state__closed
+msgid "Closed"
+msgstr "مغلق"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_selection_wizard_form
+msgid "Create Weighing"
+msgstr "إنشاء وزن"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__create_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__create_uid
+msgid "Created by"
+msgstr "تم الإنشاء بواسطة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__create_date
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "Dates"
+msgstr "التواريخ"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_weighing__display_name
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Done"
+msgstr "تم"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Efficiency Rate"
+msgstr "معدل الكفاءة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Est:"
+msgstr "تقديري:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Filters"
+msgstr "فلاتر"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "First Weigh"
+msgstr "الوزن الأول"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Gross:"
+msgstr "الإجمالي:"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__has_message
+msgid "Has Message"
+msgstr "يوجد رسالة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_weighing__id
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,help:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم التحقق، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,help:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_has_error
+#: model:ir.model.fields,help:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم التحقق، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "In Queue"
+msgstr "في الطابور"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Incoming"
+msgstr "وارد"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "LIVE WEIGHT"
+msgstr "الوزن الحي"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__write_uid
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__write_date
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__write_date
+msgid "Last Updated on"
+msgstr "تاريخ آخر تحديث"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Loading dashboard data..."
+msgstr "جاري تحميل بيانات لوحة القيادة..."
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "NET WEIGHT"
+msgstr "الوزن الصافي"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Net:"
+msgstr "الصافي:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "New (F1)"
+msgstr "جديد (F1)"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "No orders with weighing"
+msgstr "لا توجد أوامر بها وزن"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "No pending orders"
+msgstr "لا توجد أوامر معلقة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-python
+#: code:addons/inventory_scale_integration_weighpoint/models/weighing_weighpoint.py:0
+msgid "No pending weighing found with barcode: %s"
+msgstr "لم يتم العثور على وزن معلق بالرمز الشريطي: %s"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "No recent activity"
+msgstr "لا يوجد نشاط حديث"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "No trucks in queue"
+msgstr "لا توجد شاحنات في الطابور"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-python
+#: code:addons/inventory_scale_integration_weighpoint/models/weighing_weighpoint.py:0
+msgid "No weighable products found in this order."
+msgstr "لم يتم العثور على منتجات قابلة للوزن في هذا الطلب."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "No weighings in progress"
+msgstr "لا توجد عمليات وزن قيد التنفيذ"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,help:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,help:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields.selection,name:inventory_scale_integration_weighpoint.selection__weighing_weighpoint__state__open
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "Operation"
+msgstr "العملية"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__user_id
+msgid "Operator"
+msgstr "المُشغل"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Orders"
+msgstr "الطلبات"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Origin:"
+msgstr "الأصل:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Outgoing"
+msgstr "صادر"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Overview"
+msgstr "نظرة عامة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Partner name..."
+msgstr "اسم الشريك..."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Partner:"
+msgstr "الشريك:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Peak Hour:"
+msgstr "ساعة الذروة:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Pending Orders"
+msgstr "الطلبات المعلقة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__picking_id
+msgid "Picking Order"
+msgstr "أمر الانتقاء"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Processing"
+msgstr "المعالجة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Product name..."
+msgstr "اسم المنتج..."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Product:"
+msgstr "المنتج:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Queue"
+msgstr "الطابور"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Recent Activity"
+msgstr "النشاط الأخير"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Refresh"
+msgstr "تحديث"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__scale_id
+msgid "Scale"
+msgstr "الميزان"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Scale Management System"
+msgstr "نظام إدارة الميزان"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Scan"
+msgstr "مسح"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Scan or enter barcode / order number..."
+msgstr "امسح أو أدخل الرمز الشريطي / رقم الطلب..."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Scheduled:"
+msgstr "مجدول:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Search"
+msgstr "بحث"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Search orders..."
+msgstr "البحث في الطلبات..."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Search weighings..."
+msgstr "البحث في الأوزان..."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Second Weigh"
+msgstr "الوزن الثاني"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_selection_wizard_form
+msgid "Select Truck"
+msgstr "اختيار الشاحنة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__name
+msgid "Session"
+msgstr "الجلسة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Tare:"
+msgstr "الحمولة الفارغة:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Today's Insights"
+msgstr "إحصائيات اليوم"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Today's Progress"
+msgstr "تقدم اليوم"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Total Weight:"
+msgstr "إجمالي الوزن:"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_selection_wizard__truck_id
+msgid "Truck"
+msgstr "الشاحنة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "Truck Info"
+msgstr "معلومات الشاحنة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Truck Queue ("
+msgstr "طابور الشاحنات ("
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model,name:inventory_scale_integration_weighpoint.model_truck_selection_wizard
+msgid "Truck Selection Wizard"
+msgstr "معالج اختيار الشاحنة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.name:inventory_scale_integration_weighpoint.model_truck_weighing
+msgid "Truck Weighing Record"
+msgstr "سجل وزن الشاحنة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Truck plate..."
+msgstr "لوحة الشاحنة..."
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Truck:"
+msgstr "الشاحنة:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "URGENT"
+msgstr "عاجل"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "View All (F3)"
+msgstr "عرض الكل (F3)"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Waiting"
+msgstr "في الانتظار"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "Waiting:"
+msgstr "الانتظار:"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,help:inventory_scale_integration_weighpoint.field_weighing_weighpoint__website_message_ids
+msgid "Website communication history"
+msgstr "سجل التواصل عبر الموقع"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+#: model:ir.actions.act_window,name:inventory_scale_integration_weighpoint.action_weighing_weighpoint
+#: model:ir.actions.client,name:inventory_scale_integration_weighpoint.action_weighing_weighpoint_interface
+#: model:ir.ui.menu,name:inventory_scale_integration_weighpoint.menu_weighing_weighpoint_root
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "Weigh Point"
+msgstr "نقطة الوزن"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.name:inventory_scale_integration_weighpoint.model_weighing_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_truck_weighing__weighpoint_session_id
+msgid "Weigh Point Session"
+msgstr "جلسة نقطة الوزن"
+
+#. module: inventory_scale_integration_weighpoint
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__weighing_count
+msgid "Weighing Count"
+msgstr "عدد عمليات الوزن"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+#: model:ir.model.fields,field_description:inventory_scale_integration_weighpoint.field_weighing_weighpoint__weighing_ids
+msgid "Weighings"
+msgstr "عمليات الوزن"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "Weights"
+msgstr "الأوزان"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "completed"
+msgstr "مكتملة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "in progress"
+msgstr "قيد التنفيذ"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "orders"
+msgstr "طلبات"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "urgent"
+msgstr "عاجلة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "waiting"
+msgstr "انتظار"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "waiting)"
+msgstr "انتظار)"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "⏱️ In Progress Weighings"
+msgstr "⏱️ عمليات الوزن قيد التنفيذ"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "✓ Weigh First"
+msgstr "✓ الوزن الأول"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "✓ Weigh Second"
+msgstr "✓ الوزن الثاني"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "👥 Partner:"
+msgstr "👥 الشريك:"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "📄 Print Certificate"
+msgstr "📄 طباعة الشهادة"
+
+#. module: inventory_scale_integration_weighpoint
+#: model_terms:ir.ui.view,arch_db:inventory_scale_integration_weighpoint.truck_weighing_view_form_weighpoint
+msgid "📊 Fetch Weight"
+msgstr "📊 جلب الوزن"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "📊 State:"
+msgstr "📊 الحالة:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "📋 Pending Orders"
+msgstr "📋 طلبات معلقة"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "📦 Orders with Weighing"
+msgstr "📦 طلبات بها وزن"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "📦 Product:"
+msgstr "📦 المنتج:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "🔍 Search:"
+msgstr "🔍 بحث:"
+
+#. module: inventory_scale_integration_weighpoint
+#. odoo-javascript
+#: code:addons/inventory_scale_integration_weighpoint/static/src/xml/weighing_weighpoint.xml:0
+msgid "🚚 Truck:"
+msgstr "🚚 الشاحنة:"
