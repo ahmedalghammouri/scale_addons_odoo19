@@ -1,0 +1,82 @@
+2025-12-22 11:34:06,291 - INFO - Application started
+2025-12-22 11:34:23,251 - INFO - ✓ Server started on port 5000
+2025-12-22 11:34:23,251 - INFO - Mode: SIMULATION
+2025-12-22 11:34:26,392 - INFO - Weight request from 127.0.0.1: 34386.01 kg
+2025-12-22 11:34:26,392 - INFO - 127.0.0.1 - - [22/Dec/2025 11:34:26] "GET /get_weight HTTP/1.1" 200 -
+2025-12-22 11:34:37,563 - INFO - Flask server stopped
+2025-12-22 11:34:52,994 - INFO - ✓ Server started on port 5000
+2025-12-22 11:34:52,996 - INFO - Mode: SIMULATION
+2025-12-22 11:36:16,575 - ERROR - Serial error: could not open port 'COM3': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+2025-12-22 11:36:17,586 - ERROR - Serial error: could not open port 'COM3': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+2025-12-22 11:36:18,606 - ERROR - Serial error: could not open port 'COM3': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+2025-12-22 11:36:35,496 - INFO - Flask server stopped
+2025-12-22 11:36:49,806 - INFO - ✓ Server started on port 5000
+2025-12-22 11:36:49,807 - INFO - Mode: SIMULATION
+2025-12-22 11:37:35,750 - WARNING - No serial ports detected
+2025-12-22 11:37:35,766 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:37:35,878 - INFO - ✓ Application started successfully
+2025-12-22 11:37:35,979 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:37:43,405 - INFO - Starting server...
+2025-12-22 11:37:55,514 - INFO - ✓ Server started successfully on port 5000
+2025-12-22 11:37:55,515 - INFO - Access URL: http://172.18.238.138:5000/get_weight
+2025-12-22 11:37:55,516 - INFO - Operating mode: SIMULATION
+2025-12-22 11:40:01,615 - WARNING - No serial ports detected
+2025-12-22 11:40:01,615 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:40:01,746 - INFO - ✓ Application started successfully
+2025-12-22 11:40:01,836 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:40:10,781 - INFO - Saving log file...
+2025-12-22 11:40:10,781 - INFO - ✓ Log saved successfully: manual_log_20251222_114010.txt
+2025-12-22 11:40:15,702 - INFO - Log display cleared
+2025-12-22 11:41:08,056 - WARNING - No serial ports detected
+2025-12-22 11:41:08,074 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:41:08,192 - INFO - ✓ Application started successfully
+2025-12-22 11:41:08,301 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:41:18,432 - INFO - Starting server...
+2025-12-22 11:41:30,518 - INFO - ✓ Server started successfully on port 5000
+2025-12-22 11:41:30,519 - INFO - Access URL: http://172.18.238.138:5000/get_weight
+2025-12-22 11:41:30,520 - INFO - Operating mode: SIMULATION
+2025-12-22 11:41:42,678 - INFO - Request from 127.0.0.1 → Weight: 27,357.65 kg
+2025-12-22 11:41:42,681 - INFO - 127.0.0.1 - - [22/Dec/2025 11:41:42] "GET /get_weight HTTP/1.1" 200 -
+2025-12-22 11:41:43,902 - INFO - Request from 127.0.0.1 → Weight: 13,206.67 kg
+2025-12-22 11:41:43,903 - INFO - 127.0.0.1 - - [22/Dec/2025 11:41:43] "GET /get_weight HTTP/1.1" 200 -
+2025-12-22 11:42:59,122 - WARNING - No serial ports detected
+2025-12-22 11:42:59,132 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:42:59,246 - INFO - ✓ Application started successfully
+2025-12-22 11:42:59,341 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:43:36,896 - WARNING - No serial ports detected
+2025-12-22 11:43:36,898 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:43:37,039 - INFO - ✓ Application started successfully
+2025-12-22 11:43:37,118 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:43:52,081 - WARNING - No serial ports detected
+2025-12-22 11:43:52,085 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:43:52,193 - INFO - ✓ Application started successfully
+2025-12-22 11:43:52,301 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:44:23,244 - WARNING - No serial ports detected
+2025-12-22 11:44:23,250 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:44:23,372 - INFO - ✓ Application started successfully
+2025-12-22 11:44:23,468 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:44:51,792 - WARNING - No serial ports detected
+2025-12-22 11:44:51,797 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:44:51,909 - INFO - ✓ Application started successfully
+2025-12-22 11:44:52,014 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:46:32,934 - WARNING - No serial ports detected
+2025-12-22 11:46:32,941 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:46:33,049 - INFO - ✓ Application started successfully
+2025-12-22 11:46:33,158 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:49:29,763 - WARNING - No serial ports detected
+2025-12-22 11:49:29,769 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:49:29,877 - INFO - ✓ Application started successfully
+2025-12-22 11:49:29,982 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:49:42,703 - INFO - Starting server...
+2025-12-22 11:49:54,768 - INFO - ✓ Server started successfully on port 5000
+2025-12-22 11:49:54,768 - INFO - Access URL: http://172.18.238.138:5000/get_weight
+2025-12-22 11:49:54,768 - INFO - Operating mode: SIMULATION
+2025-12-22 11:50:00,064 - INFO - Application minimized to tray
+2025-12-22 11:50:51,708 - INFO - Application minimized to tray
+2025-12-22 11:50:54,755 - INFO - Stopping server...
+2025-12-22 11:50:55,169 - INFO - ✓ Flask server stopped successfully
+2025-12-22 11:51:06,865 - WARNING - No serial ports detected
+2025-12-22 11:51:06,871 - INFO - Mode changed to: SIMULATION
+2025-12-22 11:51:06,985 - INFO - ✓ Application started successfully
+2025-12-22 11:51:07,087 - INFO - Local IP Address: 172.18.238.138
+2025-12-22 11:51:08,434 - INFO - Application minimized to tray

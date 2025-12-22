@@ -84,12 +84,47 @@ class WeighingWeighPointInterface extends Component {
             domain.push(["name", "ilike", this.state.searchText]);
         }
         
-        const allPickings = await this.orm.searchRead(
+        let allPickings = await this.orm.searchRead(
             "stock.picking",
             domain,
-            ["name", "partner_id", "scheduled_date", "picking_type_code", "origin"],
+            ["name", "partner_id", "scheduled_date", "picking_type_code", "origin", "move_ids"],
             { limit: 50, order: "scheduled_date desc" }
         );
+        
+        // Filter outgoing pickings to only include those with weighable products
+        if (this.state.pickingFilter === "outgoing" || this.state.pickingFilter === "all" || this.state.pickingFilter === "incoming" ) {
+            const pickingsToCheck = allPickings.filter(p => p.move_ids && p.move_ids.length > 0);
+            const moveIds = pickingsToCheck.flatMap(p => p.move_ids);
+            
+            if (moveIds.length > 0) {
+                const moves = await this.orm.searchRead(
+                    "stock.move",
+                    [["id", "in", moveIds]],
+                    ["id", "product_id"],
+                    {}
+                );
+                
+                const productIds = [...new Set(moves.map(m => m.product_id[0]).filter(Boolean))];
+                const products = await this.orm.searchRead(
+                    "product.product",
+                    [["id", "in", productIds]],
+                    ["id", "is_weighable"],
+                    {}
+                );
+                
+                const weighableProductIds = new Set(products.filter(p => p.is_weighable).map(p => p.id));
+                const pickingsWithWeighable = new Set();
+                
+                moves.forEach(m => {
+                    if (m.product_id && weighableProductIds.has(m.product_id[0])) {
+                        const picking = pickingsToCheck.find(p => p.move_ids.includes(m.id));
+                        if (picking) pickingsWithWeighable.add(picking.id);
+                    }
+                });
+                
+                allPickings = allPickings.filter(p => pickingsWithWeighable.has(p.id));
+            }
+        }
         
         // Get all weighing records (including done)
         const weighings = await this.orm.searchRead(
